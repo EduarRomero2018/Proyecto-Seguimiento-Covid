@@ -30,7 +30,7 @@ try {
         die(json_encode(1));
     }
 
-        $stm = $conexion->prepare("INSERT INTO segunda_toma_muestra_control VALUES(NULL, ?,?, NULL, NULL, NULL,?,?, ?, NULL,NOW(),NULL)");
+        $stm = $conexion->prepare("INSERT INTO segunda_toma_muestra_control VALUES(NULL, ?,?, NULL, NULL, NULL,?,?, ?, NULL,NOW(),NULL,'ACTIVO','NO',NULL)");
     $stm->execute(array(
         $pacientes_id,
         $fecha_programacion,
