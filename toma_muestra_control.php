@@ -22,19 +22,20 @@ if (empty($documento) OR (!is_numeric($documento))){
 
 else{
   //VALIDAMOS QUE LA IDENTIFICACION NO EXISTA EN LA BD
-  $consulta = $conexion->prepare('SELECT * FROM pacientes WHERE numero_documento = :numero_documento LIMIT 1');
+  $consulta = $conexion->prepare("SELECT CONCAT(primer_nombre,' ',primer_apellido) AS Nombre_Completo,pacientes.* FROM pacientes WHERE numero_documento = :numero_documento LIMIT 1");
   $consulta->execute(array(':numero_documento' => $documento));
           $resultado = $consulta->fetch();
           //print_r($resultado);
-          $tipo_documento=$resultado[tipo_documento];
-          $numero_documento=$resultado[numero_documento];
-          $edad=$resultado[edad];
-          $primer_nombre=$resultado[primer_nombre];
-          $segundo_nombre=$resultado[primer_apellido];
-          $tipo_paciente=$resultado[tipo_paciente];
-          $aseguradora=$resultado[aseguradora];
-          $fecha_registro=$resultado[fecha_registro];
-          $id=$resultado[id];
+          $tipo_documento=$resultado['tipo_documento'];
+          $numero_documento=$resultado['numero_documento'];
+          $edad=$resultado['edad'];
+          $primer_nombre=$resultado['primer_nombre'];
+          $segundo_nombre=$resultado['primer_apellido'];
+          $tipo_paciente=$resultado['tipo_paciente'];
+          $aseguradora=$resultado['aseguradora'];
+          $fecha_registro=$resultado['fecha_registro'];
+          $id=$resultado['id'];
+          $Nombre_Completo=$resultado['Nombre_Completo'];
           //mandamos un msg si no encontro nada
 
           if (empty($resultado)){

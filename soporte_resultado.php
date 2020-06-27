@@ -28,7 +28,7 @@ if (isset($_REQUEST['guardar']) || isset($_REQUEST['listar'])) {
         $Nombre_Completo = $res['Nombre_Completo'];
 
         if(isset($_REQUEST['listar'])){
-            $stm = $conexion->prepare("SELECT * FROM segunda_toma_muestra_control
+            $stm = $conexion->prepare("SELECT *,DATE(segunda_toma_muestra_control.fecha_resgistro) AS Fecha_registro FROM segunda_toma_muestra_control
             WHERE pacientes_id = ?
             AND soporte_resultado != ''");
             $stm->execute(array($paciente_id));
