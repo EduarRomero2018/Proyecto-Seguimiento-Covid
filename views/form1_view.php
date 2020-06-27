@@ -33,7 +33,7 @@
       <div class="col-sm-4">
         <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
           <label class="col-form-label">Tipo de Paciente:</label>
-          <select name="tipo_paciente" class="custom-select" required>
+          <select name="tipo_paciente" class="custom-select" >
             <option selected value=""> </option>
             <option value="CASO INDICE">CASO INDICE</option>
             <option value="CONTACTO ESTRECHO">CONTACTO ESTRECHO</option>
@@ -44,7 +44,7 @@
       <div class="col-sm-4">
         <input type="hidden" name="id_usuario" value="<?= $_SESSION['id'] ?>">
         <label class="col-form-label">Primer Nombre:</label>
-        <input type="text" name="primer_nombre" class="form-control" placeholder="Primer Nombre" required>
+        <input type="text" name="primer_nombre" class="form-control" placeholder="Primer Nombre" >
       </div>
 
       <div class="col-sm-4">
@@ -64,11 +64,11 @@
 
       <div class="col-sm-4">
         <label class="col-form-label">Digite su Edad:</label>
-        <input type="number" name="edad" class="form-control" placeholder="" required>
+        <input type="number" name="edad" class="form-control" placeholder="" >
       </div>
       <div class="col-sm-4">
         <label class="col-form-label">Sexo:</label>
-        <select name="sexo" class="custom-select" required>
+        <select name="sexo" class="custom-select" >
           <option selected value=""> </option>
           <option value="MASCULINO">MACULINO</option>
           <option value="FEMENINO">FEMENINO</option>
@@ -81,12 +81,12 @@
 
       <div class="col-sm-4">
         <label class="col-form-label">Aseguradora o EPS:</label>
-        <input type="text" name="aseguradora" class="form-control" placeholder="Escriba su EPS" required>
+        <input type="text" name="aseguradora" class="form-control" placeholder="Escriba su EPS" >
       </div>
 
       <div class="col-sm-4">
         <label class="col-form-label">Seleccione el tipo de documento:</label>
-        <select name="tipo_documento" class="custom-select" required>
+        <select name="tipo_documento" class="custom-select" >
           <!--<option selected>Seleccione el tipo de documento</option>-->
           <option selected value=""> </option>
           <option value="CC">CEDULA DE CIUDADANIA</option>
@@ -97,11 +97,11 @@
       </div>
       <div class="col-sm-4">
         <label class="col-form-label">Numero Documento:</label>
-        <input type="number" name="numero_identificacion" class="form-control" placeholder="" required>
+        <input type="number" name="numero_identificacion" class="form-control" placeholder="" >
       </div>
       <div class="col-sm-4">
         <label class="col-form-label">Unidad de Medida:</label>
-        <select name="unidad_medida" class="custom-select" required>
+        <select name="unidad_medida" class="custom-select" >
           <option selected value=""> </option>
           <option value="AÑOS">AÑOS</option>
           <option value="MESES">MESES</option>
@@ -112,7 +112,7 @@
       <div class="col-sm-4">
         <br>
         <label class="col-form-label">Barrio y direccion Completa:</label>
-        <input type="text" name="barrio" class="form-control" placeholder="ejemplo: Campestre mz:7 lt: 12" required>
+        <input type="text" name="barrio" class="form-control" placeholder="ejemplo: Campestre mz:7 lt: 12" >
       </div>
       <div class="col-sm-4">
         <br>

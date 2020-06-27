@@ -5,7 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>iniciar Sesión</title>
-    <link rel="stylesheet" href="css/foundation.css">
+    <!--<link rel="stylesheet" href="css/foundation.css">-->
     <link rel="stylesheet" href="css/app.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.29.0/sweetalert2.all.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
