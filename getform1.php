@@ -49,12 +49,16 @@ if (!filter_var($correo, FILTER_VALIDATE_EMAIL)) {
 //comprobamos que los campos no esten vacios
 if (empty($tipo_paciente) || empty ($primer_nombre) || empty($primer_apellido) || empty($segundo_apellido)
 || empty($tipo_documento) || empty($numero_identificacion) || empty($edad) || empty($unidad_medida) || empty($sexo) || empty($barrio) || empty($telefono) || empty($aseguradora)){
- $errores .= 'Todos los Campos deben estar diligenciados y con el Formato Adecuado';//si hay alguna variable vacia, entonces errores va hacer igual al contenido que tenga la variable
+//si hay alguna variable vacia, entonces errores va hacer igual al contenido que tenga la variable
+ $errores .= 'Todos los Campos deben estar diligenciados y con el Formato Adecuado';
 }
-//si se cumple la validacion de arriba preparamos el insert
 else {
-  $consulta = $conexion->prepare("INSERT INTO pacientes (tipo_paciente, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, tipo_documento, numero_documento, edad, unidad_medida, sexo, barrio, correo, telefono, aseguradora, fecha_prog_recep, id_usuario)
-  VALUES (:tipo_paciente, :primer_nombre, :segundo_nombre, :primer_apellido, :segundo_apellido, :tipo_documento, :numero_documento, :edad, :unidad_medida, :sexo, :barrio, :correo, :telefono, :aseguradora, :fecha_prog_recep, :id_usuario)");
+  $consulta =
+  $conexion->prepare(
+  "INSERT INTO pacientes
+  (tipo_paciente, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, tipo_documento, numero_documento, edad, unidad_medida, sexo, barrio, correo, telefono, aseguradora, fecha_prog_recep, id_usuario)
+  VALUES
+  (:tipo_paciente, :primer_nombre, :segundo_nombre, :primer_apellido, :segundo_apellido, :tipo_documento, :numero_documento, :edad, :unidad_medida, :sexo, :barrio, :correo, :telefono, :aseguradora, :fecha_prog_recep, :id_usuario)");
 
   $consulta->execute(array(
    ':tipo_paciente'                       => $tipo_paciente,
