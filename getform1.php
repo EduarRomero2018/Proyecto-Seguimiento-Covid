@@ -39,10 +39,6 @@ $fecha_recepcion_programacion= $_POST['fecha_recepcion_programacion'];
 
 print_r($_REQUEST);
 
-//echo $aseguradora ."<br>";
-//$email = $_POST['correo'];
-//echo $email. "<br>";
-
 //variables globales que recogen al final el estado del condicional
 $errores= '';
 $exito= '';
