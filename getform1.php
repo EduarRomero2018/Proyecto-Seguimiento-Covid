@@ -3,43 +3,13 @@ include 'conexion.php';  // Funciona.
 //APERTURA DE VARIABLES Datos Personales
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 // variables de Atención personal
-$tipo_paciente = $_POST['tipo_paciente'];
-//echo $tipo_paciente;
-$primer_nombre = $_POST['primer_nombre'];
-//echo $primer_nombre;
-$segundo_nombre = $_POST['segundo_nombre'];
-//echo $segundo_nombre;
-$primer_apellido = $_POST['primer_apellido'];
-//echo "<br>";
-$segundo_apellido = $_POST['segundo_apellido'];
-//echo "<br>";
-$tipo_documento = $_POST['tipo_documento'];
-//echo $tipo_documento;
-$numero_identificacion = $_POST['numero_identificacion'];
-//echo $numero_identificacion;
-$edad = $_POST['edad'];
-//echo $edad;
-$unidad_medida = $_POST['unidad_medida'];
-//echo "<br>";
-$sexo = $_POST['sexo'];
-//echo $sexo;
-$barrio= $_POST['barrio'];
-//echo $barrio."<br>";
-$correo= $_POST['correo'];
-//echo $correo."<br>";
-$telefono= $_POST['telefono'];
-//echo $telefono ."<br>";
-$aseguradora= $_POST['aseguradora'];
+$tipo_paciente = $_POST['tipo_paciente'];$primer_nombre = $_POST['primer_nombre'];$segundo_nombre = $_POST['segundo_nombre'];
+$primer_apellido = $_POST['primer_apellido'];$segundo_apellido = $_POST['segundo_apellido'];$tipo_documento = $_POST['tipo_documento'];
+$numero_identificacion = $_POST['numero_identificacion'];$edad = $_POST['edad'];$unidad_medida = $_POST['unidad_medida'];$sexo = $_POST['sexo'];
+$barrio= $_POST['barrio'];$correo= $_POST['correo'];$telefono= $_POST['telefono'];$aseguradora= $_POST['aseguradora'];
+$id_usuario= $_POST['id_usuario'];$fecha_recepcion_programacion= $_POST['fecha_recepcion_programacion'];
 
-$id_usuario= $_POST['id_usuario'];
-
-$fecha_recepcion_programacion= $_POST['fecha_recepcion_programacion'];
-
-//echo $fecha_recepcion_programacion;
-
-print_r($_REQUEST);
-
-//variables globales que recogen al final el estado del condicional
+// variables de errores y exito
 $errores= '';
 $exito= '';
 
