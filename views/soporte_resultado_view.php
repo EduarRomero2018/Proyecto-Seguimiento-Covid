@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="css/stylos_formulario.css">
+    <link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet">
     <link rel="stylesheet" href="css/mdb.min.css">
     <script src="js/jquery.js"></script>
     <link rel="stylesheet" href="css/stylos_formulario.css">
@@ -19,13 +20,12 @@
     <div class="linea1"></div>
     <div class="linea2"></div>
     <div class="linea3"></div>
-        <!--******************************************************-->
-        <nav class="navbar navbar-expand-lg navbar-light fondo-color img-nav">
-        <a class="navbar-brand" href="#">
+    <!--******************************************************-->
+    <nav class="navbar navbar-expand-lg navbar-light fondo-color img-nav">
+        <a class="navbar-brand" href="/">
             <img src="img/logo_sin_fondo.png" class="img-fluid" alt="logo-caminos">
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <!--******************************************************-->
@@ -39,8 +39,7 @@
                 <!--******************************************************-->
 
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         SEGUIMIENTO
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -56,25 +55,21 @@
                 </li>
 
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         INGRESAR RESULTADOS
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="nav-link " href="#" id="navbarDropdown" data-target='#exampleModal' role="button"
-                        data-toggle="modal" aria-haspopup="true" aria-expanded="false">
-                        Ingresar Resultado Primera Vez
-                    </a>
-                    <a class="nav-link " href="#" id="navbarDropdown" data-target='#modalTomaMuestraControl'
-                        role="button" data-toggle="modal" aria-haspopup="true" aria-expanded="false">
-                        Ingresar Resultado Segunda Vez (Control)
-                    </a>
+                        <a class="nav-link " href="#" id="navbarDropdown" data-target='#exampleModal' role="button" data-toggle="modal" aria-haspopup="true" aria-expanded="false">
+                            Ingresar Resultado Primera Vez
+                        </a>
+                        <a class="nav-link " href="#" id="navbarDropdown" data-target='#modalTomaMuestraControl' role="button" data-toggle="modal" aria-haspopup="true" aria-expanded="false">
+                            Ingresar Resultado Segunda Vez (Control)
+                        </a>
                     </div>
                 </li>
 
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         REPORTES
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -88,8 +83,8 @@
                 </li>
             </ul>
             <a href="cerrar.php">
-                <button class="btn btn-outline-info  my-2 my-sm-0" type="submit">
-                    <i class="fa fa-power-off mr-2" aria-hidden="true"></i>Cerrar Sesión</button>
+                <button style="font-size: 15px;" class="btn btn-outline-info  my-2 my-sm-0" type="submit">
+                    <i class="fa fa-sign-out-alt mr-2" aria-hidden="true"></i>Cerrar Sesión</button>
             </a>
         </div>
     </nav>
@@ -156,7 +151,7 @@
                     <h3>Historial de soportes de resultado del paciente: <?= ucwords($Nombre_Completo) ?></h3>
                     <div class="table-wrapper-scroll-y my-custom-scrollbar table-hover">
                         <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
-                        <thead>
+                            <thead>
                                 <tr class="text-right">
                                     <th class="text-center th-sm"># Registro<i class="text-left fas fa-sort ml-1"></i></th>
                                     <th class="text-center th-sm">Documento</th>
@@ -191,7 +186,7 @@
                     </div>
                 </div>
             </div>
-        <legend hidden id="nombre"><?= $Nombre_Completo ?></legend>
+            <legend hidden id="nombre"><?= $Nombre_Completo ?></legend>
     </div>
 <?php endif; ?>
 </body>

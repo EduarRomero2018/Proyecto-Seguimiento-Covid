@@ -8,10 +8,13 @@
   <title>IngresarUsuario</title>
   <link rel="stylesheet" href="css/stylos_formulario.css">
   <!--<link rel="stylesheet" href="../css/normalize.css">-->
+  <link rel="stylesheet" href="css/mdb.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.29.0/sweetalert2.all.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <!--<link rel="stylesheet" href="../css/bootstrap.min.css">-->
+  <link rel="stylesheet" href="../css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
   <script src="validaciones.js"></script>
 </head>
 
@@ -23,7 +26,7 @@
 
   <!--******************************************************-->
   <nav class="navbar navbar-expand-lg navbar-light fondo-color img-nav">
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" href="/">
       <img src="img/logo_sin_fondo.png" class="img-fluid" alt="logo-caminos">
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -84,8 +87,8 @@
         </li>
       </ul>
       <a href="cerrar.php">
-        <button class="btn btn-outline-info  my-2 my-sm-0" type="submit">
-          <i class="fa fa-power-off mr-2" aria-hidden="true"></i>Cerrar Sesión</button>
+        <button style="font-size: 15px;" class="btn btn-outline-info  my-2 my-sm-0" type="submit">
+          <i class="fa fa-sign-out-alt mr-2" aria-hidden="true"></i>Cerrar Sesión</button>
       </a>
     </div>
   </nav>
@@ -195,9 +198,6 @@
         <div>
           <br>
           <button type="submit" class="btn btn-outline-secondary btn-lg">Guardar Datos</button>
-          <a href="index.php">
-            <button type="button" class="btn btn-outline-secondary btn-lg">Regresar</button>
-          </a>
           <br>
           <br>
         </div>

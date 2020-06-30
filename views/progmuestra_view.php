@@ -7,10 +7,11 @@
     <title>programacion-muestra</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.0/css/mdb.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/stylos_formulario.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.29.0/sweetalert2.all.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet">
     <script src="js/jquery.js"></script>
     <script src="js/funciones.js"></script>
 </head>
@@ -20,13 +21,12 @@
     <div class="linea2"></div>
     <div class="linea3"></div>
 
-        <!--******************************************************-->
-        <nav class="navbar navbar-expand-lg navbar-light fondo-color img-nav">
-        <a class="navbar-brand" href="#">
+    <!--******************************************************-->
+    <nav class="navbar navbar-expand-lg navbar-light fondo-color img-nav">
+        <a class="navbar-brand" href="/">
             <img src="img/logo_sin_fondo.png" class="img-fluid" alt="logo-caminos">
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <!--******************************************************-->
@@ -40,8 +40,7 @@
                 <!--******************************************************-->
 
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         SEGUIMIENTO
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -57,25 +56,21 @@
                 </li>
 
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         INGRESAR RESULTADOS
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="nav-link " href="#" id="navbarDropdown" data-target='#exampleModal' role="button"
-                        data-toggle="modal" aria-haspopup="true" aria-expanded="false">
-                        Ingresar Resultado Primera Vez
-                    </a>
-                    <a class="nav-link " href="#" id="navbarDropdown" data-target='#modalTomaMuestraControl'
-                        role="button" data-toggle="modal" aria-haspopup="true" aria-expanded="false">
-                        Ingresar Resultado Segunda Vez (Control)
-                    </a>
+                        <a class="nav-link " href="#" id="navbarDropdown" data-target='#exampleModal' role="button" data-toggle="modal" aria-haspopup="true" aria-expanded="false">
+                            Ingresar Resultado Primera Vez
+                        </a>
+                        <a class="nav-link " href="#" id="navbarDropdown" data-target='#modalTomaMuestraControl' role="button" data-toggle="modal" aria-haspopup="true" aria-expanded="false">
+                            Ingresar Resultado Segunda Vez (Control)
+                        </a>
                     </div>
                 </li>
 
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         REPORTES
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -89,77 +84,67 @@
                 </li>
             </ul>
             <a href="cerrar.php">
-                <button class="btn btn-outline-info  my-2 my-sm-0" type="submit">
-                    <i class="fa fa-power-off mr-2" aria-hidden="true"></i>Cerrar Sesión</button>
+                <button style="font-size: 15px;" class="btn btn-outline-info  my-2 my-sm-0" type="submit">
+                    <i class="fa fa-sign-out-alt mr-2" aria-hidden="true"></i>Cerrar Sesión</button>
             </a>
         </div>
     </nav>
-    <div class="container">
-        <div class="row">
-            <h3 class="titulo">Programacion Primera Toma de Muestra</h3>
-        </div>
-    </div>
-    <div class="container card mb-3 text-center hoverable">
-        <div class="row">
-            <div class="col-sm-4">
-                <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
-                    <label class="col-form-label">Digite el Documento del Paciente a consultar</label>
-                    <input type="" name="documento" class="form-control" placeholder="# Documento">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <br>
-                                <div class class="col text-center">
-                                    <button type="submit" class="btn btn-outline-secondary btn-lg">Consultar</button>
-                                    <a href="index.php">
-                                        <button type="button" class="btn btn-outline-secondary btn-lg">Regresar</button>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+    <div class="container mt-5">
+        <div class="card mb-3 text-center hoverable">
+            <h4 class="mb-1">
+                <strong>Programacion Primera Toma de Muestra</strong>
+                <hr>
+            </h4>
+            <div class="row pb-3 pl-3">
+                <div class="col-sm-4">
+                    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
+                        <label class="col-form-label">Digite el Documento del Paciente a consultar</label>
+                        <input type="" name="documento" class="form-control" placeholder="# Documento">
                         <br>
-                    </div>
-            </div>
-
-            <!--PINTAMOS LA TABLA DONDE MOSTRAMOS LOS DATOS QUE TRAEMOS DE LA BD-->
-            <div class="col-sm-8">
-                <div class="comtainer" id="tbl_paciente">
-                    <?php
-                    if (!empty($resultado)) { ?>
-                    <div class="container">
-                        <div class="card card-cascade">
-                            <!-- Card image -->
-                            <div class="view view-cascade gradient-card-header blue-gradient">
-                                <!-- Title -->
-                                <h2 class="card-header-title mb-3 mt-2"><?php echo $nombre_completo; ?></h2>
-                            </div>
-                            <!-- Card content -->
-                            <div class="card-body card-body-cascade text-left">
-                                <p style="color:rgba(13, 70, 177, 0.972)" ; class="card-text">Tipo Documento:
-                                    <?php echo $tipo_documento; ?></p>
-                                <p style="color:rgba(13, 70, 177, 0.972)" ;class="card-text">Numero Documento:
-                                    <?php echo $numero_documento; ?></p>
-                                <p style="color:rgba(13, 70, 177, 0.972)" ;class="card-text">Edad:
-                                    <?php echo $edad; ?></p>
-                                <p style="color:rgba(13, 70, 177, 0.972)" ;class="card-text">Tipo de Paciente:
-                                    <?php echo $tipo_paciente; ?></p>
-                                <p style="color:rgba(13, 70, 177, 0.972)" ;class="card-text">Aseguradora:
-                                    <?php echo $aseguradora; ?></p>
-                                <p style="color:rgba(13, 70, 177, 0.972)" ;class="card-text">Fecha de Registro:
-                                    <?php echo $fecha_registro; ?></p>
-                                <hr>
-                                <button style='cursor: pointer;' type="button" class="btn btn-outline-secondary btn-lg"
-                                    onClick="muestra_oculta('contenido')" value="mostrar">Programar Muestra</button>
-                            </div>
+                        <div class="d-flex justift-content-left">
+                            <button type="submit" class="btn btn-outline-secondary btn-lg">Consultar</button>
                         </div>
-                        <?php } ?>
+                </div>
+
+                <!--PINTAMOS LA TABLA DONDE MOSTRAMOS LOS DATOS QUE TRAEMOS DE LA BD-->
+                <div class="col-sm-8">
+                    <div class="comtainer" id="tbl_paciente">
+                        <?php
+                        if (!empty($resultado)) { ?>
+                            <div class="container">
+                                <div class="card card-cascade">
+                                    <!-- Card image -->
+                                    <div class="view view-cascade gradient-card-header blue-gradient">
+                                        <!-- Title -->
+                                        <h2 class="card-header-title mb-3 mt-2"><?php echo $nombre_completo; ?></h2>
+                                    </div>
+                                    <!-- Card content -->
+                                    <div class="card-body card-body-cascade text-left">
+                                        <p style="color:rgba(13, 70, 177, 0.972)" ; class="card-text">Tipo Documento:
+                                            <?php echo $tipo_documento; ?></p>
+                                        <p style="color:rgba(13, 70, 177, 0.972)" ;class="card-text">Numero Documento:
+                                            <?php echo $numero_documento; ?></p>
+                                        <p style="color:rgba(13, 70, 177, 0.972)" ;class="card-text">Edad:
+                                            <?php echo $edad; ?></p>
+                                        <p style="color:rgba(13, 70, 177, 0.972)" ;class="card-text">Tipo de Paciente:
+                                            <?php echo $tipo_paciente; ?></p>
+                                        <p style="color:rgba(13, 70, 177, 0.972)" ;class="card-text">Aseguradora:
+                                            <?php echo $aseguradora; ?></p>
+                                        <p style="color:rgba(13, 70, 177, 0.972)" ;class="card-text">Fecha de Registro:
+                                            <?php echo $fecha_registro; ?></p>
+                                        <hr>
+                                        <button style='cursor: pointer;' type="button" class="btn btn-outline-secondary btn-lg" onClick="muestra_oculta('contenido')" value="mostrar">Programar Muestra</button>
+                                    </div>
+                                </div>
+                            <?php } ?>
+                            </div>
                     </div>
                 </div>
+                </form>
             </div>
-            </form>
         </div>
+        <!-- ********************************************************* -->
     </div>
-    <!-- ********************************************************* -->
     <div id="contenido" class="container">
         <div class="progmuestra">
             <div class="row">
@@ -228,35 +213,35 @@
     </div>
 
     <?php if (!empty($exito)) : ?>
-    <script>
-        swal({
-            type: 'succes',
-            title: "Exito",
-            text: "<?php echo $exito; ?>",
-            button: "Aceptar",
-            icon: "error",
-            button: "Aceptar",
-            timer: 7000,
-            animation: false,
-            customClass: 'animated heartBeat'
-        })
-    </script>
+        <script>
+            swal({
+                type: 'succes',
+                title: "Exito",
+                text: "<?php echo $exito; ?>",
+                button: "Aceptar",
+                icon: "error",
+                button: "Aceptar",
+                timer: 7000,
+                animation: false,
+                customClass: 'animated heartBeat'
+            })
+        </script>
     <?php endif; ?>
 
     <?php if (!empty($errores)) : ?>
-    <script>
-        swal({
-            type: 'error',
-            title: "ERROR",
-            text: "<?php echo $errores; ?>",
-            button: "Aceptar",
-            icon: "error",
-            button: "Aceptar",
-            timer: 7000,
-            animation: false,
-            customClass: 'animated heartBeat'
-        })
-    </script>
+        <script>
+            swal({
+                type: 'error',
+                title: "ERROR",
+                text: "<?php echo $errores; ?>",
+                button: "Aceptar",
+                icon: "error",
+                button: "Aceptar",
+                timer: 7000,
+                animation: false,
+                customClass: 'animated heartBeat'
+            })
+        </script>
     <?php endif; ?>
     <br>
     <br>
@@ -273,7 +258,7 @@
 </script>
 
 <script>
-    $('#fecha_programacion').on('change', function () {
+    $('#fecha_programacion').on('change', function() {
         let fecha_programacion = $('#fecha_programacion').val()
         if (fecha_programacion != '') {
             $('#fecha_realizacion').attr('disabled', false)
@@ -283,7 +268,7 @@
         console.log(fecha_programacion)
     })
 
-    $('#fecha_realizacion').on('change', function () {
+    $('#fecha_realizacion').on('change', function() {
         let fecha_realizacion = $('#fecha_realizacion').val()
         let fecha_programacion = $('#fecha_programacion').val()
         if (fecha_realizacion < fecha_programacion) {
@@ -306,7 +291,7 @@
     })
 
 
-    $('#guardar').on('click', function (e) {
+    $('#guardar').on('click', function(e) {
         e.preventDefault()
 
         let paciente_id = $('#paciente_id').val()
@@ -330,7 +315,7 @@
                 nombre_programa,
                 fecha_laboratorio
             },
-            success: function (res) {
+            success: function(res) {
                 console.log(res)
                 let resultado = JSON.parse(res)
                 switch (resultado) {
@@ -396,11 +381,9 @@
     })
 </script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
 </script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
 </script>
 <script src="js/validacion.js"></script>
 

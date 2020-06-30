@@ -18,7 +18,7 @@
     <div class="linea3"></div>
         <!--******************************************************-->
         <nav class="navbar navbar-expand-lg navbar-light fondo-color img-nav">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="/">
             <img src="img/logo_sin_fondo.png" class="img-fluid" alt="logo-caminos">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -85,8 +85,8 @@
                 </li>
             </ul>
             <a href="cerrar.php">
-                <button class="btn btn-outline-info  my-2 my-sm-0" type="submit">
-                    <i class="fa fa-power-off mr-2" aria-hidden="true"></i>Cerrar Sesión</button>
+                <button style="font-size: 15px;" class="btn btn-outline-info  my-2 my-sm-0" type="submit">
+                    <i class="fa fa-sign-out-alt mr-2" aria-hidden="true"></i>Cerrar Sesión</button>
             </a>
         </div>
     </nav>

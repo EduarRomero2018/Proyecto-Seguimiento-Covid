@@ -24,7 +24,7 @@
 
     <!--******************************************************-->
     <nav class="navbar navbar-expand-lg navbar-light fondo-color img-nav">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="/">
             <img src="img/logo_sin_fondo.png" class="img-fluid" alt="logo-caminos">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -85,8 +85,8 @@
                 </li>
             </ul>
             <a href="cerrar.php">
-                <button class="btn btn-outline-info  my-2 my-sm-0" type="submit">
-                    <i class="fa fa-power-off mr-2" aria-hidden="true"></i>Cerrar Sesión</button>
+                <button style="font-size: 15px;" class="btn btn-outline-info  my-2 my-sm-0" type="submit">
+                    <i class="fa fa-sign-out-alt mr-2" aria-hidden="true"></i>Cerrar Sesión</button>
             </a>
         </div>
     </nav>
@@ -107,11 +107,8 @@
                             <label class="col-form-label">Digite el Documento del Paciente a consultar</label>
                             <input type="" name="documento" class="form-control" placeholder="# Documento">
                             <br>
-                            <div class class="col text-center">
+                            <div class="d-flex justify-content-left">
                                 <button type="submit" class="btn btn-outline-secondary btn-lg">Consultar</button>
-                                <a href="index.php">
-                                    <button type="button" class="btn btn-outline-secondary btn-lg">Regresar</button>
-                                </a>
                             </div>
                         </form>
                     </div>

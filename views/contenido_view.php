@@ -89,13 +89,13 @@
                 </li>
             </ul>
             <a href="cerrar.php">
-                <button class="btn btn-outline-info  my-2 my-sm-0" type="submit">
-                    <i class="fa fa-power-off mr-2" aria-hidden="true"></i>Cerrar Sesión</button>
+                <button style="font-size: 15px;" class="btn btn-outline-info  my-2 my-sm-0" type="submit">
+                    <i class="fa fa-sign-out-alt mr-2" aria-hidden="true"></i>Cerrar Sesión</button>
             </a>
         </div>
     </nav>
     <!--*********************EMPIEZA LA INFORMACION DEBAJO DE LA NAVEGACION*********************************-->
-    <div class="container padre">
+    <div class="container padre mt-5">
         <!--News card-->
         <div class="card mb-3 text-center hoverable">
             <div class="card-body">
