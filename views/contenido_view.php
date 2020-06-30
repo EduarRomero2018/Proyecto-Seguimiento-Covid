@@ -109,10 +109,7 @@
                             <div class="documento">
                                 <a href="" class="green-text">
                                     <h6 class="font-bold pb-1">
-                                        <?php echo 'Bienvenido : ', $_SESSION['nombre_apellido'];
-
-                                    $nombre = "SELECT nombre, primer_apellido FROM usuarios WHERE identificacion=' $identificacion'";
-                                    ?>
+                                        <?php echo 'Bienvenido : ', $_SESSION['nombre_apellido']?>
                                 </a>
                             </div>
 

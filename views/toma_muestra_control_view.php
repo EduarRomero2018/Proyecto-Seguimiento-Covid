@@ -20,6 +20,80 @@
     <div class="linea1"></div>
     <div class="linea2"></div>
     <div class="linea3"></div>
+        <!--******************************************************-->
+        <nav class="navbar navbar-expand-lg navbar-light fondo-color img-nav">
+        <a class="navbar-brand" href="#">
+            <img src="img/logo_sin_fondo.png" class="img-fluid" alt="logo-caminos">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!--******************************************************-->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <!--******************************************************
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.php">INICIO</a>
+                    </li>
+-->
+                <!--******************************************************-->
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        SEGUIMIENTO
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a href="getform1.php" class="dropdown-item" href="#">Ingresar Pacientes</a>
+                        <!--<a class="dropdown-item" href="#">Ingresar Datos Personales</a>-->
+                        <a href="progmuestra.php" class="dropdown-item" href="#">Programar Primera Toma Muestra</a>
+                        <!--<a class="dropdown-item" href="#">Programacion de Toma de Muestra</a>-->
+                        <a href="segto_evolucion.php" class="dropdown-item" href="#">Ingresar Seguimiento Diario Por
+                            Paciente</a>
+                        <!--<a class="dropdown-item" href="#">Seguimiento Semanal por Paciente</a>-->
+                        <a href="historial_paciente.php" class="dropdown-item">Ver Seguimiento Paciente</a>
+                        <a href="toma_muestra_control.php" class="dropdown-item">Programar Segunda Toma Muestra (Control)</a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        INGRESAR RESULTADOS
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="nav-link " href="#" id="navbarDropdown" data-target='#exampleModal' role="button"
+                        data-toggle="modal" aria-haspopup="true" aria-expanded="false">
+                        Ingresar Resultado Primera Vez
+                    </a>
+                    <a class="nav-link " href="#" id="navbarDropdown" data-target='#modalTomaMuestraControl'
+                        role="button" data-toggle="modal" aria-haspopup="true" aria-expanded="false">
+                        Ingresar Resultado Segunda Vez (Control)
+                    </a>
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        REPORTES
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a href="listar_pacientes.php" class="dropdown-item" href="#">Listar Todos los Pacientes</a>
+                        <!--<a class="dropdown-item" href="#">Seguimiento Semanal por Paciente</a>-->
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a href="soporte_resultado.php" class="nav-link">INGRESAR SOPORTE RESULTADO</a>
+                </li>
+            </ul>
+            <a href="cerrar.php">
+                <button class="btn btn-outline-info  my-2 my-sm-0" type="submit">
+                    <i class="fa fa-power-off mr-2" aria-hidden="true"></i>Cerrar Sesión</button>
+            </a>
+        </div>
+    </nav>
     <div class="container">
         <div class="row">
             <h3 class="titulo">Programacion Segunda Toma de Muestra</h3>

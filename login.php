@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	}
 }
 
-if ($cerrar_sesion == 0);
+if (isset($cerrar_sesion) && $cerrar_sesion == 0);
 $resultado = "sesion cerrada";
 
 require 'views/login_view.php';
