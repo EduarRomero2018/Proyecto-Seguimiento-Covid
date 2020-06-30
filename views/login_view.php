@@ -64,14 +64,6 @@
                   <div class="button-group boton1">
                       <p class="submit-btn button expanded" accesskey="login.submit()"  onclick="login.submit()">Iniciar Sesión </p>
                   </div>
-                  <!--
-                   <div class="button-group">
-                      <a href="registrate.php">Crear Cuenta.</a>
-                   </div>
-                   <div class="button-group">
-                      <a href="recordar_clave.php">Olvido su Contraseña?</a>
-                    </div>
-                    -->
             </div>
           </div>
 
@@ -92,17 +84,6 @@
                     remaining essentially unchanged. It was popularised in the 1960s with the release
                     of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop
                     publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                   <!-- <i class="fas fa-hand-point-right"> Solicitar sus citas de forma rapida y segura.</i><br>
-                    <i class="fas fa-hand-point-right"> Recibir información de nuevos productos.</i><br>
-                    <i class="fas fa-hand-point-right"> Actualizar tus datos personales.</i><br>
-                    <div class="button-group boton1 ">
-                        <a href="registrate.php"class="button">Registrate</a>
-                      </div>
-                    <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
-                      <span aria-hidden="false">&times;</span>
-                    </button>
-                  </div>
-                  -->
             </div>
           </div>
         </div>
