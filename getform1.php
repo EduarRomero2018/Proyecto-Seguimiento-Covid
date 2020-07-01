@@ -7,7 +7,7 @@ $tipo_paciente = $_POST['tipo_paciente'];$primer_nombre = $_POST['primer_nombre'
 $primer_apellido = $_POST['primer_apellido'];$segundo_apellido = $_POST['segundo_apellido'];$tipo_documento = $_POST['tipo_documento'];
 $numero_identificacion = $_POST['numero_identificacion'];$edad = $_POST['edad'];$unidad_medida = $_POST['unidad_medida'];$sexo = $_POST['sexo'];
 $barrio= $_POST['barrio'];$correo= $_POST['correo'];$telefono= $_POST['telefono'];$aseguradora= $_POST['aseguradora'];
-$id_usuario= $_POST['id_usuario'];$fecha_recepcion_programacion= $_POST['fecha_recepcion_programacion'];
+$id_usuario= $_POST['id_usuario'];$fecha_recepcion_programacion= $_POST['fecha_recepcion_programacion_'].' '.date('h:i:s');
 
 // variables de errores y exito
 $errores= '';
