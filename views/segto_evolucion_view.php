@@ -80,8 +80,6 @@
                                         <?php echo $fecha_resultado; ?></p>
                                     <p style="color:rgba(13, 70, 177, 0.972)" ;class="card-text">Resultado de la muestra:
                                         <?php echo $resultado; ?></p>
-                                    <p style="color:rgba(13, 70, 177, 0.972)" ;class="card-text">Dias de Seguimientos:
-                                        <?php echo $seguimiento_paciente; ?></p>
                                     <hr>
                                     <button style='cursor: pointer;' id="continuar" type="button" class="btn btn-outline-secondary btn-lg" value="mostrar">Ingresar Seguimiento</button>
                                 </div>
