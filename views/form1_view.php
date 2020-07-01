@@ -126,6 +126,7 @@
         <input type="date" name="fecha_recepcion_programacion " class="form-control">
       </div>
       <div class="col-sm-4">
+      <br>
         <label>Municipio</label>
         <select name="municipio" class="custom-select">
           <option value=""></option>
@@ -137,12 +138,23 @@
         </select>
       </div>
       <div class="col-sm-4">
+      <br>
         <div>
-          <br>
           <button type="submit" class="btn btn-outline-secondary btn-lg">Guardar Datos</button>
           <br>
           <br>
         </div>
+      </div>
+      <div class="col-sm-4">
+      <br>
+        <div>
+        <a href="index.php">
+          <button type="button" class="btn btn-outline-secondary btn-lg">Regresar</button>
+        </a>
+          <br>
+          <br>
+        </div>
+
       </div>
       </form>
     </div>
