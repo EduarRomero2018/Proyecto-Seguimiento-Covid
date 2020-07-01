@@ -126,6 +126,17 @@
         <input type="date" name="fecha_recepcion_programacion " class="form-control">
       </div>
       <div class="col-sm-4">
+        <label>Municipio</label>
+        <select name="municipio" class="custom-select">
+          <option value=""></option>
+          <?php
+          $municipios = ['Santa catalina','Clemencia','Turbana','Turbaco','Arjona','Mahates','Villa nueva','Maria la baja','San jacinto','El carmen de bolivar','San juan nepomuceno','Zambrano','Calamar','Santa Rosa','San estanislao','San cristobal','Sopla viento','El guamo','Arroyohondo','Cordoba'];
+          foreach($municipios as $municipio): ?>
+          <option value="<?= strtoupper($municipio) ?>"><?= ucwords($municipio) ?></option>
+          <?php endforeach; ?>
+        </select>
+      </div>
+      <div class="col-sm-4">
         <div>
           <br>
           <button type="submit" class="btn btn-outline-secondary btn-lg">Guardar Datos</button>
