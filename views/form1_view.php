@@ -8,6 +8,7 @@
   <title>IngresarUsuario</title>
   <link rel="stylesheet" href="css/stylos_formulario.css">
   <!--<link rel="stylesheet" href="../css/normalize.css">-->
+  <link rel="stylesheet" href="css/mdb.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.29.0/sweetalert2.all.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
