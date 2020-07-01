@@ -8,6 +8,7 @@ $primer_apellido = $_POST['primer_apellido'];$segundo_apellido = $_POST['segundo
 $numero_identificacion = $_POST['numero_identificacion'];$edad = $_POST['edad'];$unidad_medida = $_POST['unidad_medida'];$sexo = $_POST['sexo'];
 $barrio= $_POST['barrio'];$correo= $_POST['correo'];$telefono= $_POST['telefono'];$aseguradora= $_POST['aseguradora'];
 $id_usuario= $_POST['id_usuario'];$fecha_recepcion_programacion= $_POST['fecha_recepcion_programacion_'].' '.date('h:i:s');
+$municipio = $_REQUEST['municipio'];
 
 // variables de errores y exito
 $errores= '';
@@ -26,9 +27,9 @@ else {
   $consulta =
   $conexion->prepare(
   "INSERT INTO pacientes
-  (tipo_paciente, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, tipo_documento, numero_documento, edad, unidad_medida, sexo, barrio, correo, telefono, aseguradora, fecha_prog_recep, id_usuario)
+  (tipo_paciente, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, tipo_documento, numero_documento, edad, unidad_medida, sexo, barrio, municipio, correo, telefono, aseguradora, fecha_prog_recep, id_usuario)
   VALUES
-  (:tipo_paciente, :primer_nombre, :segundo_nombre, :primer_apellido, :segundo_apellido, :tipo_documento, :numero_documento, :edad, :unidad_medida, :sexo, :barrio, :correo, :telefono, :aseguradora, :fecha_prog_recep, :id_usuario)");
+  (:tipo_paciente, :primer_nombre, :segundo_nombre, :primer_apellido, :segundo_apellido, :tipo_documento, :numero_documento, :edad, :unidad_medida, :sexo, :barrio, :municipio, :correo, :telefono, :aseguradora, :fecha_prog_recep, :id_usuario)");
 
   $consulta->execute(array(
    ':tipo_paciente'                       => $tipo_paciente,
@@ -42,6 +43,7 @@ else {
    ':unidad_medida'                       => $unidad_medida,
    ':sexo'                                => $sexo,
    ':barrio'                              => $barrio,
+   ':municipio'                           => $municipio,
    ':correo'                              => $correo,
    ':telefono'                            => $telefono,
    ':aseguradora'                         => $aseguradora,
