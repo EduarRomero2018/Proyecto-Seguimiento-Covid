@@ -18,20 +18,16 @@ include 'conexion.php';  // Funciona.
     // $observacion = $_REQUEST['observacion'];
     //comprobamos que los campos no esten vacios
 
-    $stm = $conexion->prepare("INSERT INTO prog_toma_muestra VALUES(NULL,$paciente_id,'$acepta_visita','$fecha_programcion','$fecha_realizacion','$programacion_atencion','$nombre_programa',NULL,NULL,NULL,'Pendiente')");
+    $stm = $conexion->prepare("INSERT INTO prog_toma_muestra VALUES(NULL,?,?,?,?,?,?,NULL,NULL,NULL,'Pendiente','ACTIVO','NO',NULL)");
     $stm->execute(
-     /* array(
-      $_REQUEST['paciente_id'],
-      $_REQUEST['acepta_visita'],
-      $_REQUEST['fecha_programacion'],
-
-      $_REQUEST['fecha_realizacion'],
-      $_REQUEST['programacion_atencion'],
-      $_REQUEST['nombre_programa']
-      // $_REQUEST['observacion']
-    )
-    */
-      );
+      array(
+        $paciente_id,
+        $acepta_visita,
+        $fecha_programcion,
+        $fecha_realizacion,
+        $programacion_atencion,
+        $nombre_programa
+    ));
       //print_r($stm);
     if($stm->errorInfo()[2] != null){
       $err = $stm->errorInfo()[2];
