@@ -18,7 +18,6 @@
     </script>
     <script src="js/jquery.js"></script>
     <script src="js/JsSeguimiento.js"></script>
-    <script src="js/funciones.js"></script>
 </head>
 </head>
 
