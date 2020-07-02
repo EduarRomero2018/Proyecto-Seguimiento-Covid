@@ -206,6 +206,12 @@
                 let paciente_id = $('#paciente_id').val()
                 let usuario_id = $('#usuario_id').val()
 
+                if(estado_paciente == 'VIVO'){
+                    fecha_fallecimiento = ''
+                }else{
+                    fecha_programacion = ''
+                }
+
                 let datos = {
                     visita_domiciliaria,
                     estado_paciente,
