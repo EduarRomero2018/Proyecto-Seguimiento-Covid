@@ -5,11 +5,11 @@ $(document).ready(function () {
         $('#form-body-2').attr('hidden', true)
     })
 
+    $('#guardarResultado').attr('disabled', true)
     $('#fecha_toma').on('change', function () {
         let fecha_toma = $('#fecha_toma').val()
         let fecha_programacion = $('#fecha_programacion').val()
         if (fecha_toma < fecha_programacion) {
-            $('#guardarResultado').attr('disabled', true)
             swal({
                 type: 'error',
                 title: "ERROR",
@@ -21,9 +21,7 @@ $(document).ready(function () {
                 animation: false,
                 customClass: 'animated heartBeat'
             })
-        } else {
-            $('#guardarResultado').attr('disabled', false)
-        }
+        } 
     })
 
     $('#guardarResultado').on('click', function (e) {
@@ -46,7 +44,7 @@ $(document).ready(function () {
                 notificado
             },
             success: function (res) {
-                alert(res)
+
                 let resultado = JSON.parse(res)
                 switch (resultado) {
                     case 'empty':
@@ -107,14 +105,12 @@ $(document).ready(function () {
                 identificacion
             },
             success: function (res) {
-                alert()
-                alert(res)
                 console.log(res);
                 let resultado = JSON.parse(res)
                 let plantilla = ''
                 let id = ''
                 let numero_telefono = 0
-                
+
                 switch (resultado) {
                     case 'empty':
                         swal({
