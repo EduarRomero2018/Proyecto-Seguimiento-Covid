@@ -203,10 +203,6 @@
                 let estado_paciente = $('#estado_paciente').val()
                 let fecha_programacion = $('#fecha_programacion').val()
                 let fecha_fallecimiento = $('#fecha_fallecimiento').val()
-                let fecha_toma = $('#fecha_toma').val()
-                let resultado = $('#resultado').val()
-                let soporte_resultado = $('#soporte_resultado').val()
-                let visita_campo = $('#visita_campo').val()
                 let paciente_id = $('#paciente_id').val()
                 let usuario_id = $('#usuario_id').val()
 
@@ -214,17 +210,10 @@
                     visita_domiciliaria,
                     estado_paciente,
                     fecha_programacion,
-                    //fecha_fallecimiento,
-                    //fecha_toma,
-                    //resultado,
-                    //soporte_resultado,
-                    //visita_campo,
+                    fecha_fallecimiento,
                     paciente_id,
                     usuario_id
                 }
-
-                console.log(datos);
-
 
                 $.ajax({
                     type: 'post',
