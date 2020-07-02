@@ -1,15 +1,6 @@
 <?php
 include 'conexion.php';  // Funciona.
 //APERTURA DE VARIABLES Datos Personales
-/*
-foreach ($_REQUEST as $key) {
-    if ($key == '' ) {
-
-
-        die(json_encode('empty'));
-    }
-}
-*/
 
 try {
 
@@ -21,8 +12,6 @@ try {
     $fecha_programacion = $_REQUEST['fecha_programacion'];
 
     $stm = $conexion->prepare("SELECT * FROM seguimiento_paciente WHERE id_pacientes = ?");
-
-    //print_r($stm);
 
     $stm->execute(array($pacientes_id));
 
