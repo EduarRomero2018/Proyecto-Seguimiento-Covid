@@ -1,7 +1,4 @@
-
-
 <?php session_start(); //vamos a trabajar con sessiones
-
 include 'conexion.php';  // Funciona.
 //APERTURA DE VARIABLES Datos Personales
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {

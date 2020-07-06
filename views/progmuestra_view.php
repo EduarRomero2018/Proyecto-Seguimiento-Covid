@@ -14,7 +14,6 @@
     <script src="js/jquery.js"></script>
     <script src="js/funciones.js"></script>
 </head>
-
 <body>
     <div class="linea1"></div>
     <div class="linea2"></div>
@@ -124,6 +123,7 @@
                     <label class="col-form-label">Programa al que Pertenece</label>
                     <select id="nombre_programa" class="custom-select">
                         <option selected value=""> </option>
+                        <option value="NO APLICA">No Aplica</option>
                         <option value="DE TODO CORAZON">De todo Corazón</option>
                         <option value="VIH">Vih</option>
                         <option value="AMARTE (ARTRITIS REUMATOIDES)">Amarte (artritis reumatoides)</option>
@@ -271,6 +271,7 @@
                             animation: false,
                             customClass: 'animated heartBeat'
                         })
+                        console.log('campos vacios')
                         break;
                     case 'bad':
                         swal({
@@ -314,6 +315,8 @@
                             animation: false,
                             customClass: 'animated heartBeat'
                         })
+                        console.log('Ya esta programado para la toma');
+
                         break;
                 }
             }
