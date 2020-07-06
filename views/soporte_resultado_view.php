@@ -25,7 +25,7 @@
                 <div class="card-body">
                     <form action="<?= htmlspecialchars($_SERVER['PHP_SELF']) ?>" enctype="multipart/form-data" method="post">
                         <div class="form-group">
-                            <label>Ingres el Documento de Paciente</label>
+                            <label>Ingrese el documento de Paciente</label>
                             <input class="form-control" type="text" name="documento">
                         </div>
                         <div class="form-group">

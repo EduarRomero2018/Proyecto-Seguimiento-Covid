@@ -1,7 +1,7 @@
 <?php
 include 'conexion.php';  // Funciona.
 //APERTURA DE VARIABLES Datos Personales
-
+$_REQUEST['paises_ciudades'] = empty($_REQUEST['paises_ciudades']) ? 'No':$_REQUEST['paises_ciudades'];
 foreach ($_REQUEST as $key) {
     if ($key == '') {
         die(json_encode('empty'));
@@ -9,7 +9,7 @@ foreach ($_REQUEST as $key) {
 }
 
 try {
-
+    $_REQUEST['paises_ciudades'] != '' ? NULL:$_REQUEST['paises_ciudades'];
     $atencion_medica_domiciliaria = $_REQUEST['atencion_medica_domiciliaria'];
     $fecha_atencion_medica_domiciliaria = $_REQUEST['fecha_atencion_medica_domiciliaria'];
     $realizacion_hemograma = $_REQUEST['realizacion_hemograma'];
@@ -31,6 +31,13 @@ try {
     if($stm->rowCount() == 0){
         die(json_encode(2));
     }
+
+    // $stm = $conexion->prepare("SELECT * FROM prog_toma_muestra WHERE pacientes_id = ? AND resultado == 'Negativo' AND estado_paciente == 'ACTIVO'");
+    // $stm->execute(array($paciente_id));
+
+    // if($stm->rowCount() != 1){
+    //     die(json_encode(3));
+    // }
 
     $stm = $conexion->prepare("INSERT INTO complemento_seg VALUES(NULL,?,?,?,?,?,?,?)");
     $stm->execute(array(
