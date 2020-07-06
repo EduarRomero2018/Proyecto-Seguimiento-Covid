@@ -246,8 +246,10 @@
                                 </div>
 
                                 <div class="col-sm-3">
-                                    <label class="col-form-label">Paises o ciudades visitadas</label>
-                                    <input type="text" id="paises_ciudades" class="form-control" placeholder="Escriba el Pais o la Ciudad">
+                                    <div id="viaje">
+                                        <label class="col-form-label">Paises o ciudades visitadas</label>
+                                        <input type="text" id="paises_ciudades" class="form-control" placeholder="Escriba el Pais o la Ciudad">
+                                    </div>
                                 </div>
 
                                 <div class="" hidden>
