@@ -4,7 +4,7 @@ $(document).ready(function () {
             $('#viaje').attr('hidden', true)
         }else{
             $('#viaje').attr('hidden', false)
-        }
+        } 
     })
 
     $('#continuar').on('click', function (e) {
