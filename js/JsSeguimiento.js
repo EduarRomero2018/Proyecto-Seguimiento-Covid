@@ -4,7 +4,7 @@ $(document).ready(function () {
             $('#viaje').attr('hidden', true)
         }else{
             $('#viaje').attr('hidden', false)
-        } 
+        }
     })
 
     $('#continuar').on('click', function (e) {
@@ -54,6 +54,7 @@ $(document).ready(function () {
         let fatiga_adinamia = $('#fatiga_adinamia').val()
         let cumple_criterio = $('#cumple_criterio').val()
         let comorbilidad = $('#comorbilidad').val()
+        let entrega_kits = $('#entrega_kits').val()
         let fecha_entrega_kits = $('#fecha_entrega_kits').val()
         let oxigeno_terapia = $('#oxigeno_terapia').val()
         let ambito_atencion = $('#ambito_atencion').val()
@@ -72,6 +73,7 @@ $(document).ready(function () {
             fatiga_adinamia,
             cumple_criterio,
             comorbilidad,
+            entrega_kits,
             fecha_entrega_kits,
             oxigeno_terapia,
             ambito_atencion,
