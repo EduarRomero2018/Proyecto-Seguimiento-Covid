@@ -1,7 +1,7 @@
 <?php
 include 'conexion.php';  // Funciona.
 //APERTURA DE VARIABLES Datos Personales
-$_REQUEST['paises_ciudades'] = empty($_REQUEST['paises_ciudades']) ? 'No':$_REQUEST['paises_ciudades'];
+$_REQUEST['paises_ciudades'] = empty($_REQUEST['paises_ciudades']) ? 'NO':$_REQUEST['paises_ciudades'];
 foreach ($_REQUEST as $key) {
     if ($key == '') {
         die(json_encode('empty'));
