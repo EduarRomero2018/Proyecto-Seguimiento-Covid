@@ -123,6 +123,7 @@
         <input type="email" name="correo" class="form-control" placeholder="Correo Electronico" required>
       </div>
       <div class="col-sm-4">
+        <br>
         <label class="col-form-label">Fecha De Recepcion de Informacion</label>
         <input type="date" name="fecha_recepcion_programacion " class="form-control" required>
       </div>
@@ -138,6 +139,7 @@
           <?php endforeach; ?>
         </select>
       </div>
+      <br>
       <div class="col-sm-4">
       <br>
         <div>
@@ -155,6 +157,7 @@
           <br>
           <br>
         </div>
+        <br>
 
       </div>
       </form>
