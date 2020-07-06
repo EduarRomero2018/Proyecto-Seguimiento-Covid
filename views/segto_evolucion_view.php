@@ -164,10 +164,20 @@
                                         </select>
                                     </div>
                                     <div class="col-md-4 form-group">
+                                        <label>Entrega de Kits</label>
+                                        <select type="text" class="custom-select" id="entrega_kits">
+                                            <option value=""></option>
+                                            <option value="Si">Si</option>
+                                            <option value="No">No</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-md-4 form-group">
                                         <label>Fecha de entrega de kits</label>
                                         <input type="date" class="form-control" id="fecha_entrega_kits">
                                     </div>
                                     <div class="col-md-4 form-group">
+                                    <br>
                                         <label>Terapia de oxigeno</label>
                                         <select class="custom-select" id="oxigeno_terapia">
                                             <option value=""></option>
@@ -175,10 +185,11 @@
                                             <option value="No">No</option>
                                         </select>
                                     </div>
-                                </div>
+
+
                             <?php endif; ?>
-                            <div class="row align-items-end">
-                                <div class="col-md-4 form-group">
+                            <div class="row">
+                            <div class="col-md-4 form-group">
                                     <label>Cumple con los criterios de aislamiento en domicilio</label>
                                     <select class="custom-select" id="cumple_criterio">
                                         <option value=""></option>
@@ -188,6 +199,7 @@
                                 </div>
 
                                 <div class="col-md-4 form-group">
+                                    <br>
                                     <label>Ambito de atencion</label>
                                     <select class="custom-select" id="ambito_atencion">
                                         <option value=""></option>
@@ -198,6 +210,7 @@
                                     </select>
                                 </div>
                                 <div class="col-md-4 form-group">
+                                    <br>
                                     <label>Saturacion de oxigeno</label>
                                     <select class="custom-select" id="saturacion_oxigeno">
                                         <option value=""></option>
@@ -205,9 +218,13 @@
                                         <option value="No">No</option>
                                     </select>
                                 </div>
-                            </div>
-                            <div class="d-flex justify-content-center">
-                                <a id="guardarSeguimiento" href="" class="btn btn-primary">Guardar Datos</a>
+                                <div class="col-md-4 form-group">
+                                    <br>
+                                <div class="d-flex justify-content-center">
+                               <a id="guardarSeguimiento" href="" class="btn btn-primary">Guardar Datos</a>
+                           </div>
+                           </div>
+                           </div>
                             </div>
                         </div>
                     </form>
