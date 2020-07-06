@@ -1,4 +1,12 @@
 $(document).ready(function () {
+    $('#antecedentes_viaje').on('change',function(){
+        if($('#antecedentes_viaje').val() == 'NO'){
+            $('#viaje').attr('hidden', true)
+        }else{
+            $('#viaje').attr('hidden', false)
+        } 
+    })
+
     $('#continuar').on('click', function (e) {
         e.preventDefault()
         let paciente_id = $('#paciente_id').val()

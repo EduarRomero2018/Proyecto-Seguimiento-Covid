@@ -1,3 +1,4 @@
 #listado de archivos y carpetas ignoradas
 conexion.php
 soporte_resultado/*
+conexion.php
