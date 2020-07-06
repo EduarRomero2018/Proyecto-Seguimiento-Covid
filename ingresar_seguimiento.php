@@ -28,6 +28,7 @@ try {
     $fatiga_adinamia = $_REQUEST['fatiga_adinamia'];
     $cumple_criterio = $_REQUEST['cumple_criterio'];
     $comorbilidad = isset($_REQUEST['comorbilidad']) ? $_REQUEST['comorbilidad'] : null;
+    $entrega_kits = isset ($_REQUEST ['entrega_kits']) ? $_REQUEST['entrega_kits'] : null;
     $fecha_entrega_kits = isset($_REQUEST['fecha_entrega_kits']) ? $_REQUEST['fecha_entrega_kits'] : null;
     $oxigeno_terapia = isset($_REQUEST['oxigeno_terapia']) ? $_REQUEST['oxigeno_terapia'] : null;
     $ambito_atencion = $_REQUEST['ambito_atencion'];
@@ -38,7 +39,7 @@ try {
 
     //comprobamos que los campos no esten vacios
 
-    $stm = $conexion->prepare("INSERT INTO seguimiento_paciente VALUES(NULL,?,NOW(),?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+    $stm = $conexion->prepare("INSERT INTO seguimiento_paciente VALUES(NULL,?,NOW(),?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
     $stm->execute(array(
         $complemento_seg_id,
         $asintomatico,
@@ -49,6 +50,7 @@ try {
         $fatiga_adinamia,
         $cumple_criterio,
         $comorbilidad,
+        $entrega_kits,
         $fecha_entrega_kits,
         $oxigeno_terapia,
         $ambito_atencion,
