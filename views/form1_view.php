@@ -68,6 +68,17 @@
         <label class="col-form-label">Digite su Edad:</label>
         <input type="number" name="edad" class="form-control" placeholder="" required>
       </div>
+
+      <div class="col-sm-4">
+        <label class="col-form-label">Unidad de Medida:</label>
+        <select name="unidad_medida" class="custom-select" required>
+          <option selected value=""> </option>
+          <option value="AÑOS">AÑOS</option>
+          <option value="MESES">MESES</option>
+          <option value="DIAS">DIAS</option>
+        </select>
+      </div>
+
       <div class="col-sm-4">
         <label class="col-form-label">Sexo:</label>
         <select name="sexo" class="custom-select" required>
@@ -101,16 +112,6 @@
         <label class="col-form-label">Numero Documento:</label>
         <input type="number" name="numero_identificacion" class="form-control" placeholder="" required>
       </div>
-      <div class="col-sm-4">
-        <label class="col-form-label">Unidad de Medida:</label>
-        <select name="unidad_medida" class="custom-select" required>
-          <option selected value=""> </option>
-          <option value="AÑOS">AÑOS</option>
-          <option value="MESES">MESES</option>
-          <option value="DIAS">DIAS</option>
-        </select>
-      </div>
-
       <div class="col-sm-4">
         <br>
         <label class="col-form-label">Barrio y direccion Completa:</label>
