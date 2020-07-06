@@ -191,8 +191,10 @@
                                     <label>Ambito de atencion</label>
                                     <select class="custom-select" id="ambito_atencion">
                                         <option value=""></option>
-                                        <option value="Si">Si</option>
-                                        <option value="No">No</option>
+                                        <option value="HOTEL">Hotel</option>
+                                        <option value="DOMICILIO">Domicilio</option>
+                                        <option value="CASA COVID">Casa Covid</option>
+                                        <option value="HOSPITAL">Hospital</option>
                                     </select>
                                 </div>
                                 <div class="col-md-4 form-group">
