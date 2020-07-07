@@ -105,6 +105,19 @@ $(document).ready(function () {
                             customClass: 'animated heartBeat'
                         })
                         break;
+                        case 'different':
+                            swal({
+                                type: 'error',
+                                title: "Error",
+                                text: "el campo Saturacion de oxigeno debe ser numerico",
+                                button: "Aceptar",
+                                icon: "error",
+                                button: "Aceptar",
+                                timer: 7000,
+                                animation: false,
+                                customClass: 'animated heartBeat'
+                            })
+                            break;
                     case 'ok':
                         swal({
                             type: 'success',
