@@ -301,7 +301,7 @@
             </div>
         </div>
     </div>
-<!--
+    <br>
     <footer class="final text-center">
         <div class="container-fluid centrar">
             <img src="img/vigilados-supersalud-pie.png" width="250" class="img-responsive" alt="super salud">
@@ -309,7 +309,7 @@
             los derechos reservados.
         </div>
     </footer>
--->
+
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js">
     </script>
     <script src="js/jsContenido.js"></script>
