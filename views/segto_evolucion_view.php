@@ -211,12 +211,8 @@
                                 </div>
                                 <div class="col-md-4 form-group">
                                     <br>
-                                    <label>Saturacion de oxigeno</label>
-                                    <select class="custom-select" id="saturacion_oxigeno">
-                                        <option value=""></option>
-                                        <option value="Si">Si</option>
-                                        <option value="No">No</option>
-                                    </select>
+                                    <label class="col-form-label">Saturacion de oxigeno</label>
+                                    <input type="number" id="saturacion_oxigeno" class="form-control" >
                                 </div>
                                 <div class="col-md-4 form-group">
                                     <br>
@@ -325,7 +321,7 @@
         </script>
     <?php endif; ?>
 
-    
+
 </body>
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
