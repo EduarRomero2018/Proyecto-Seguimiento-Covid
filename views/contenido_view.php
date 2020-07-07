@@ -126,7 +126,7 @@
                         </h4>
                         <hr>
                         <div class="d-flex justify-content-center">
-                            <p class="display-1 degree"><?php echo $positivos?></p>
+                        <i class="fas fa-1x fa-briefcase-medical"><p class="display-1 degree"><?php echo $positivos?></p></i>
                             <i class="fas fa-sun-o fa-5x pt-3 amber-text"></i>
                         </div>
                     </div>
@@ -149,7 +149,7 @@
                             <hr>
                         </h4>
                         <div class="d-flex justify-content-center">
-                            <p class="display-1 degree"><?php echo $numero_conteo?></p>
+                        <i class="fas fa-4x fa-syringe"><p class="display-1 degree"><?php echo $numero_conteo?></p></i>
                             <i class="fas fa-sun-o fa-5x pt-3 amber-text"></i>
                         </div>
                     </div>
@@ -166,7 +166,7 @@
                         <h4 class="card-title font-weight-bold">Pacientes que aun no se le han Realizado Toma de Muestra</h4>
                         <hr>
                         <div class="d-flex justify-content-center">
-                            <p class="display-1 degree"><?php echo $Cantidad_Pacientes?></p>
+                        <i class="fas fa-4x fa-stethoscope"><p class="display-1 degree"><?php echo $Cantidad_Pacientes?></p></i>
                             <i class="fas fa-sun-o fa-5x pt-3 amber-text"></i>
                         </div>
 
