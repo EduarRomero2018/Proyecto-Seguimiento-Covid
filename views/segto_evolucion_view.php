@@ -324,13 +324,8 @@
             })
         </script>
     <?php endif; ?>
-    <footer class="final text-center">
-        <div class="container-fluid centrar">
-            <img src="../imagenes/vigilados-supersalud-pie.png" width="250" class="img-responsive" alt="super salud">
-            <br> Copyright © 2020 Caminosips || Todos
-            los derechos reservados.
-        </div>
-    </footer>
+
+    
 </body>
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">

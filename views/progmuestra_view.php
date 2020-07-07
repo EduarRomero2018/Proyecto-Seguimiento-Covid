@@ -187,13 +187,6 @@
     <br>
     <br>
 
-    <footer class="final text-center pb-3">
-        <div class="container-fluid centrar">
-            <!--<img src="img/vigilados-supersalud-pie.png" width="250" class="img-responsive" alt="super salud">-->
-            <br> Copyright © 2020 Caminosips || Todos
-            los derechos reservados.
-        </div>
-    </footer>
 </body>
 </script>
 
