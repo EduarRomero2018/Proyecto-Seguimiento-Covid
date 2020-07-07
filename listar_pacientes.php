@@ -10,7 +10,9 @@ $exito = '';
 if (!isset($_REQUEST['consulta'])) {
     $consulta = "SELECT  CONCAT(primer_nombre, ' ', primer_apellido) AS 'Nombre_Completo',
     CONCAT(edad, ' ', unidad_medida) AS 'Edad',
-    CONCAT(tipo_documento, ' - ', numero_documento) AS 'Identificacion', telefono, fecha_resultado, resultado
+    CONCAT(tipo_documento, ' - ', numero_documento) AS 'Identificacion', telefono,
+    DATE(fecha_registro) AS fecha_registro,
+    DATE(fecha_programacion) AS fecha_programacion, fecha_resultado, resultado
     FROM pacientes
     LEFT JOIN prog_toma_muestra ON pacientes.id = prog_toma_muestra.pacientes_id";
 
