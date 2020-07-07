@@ -1,21 +1,12 @@
 <?php
-
-/*
-
-MARIO FERNANDEZ 2020-06-07
-EJEMPLO QUERY
-INSERT INTO `seguimiento_paciente` (`id`, `complemento_seg_id`, `fecha`, `hora`, `asintomatico`, `fiebre_cuantificada`, `tos`, `dificultad_respiratoria`, `odinofagia`,
-`fatiga_adinamia`, `fecha_seguimiento`, `id_usuario`) VALUES (NULL, '1', '2020-06-07', '10:30:36', 'SI', 'NO', 'SI', 'NO', 'NO', 'NO', CURRENT_TIMESTAMP, '1');
-
-*/
-
 include 'conexion.php';  // Funciona.
 //APERTURA DE VARIABLES Datos Personales
-foreach ($_REQUEST as $key) {
+foreach ($_REQUEST as $key){
     if ($key == '') {
         die(json_encode('empty'));
     }
 }
+
 
 try {
     $complemento_seg_id = $_REQUEST['complemento_seg_id'];
@@ -36,7 +27,10 @@ try {
     $paciente_id = $_REQUEST['paciente_id'];
     $id_usuario = $_REQUEST['id_usuario'];
     $fecha_hora = date('Y-m-d :H:i:s');
-
+    
+    if (!is_numeric($saturacion_oxigeno)){
+        die(json_encode('different'));
+    }
     //comprobamos que los campos no esten vacios
 
     $stm = $conexion->prepare("INSERT INTO seguimiento_paciente VALUES(NULL,?,NOW(),?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
