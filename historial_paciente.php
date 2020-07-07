@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($consulta->rowCount() > 0) {
 
             $consulta = $conexion->prepare("SELECT CONCAT(primer_nombre, ' ', primer_apellido) AS 'Nombre_Completo', numero_documento, tipo_documento,
-        fecha_registro,edad,ptm.fecha_programacion, fecha_realizacion, programa_pertenece, fecha_entrega_lab, fecha_resultado, resultado
+        DATE(fecha_registro) AS fecha_registro,edad,DATE(ptm.fecha_programacion) AS fecha_programacion, DATE(fecha_realizacion) AS fecha_realizacion, programa_pertenece, DATE(fecha_entrega_lab) AS fecha_entrega_lab, DATE(fecha_resultado) AS fecha_resultado, resultado
          FROM pacientes
          INNER JOIN prog_toma_muestra ptm ON ptm.pacientes_id = pacientes.id
          WHERE numero_documento = :numero_documento");
