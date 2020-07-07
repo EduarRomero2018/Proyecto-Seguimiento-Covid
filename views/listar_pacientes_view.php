@@ -37,6 +37,8 @@
                                     <th class="text-center th-sm">Edad<i class="text-left fas fa-sort ml-1"></i></th>
                                     <th class="text-center th-sm">Identificacion<i class="text-left fas fa-sort ml-1"></i></th>
                                     <th class="text-center th-sm">Telefono<i class="text-left fas fa-sort ml-1"></i></th>
+                                    <th class="text-center th-sm">Fecha de Creacion<i class="text-center fas fa-sort ml-1"></i></th>
+                                    <th class="text-center th-sm">Fecha de Programacion<i class="text-center fas fa-sort ml-1"></i></th>
                                     <th class="text-center th-sm">Fecha Del Resultado<i class="text-left fas fa-sort ml-1"></i></th>
                                     <th class="text-center th-sm">Resultado<i class="text-left fas fa-sort ml-1"></i></th>
                                 </tr>
@@ -47,12 +49,14 @@
                                 foreach ($res as $key) : ?>
                                     <tr>
                                         <td class="text-center"><?= $i ?></td>
-                                        <td><?= $key->Nombre_Completo ?></td>
+                                        <td class="text-center"><?= $key->Nombre_Completo ?></td>
                                         <td class="text-center"><?= $key->Edad ?></td>
-                                        <td><?= $key->Identificacion ?></td>
-                                        <td><?= $key->telefono ?></td>
+                                        <td class="text-center"><?= $key->Identificacion ?></td>
+                                        <td class="text-center"><?= $key->telefono ?></td>
+                                        <td class="text-center"><?= $key->fecha_registro?></td>
+                                        <td class="text-center"><?= $key->fecha_programacion?></td>
                                         <td class="text-center"><?= $key->fecha_resultado ?></td>
-                                        <td><?= $key->resultado ?></td>
+                                        <td class="text-center"><?= $key->resultado ?></td>
                                     </tr>
                                 <?php $i++;
                                 endforeach; ?>
@@ -64,6 +68,8 @@
                                     <th class="text-center">Edad</th>
                                     <th class="text-center">Identificacion</th>
                                     <th class="text-center">Telefono</th>
+                                    <th class="text-center">fecha_registro</th>
+                                    <th class="text-center">fecha_programacion</th>
                                     <th class="text-center">Fecha Del Resultado</th>
                                     <th class="text-center">Resultado</th>
                                 </tr>
