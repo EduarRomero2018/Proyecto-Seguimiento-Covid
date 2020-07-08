@@ -38,6 +38,7 @@
                                     <a href="index.php">
                                         <button type="button" class="btn btn-outline-secondary btn-lg">Regresar</button>
                                     </a>
+                                    
                                 </div>
                             </div>
                         </div>
