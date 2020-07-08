@@ -72,8 +72,18 @@
                                 <p style="color:rgba(13, 70, 177, 0.972)" ;class="card-text">Fecha de Registro:
                                     <?php echo $fecha_registro; ?></p>
                                 <hr>
-                                <button style='cursor: pointer;' type="button" class="btn btn-outline-secondary btn-lg"
-                                    onClick="muestra_oculta('contenido')" value="mostrar">Programar Muestra</button>
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                    <button style='cursor: pointer;' type="button" class="btn btn-outline-secondary btn-lg"
+                                        onClick="muestra_oculta('contenido')" value="mostrar">Programar Primera Muestra</button>
+                                    </div>
+                                    <div class="col-sm-4">
+                                    <button style='cursor: pointer;' type="button" class="btn btn-outline-secondary btn-lg"
+                                    onClick="muestra_oculta('contenido')" value="mostrar">Ingresar Fecha de Realizacion de la toma</button>
+                                    </div>
+                                    </div>
+
+
                             </div>
                         </div>
                         <?php } ?>
