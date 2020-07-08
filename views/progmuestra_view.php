@@ -124,6 +124,7 @@
                     <select id="nombre_programa" class="custom-select">
                         <option selected value=""> </option>
                         <option value="NO APLICA">No Aplica</option>
+                        <option value="NINGUNO">Ninguno</option>
                         <option value="DE TODO CORAZON">De todo Corazón</option>
                         <option value="VIH">Vih</option>
                         <option value="AMARTE (ARTRITIS REUMATOIDES)">Amarte (artritis reumatoides)</option>
