@@ -216,6 +216,10 @@
                                     <input type="date" id="fecha_entrega_laboratorio" value="" class="form-control">
                                 </div>
                                 <div class="form-group">
+                                    <label for="" class="col-form-label">Fecha de procesamiento de la toma</label>
+                                    <input type="date" id="fecha_procesamiento" class="form-control" disabled>
+                                </div>
+                                <div class="form-group">
                                     <label class="col-form-label">Fecha de Resultados</label>
                                     <input type="date" id="fecha_resultado" value="" class="form-control" disabled>
                                 </div>
@@ -324,18 +328,41 @@
             $('#fecha_entrega_laboratorio').on('change', function () {
                 let fecha_entrega_laboratorio = $('#fecha_entrega_laboratorio').val()
                 if (fecha_entrega_laboratorio != '') {
-                    $('#fecha_resultado').attr('disabled', false)
+                    $('#fecha_procesamiento').attr('disabled', false)
                 }
-                console.log(fecha_programacion)
             })
-            $('#fecha_resultado').on('change', function () {
+
+            $('#fecha_procesamiento').on('change', function () {
                 let fecha_entrega_laboratorio = $('#fecha_entrega_laboratorio').val()
-                let fecha_resultado = $('#fecha_resultado').val()
-                if (fecha_resultado < fecha_entrega_laboratorio) {
+                let fecha_procesamiento = $('#fecha_procesamiento').val()
+                if (fecha_procesamiento < fecha_entrega_laboratorio) {
                     swal({
                         type: 'error',
                         title: "ERROR",
-                        text: "La fecha de resultado no puede ser menor a la fecha de entrega de laboratorio",
+                        text: "La fecha de procesamiento no puede ser menor a la fecha de entrega de laboratorio",
+                        button: "Aceptar",
+                        icon: "error",
+                        button: "Aceptar",
+                        timer: 7000,
+                        animation: false,
+                        customClass: 'animated heartBeat'
+                    })
+                    $('#guardar').attr('disabled', true)
+                } else {
+                    $('#fecha_resultado').attr('disabled', false)
+                    $('#guardar').attr('disabled', false)
+                }
+            })
+
+            $('#fecha_resultado').on('change', function () {
+                let fecha_entrega_laboratorio = $('#fecha_entrega_laboratorio').val()
+                let fecha_procesamiento = $('#fecha_procesamiento').val()
+                let fecha_resultado = $('#fecha_resultado').val()
+                if (fecha_resultado < fecha_entrega_laboratorio || fecha_resultado < fecha_procesamiento) {
+                    swal({
+                        type: 'error',
+                        title: "ERROR",
+                        text: "La fecha de resultado no puede ser menor a la fecha de entrega de laboratorio y a la fecha de procesamiento de la toma",
                         button: "Aceptar",
                         icon: "error",
                         button: "Aceptar",
@@ -353,6 +380,7 @@
                 e.preventDefault()
                 let id = $('#paciente_id').val()
                 let fecha_entrega_laboratorio = $('#fecha_entrega_laboratorio').val()
+                let fecha_procesamiento = $('#fecha_procesamiento').val()
                 let fecha_resultado = $('#fecha_resultado').val()
                 let resultado2 = $('#resultado').val()
                 let notificado = ''
@@ -360,10 +388,11 @@
                     notificado = 'SI'
 
                 }
+
                 $.ajax({
                     type: 'POST',
                     url: 'resultadoTomaDeMuestra.php?paciente_id=' + id +
-                        '&fecha_entrega_laboratorio=' + fecha_entrega_laboratorio +
+                        '&fecha_entrega_laboratorio=' + fecha_entrega_laboratorio + '&fecha_procesamiento=' + fecha_procesamiento +
                         '&fecha_resultado=' + fecha_resultado + '&resultado=' + resultado2 + '&notificado=' + notificado,
                     success: function (res) {
 
