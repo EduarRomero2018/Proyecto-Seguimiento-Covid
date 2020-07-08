@@ -74,7 +74,6 @@ $(document).ready(function () {
                         })
                         break;
                     default:
-                        let t = ''
                         swal({
                             type: 'success',
                             title: "Exito",
