@@ -79,7 +79,7 @@
                                         </div>
 
                                         <div class="col-sm-6" >
-                                            <button style='cursor: pointer;'  type="button" class="btn btn-outline-secondary btn-lg" onClick="muestra_oculta_tres('trescampos')" value="mostrar">Ingresar Fecha de Realizacion de la toma</button>
+                                            <button style='cursor: pointer;' id="complemento"  type="button" class="btn btn-outline-secondary btn-lg" value="mostrar">Ingresar Fecha de Realizacion de la toma</button>
                                         </div>
                                     </div>
                                 </div>
@@ -154,32 +154,30 @@
     </div>
 
     <!-- **********formulario de los 3 campos************** -->
-    <div id="trescampos" class="container">
+    <div id="trescampos" class="container" hidden>
         <div class="progmuestra">
             <div class="row">
                 <div class="col-sm-3">
-                    <form id="form-TM">
+                    <form id="form-TM-2">
                         <label class="col-form-label">Fecha de Realizacion</label>
-                        <input type="date" id="fecha_realizacion" class="form-control" disabled>
+                        <input type="date" name="" id="f_programacion">
+                        <input type="date" id="fecha_realizacion" class="form-control">
                 </div>
                 <div class="col-sm-3">
-                    <!-- <br> -->
                     <label class="col-form-label">Visita Exitosa</label>
-                    <select id="nombre_programa" class="custom-select">
+                    <select id="visita_exitosa" class="custom-select">
                         <option selected value=""> </option>
                         <option value="SI">Si</option>
                         <option value="NO">No</option>
                     </select>
                 </div>
                 <div class="col-sm-3">
-                    <!-- <input type="hidden" id="paciente_id" value="<?= $id ?>"> -->
                     <label class="col-form-label">Observacion</label>
                     <input type="text" id="observacion" class="form-control" placeholder="Observacion">
                 </div>
                 <div class="col-sm-3">
                     <br>
-                    <!-- <br> -->
-                    <button id="guardarr" type="submit" class="btn btn-outline-secondary btn-lg">Guardar Datos</button>
+                    <button id="guardar-complemento" type="submit" class="btn btn-outline-secondary btn-lg">Guardar Datos</button>
                 </div>
 
                 </form>
@@ -223,6 +221,7 @@
     <br>
 
 </body>
+<script src="js/JsComplementoProg_toma_muestra.js"></script>
 </script>
 
 <script>
@@ -325,7 +324,6 @@
                         $('#exampleModal').modal('hide')
                         $('#tbl_paciente').attr('hidden', true)
                         $('#contenido').attr('hidden', true)
-                        $('#trescampos').attr('hidden', true)
                         $('#form-body').attr('hidden', true)
                         break;
                     default:
