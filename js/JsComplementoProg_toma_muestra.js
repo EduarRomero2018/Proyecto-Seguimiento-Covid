@@ -17,7 +17,21 @@ $(document).ready(function () {
                                 $('#f_programacion').val(element.fecha_programacion)
                             });
 
+                            $('#contenido').attr("hidden",true);
                             $('#trescampos').attr("hidden",false);
+                        break;
+                    case '!found':
+                        swal({
+                            type: 'error',
+                            title: "ERROR",
+                            text: 'Ha este paciente aun no tiene asignada una fecha de programacion',
+                            button: "Aceptar",
+                            icon: "error",
+                            button: "Aceptar",
+                            timer: 7000,
+                            animation: false,
+                            customClass: 'animated heartBeat'
+                        })
                         break;
                     case 'err':
                         swal({
@@ -32,7 +46,7 @@ $(document).ready(function () {
                             customClass: 'animated heartBeat'
                         })
                         break;
-                    default:
+                    case 'bad':
                         swal({
                             type: 'error',
                             title: "ERROR",
