@@ -22,7 +22,7 @@ function muestra_oculta(id){
 
   }
     window.onload = function(){/*hace que se cargue la función lo que predetermina que div estará oculto hasta llamar a la función nuevamente*/
-      muestra_oculta_tres('trescampos');/* "contenido_a_mostrar" es el nombre que le dimos al DIV */
+      muestra_oculta_tres('contenido');/* "contenido_a_mostrar" es el nombre que le dimos al DIV */
     }
 
   function busqueda() {
