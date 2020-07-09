@@ -75,11 +75,11 @@
                                     <hr>
                                     <div class="row">
                                         <div class="col-sm-6">
-                                            <button style='cursor: pointer;' type="button" class="btn btn-outline-secondary btn-lg" onClick="muestra_oculta('contenido')" value="mostrar">Programar Primera Toma de Muestra</button>
+                                            <button <?= $disabled ?> style='cursor: pointer;' type="button" class="btn btn-outline-secondary btn-lg" onClick="muestra_oculta('contenido')" value="mostrar">Programar Primera Toma de Muestra</button>
                                         </div>
 
-                                        <div class="col-sm-6" >
-                                            <button style='cursor: pointer;' id="complemento"  type="button" class="btn btn-outline-secondary btn-lg" value="mostrar">Ingresar Fecha de Realizacion de la toma</button>
+                                        <div class="col-sm-6">
+                                            <button style='cursor: pointer;' id="complemento" type="button" class="btn btn-outline-secondary btn-lg" value="mostrar">Ingresar Fecha de Realizacion de la toma</button>
                                         </div>
                                     </div>
                                 </div>
@@ -91,7 +91,7 @@
             </form>
         </div>
     </div>
-     <!-- **********formulario de los 4 campos************** -->
+    <!-- **********formulario de los 4 campos************** -->
     <div id="contenido" class="container">
         <div class="progmuestra">
             <div class="row">
@@ -158,9 +158,12 @@
         <div class="progmuestra">
             <div class="row">
                 <div class="col-sm-3">
+                    <label for="">Fecha de programacion</label>
+                    <input disabled type="date" name="" id="f_programacion" class="form-control">
+                </div>
+                <div class="col-sm-3">
                     <form id="form-TM-2">
                         <label class="col-form-label">Fecha de Realizacion</label>
-                        <input type="date" name="" id="f_programacion">
                         <input type="date" id="fecha_realizacion" class="form-control">
                 </div>
                 <div class="col-sm-3">
@@ -175,6 +178,7 @@
                     <label class="col-form-label">Observacion</label>
                     <input type="text" id="observacion" class="form-control" placeholder="Observacion">
                 </div>
+
                 <div class="col-sm-3">
                     <br>
                     <button id="guardar-complemento" type="submit" class="btn btn-outline-secondary btn-lg">Guardar Datos</button>
