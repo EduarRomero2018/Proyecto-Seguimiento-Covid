@@ -36,6 +36,15 @@ else{
             $fecha_registro=$resultado['fecha_registro'];
             $id=$resultado['id'];
           }
+
+          $consulta = $conexion->prepare("SELECT id FROM prog_toma_muestra WHERE pacientes_id = ?");
+          $consulta->execute(array($id));
+
+          if($consulta->rowCount() > 0){
+            $disabled = "disabled";
+          }else{
+            $disabled = "";
+          }
           //mandamos un msg si no encontro nada
 }
 }
