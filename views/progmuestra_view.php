@@ -265,11 +265,8 @@
         let paciente_id = $('#paciente_id').val()
         let acepta_visita = $('#acepta_visita').val()
         let fecha_programacion = $('#fecha_programacion').val()
-        // let fecha_realizacion = $('#fecha_realizacion').val()
         let programacion_atencion = $('#programacion_atencion').val()
         let nombre_programa = $('#nombre_programa').val()
-        // let fecha_laboratorio = $('#fecha_laboratorio').val()
-        // let observacion = $('#observacion').val()
 
         $.ajax({
             type: 'POST',
@@ -278,10 +275,8 @@
                 paciente_id,
                 acepta_visita,
                 fecha_programacion,
-                // fecha_realizacion,
                 programacion_atencion,
                 nombre_programa
-                // fecha_laboratorio
             },
             success: function(res) {
                 console.log(res)
