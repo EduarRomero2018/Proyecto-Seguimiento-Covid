@@ -1,5 +1,5 @@
 
-alert = 'hola desde funciones.js';
+//alert = 'hola desde funciones.js';
 //console.log('funciones.js');
 
 
@@ -13,6 +13,17 @@ function muestra_oculta(id){
   window.onload = function(){/*hace que se cargue la función lo que predetermina que div estará oculto hasta llamar a la función nuevamente*/
   muestra_oculta('contenido');/* "contenido_a_mostrar" es el nombre que le dimos al DIV */
   }
+
+  function muestra_oculta_tres(id){
+    if (document.getElementById){ //se obtiene el id
+    var el = document.getElementById(id); //se define la variable "el" igual a nuestro div
+    el.style.display = (el.style.display == 'none') ? 'block' : 'none'; //damos un atributo display:none que oculta el div
+    }
+
+  }
+    window.onload = function(){/*hace que se cargue la función lo que predetermina que div estará oculto hasta llamar a la función nuevamente*/
+      muestra_oculta_tres('trescampos');/* "contenido_a_mostrar" es el nombre que le dimos al DIV */
+    }
 
   function busqueda() {
     var texto = document.getElementById("txtnom").value;
@@ -29,7 +40,7 @@ function muestra_oculta(id){
     });
 
   }
-  
+
 //CAMBIOS DE AHORA
   function listar_seguimientos(numero_documento){
     //MySql=''
