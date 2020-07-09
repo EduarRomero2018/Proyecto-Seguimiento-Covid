@@ -9,11 +9,11 @@
     <link rel="stylesheet" href="css/stylos_formulario.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.29.0/sweetalert2.all.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="js/jquery.js"></script>
     <script src="js/funciones.js"></script>
 </head>
+
 <body>
     <div class="linea1"></div>
     <div class="linea2"></div>
@@ -38,7 +38,7 @@
                                     <a href="index.php">
                                         <button type="button" class="btn btn-outline-secondary btn-lg">Regresar</button>
                                     </a>
-                                    
+
                                 </div>
                             </div>
                         </div>
@@ -48,53 +48,50 @@
 
             <!--PINTAMOS LA TABLA DONDE MOSTRAMOS LOS DATOS QUE TRAEMOS DE LA BD-->
             <div class="col-sm-8">
-                <div class="comtainer" id="tbl_paciente">
+                <div class="container" id="tbl_paciente">
                     <?php
                     if (!empty($resultado)) { ?>
-                    <div class="container">
-                        <div class="card card-cascade">
-                            <!-- Card image -->
-                            <div class="view view-cascade gradient-card-header blue-gradient">
-                                <!-- Title -->
-                                <h2 class="card-header-title mb-3 mt-2"><?php echo $nombre_completo; ?></h2>
-                            </div>
-                            <!-- Card content -->
-                            <div class="card-body card-body-cascade text-left">
-                                <p style="color:rgba(13, 70, 177, 0.972)" ; class="card-text">Tipo Documento:
-                                    <?php echo $tipo_documento; ?></p>
-                                <p style="color:rgba(13, 70, 177, 0.972)" ;class="card-text">Numero Documento:
-                                    <?php echo $numero_documento; ?></p>
-                                <p style="color:rgba(13, 70, 177, 0.972)" ;class="card-text">Edad:
-                                    <?php echo $edad; ?></p>
-                                <p style="color:rgba(13, 70, 177, 0.972)" ;class="card-text">Tipo de Paciente:
-                                    <?php echo $tipo_paciente; ?></p>
-                                <p style="color:rgba(13, 70, 177, 0.972)" ;class="card-text">Aseguradora:
-                                    <?php echo $aseguradora; ?></p>
-                                <p style="color:rgba(13, 70, 177, 0.972)" ;class="card-text">Fecha de Registro:
-                                    <?php echo $fecha_registro; ?></p>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                    <button style='cursor: pointer;' type="button" class="btn btn-outline-secondary btn-lg"
-                                        onClick="muestra_oculta('contenido')" value="mostrar">Programar Primera Muestra</button>
-                                    </div>
-                                    <div class="col-sm-4">
-                                    <button style='cursor: pointer;' type="button" class="btn btn-outline-secondary btn-lg"
-                                    onClick="muestra_oculta('contenido')" value="mostrar">Ingresar Fecha de Realizacion de la toma</button>
-                                    </div>
-                                    </div>
+                        <div class="container">
+                            <div class="card card-cascade">
+                                <!-- Card image -->
+                                <div class="view view-cascade gradient-card-header blue-gradient">
+                                    <!-- Title -->
+                                    <h2 class="card-header-title mb-3 mt-2"><?php echo $nombre_completo; ?></h2>
+                                </div>
+                                <!-- Card content -->
+                                <div class="card-body card-body-cascade text-left">
+                                    <p style="color:rgba(13, 70, 177, 0.972)" ; class="card-text">Tipo Documento:
+                                        <?php echo $tipo_documento; ?></p>
+                                    <p style="color:rgba(13, 70, 177, 0.972)" ;class="card-text">Numero Documento:
+                                        <?php echo $numero_documento; ?></p>
+                                    <p style="color:rgba(13, 70, 177, 0.972)" ;class="card-text">Edad:
+                                        <?php echo $edad; ?></p>
+                                    <p style="color:rgba(13, 70, 177, 0.972)" ;class="card-text">Tipo de Paciente:
+                                        <?php echo $tipo_paciente; ?></p>
+                                    <p style="color:rgba(13, 70, 177, 0.972)" ;class="card-text">Aseguradora:
+                                        <?php echo $aseguradora; ?></p>
+                                    <p style="color:rgba(13, 70, 177, 0.972)" ;class="card-text">Fecha de Registro:
+                                        <?php echo $fecha_registro; ?></p>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <button style='cursor: pointer;' type="button" class="btn btn-outline-secondary btn-lg" onClick="muestra_oculta('contenido')" value="mostrar">Programar Primera Toma de Muestra</button>
+                                        </div>
 
-
+                                        <div class="col-sm-6" >
+                                            <button style='cursor: pointer;'  type="button" class="btn btn-outline-secondary btn-lg" onClick="muestra_oculta_tres('trescampos')" value="mostrar">Ingresar Fecha de Realizacion de la toma</button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
                         <?php } ?>
-                    </div>
+                        </div>
                 </div>
             </div>
             </form>
         </div>
     </div>
-    <!-- ********************************************************* -->
+     <!-- **********formulario de los 4 campos************** -->
     <div id="contenido" class="container">
         <div class="progmuestra">
             <div class="row">
@@ -114,10 +111,6 @@
                     <input type="date" id="fecha_programacion" class="form-control">
                 </div>
 
-                <div class="col-sm-3">
-                    <label class="col-form-label">Fecha de Realizacion</label>
-                    <input type="date" id="fecha_realizacion" class="form-control" disabled>
-                </div>
 
                 <div class="col-sm-3">
                     <label class="col-form-label">Sitio de Toma de Muestra</label>
@@ -130,7 +123,7 @@
                 </div>
 
                 <div class="col-sm-3">
-                    <br>
+                    <!-- <br> -->
                     <label class="col-form-label">Programa al que Pertenece</label>
                     <select id="nombre_programa" class="custom-select">
                         <option selected value=""> </option>
@@ -140,8 +133,7 @@
                         <option value="VIH">Vih</option>
                         <option value="AMARTE (ARTRITIS REUMATOIDES)">Amarte (artritis reumatoides)</option>
                         <option value="RESPIRA (EPOC)">Respira (Epoc)</option>
-                        <option value="PROMOCION Y MANTENIMIENTO DE LA SALUD">Promocion y mantenimiento de la salud
-                        </option>
+                        <option value="PROMOCION Y MANTENIMIENTO DE LA SALUD">Promocion y mantenimiento de la salud</option>
                         <option value="MUJER SANA">Mujer Sana</option>
                         <option value="OBESIDAD">Obesidad</option>
                         <option value="GESTANTES">Gestantes</option>
@@ -149,14 +141,11 @@
                 </div>
                 <div class="col-sm-3">
                     <br>
-                    <br>
                     <button id="guardar" type="submit" class="btn btn-outline-secondary btn-lg">Guardar Datos</button>
                 </div>
                 <div class="col-sm-3">
                     <br>
                     <input type="hidden" id="paciente_id" value="<?= $id ?>">
-                    <!-- <label class="col-form-label">Observacion</label>
-                    <input type="text" id="observacion" class="form-control" placeholder="Observacion"> -->
                 </div>
                 </form>
 
@@ -164,36 +153,70 @@
         </div>
     </div>
 
+    <!-- **********formulario de los 3 campos************** -->
+    <div id="trescampos" class="container">
+        <div class="progmuestra">
+            <div class="row">
+                <div class="col-sm-3">
+                    <form id="form-TM">
+                        <label class="col-form-label">Fecha de Realizacion</label>
+                        <input type="date" id="fecha_realizacion" class="form-control" disabled>
+                </div>
+                <div class="col-sm-3">
+                    <!-- <br> -->
+                    <label class="col-form-label">Visita Exitosa</label>
+                    <select id="nombre_programa" class="custom-select">
+                        <option selected value=""> </option>
+                        <option value="SI">Si</option>
+                        <option value="NO">No</option>
+                    </select>
+                </div>
+                <div class="col-sm-3">
+                    <!-- <input type="hidden" id="paciente_id" value="<?= $id ?>"> -->
+                    <label class="col-form-label">Observacion</label>
+                    <input type="text" id="observacion" class="form-control" placeholder="Observacion">
+                </div>
+                <div class="col-sm-3">
+                    <br>
+                    <!-- <br> -->
+                    <button id="guardarr" type="submit" class="btn btn-outline-secondary btn-lg">Guardar Datos</button>
+                </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
     <?php if (!empty($exito)) : ?>
-    <script>
-        swal({
-            type: 'succes',
-            title: "Exito",
-            text: "<?php echo $exito; ?>",
-            button: "Aceptar",
-            icon: "error",
-            button: "Aceptar",
-            timer: 7000,
-            animation: false,
-            customClass: 'animated heartBeat'
-        })
-    </script>
+        <script>
+            swal({
+                type: 'succes',
+                title: "Exito",
+                text: "<?php echo $exito; ?>",
+                button: "Aceptar",
+                icon: "error",
+                button: "Aceptar",
+                timer: 7000,
+                animation: false,
+                customClass: 'animated heartBeat'
+            })
+        </script>
     <?php endif; ?>
 
     <?php if (!empty($errores)) : ?>
-    <script>
-        swal({
-            type: 'error',
-            title: "ERROR",
-            text: "<?php echo $errores; ?>",
-            button: "Aceptar",
-            icon: "error",
-            button: "Aceptar",
-            timer: 7000,
-            animation: false,
-            customClass: 'animated heartBeat'
-        })
-    </script>
+        <script>
+            swal({
+                type: 'error',
+                title: "ERROR",
+                text: "<?php echo $errores; ?>",
+                button: "Aceptar",
+                icon: "error",
+                button: "Aceptar",
+                timer: 7000,
+                animation: false,
+                customClass: 'animated heartBeat'
+            })
+        </script>
     <?php endif; ?>
     <br>
     <br>
@@ -203,7 +226,7 @@
 </script>
 
 <script>
-    $('#fecha_programacion').on('change', function () {
+    $('#fecha_programacion').on('change', function() {
         let fecha_programacion = $('#fecha_programacion').val()
         if (fecha_programacion != '') {
             $('#fecha_realizacion').attr('disabled', false)
@@ -213,7 +236,7 @@
         console.log(fecha_programacion)
     })
 
-    $('#fecha_realizacion').on('change', function () {
+    $('#fecha_realizacion').on('change', function() {
         let fecha_realizacion = $('#fecha_realizacion').val()
         let fecha_programacion = $('#fecha_programacion').val()
         if (fecha_realizacion < fecha_programacion) {
@@ -236,16 +259,16 @@
     })
 
 
-    $('#guardar').on('click', function (e) {
+    $('#guardar').on('click', function(e) {
         e.preventDefault()
 
         let paciente_id = $('#paciente_id').val()
         let acepta_visita = $('#acepta_visita').val()
         let fecha_programacion = $('#fecha_programacion').val()
-        let fecha_realizacion = $('#fecha_realizacion').val()
+        // let fecha_realizacion = $('#fecha_realizacion').val()
         let programacion_atencion = $('#programacion_atencion').val()
         let nombre_programa = $('#nombre_programa').val()
-        let fecha_laboratorio = $('#fecha_laboratorio').val()
+        // let fecha_laboratorio = $('#fecha_laboratorio').val()
         // let observacion = $('#observacion').val()
 
         $.ajax({
@@ -255,12 +278,12 @@
                 paciente_id,
                 acepta_visita,
                 fecha_programacion,
-                fecha_realizacion,
+                // fecha_realizacion,
                 programacion_atencion,
-                nombre_programa,
-                fecha_laboratorio
+                nombre_programa
+                // fecha_laboratorio
             },
-            success: function (res) {
+            success: function(res) {
                 console.log(res)
                 let resultado = JSON.parse(res)
                 switch (resultado) {
@@ -307,6 +330,7 @@
                         $('#exampleModal').modal('hide')
                         $('#tbl_paciente').attr('hidden', true)
                         $('#contenido').attr('hidden', true)
+                        $('#trescampos').attr('hidden', true)
                         $('#form-body').attr('hidden', true)
                         break;
                     default:
@@ -329,11 +353,9 @@
     })
 </script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
 </script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
 </script>
 <script src="js/validacion.js"></script>
 
