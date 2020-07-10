@@ -28,11 +28,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         );
         $consulta->execute(array($res['id']));
 
-        if($consulta->rowCount() > 0){
+        if ($consulta->rowCount() > 0) {
             $hidden = '';
         }
 
-        if(!empty($res)){
+        if (!empty($res)) {
             $consulta = $conexion->prepare(
                 "SELECT CONCAT(primer_nombre, ' ', primer_apellido) AS 'Nombre_Completo', tipo_documento,edad,  numero_documento,fecha_entrega_lab
                 ,fecha_resultado,resultado,pacientes_id
@@ -58,16 +58,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $resultado = $res['resultado'];
             $id = $res['pacientes_id'];
             // print_r($res);
-        }else {
-            $errores = 'Paciente no encontrado';
-        }
-        $consulta = $conexion->prepare("SELECT id FROM prog_toma_muestra WHERE pacientes_id = ? AND resultado = 'Pendiente'");
-        $consulta->execute(array($id));
+            $consulta = $conexion->prepare("SELECT id FROM prog_toma_muestra WHERE pacientes_id = ? AND resultado = 'Pendiente'");
+            $consulta->execute(array($id));
 
-        if($consulta->rowCount() > 0){
-          $disabled = "disabled";
-        }else{
-          $disabled = "";
+            if ($consulta->rowCount() > 0) {
+                $disabled = "disabled";
+            } else {
+                $disabled = "";
+            }
+
+            $consulta = $conexion->prepare("SELECT id FROM prog_toma_muestra WHERE pacientes_id = ? AND resultado = 'negativo'");
+            $consulta->execute(array($id));
+
+            if ($consulta->rowCount() > 0) {
+                $msj = "Solo se le realiza seguimiento a los pacientes con resultado positivo"; 
+                $disabled = "disabled";
+            } else {
+                $msj = ""; 
+            }
+             
+        } else {
+            $errores = 'Paciente no encontrado';
         }
     }
 }
