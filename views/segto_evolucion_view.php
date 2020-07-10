@@ -77,12 +77,31 @@
                                         <?php echo $fecha_entrega_laboratorio; ?></p>
                                     <p style="color:rgba(13, 70, 177, 0.972)" ;class="card-text">Fecha del resultado:
                                         <?php echo $fecha_resultado; ?></p>
-                                    <p style="color:rgba(13, 70, 177, 0.972)" ;class="card-text">Resultado de la muestra:
-                                        <?php echo $resultado; ?></p>
+                                    <?php echo $fecha_resultado;?></p>
+                                        <?php if($resultado == 'negativo'): ?>
+                                            <div class="text-center text-light bg-success py-1">
+                                                <h5>Resultado:
+                                                <?php echo $resultado;?></h5>
+                                            </div>
+                                        <?php endif ?>
+                                        <?php if($resultado == 'positivo'): ?>
+                                            <div class="text-center text-light bg-danger py-1">
+                                                <h5>Resultado:
+                                                <?php echo $resultado;?></h5>
+                                            </div>
+                                        <?php endif ?>
+                                        <?php if($resultado == 'Pendiente'): ?>
+                                            <div class="text-center text-light bg-warning py-1">
+                                                <h5>Resultado:
+                                                <?php echo $resultado;?></h5>
+                                            </div>
+                                        <?php endif ?>
+
                                     <hr>
-                                    <button style='cursor: pointer;' id="continuar" type="button" class="btn btn-outline-secondary btn-lg" value="mostrar">Ingresar Seguimiento</button>
+                                    <button <?= $disabled ?> style='cursor: pointer;' id="continuar" type="button" class="btn btn-outline-secondary btn-lg" value="mostrar">Ingresar Seguimiento</button>
                                 </div>
                             </div>
+
                         <?php } ?>
                         </div>
                 </div>
@@ -289,6 +308,23 @@
         </form>
     </div>
     </div>
+
+    <?php if (!empty($disabled)) : ?>
+        <script>
+            swal({
+                type: 'error',
+                title: "Paciente Aun no Cuenta con Resultados",
+                text: "Ingrese el Resultado de la prueba del paciente antes de hacer un seguimiento",
+                button: "Aceptar",
+                icon: "error",
+                button: "Aceptar",
+                timer: 15000,
+                animation: false,
+                customClass: 'animated heartBeat'
+            })
+        </script>
+    <?php endif; ?>
+
     <?php if (!empty($exito)) : ?>
         <script>
             swal({
