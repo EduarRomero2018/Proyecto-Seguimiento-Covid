@@ -61,6 +61,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }else {
             $errores = 'Paciente no encontrado';
         }
+        $consulta = $conexion->prepare("SELECT id FROM prog_toma_muestra WHERE pacientes_id = ? AND resultado = 'Pendiente'");
+        $consulta->execute(array($id));
+
+        if($consulta->rowCount() > 0){
+          $disabled = "disabled";
+        }else{
+          $disabled = "";
+        }
     }
 }
 require 'views/segto_evolucion_view.php';
