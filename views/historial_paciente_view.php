@@ -93,8 +93,15 @@
                                                 <h5>Resultado:
                                                 <?php echo $resultado;?></h5>
                                             </div>
-                                        <?php else: ?>
+                                        <?php endif ?>
+                                        <?php if($resultado == 'positivo'): ?>
                                             <div class="text-center text-light bg-danger py-1">
+                                                <h5>Resultado:
+                                                <?php echo $resultado;?></h5>
+                                            </div>
+                                        <?php endif ?>
+                                        <?php if($resultado == 'Pendiente'): ?>
+                                            <div class="text-center text-light bg-warning py-1">
                                                 <h5>Resultado:
                                                 <?php echo $resultado;?></h5>
                                             </div>
