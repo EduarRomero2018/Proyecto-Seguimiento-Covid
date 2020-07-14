@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="css/stylos_formulario.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.29.0/sweetalert2.all.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="js/jquery.js"></script>
     </script>
 
@@ -42,11 +43,11 @@
                     </form>
             </div>
 
+
             <div class="col-sm-8">
-                <div class="container">
                     <?php
                     if (!empty($resultado)) { ?>
-                        <div class="container">
+
                             <div class="card card-cascade">
                                 <!-- Card image -->
                                 <div class="view view-cascade gradient-card-header blue-gradient">
@@ -59,17 +60,27 @@
                                         <?php echo $tipo_documento; ?></p>
                                     <p style="color:rgba(13, 70, 177, 0.972)" ;class="card-text">Numero Documento:
                                         <?php echo $numero_documento; ?></p>
-                                    <p style="color:rgba(13, 70, 177, 0.972)" ;class="card-text">Resultado:
+                                    <p style="color:rgba(13, 70, 177, 0.972)" ;class="card-text">Edad:
                                         <?php echo $edad; ?></p>
-                                    <p style="color:rgba(13, 70, 177, 0.972)" ;class="card-text">Primer Nombre:
-                                        <?php echo $primer_nombre; ?></p>
-                                    <hr>
+                                    <p style="color:rgba(13, 70, 177, 0.972)" ;class="card-text">Dirección de Residencia:
+                                        <?php echo $Direccion_Residencia; ?></p>
+                                    <p style="color:rgba(13, 70, 177, 0.972)" ;class="card-text">Telefono de Contacto:
+                                        <?php echo $telefono; ?></p>
+                                    <p style="color:rgba(13, 70, 177, 0.972)" ;class="card-text">EPS a la que Pertenece:
+                                        <?php echo $aseguradora; ?></p>
+                                    <p style="color:rgba(13, 70, 177, 0.972)" ;class="card-text">Fecha de Creacion del Paciente:
+                                        <?php echo $fecha_creacion_paciente; ?></p>
+                                    <p style="color:rgba(13, 70, 177, 0.972)" ;class="card-text">Fecha Primera Toma de Muestra:
+                                        <?php echo $fecha_primera_toma_muestra; ?></p>
+                                    <p style="color:rgba(13, 70, 177, 0.972)" ;class="card-text">Resultado de la Primera Toma:
+                                        <?php echo $resultado_toma; ?></p>
+                                    <p style="color:rgba(13, 70, 177, 0.972)" ;class="card-text">El Paciente fue Notificado?:
+                                        <?php echo $notificado; ?></p>
                                 </div>
                             </div>
                         <?php } ?>
-                        </div>
-                </div>
             </div>
+
             </form>
         </div>
     </div>
@@ -214,7 +225,7 @@
                     customClass: 'animated heartBeat'
                 })
             }else{
-                
+
                 $.ajax({
                     type: 'post',
                     url: 'segundaTomaMuestra.php',
@@ -251,7 +262,7 @@
                                 })
                                 $('#contenido').attr('hidden', true)
                                 break;
-    
+
                             case 'bad':
                                 swal({
                                     type: 'error',
