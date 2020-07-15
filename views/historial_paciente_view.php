@@ -88,13 +88,13 @@
                                             laboratorio: <?php echo $fecha_entrega_lab;?></p>
                                         <p style="color:rgba(13, 70, 177, 0.972)" ;class="card-text">Fecha de Resultado:
                                             <?php echo $fecha_resultado;?></p>
-                                        <?php if($resultado == 'negativo'): ?>
+                                        <?php if($resultado == 'Negativo'): ?>
                                             <div class="text-center text-light bg-success py-1">
                                                 <h5>Resultado:
                                                 <?php echo $resultado;?></h5>
                                             </div>
                                         <?php endif ?>
-                                        <?php if($resultado == 'positivo'): ?>
+                                        <?php if($resultado == 'Positivo'): ?>
                                             <div class="text-center text-light bg-danger py-1">
                                                 <h5>Resultado:
                                                 <?php echo $resultado;?></h5>
