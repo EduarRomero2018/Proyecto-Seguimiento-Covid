@@ -55,7 +55,7 @@
                                 <!-- Card image -->
                                 <div class="view view-cascade gradient-card-header blue-gradient">
                                     <!-- Title -->
-                                    <h2 class="card-header-title mb-3 mt-2"><?php echo $nombre_completo; ?></h2>
+                                    <h2 class="card-header-title mb-3 mt-2"><?php echo $Nombre_Completo; ?></h2>
                                 </div>
                                 <!-- Card content -->
                                 <div class="card-body card-body-cascade text-left">
@@ -71,6 +71,8 @@
                                         <?php echo $aseguradora; ?></p>
                                     <p style="color:rgba(13, 70, 177, 0.972)" ;class="card-text">Fecha Creacion del Paciente:
                                         <?php echo  $fecha_registro ?> </>
+                                    <p style="color:rgba(13, 70, 177, 0.972)" ;class="card-text">Usuario de creacion del Paciente:
+                                        <?php echo  $usuario_Creacion ?> </>
 
                                     <hr>
                                     <div class="row">
