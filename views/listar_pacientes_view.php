@@ -9,7 +9,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.0/css/mdb.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/stylos_formulario.css">
     <script src="js/jquery.js"></script>
-    <script src="js/funciones.js"></script>
+    <!-- <script src="js/funciones.js"></script> -->
 </head>
 
 <body>
@@ -31,16 +31,17 @@
                     <div class="table-wrapper-scroll-y my-custom-scrollbar table-hover">
                         <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
                             <thead>
-                                <tr class="text-right">
-                                    <th class="text-center th-sm"># Registro<i class="text-left fas fa-sort ml-1"></i></th>
-                                    <th class="text-center th-sm">Nombre paciente<i class="text-left fas fa-sort ml-1"></i></th>
-                                    <th class="text-center th-sm">Edad<i class="text-left fas fa-sort ml-1"></i></th>
-                                    <th class="text-center th-sm">Identificacion<i class="text-left fas fa-sort ml-1"></i></th>
-                                    <th class="text-center th-sm">Telefono<i class="text-left fas fa-sort ml-1"></i></th>
-                                    <th class="text-center th-sm">Fecha de Creacion<i class="text-center fas fa-sort ml-1"></i></th>
-                                    <th class="text-center th-sm">Fecha de Programacion<i class="text-center fas fa-sort ml-1"></i></th>
-                                    <th class="text-center th-sm">Fecha Del Resultado<i class="text-left fas fa-sort ml-1"></i></th>
-                                    <th class="text-center th-sm">Resultado<i class="text-left fas fa-sort ml-1"></i></th>
+                                <tr class="text-right ">
+                                    <th style="background: #a9c5e7" class="text-center th-sm "># Registro<i class="text-left fas fa-sort ml-1"></i></th>
+                                    <th style="background: #a9c5e7" class="text-center th-sm">Nombre paciente<i class="text-left fas fa-sort ml-1"></i></th>
+                                    <th style="background: #a9c5e7" class="text-center th-sm">Edad<i class="text-left fas fa-sort ml-1"></i></th>
+                                    <th style="background: #a9c5e7" class="text-center th-sm">Identificacion<i class="text-left fas fa-sort ml-1"></i></th>
+                                    <th style="background: #a9c5e7" class="text-center th-sm">Telefono<i class="text-left fas fa-sort ml-1"></i></th>
+                                    <th style="background: #a9c5e7" class="text-center th-sm">Fecha de Creacion<i class="text-center fas fa-sort ml-1"></i></th>
+                                    <th style="background: #a9c5e7" class="text-center th-sm">Fecha de Programacion<i class="text-center fas fa-sort ml-1"></i></th>
+                                    <th style="background: #a9c5e7" class="text-center th-sm">Fecha Del Resultado<i class="text-left fas fa-sort ml-1"></i></th>
+                                    <th style="background: #a9c5e7" class="text-center th-sm">Resultado Primera Muestra<i class="text-left fas fa-sort ml-1"></i></th>
+                                    <th style="background: #a9c5e7" class="text-center th-sm">Usuario de Creacion<i class="text-left fas fa-sort ml-1"></i></th>
                                 </tr>
                             </thead>
                             <tbody id="tbl-llamadas">
@@ -57,6 +58,7 @@
                                         <td class="text-center"><?= $key->fecha_programacion?></td>
                                         <td class="text-center"><?= $key->fecha_resultado ?></td>
                                         <td class="text-center"><?= $key->resultado ?></td>
+                                        <td class="text-center"><?= $key->nombre_apellido ?></td>
                                     </tr>
                                 <?php $i++;
                                 endforeach; ?>
@@ -68,10 +70,11 @@
                                     <th class="text-center">Edad</th>
                                     <th class="text-center">Identificacion</th>
                                     <th class="text-center">Telefono</th>
-                                    <th class="text-center">fecha_registro</th>
-                                    <th class="text-center">fecha_programacion</th>
+                                    <th class="text-center">Fecha de Creacion</th>
+                                    <th class="text-center">Fecha de Programacion</th>
                                     <th class="text-center">Fecha Del Resultado</th>
-                                    <th class="text-center">Resultado</th>
+                                    <th class="text-center">Resultado Primera Muestra</th>
+                                    <th class="text-center">Usuario de Creacion</th>
                                 </tr>
                             </tfoot>
                         </table>
@@ -88,5 +91,4 @@
 <script src="js/addons/datatables.min.js"></script>
 <script src="js/tables.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.0/js/mdb.min.js"></script>
-
 </html>
