@@ -77,7 +77,6 @@
                                         <?php echo $fecha_entrega_laboratorio; ?></p>
                                     <p style="color:rgba(13, 70, 177, 0.972)" ;class="card-text">Fecha del resultado:
                                         <?php echo $fecha_resultado; ?></p>
-                                    <?php echo $fecha_resultado;?></p>
                                         <?php if($resultado == 'negativo'): ?>
                                             <div class="text-center text-light bg-success py-1">
                                                 <h5>Resultado:
@@ -309,7 +308,23 @@
     </div>
     </div>
 
-    <?php if (!empty($disabled)) : ?>
+    <?php if(!empty($disabled) && !empty($msj)): ?>
+        <script>
+            swal({
+                type: 'warning',
+                title: "Advertencia",
+                text: "<?= $msj ?>",
+                button: "Aceptar",
+                icon: "error",
+                button: "Aceptar",
+                timer: 15000,
+                animation: false,
+                customClass: 'animated heartBeat'
+            })
+        </script>
+    <?php endif ?>
+
+    <?php if (!empty($disabled) && empty($msj)) : ?>
         <script>
             swal({
                 type: 'error',
