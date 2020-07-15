@@ -336,15 +336,6 @@ body .fila {
 body .fila img {
     height: 60px;
 }
-/*
-body .azul {
-    height: 2px;
-    /*background-color: #FDCC29;*/
-    width: 100%;
-    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.1), rgb(0, 72, 148), rgba(255, 255, 255, 0.1));
-    margin-top: -20px;
-}
-*/
 
 body .naranja {
     height: 2px;
@@ -500,7 +491,6 @@ vertical-align: top;
 	color:#fff;
 	background:rgba(255, 179, 57, 0.7);
 	cursor: pointer;
-
 	-webkit-border-radius: 0 3px 3px 0;
 	-moz-border-radius: 0 3px 3px 0;
 	-ms-border-radius: 0 3px 3px 0;
@@ -526,5 +516,7 @@ vertical-align: top;
 	margin-bottom: 10px;
 	color:#000;
 }
-
+.card {
+padding-right: 0px !important;
+}
 
