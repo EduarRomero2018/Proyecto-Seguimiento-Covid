@@ -48,10 +48,9 @@
 
             <!--PINTAMOS LA TABLA DONDE MOSTRAMOS LOS DATOS QUE TRAEMOS DE LA BD-->
             <div class="col-sm-8">
-                <div class="container" id="tbl_paciente">
+                <div id="tbl_paciente">
                     <?php
                     if (!empty($resultado)) { ?>
-                        <div class="container">
                             <div class="card card-cascade">
                                 <!-- Card image -->
                                 <div class="view view-cascade gradient-card-header blue-gradient">
@@ -70,8 +69,9 @@
                                         <?php echo $tipo_paciente; ?></p>
                                     <p style="color:rgba(13, 70, 177, 0.972)" ;class="card-text">Aseguradora:
                                         <?php echo $aseguradora; ?></p>
-                                    <p style="color:rgba(13, 70, 177, 0.972)" ;class="card-text">Fecha de Registro:
-                                        <?php echo $fecha_registro; ?></p>
+                                    <p style="color:rgba(13, 70, 177, 0.972)" ;class="card-text">Fecha Creacion del Paciente:
+                                        <?php echo  $fecha_registro ?> </>
+
                                     <hr>
                                     <div class="row">
                                         <div class="col-sm-6">
@@ -85,7 +85,6 @@
                                 </div>
                             </div>
                         <?php } ?>
-                        </div>
                 </div>
             </div>
             </form>
