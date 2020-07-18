@@ -26,7 +26,8 @@ $consulta->execute();
 if($consulta->rowCount() > 0){
   $positivos = $consulta->rowCount();
 }else{
-  echo 'No se encontraron Pacientes Positivos';
+  // echo 'No se encontraron Pacientes Positivos';
+  $positivos = 0;
 }
 
 $consulta = $conexion->prepare("SELECT COUNT(*) AS Cantidad_Pacientes
@@ -36,6 +37,16 @@ WHERE id IN
 $consulta->execute();
 $res = $consulta ->fetch();
 $Cantidad_Pacientes_programados = $res['Cantidad_Pacientes'];
+
+  /* CANTIDAD DE PACIENTES PROGRAMADOS PERO QUE ESTEN PENDIENTES POR REALIZARLE LA PRUEBA*/
+  $consulta = $conexion->prepare("SELECT COUNT(*) AS Cantidad_p_p_pendiente_por_toma
+  FROM prog_toma_muestra
+  WHERE fecha_programacion IS NOT NULL
+  AND fecha_realizacion IS NULL");
+  $consulta->execute();
+  $res = $consulta ->fetch();
+  $Cantidad_p_p_pendiente_por_toma= $res['Cantidad_p_p_pendiente_por_toma'];
+  //print_r ($consulta->errorInfo())  ;
 
 
 /* --CONSULTA PARA SABER CUALES SON LOS PACIENTES QUE SE LE HAN REALIZADO TOMA DE MUESTRA--
