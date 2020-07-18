@@ -26,10 +26,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	if ($resultado !== false) {
 		$_SESSION['usuario'] = $identificacion;
 		$_SESSION['nombre_apellido'] = $resultado['nombre_apellido'];
+		$_SESSION['role'] = $resultado['role'];
 		$_SESSION['id'] = $resultado['id'];
 
-            // echo "datos correctos";
-            header('Location: index.php');
+		header('Location: index.php');
 
 	} else {
 		$errores .= 'Documento o Contraseña Incorrectas';
