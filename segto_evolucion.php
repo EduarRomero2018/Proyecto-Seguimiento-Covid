@@ -57,26 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $fecha_resultado = $res['fecha_resultado'];
             $resultado = $res['resultado'];
             $id = $res['pacientes_id'];
-            // print_r($res);
-            $consulta = $conexion->prepare("SELECT id FROM prog_toma_muestra WHERE pacientes_id = ? AND resultado = 'Pendiente'");
-            $consulta->execute(array($id));
-
-            if ($consulta->rowCount() > 0) {
-                $disabled = "disabled";
-            } else {
-                $disabled = "";
-            }
-
-            $consulta = $conexion->prepare("SELECT id FROM prog_toma_muestra WHERE pacientes_id = ? AND resultado = 'negativo'");
-            $consulta->execute(array($id));
-
-            if ($consulta->rowCount() > 0) {
-                $msj = "Solo se le realiza seguimiento a los pacientes con resultado positivo"; 
-                $disabled = "disabled";
-            } else {
-                $msj = ""; 
-            }
-             
+            // print_r($res); 
         } else {
             $errores = 'Paciente no encontrado';
         }
