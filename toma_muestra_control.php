@@ -21,7 +21,7 @@ if (empty($documento) OR (!is_numeric($documento))){
 }
 else{
   //VALIDAMOS QUE LA IDENTIFICACION NO EXISTA EN LA BD
-  $consulta = $conexion->prepare("SELECT p.id CONCAT(P. primer_nombre, ' ', P. primer_apellido) AS 'Nombre_Completo', P.tipo_documento,
+  $consulta = $conexion->prepare("SELECT p.id, CONCAT(P. primer_nombre, ' ', P. primer_apellido) AS 'Nombre_Completo', P.tipo_documento,
   P.numero_documento, P.edad, P.barrio AS 'Direccion_Residencia', P.telefono, P.aseguradora, P.fecha_registro AS 'fecha_creacion_paciente',
   STM.fecha_programacion AS 'fecha_primera_toma_muestra', PTM.resultado AS 'resultado_toma', PTM.notificado
   FROM `pacientes` P
