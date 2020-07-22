@@ -73,6 +73,8 @@
                                         <?php echo $identificacion; ?></p>
                                     <p style="color:rgba(13, 70, 177, 0.972)" ;class="card-text">Edad:
                                         <?php echo $edad; ?></p>
+                                    <p style="color:rgba(13, 70, 177, 0.972)" ;class="card-text">Usuario de Creacion:
+                                        <?php echo $usuario_creacion; ?></p>
                                         <p style="color:rgba(13, 70, 177, 0.972)" ;class="card-text">Fecha de programacion:
                                         <?php echo $fecha_programacion; ?></p>
                                     <p style="color:rgba(13, 70, 177, 0.972)" ;class="card-text">Fecha de entrega de la muestra al laboratorio:
