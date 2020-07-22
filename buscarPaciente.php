@@ -25,11 +25,11 @@ include 'conexion.php';  // Funciona.
         $consulta = $conexion->prepare(
             "SELECT *
             FROM prog_toma_muestra
-            WHERE pacientes_id = ? AND prog_toma_muestra.acepta_visita != ''"
+            WHERE pacientes_id = ?  AND fecha_realizacion IS NULL"
         );
         $consulta->execute(array($id));
 
-        if($consulta->rowCount() == 0){
+        if($consulta->rowCount() != 0 ){
             die(json_encode('null'));
         }
 
