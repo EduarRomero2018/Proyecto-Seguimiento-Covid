@@ -1,7 +1,5 @@
-<!--<?php print_r($_SESSION) ?>-->
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -32,17 +30,10 @@
         <!--******************************************************-->
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <!--******************************************************
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.php">INICIO</a>
-                    </li>
--->
-                <!--******************************************************-->
-
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        SEGUIMIENTO
+                        PROCESOS
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a href="getform1.php" class="dropdown-item" href="#">Ingresar Pacientes</a>
@@ -62,6 +53,10 @@
                         INGRESAR RESULTADOS
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="nav-link " href="#" id="navbarDropdown" data-target='#exampleModal' role="button"
+                        data-toggle="modal" aria-haspopup="true" aria-expanded="false">
+                        Ingresar Fecha de Realizacion de la toma
+                    </a>
                     <a class="nav-link " href="#" id="navbarDropdown" data-target='#exampleModal' role="button"
                         data-toggle="modal" aria-haspopup="true" aria-expanded="false">
                         Ingresar Resultado Primera Vez
@@ -130,8 +125,6 @@
                             <i class="fas fa-sun-o fa-5x pt-3 amber-text"></i>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>
@@ -141,7 +134,7 @@
     <!-- Card -->
     <div class="container padre">
         <div class="row">
-            <div style="height: 100%;" class="col-sm-6 text-center ">
+            <div style="height: 100%;" class="col-sm-4 text-center ">
                 <div class="card weather-card">
                     <div class="card-body pb-3  text-center hoverable">
                         <h4 class="mb-1">
@@ -156,8 +149,7 @@
                 </div>
             </div>
 
-
-            <div class="col-sm-6">
+            <div class="col-sm-4">
                 <!-- Card -->
                 <div class="card weather-card">
                     <div class="card-body pb-3  text-center hoverable">
@@ -171,12 +163,64 @@
                         </div>
 
                     </div>
+                </div>
+            </div>
+            <div style="height: 100%;" class="col-sm-4 text-center ">
+                <div class="card weather-card">
+                    <div class="card-body pb-3  text-center hoverable">
+                        <h4 class="mb-1">
+                            <strong>Cantidad de Pacientes que estan Programados:</strong>
+                            <hr>
+                        </h4>
+                        <div class="d-flex justify-content-center">
+                        <i class="fas fa-4x fa-user-md"><p class="display-1 degree"><?php echo $Cantidad_p_p_pendiente_por_toma?></p></i>
+                            <i class="fas fa-sun-o fa-5x pt-3 amber-text"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+             <!--************SEGUNDA FILA*************-->
+            <div class="container padre">
+                <br>
+        <div class="row">
+            <div class="col-sm-4">
+                <!-- Card -->
+                <div class="card weather-card">
+                    <div class="card-body pb-3  text-center hoverable">
+
+                        <!-- Title -->
+                        <h4 class="card-title font-weight-bold">Cantidad de Pacientes Asintomaticos:</h4>
+                        <hr>
+                        <div class="d-flex justify-content-center">
+                        <i class="fas fa-4x fa-file-medical-alt"><p class="display-1 degree"><?php echo $Cantidad_Pacientes?></p></i>
+                            <i class="fas fa-sun-o fa-5x pt-3 amber-text"></i>
+                        </div>
+
+                    </div>
 
                 </div>
             </div>
+            <div class="col-sm-4">
+                <!-- Card -->
+                <div class="card weather-card">
+                    <div class="card-body pb-3  text-center hoverable">
+
+                        <!-- Title -->
+                        <h4 class="card-title font-weight-bold">Cantidad de Pacientes  Sintomaticos:</h4>
+                        <hr>
+                        <div class="d-flex justify-content-center">
+                        <i class="fas fa-4x fa-file-medical-alt"><p class="display-1 degree"><?php echo $Cantidad_Pacientes?></p></i>
+                            <i class="fas fa-sun-o fa-5x pt-3 amber-text"></i>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            </div>
+            </div>
         </div>
     </div>
-
     <!--******************MODALS************************-->
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"

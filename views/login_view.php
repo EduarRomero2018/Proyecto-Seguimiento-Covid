@@ -15,7 +15,7 @@
   <body>
     <div class="grid-container general">
       <div class="row small-text-center medium-text-center large-text-center">
-            <h1 class="subheader">Seguimiento Toma de Muestras (covid-19) 2020 </h1>
+            <h1 class="subheader">Proyecto (covid-19)</h1>
         <div class="grid-x">
           <!-- primera columna-->
            <div class="cell columns small-12 medium-6 large-6 columna1 ">
