@@ -81,7 +81,7 @@
                                         </div>
 
 
-                                        <div hidden class="col-sm-6">
+                                        <div class="col-sm-6">
                                             <button style='cursor: pointer;' id="complemento" type="button" class="btn btn-outline-secondary btn-lg" value="mostrar">Ingresar Fecha de Realizacion de la toma</button>
                                         </div>
 
