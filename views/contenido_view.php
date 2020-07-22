@@ -552,11 +552,11 @@
                                 swal({
                                     type: 'error',
                                     title: "ERROR",
-                                    text: "Este Paciente aun no se le ha Programado una fecha para toma de Muestra",
+                                    text: "Este Paciente aun no cuenta con una realizacion de toma de muestra, favor verifique",
                                     button: "Aceptar",
                                     icon: "error",
                                     button: "Aceptar",
-                                    timer: 7000,
+                                    timer: 10000,
                                     animation: false,
                                     customClass: 'animated heartBeat'
                                 })
