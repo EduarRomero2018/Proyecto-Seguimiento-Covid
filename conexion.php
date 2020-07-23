@@ -1,8 +1,8 @@
 <?php
 /* Conectar a una base de datos de MySQL utilizando PDO */
 $dsn = 'mysql:dbname=seguimiento_covid;host=localhost';
-$usuario = 'Eduar_Romero';
-$contraseña = 'Lafacil2017';
+$usuario = 'root';
+$contraseña = '';
 
 try {
 	$conexion = new PDO($dsn, $usuario, $contraseña);
