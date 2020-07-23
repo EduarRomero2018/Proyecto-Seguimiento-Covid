@@ -1,30 +1,53 @@
 $(document).ready(function () {
-    $('#complemento').on('click', function () {
-        let paciente_id = $('#paciente_id').val()
+    $('#buscar3').on('click', function (e) {
+        e.preventDefault()
+        let identificacion = $('#documento-3').val()
 
         $.ajax({
             type: "post",
             url: "validacion_progMuestra.php",
             data: {
-                paciente_id
+                identificacion
             },
             success: function (response) {
+                console.log(response);
                 let res = JSON.parse(response)
-                console.log(res);
                 switch (res[0]) {
                     case 'ok':
+                            let plantilla
                             res[1].forEach(element => {
                                 $('#f_programacion').val(element.fecha_programacion)
+                                $('#paciente_id_3').val(element.id)
+                                plantilla += `
+                                    <tr>
+                                        <td>${element.primer_nombre}</td>
+                                        <td>${element.numero_documento}</td>
+                                    </tr>
+                                `
                             });
-
+                            $('#tablePaciente3').attr('hidden',false)
+                            $('#tbody-3').html(plantilla)
                             $('#contenido').attr("hidden",true);
-                            $('#trescampos').attr("hidden",false);
+                            $('#form-body-3').attr("hidden",false);
                         break;
                     case '!found':
                         swal({
                             type: 'error',
                             title: "ERROR",
-                            text: 'Ha este paciente aun no tiene asignada una fecha de programacion',
+                            text: 'Paciente no encontrado',
+                            button: "Aceptar",
+                            icon: "error",
+                            button: "Aceptar",
+                            timer: 7000,
+                            animation: false,
+                            customClass: 'animated heartBeat'
+                        })
+                        break;
+                    case 'found':
+                        swal({
+                            type: 'error',
+                            title: "ERROR",
+                            text: 'Este paciente ya tiene una ingresada la fecha de realizacion de la toma de muestra',
                             button: "Aceptar",
                             icon: "error",
                             button: "Aceptar",
@@ -50,7 +73,7 @@ $(document).ready(function () {
                         swal({
                             type: 'error',
                             title: "ERROR",
-                            text: 'Este paciente ya tiene una fecha de realizacion ingresada',
+                            text: 'Ha este paciente aun no tiene asignada una fecha de programacion',
                             button: "Aceptar",
                             icon: "error",
                             button: "Aceptar",
@@ -92,8 +115,8 @@ $(document).ready(function () {
 
     $('#guardar-complemento').on('click',function (e) {
         e.preventDefault()
-        
-        let paciente_id = $('#paciente_id').val()
+
+        let paciente_id = $('#paciente_id_3').val()
         let fecha_realizacion = $('#fecha_realizacion').val()
         let visita_exitosa = $('#visita_exitosa').val()
         let observacion = $('#observacion').val()
@@ -105,11 +128,14 @@ $(document).ready(function () {
             observacion
         }
 
+        console.log(datos);
+
         $.ajax({
             type: "post",
             url: "ingreso_progMuestra_complemento.php",
             data: datos,
             success: function (response) {
+                console.log(response);
                 let res = JSON.parse(response)
 
                 switch (res[0]) {
@@ -124,15 +150,17 @@ $(document).ready(function () {
                             animation: false,
                             customClass: 'animated heartBeat'
                         })
-
-                        $('#trescampos').attr("hidden",true);
-                        $('#form-TM-2')[0].reset()
+                        
+                        $('#form-body-3').hide()
+                        $('#tablePaciente3').attr('hidden',true)
+                        $('#modalFechaRealizacion').modal('hide')
+                        $('#form-container-3')[0].reset()
                         break;
                     case 'bad':
                         swal({
                             type: 'error',
                             title: "ERROR",
-                            text: 'Ha este paciente ya ',
+                            text: 'Ha este paciente ya se la ha ingresado una fecha de realizacion',
                             button: "Aceptar",
                             icon: "error",
                             button: "Aceptar",
@@ -140,11 +168,11 @@ $(document).ready(function () {
                             customClass: 'animated heartBeat'
                         })
                         break;
-                    default:
+                    case 'empty':
                         swal({
                             type: 'error',
                             title: "ERROR",
-                            text: 'La fecha de realizacion no puede ser menor a la fecha de programacion',
+                            text: 'Todos los campos son obligatorios',
                             button: "Aceptar",
                             icon: "error",
                             button: "Aceptar",
