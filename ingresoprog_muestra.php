@@ -11,7 +11,7 @@ include 'conexion.php';  // Funciona.
   try {
     $paciente_id = $_REQUEST['paciente_id'];
     $acepta_visita = $_REQUEST['acepta_visita'];
-    $fecha_programcion = $_REQUEST['fecha_programacion'];
+    $fecha_programcion = $_REQUEST['fecha_programacion'] . ' ' . date('h:i:s');
     $programacion_atencion = $_REQUEST['programacion_atencion'];
     $nombre_programa = $_REQUEST['nombre_programa'];
     //comprobamos que los campos no esten vacios
