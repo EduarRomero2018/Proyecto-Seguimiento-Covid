@@ -91,10 +91,21 @@
         <label class="col-form-label">Numero de Telefono:</label>
         <input type="number" name="telefono" class="form-control" placeholder="Celular" required>
       </div>
-
+      <div class="col-sm-4">
+        <label class="col-form-label">Numero de Telefono 2 (Opcional) :</label>
+        <input type="number" name="telefono2" class="form-control" placeholder="Celular">
+      </div>
       <div class="col-sm-4">
         <label class="col-form-label">Aseguradora o EPS:</label>
         <input type="text" name="aseguradora" class="form-control" placeholder="Escriba su EPS" required>
+      </div>
+      <div class="col-sm-4">
+        <label class="col-form-label">Regimen:</label>
+        <select name="regimen" class="custom-select" required>
+          <option selected value=""> </option>
+          <option value="SUBSIDIADO">Subsidiado</option>
+          <option value="CONTRIBUTIVO">Contributivo</option>
+        </select>
       </div>
 
       <div class="col-sm-4">
@@ -128,20 +139,20 @@
         <input type="date" name="fecha_recepcion_programacion " class="form-control" required>
       </div>
       <div class="col-sm-4">
-      <br>
+        <br>
         <label>Municipio</label>
         <select name="municipio" class="custom-select" required>
           <option value=""></option>
           <?php
-          $municipios = ['cartagena (13001)','Santa catalina (13673)','Clemencia (13222)','Turbana (13838)','Turbaco (13836)','Arjona (13052)','Mahates (13433)','VillaNueva (13873)','Maria la baja (13442)','San jacinto (13654)','Carmen de bolivar (13244)','San juan nepomuceno (13657)','Zambrano (13894)','Calamar (13140)','Santa Rosa de lima (13683)','San estanislao (13647)','San cristobal (13620)','SoplaViento (13760)','El guamo (13248)','Arroyohondo (13062)','Cordoba (13212)'];
-          foreach($municipios as $municipio): ?>
-          <option value="<?= strtoupper($municipio) ?>"><?= ucwords($municipio) ?></option>
+          $municipios = ['cartagena (13001)', 'Santa catalina (13673)', 'Clemencia (13222)', 'Turbana (13838)', 'Turbaco (13836)', 'Arjona (13052)', 'Mahates (13433)', 'VillaNueva (13873)', 'Maria la baja (13442)', 'San jacinto (13654)', 'Carmen de bolivar (13244)', 'San juan nepomuceno (13657)', 'Zambrano (13894)', 'Calamar (13140)', 'Santa Rosa de lima (13683)', 'San estanislao (13647)', 'San cristobal (13620)', 'SoplaViento (13760)', 'El guamo (13248)', 'Arroyohondo (13062)', 'Cordoba (13212)'];
+          foreach ($municipios as $municipio) : ?>
+            <option value="<?= strtoupper($municipio) ?>"><?= ucwords($municipio) ?></option>
           <?php endforeach; ?>
         </select>
       </div>
       <br>
       <div class="col-sm-4">
-      <br>
+        <br>
         <div>
           <button type="submit" class="btn btn-outline-secondary btn-lg">Guardar Datos</button>
           <br>
@@ -149,11 +160,11 @@
         </div>
       </div>
       <div class="col-sm-4">
-      <br>
+        <br>
         <div>
-        <a href="index.php">
-          <button type="button" class="btn btn-outline-secondary btn-lg">Regresar</button>
-        </a>
+          <a href="index.php">
+            <button type="button" class="btn btn-outline-secondary btn-lg">Regresar</button>
+          </a>
           <br>
           <br>
         </div>
