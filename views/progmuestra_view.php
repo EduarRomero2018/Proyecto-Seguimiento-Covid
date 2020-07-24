@@ -111,12 +111,12 @@
                 </div>
                 <div class="col-sm-3">
                     <label class="col-form-label">Fecha de Programacion</label>
-                    <input type="date" id="fecha_programacion" class="form-control">
+                    <input type="date"  min="2020-03-01" id="fecha_programacion" class="form-control">
                 </div>
 
 
                 <div class="col-sm-3">
-                    <label class="col-form-label">Sitio de Toma de Muestra</label>
+                    <label class="col-form-label">lugar de Toma de Muestra</label>
                     <select id="programacion_atencion" class="custom-select">
                         <option selected value=""> </option>
                         <option value="CERCO">Cerco</option>
@@ -162,7 +162,7 @@
             <div class="row">
                 <div class="col-sm-3">
                     <label for="">Fecha de programacion</label>
-                    <input disabled type="date" name="" id="f_programacion" class="form-control">
+                    <input disabled type="date" id="f_programacion" class="form-control">
                 </div>
                 <div class="col-sm-3">
                     <form id="form-TM-2">
