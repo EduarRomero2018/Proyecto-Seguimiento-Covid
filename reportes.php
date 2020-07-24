@@ -30,6 +30,7 @@ if($consulta->rowCount() > 0){
   $positivos = 0;
 }
 
+/* Cantidad de Pacientes Sintomaticos */
 $consulta = $conexion->prepare("SELECT COUNT(*) AS Cantidad_Pacientes
 FROM pacientes
 WHERE id IN
@@ -48,6 +49,25 @@ $Cantidad_Pacientes_programados = $res['Cantidad_Pacientes'];
   $Cantidad_p_p_pendiente_por_toma= $res['Cantidad_p_p_pendiente_por_toma'];
   //print_r ($consulta->errorInfo())  ;
 
+  $consulta = $conexion->prepare(
+    "SELECT id_pacientes AS numero_de_asintomaticos  
+    FROM seguimiento_paciente  
+    WHERE asintomatico = 'Si' AND actual = 'si' 
+    GROUP BY id_pacientes"
+  );
+  $consulta->execute();
+
+  $asintomaticos = $consulta->rowCount();
+
+  $consulta = $conexion->prepare(
+    "SELECT id_pacientes AS numero_de_asintomaticos  
+    FROM seguimiento_paciente  
+    WHERE asintomatico = 'No' AND actual = 'si' 
+    GROUP BY id_pacientes"
+  );
+  $consulta->execute();
+
+  $sintomaticos = $consulta->rowCount();
 
 /* --CONSULTA PARA SABER CUALES SON LOS PACIENTES QUE SE LE HAN REALIZADO TOMA DE MUESTRA--
 
