@@ -9,6 +9,8 @@ $numero_identificacion = $_POST['numero_identificacion'];$edad = $_POST['edad'];
 $barrio= $_POST['barrio'];$correo= $_POST['correo'];$telefono= $_POST['telefono'];$aseguradora= $_POST['aseguradora'];
 $id_usuario= $_POST['id_usuario'];$fecha_recepcion_programacion= $_POST['fecha_recepcion_programacion_'].' '.date('h:i:s');
 $municipio = $_REQUEST['municipio'];
+$regimen = $_REQUEST['regimen'];
+$telefono2 = $_REQUEST['telefono2'];
 
 // variables de errores y exito
 $errores= '';
@@ -32,9 +34,9 @@ if($consulta->rowCount() == 0){
     $consulta =
     $conexion->prepare(
     "INSERT INTO pacientes
-    (tipo_paciente, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, tipo_documento, numero_documento, edad, unidad_medida, sexo, barrio, municipio, correo, telefono, aseguradora, fecha_prog_recep, id_usuario)
+    (tipo_paciente, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, tipo_documento, numero_documento, edad, unidad_medida, sexo, barrio, municipio, correo, telefono, telefono2, aseguradora, regimen, fecha_prog_recep, id_usuario)
     VALUES
-    (:tipo_paciente, :primer_nombre, :segundo_nombre, :primer_apellido, :segundo_apellido, :tipo_documento, :numero_documento, :edad, :unidad_medida, :sexo, :barrio, :municipio, :correo, :telefono, :aseguradora, :fecha_prog_recep, :id_usuario)");
+    (:tipo_paciente, :primer_nombre, :segundo_nombre, :primer_apellido, :segundo_apellido, :tipo_documento, :numero_documento, :edad, :unidad_medida, :sexo, :barrio, :municipio, :correo, :telefono, :telefono, :aseguradora, :regimen, :fecha_prog_recep, :id_usuario)");
   
     $consulta->execute(array(
      ':tipo_paciente'                       => $tipo_paciente,
@@ -51,10 +53,17 @@ if($consulta->rowCount() == 0){
      ':municipio'                           => $municipio,
      ':correo'                              => $correo,
      ':telefono'                            => $telefono,
+     ':telefono2'                            => $telefono2,
      ':aseguradora'                         => $aseguradora,
+     ':regimen'                             => $regimen,
      ':id_usuario'                          => $id_usuario,
      ':fecha_prog_recep'                    => $fecha_recepcion_programacion
    ));
+
+  //  if($consulta->errorInfo()){
+  //    print_r($consulta->errorInfo());
+  //    die();
+  //  }
    $exito = 'Datos Guardados Exitosamente';
     //header('Location:index.php');//despues de guardar el usuario en al bd lo redirreccionamos al login para que inicie sessión
   }
