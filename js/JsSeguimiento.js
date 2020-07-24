@@ -1,4 +1,22 @@
 $(document).ready(function () {
+
+    $('select[name="sintomas"]').on('change',function(){
+        let sintomas = 0 
+        for (const iterator of $('select[name="sintomas"]')) {
+            if(iterator.value == 'Si'){
+                sintomas += 1
+            }
+
+            if(sintomas != 0){
+                $('#asintomatico').val('No')
+                $('#asintomatico').text('No')
+            }else{
+                $('#asintomatico').val('Si')
+                $('#asintomatico').text('Si')
+            }
+        }
+    })
+
     $('#antecedentes_viaje').on('change',function(){
         if($('#antecedentes_viaje').val() == 'NO'){
             $('#viaje').attr('hidden', true)
