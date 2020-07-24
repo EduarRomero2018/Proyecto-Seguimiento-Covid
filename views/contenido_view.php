@@ -194,7 +194,7 @@
                                 <hr>
                                 <div class="d-flex justify-content-center">
                                     <i class="fas fa-4x fa-file-medical-alt">
-                                        <p class="display-1 degree"><?php echo $Cantidad_Pacientes ?></p>
+                                        <p class="display-1 degree"><?= $asintomaticos ?></p>
                                     </i>
                                     <i class="fas fa-sun-o fa-5x pt-3 amber-text"></i>
                                 </div>
@@ -213,7 +213,7 @@
                                 <hr>
                                 <div class="d-flex justify-content-center">
                                     <i class="fas fa-4x fa-file-medical-alt">
-                                        <p class="display-1 degree"><?php echo $Cantidad_Pacientes ?></p>
+                                        <p class="display-1 degree"><?= $sintomaticos ?></p>
                                     </i>
                                     <i class="fas fa-sun-o fa-5x pt-3 amber-text"></i>
                                 </div>
@@ -396,6 +396,15 @@
                                     <option selected value=""> </option>
                                     <option value="SI">Si</option>
                                     <option value="NO">No</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-form-label">Tipo de prueba aplicada al paciente</label>
+                                <select id="tipo_prueba" class="custom-select">
+                                    <option selected value=""> </option>
+                                    <option value="PRC">PCR</option>
+                                    <option value="IGG">IGG</option>
+                                    <option value="IGM">IGM</option>
                                 </select>
                             </div>
                             <div class="form-group">
