@@ -33,7 +33,15 @@ try {
     }
     //comprobamos que los campos no esten vacios
 
-    $stm = $conexion->prepare("INSERT INTO seguimiento_paciente VALUES(NULL,?,NOW(),?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+    $stm = $conexion->prepare("SELECT id FROM seguimiento_paciente WHERE id_pacientes = ? ORDER BY id DESC LIMIT 1");
+    $stm->execute(array($paciente_id));
+
+    $res = $stm->fetch();
+
+    $stm = $conexion->prepare("UPDATE seguimiento_paciente SET actual = 'no' WHERE id = ?");
+    $stm->execute(array($res['id']));
+
+    $stm = $conexion->prepare("INSERT INTO seguimiento_paciente VALUES(NULL,?,NOW(),?,?,?,?,?,?,?,?,?,?,?,?,?,'si',?,?)");
     $stm->execute(array(
         $complemento_seg_id,
         $asintomatico,
