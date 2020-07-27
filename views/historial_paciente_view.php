@@ -21,7 +21,6 @@
     <div class="linea1"></div>
     <div class="linea2"></div>
     <div class="linea3"></div>
-
     <!--******************************************************-->
     <nav class="navbar navbar-expand-lg navbar-light fondo-color img-nav">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -41,76 +40,61 @@
                 <strong>Historial de Seguimiento del Paciente</strong>
                 <hr>
                 </h4>
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-sm-4">
-                        <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
-
-                            <label class="col-form-label">Digite el Documento del Paciente a consultar</label>
-                            <input type="" name="documento" class="form-control" placeholder="# Documento">
-                            <br>
-                            <div class class="col text-center">
-                                <button type="submit" class="btn btn-outline-secondary btn-lg">Consultar</button>
-                                <a href="index.php">
-                                    <button type="button" class="btn btn-outline-secondary btn-lg">Regresar</button>
-                                </a>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="col-sm-8">
-                        <div class="comtainer">
-                            <?php
-                             if (!empty($resultado)){?>
-                            <div class="container">
-                                <div class="card card-cascade">
-                                    <!-- Card image -->
-                                    <div class="view view-cascade gradient-card-header blue-gradient">
-                                        <!-- Title -->
-                                        <h2 class="card-header-title mb-3 mt-2"><?php echo $Nombre_Completo;?></h2>
-                                    </div>
-                                    <!-- Card content -->
-                                    <div class="card-body card-body-cascade text-left">
-                                        <p style="color:rgba(13, 70, 177, 0.972)" ; class="card-text">Numero Documento:
-                                            <?php echo $numero_documento;?></p>
-                                        <p style="color:rgba(13, 70, 177, 0.972)" ;class="card-text">Tipo Documento:
-                                            <?php echo $tipo_documento;?></p>
-                                        <p style="color:rgba(13, 70, 177, 0.972)" ;class="card-text">Edad:
-                                            <?php echo $edad;?></p>
-                                        <p style="color:rgba(13, 70, 177, 0.972)" ;class="card-text">Fecha de Registro:
-                                            <?php echo $fecha_registro;?></p>
-                                        <p style="color:rgba(13, 70, 177, 0.972)" ;class="card-text">Fecha de
-                                            Programacion de Toma de Muestra: <?php echo $fecha_programacion;?></p>
-                                        <p style="color:rgba(13, 70, 177, 0.972)" ;class="card-text">Fecha de
-                                            Realizacion Toma de Muestra: <?php echo $fecha_realizacion;?></p>
-                                        <p style="color:rgba(13, 70, 177, 0.972)" ;class="card-text">Programa al Cual
-                                            Pertenece el Paciente: <?php echo $programa_pertenece;?></p>
-                                        <p style="color:rgba(13, 70, 177, 0.972)" ;class="card-text">Fecha de Entrega de
-                                            laboratorio: <?php echo $fecha_entrega_lab;?></p>
-                                        <p style="color:rgba(13, 70, 177, 0.972)" ;class="card-text">Fecha de Resultado:
-                                            <?php echo $fecha_resultado;?></p>
-                                        <?php if($resultado == 'Negativo'): ?>
-                                            <div class="text-center text-light bg-success py-1">
-                                                <h5>Resultado:
-                                                <?php echo $resultado;?></h5>
-                                            </div>
-                                        <?php endif ?>
-                                        <?php if($resultado == 'Positivo'): ?>
-                                            <div class="text-center text-light bg-danger py-1">
-                                                <h5>Resultado:
-                                                <?php echo $resultado;?></h5>
-                                            </div>
-                                        <?php endif ?>
-                                        <?php if($resultado == 'Pendiente'): ?>
-                                            <div class="text-center text-light bg-warning py-1">
-                                                <h5>Resultado:
-                                                <?php echo $resultado;?></h5>
-                                            </div>
-                                        <?php endif ?>
-                                        <hr>
-                                    </div>
+            <div class="card-body">    
+                <div class="col-sm-12">
+                    <div class="comtainer">
+                        <?php
+                            if (!empty($resultado)){?>
+                        <div class="container">
+                            <div class="card card-cascade">
+                                <!-- Card image -->
+                                <div class="view view-cascade gradient-card-header blue-gradient">
+                                    <!-- Title -->
+                                    <h2 class="card-header-title mb-3 mt-2"><?php echo $Nombre_Completo;?></h2>
                                 </div>
-                                <?php } ?>
+                                <!-- Card content -->
+                                <div class="card-body card-body-cascade text-left">
+                                    <p style="color:rgba(13, 70, 177, 0.972)" ; class="card-text">Numero Documento:
+                                        <?php echo $numero_documento;?></p>
+                                    <p style="color:rgba(13, 70, 177, 0.972)" ;class="card-text">Tipo Documento:
+                                        <?php echo $tipo_documento;?></p>
+                                    <p style="color:rgba(13, 70, 177, 0.972)" ;class="card-text">Edad:
+                                        <?php echo $edad;?></p>
+                                    <p style="color:rgba(13, 70, 177, 0.972)" ;class="card-text">Fecha de Registro:
+                                        <?php echo $fecha_registro;?></p>
+                                    <p style="color:rgba(13, 70, 177, 0.972)" ;class="card-text">Fecha de
+                                        Programacion de Toma de Muestra: <?php echo $fecha_programacion;?></p>
+                                    <p style="color:rgba(13, 70, 177, 0.972)" ;class="card-text">Fecha de
+                                        Realizacion Toma de Muestra: <?php echo $fecha_realizacion;?></p>
+                                    <p style="color:rgba(13, 70, 177, 0.972)" ;class="card-text">Programa al Cual
+                                        Pertenece el Paciente: <?php echo $programa_pertenece;?></p>
+                                    <p style="color:rgba(13, 70, 177, 0.972)" ;class="card-text">Fecha de Entrega de
+                                        laboratorio: <?php echo $fecha_entrega_lab;?></p>
+                                    <p style="color:rgba(13, 70, 177, 0.972)" ;class="card-text">Fecha de Resultado:
+                                        <?php echo $fecha_resultado;?></p>
+                                    <?php if($resultado == 'Negativo'): ?>
+                                        <div class="text-center text-light bg-success py-1">
+                                            <h5>Resultado:
+                                            <?php echo $resultado;?></h5>
+                                        </div>
+                                    <?php endif ?>
+                                    <?php if($resultado == 'Positivo'): ?>
+                                        <div class="text-center text-light bg-danger py-1">
+                                            <h5>Resultado:
+                                            <?php echo $resultado;?></h5>
+                                        </div>
+                                    <?php endif ?>
+                                    <?php if($resultado == 'Pendiente'): ?>
+                                        <div class="text-center text-light bg-warning py-1">
+                                            <h5>Resultado:
+                                            <?php echo $resultado;?></h5>
+                                        </div>
+                                    <?php endif ?>
+                                    <hr>
+                                </div>
                             </div>
+                            <?php } ?>
+                            <a href="historial_paciente_fecha.php?nd=<?= $numero_documento ?>" class="btn btn-outline-secondary">Regresar</a>
                         </div>
                     </div>
                 </div>
@@ -127,7 +111,7 @@
                 <div class="card card-cascade wider">
                     <div class="view view-cascade gradient-card-header blue-gradient">
                         <h2 class="card-header-title mb-3"> </h2>
-                            <h5 class='ml-4'> Seguimiento (Dia) <?= $i ?></h5>
+                            <h5 class='ml-4'> Seguimiento <?= $i ?></h5>
                     </div>
                     <div class="card-body card-body-cascade text-left">
                         <!-- Text -->
@@ -163,11 +147,6 @@
                             <strong style="color:rgba(30, 80, 143)">Paciente con terapia de oxigeno:
                             </strong><?= $key->oxigeno_terapia ?>
                         </p>
-                        <!-- Link -->
-                        <a href="#!" class="orange-text d-flex flex-row-reverse p-2">
-                            <h5 class="waves-effect waves-light">Leer Mas<i class="fas fa-angle-double-right ml-2"></i>
-                            </h5>
-                        </a>
                     </div>
                 </div>
                 <br>
