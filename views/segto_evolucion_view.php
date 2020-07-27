@@ -73,32 +73,30 @@
                                         <?php echo $identificacion; ?></p>
                                     <p style="color:rgba(13, 70, 177, 0.972)" ;class="card-text">Edad:
                                         <?php echo $edad; ?></p>
-                                    <p style="color:rgba(13, 70, 177, 0.972)" ;class="card-text">Usuario de Creacion:
-                                        <?php echo $usuario_creacion; ?></p>
-                                        <p style="color:rgba(13, 70, 177, 0.972)" ;class="card-text">Fecha de programacion:
+                                    <p style="color:rgba(13, 70, 177, 0.972)" ;class="card-text">Fecha de programacion:
                                         <?php echo $fecha_programacion; ?></p>
                                     <p style="color:rgba(13, 70, 177, 0.972)" ;class="card-text">Fecha de entrega de la muestra al laboratorio:
                                         <?php echo $fecha_entrega_laboratorio; ?></p>
                                     <p style="color:rgba(13, 70, 177, 0.972)" ;class="card-text">Fecha del resultado:
                                         <?php echo $fecha_resultado; ?></p>
-                                        <?php if($resultado == 'negativo'): ?>
-                                            <div class="text-center text-light bg-success py-1">
-                                                <h5>Resultado:
-                                                <?php echo $resultado;?></h5>
-                                            </div>
-                                        <?php endif ?>
-                                        <?php if($resultado == 'positivo'): ?>
-                                            <div class="text-center text-light bg-danger py-1">
-                                                <h5>Resultado:
-                                                <?php echo $resultado;?></h5>
-                                            </div>
-                                        <?php endif ?>
-                                        <?php if($resultado == 'Pendiente'): ?>
-                                            <div class="text-center text-light bg-warning py-1">
-                                                <h5>Resultado:
-                                                <?php echo $resultado;?></h5>
-                                            </div>
-                                        <?php endif ?>
+                                    <?php if ($resultado == 'negativo') : ?>
+                                        <div class="text-center text-light bg-success py-1">
+                                            <h5>Resultado:
+                                                <?php echo $resultado; ?></h5>
+                                        </div>
+                                    <?php endif ?>
+                                    <?php if ($resultado == 'positivo') : ?>
+                                        <div class="text-center text-light bg-danger py-1">
+                                            <h5>Resultado:
+                                                <?php echo $resultado; ?></h5>
+                                        </div>
+                                    <?php endif ?>
+                                    <?php if ($resultado == 'Pendiente') : ?>
+                                        <div class="text-center text-light bg-warning py-1">
+                                            <h5>Resultado:
+                                                <?php echo $resultado; ?></h5>
+                                        </div>
+                                    <?php endif ?>
 
                                     <hr>
                                     <button style='cursor: pointer;' id="continuar" type="button" class="btn btn-outline-secondary btn-lg" value="mostrar">Ingresar Seguimiento</button>
@@ -122,11 +120,8 @@
                         <div class="card-body">
                             <div class="row align-items-end">
                                 <div class="col-md-4 form-group">
-                                    <input type="hidden" id="complemento_seg_id">
-                                    <input type="hidden" id="paciente_id" value="<?= $id ?>">
-                                    <input type="hidden" id="id_usuario" value="<?= $_SESSION['id'] ?>">
-                                    <label>Asintomatico</label>
-                                    <select class="custom-select" id="asintomatico" required>
+                                    <label>Fatiga/adinamia</label>
+                                    <select class="custom-select" name="sintomas" id="fatiga_adinamia">
                                         <option value=""></option>
                                         <option value="Si">Si</option>
                                         <option value="No">No</option>
@@ -134,7 +129,7 @@
                                 </div>
                                 <div class="col-md-4 form-group">
                                     <label>Fiebre cuantificada mayor a 38°C</label>
-                                    <select class="custom-select" id="fiebre_cuantificada">
+                                    <select class="custom-select" name="sintomas" id="fiebre_cuantificada">
                                         <option value=""></option>
                                         <option value="Si">Si</option>
                                         <option value="No">No</option>
@@ -142,7 +137,7 @@
                                 </div>
                                 <div class="col-md-4 form-group">
                                     <label>El paciente presenta tos</label>
-                                    <select class="custom-select" id="tos">
+                                    <select class="custom-select" name="sintomas" id="tos">
                                         <option value=""></option>
                                         <option value="Si">Si</option>
                                         <option value="No">No</option>
@@ -152,7 +147,7 @@
                             <div class="row">
                                 <div class="col-md-4 form-group">
                                     <label>Dificultad respiratoria</label>
-                                    <select class="custom-select" id="dificultad_respiratoria">
+                                    <select class="custom-select" name="sintomas" id="dificultad_respiratoria">
                                         <option value=""></option>
                                         <option value="Si">Si</option>
                                         <option value="No">No</option>
@@ -160,19 +155,18 @@
                                 </div>
                                 <div class="col-md-4 form-group">
                                     <label>Odinofagia</label>
-                                    <select class="custom-select" id="odinofagia">
+                                    <select class="custom-select" name="sintomas" id="odinofagia">
                                         <option value=""></option>
                                         <option value="Si">Si</option>
                                         <option value="No">No</option>
                                     </select>
                                 </div>
                                 <div class="col-md-4 form-group">
-                                    <label>Fatiga/adinamia</label>
-                                    <select class="custom-select" id="fatiga_adinamia">
-                                        <option value=""></option>
-                                        <option value="Si">Si</option>
-                                        <option value="No">No</option>
-                                    </select>
+                                    <input type="hidden" id="complemento_seg_id">
+                                    <input type="hidden" id="paciente_id" value="<?= $id ?>">
+                                    <input type="hidden" id="id_usuario" value="<?= $_SESSION['id'] ?>">
+                                    <label>Asintomatico</label>
+                                    <input type="text" class="form-control" readonly id="asintomatico">
                                 </div>
                             </div>
                             <?php if (!isset($hidden)) : ?>
@@ -185,33 +179,32 @@
                                             <option value="No">No</option>
                                         </select>
                                     </div>
-                                    <div class="col-md-4 form-group">
-                                        <label>Entrega de Kits</label>
-                                        <select type="text" class="custom-select" id="entrega_kits">
-                                            <option value=""></option>
-                                            <option value="Si">Si</option>
-                                            <option value="No">No</option>
-                                        </select>
-                                    </div>
-
-                                    <div class="col-md-4 form-group">
-                                        <label>Fecha de entrega de kits</label>
-                                        <input type="date" class="form-control" id="fecha_entrega_kits">
-                                    </div>
-                                    <div class="col-md-4 form-group">
-                                    <br>
-                                        <label>Terapia de oxigeno</label>
-                                        <select class="custom-select" id="oxigeno_terapia">
-                                            <option value=""></option>
-                                            <option value="Si">Si</option>
-                                            <option value="No">No</option>
-                                        </select>
-                                    </div>
-
-
+                                </div>
                             <?php endif; ?>
                             <div class="row">
-                            <div class="col-md-4 form-group">
+                                <div class="col-md-4 form-group">
+                                    <label>Entrega de Kits</label>
+                                    <select type="text" class="custom-select" id="entrega_kits">
+                                        <option value=""></option>
+                                        <option value="Si">Si</option>
+                                        <option value="No">No</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-md-4 form-group">
+                                    <label>Fecha de entrega de kits</label>
+                                    <input type="date" class="form-control" id="fecha_entrega_kits">
+                                </div>
+                                <div class="col-md-4 form-group">
+                                    <br>
+                                    <label>Terapia de oxigeno</label>
+                                    <select class="custom-select" id="oxigeno_terapia">
+                                        <option value=""></option>
+                                        <option value="Si">Si</option>
+                                        <option value="No">No</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4 form-group">
                                     <label>Cumple con los criterios de aislamiento en domicilio</label>
                                     <select class="custom-select" id="cumple_criterio">
                                         <option value=""></option>
@@ -234,15 +227,14 @@
                                 <div class="col-md-4 form-group">
                                     <br>
                                     <label class="col-form-label">Saturacion de oxigeno</label>
-                                    <input type="number" id="saturacion_oxigeno" class="form-control" >
+                                    <input type="number" min="0" id="saturacion_oxigeno" class="form-control">
                                 </div>
                                 <div class="col-md-4 form-group">
                                     <br>
-                                <div class="d-flex justify-content-center">
-                               <a id="guardarSeguimiento" href="" class="btn btn-primary">Guardar Datos</a>
-                           </div>
-                           </div>
-                           </div>
+                                    <div class="d-flex justify-content-center">
+                                        <a id="guardarSeguimiento" href="" class="btn btn-primary">Guardar Datos</a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </form>
@@ -312,7 +304,7 @@
     </div>
     </div>
 
-    <?php if(!empty($disabled) && !empty($msj)): ?>
+    <?php if (!empty($disabled) && !empty($msj)) : ?>
         <script>
             swal({
                 type: 'warning',

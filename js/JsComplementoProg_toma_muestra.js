@@ -119,12 +119,14 @@ $(document).ready(function () {
         let paciente_id = $('#paciente_id_3').val()
         let fecha_realizacion = $('#fecha_realizacion').val()
         let visita_exitosa = $('#visita_exitosa').val()
+        let tipo_prueba = $('#tipo_prueba').val()
         let observacion = $('#observacion').val()
 
         let datos = {
             paciente_id,
             fecha_realizacion,
             visita_exitosa,
+            tipo_prueba,
             observacion
         }
 
@@ -183,6 +185,5 @@ $(document).ready(function () {
                 }
             }
         });
-
     })
 });
