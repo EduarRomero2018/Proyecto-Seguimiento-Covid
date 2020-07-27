@@ -57,7 +57,7 @@ if (isset($_REQUEST['guardar']) || isset($_REQUEST['listar'])) {
 
                 $stm = $conexion->prepare("SELECT *
                 FROM segunda_toma_muestra_control
-                WHERE pacientes_id = ?");
+                WHERE pacientes_id = ? AND resultado IS NOT NULL");
                 $stm->execute(array($paciente_id));
 
                 if ($stm->errorInfo()[2] != null) {
@@ -98,7 +98,7 @@ if (isset($_REQUEST['guardar']) || isset($_REQUEST['listar'])) {
                     }
                 } else {
 
-                    $errores = 'El paciente no cuenta por lo menos con un seguimiento, Favor Verifique';
+                    $errores = 'El paciente no cuenta con los resultados de la segunda toma de muestra, Favor Verifique';
                 }
             }
         }
