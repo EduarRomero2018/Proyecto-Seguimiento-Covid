@@ -1,0 +1,111 @@
+body{
+    height: 100%;
+    background: linear-gradient(rgba(255, 179, 57, 0.2),#cdedff,#f7f8fa,#fff,rgb(173, 185, 210),#063e83);
+    background: -webkit-linear-gradient(rgba(255, 179, 57, 0.2),#cdedff,#f7f8fa,#fff,rgb(173, 185, 210),#063e83);
+    background: -moz-linear-gradient(rgba(255, 179, 57, 0.2),#cdedff,#f7f8fa,#fff,rgb(173, 185, 210),#063e83);
+    background: -o-linear-gradient(rgba(255, 179, 57, 0.2),#cdedff,#f7f8fa,#fff,rgb(173, 185, 210),#063e83);
+    background-attachment: fixed;
+    
+  }
+.general {    
+     background: linear-gradient(#063e83 10%, #e8ebf0 60%,rgb(255, 255, 255) 100%); 
+   border-top-right-radius: 20px;
+   border-top-left-radius: 20px;
+   border-bottom-left-radius: 20px;
+   border-bottom-right-radius: 20px;
+}
+.general .caja {
+    background: #fff;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.general .caja i{
+    font-size: 20px;
+    
+}
+.general .caja .fondo_form {
+    border-radius: 10px;
+    background: #f1f3f6;
+    height: auto;
+    width: 70%; 
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-top:10px;
+}
+.general .caja .fondo_form input{
+   border-top-right-radius:20px;
+   border-bottom-right-radius:20px;
+   border-color: #063e83;
+}
+.general .caja .fondo_form .primerborde{
+    border-color: #063e83;
+    border-top-left-radius:20px;
+    border-bottom-left-radius:20px;
+ }
+
+.general .caja .fondo_form input:focus{
+    border-color: #a9c6e7;
+ }
+.general .caja .fondo_form .boton1 a {
+    border-radius: 20px;
+    background: #063e83;
+    padding: 5px;
+}
+.general a:hover {
+    color: #ffb339;
+}
+.general .caja .fondo_form .boton1 a:hover {
+    border-radius: 20px;
+    background:#4f7ba5;
+    padding: 5px;
+}
+.general .caja .fondo_form .boton1 {
+    align-items: right;
+    justify-content: center;    
+}
+.button-group {
+    margin-bottom: 0rem;
+}
+.columna1 {    
+    background: #fff;
+}
+.columna1 img {
+   height:auto;  
+}
+/*STYLOS DEL CUADRO INFERIOR*/
+.informacion {
+    color: #063e83;
+    margin-top: 30px;
+    background: rgba(241, 243, 246, 0);
+    height: auto;
+    border: 1px solid rgba(6, 62, 131, 0.3);
+    border-radius: 10px;
+}
+.informacion .boton1 {
+    display: flex;
+}
+.informacion .boton1 a {
+    border-radius: 20px;
+    background: #063e83;
+    padding: 5px;
+}
+
+.informacion .boton1 a:hover {
+    border-radius: 20px;
+    background:#4f7ba5;
+    padding: 5px;
+    color: #ffb339;
+}
+.informacion.boton1 {
+    align-items: right;
+    justify-content: center;    
+}
+/*STYLOS DE LA CAJA DE ERRORES DE PHP*/
+.errores .error {
+    background-color: rgba(211, 28, 28, 0.2);
+    height: auto;
+    border-radius: 5px;
+    }
