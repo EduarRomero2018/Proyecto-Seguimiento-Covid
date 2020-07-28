@@ -3,9 +3,10 @@
 
 include 'conexion.php';  // Funciona.
 //APERTURA DE VARIABLES Datos Personales
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
     //print_r ($_POST);
-    $documento = $_POST['documento'];
+    $documento = $_REQUEST['nd'];
+    $fecha_seguimiento = $_REQUEST['fs'];
     //variables globales que recogen al final el estado del condicional
     $errores = '';
     $exito = '';
@@ -46,8 +47,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
              FROM `complemento_seg` C
              INNER JOIN pacientes P ON p.id = c.id_pacientes
              INNER JOIN seguimiento_paciente s ON s.complemento_seg_id = c.id
-             WHERE P.numero_documento = $documento");
-            $stm->execute();
+             WHERE P.numero_documento = ? AND DATE(fecha_hora) = ?");
+            $stm->execute(array($documento, $fecha_seguimiento));
             //print_r($stm);
             if ($stm->errorInfo()[2] != null) {
                 $errores = $stm->errorInfo()[2];
@@ -62,6 +63,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $errores = 'Paciente no se encuentra Registrado';
         }
     }
-}
+
 require 'views/historial_paciente_view.php';
 ?>

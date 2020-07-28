@@ -42,7 +42,7 @@
                         <a href="segto_evolucion.php" class="dropdown-item" href="#">Ingresar Seguimiento Diario Por
                             Paciente</a>
                         <!--<a class="dropdown-item" href="#">Seguimiento Semanal por Paciente</a>-->
-                        <a href="historial_paciente.php" class="dropdown-item">Ver Seguimiento Paciente</a>
+                        <a href="historial_paciente_fecha.php" class="dropdown-item">Ver Seguimiento Paciente</a>
                         <a href="toma_muestra_control.php" class="dropdown-item">Programar Segunda Toma Muestra (Control)</a>
                 </li>
 
@@ -69,7 +69,7 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a href="listar_pacientes.php" class="dropdown-item" href="#">Listar Todos los Pacientes</a>
-                        <!--<a class="dropdown-item" href="#">Seguimiento Semanal por Paciente</a>-->
+                        <a href="listar_pacientes_fecha_realizacion_pendiente.php" class="dropdown-item">Listar pacientes pendientes por fecha de realizacion</a>
                     </div>
                 </li>
 
