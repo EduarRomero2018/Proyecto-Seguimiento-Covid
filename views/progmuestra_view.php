@@ -79,12 +79,6 @@
                                         <div class="col-sm-12">
                                             <button <?= $disabled ?> style='cursor: pointer;' type="button" class="btn btn-outline-secondary btn-lg" onClick="muestra_oculta('contenido')" value="mostrar">Programar Primera Toma de Muestra</button>
                                         </div>
-
-
-                                        <div class="col-sm-6">
-                                            <button style='cursor: pointer;' id="complemento" type="button" class="btn btn-outline-secondary btn-lg" value="mostrar">Ingresar Fecha de Realizacion de la toma</button>
-                                        </div>
-
                                     </div>
                                 </div>
                             </div>
