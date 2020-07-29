@@ -19,6 +19,14 @@
     <div class="linea2"></div>
     <div class="linea3"></div>
 
+    <?php
+        if($_SESSION['role'] == 'Jefe de enfermeria'){
+            print_r ($_SESSION);
+        }else {
+            echo  'Este Usuario no es jefe de enfermeria';
+        }
+
+    ?>
     <!--******************************************************-->
     <nav class="navbar navbar-expand-lg navbar-light fondo-color img-nav">
         <a class="navbar-brand" href="#">
@@ -44,7 +52,12 @@
                         <!--<a class="dropdown-item" href="#">Seguimiento Semanal por Paciente</a>-->
                         <a href="historial_paciente_fecha.php" class="dropdown-item">Ver Seguimiento Paciente</a>
                         <a href="toma_muestra_control.php" class="dropdown-item">Programar Segunda Toma Muestra (Control)</a>
+                        <hr>
+                        <a href="soporte_resultado.php" class="dropdown-item">Ingresar Soporte Resultado</a>
                 </li>
+
+
+
 
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -72,11 +85,12 @@
                         <a href="listar_pacientes_fecha_realizacion_pendiente.php" class="dropdown-item">Listar pacientes pendientes por fecha de realizacion</a>
                     </div>
                 </li>
-
-                <li class="nav-item dropdown">
-                    <a href="soporte_resultado.php" class="nav-link">INGRESAR SOPORTE RESULTADO</a>
-                </li>
             </ul>
+            <a href="cargue_masivo.php">
+            <button class="btn btn-outline-info  my-2 my-sm-0" type="submit">
+            <i class=" fas fa-file-upload" style="font-size: 20px;"></i></button>
+            </a>
+
             <a href="cerrar.php">
                 <button class="btn btn-outline-info  my-2 my-sm-0" type="submit">
                     <i class="fa fa-power-off mr-2" aria-hidden="true"></i>Cerrar Sesión</button>
