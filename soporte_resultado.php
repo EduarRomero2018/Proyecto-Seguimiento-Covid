@@ -28,11 +28,15 @@ if (isset($_REQUEST['guardar']) || isset($_REQUEST['listar'])) {
         $Nombre_Completo = $res['Nombre_Completo'];
 
         if(isset($_REQUEST['listar'])){
-            $stm = $conexion->prepare("SELECT *,DATE(segunda_toma_muestra_control.fecha_resgistro) AS Fecha_registro FROM segunda_toma_muestra_control
+            $stm = $conexion->prepare("SELECT * ,soporte_resultado.fecha_resgistro AS Fecha_registro
+            FROM soporte_resultado
             WHERE pacientes_id = ?
             AND soporte_resultado != ''");
             $stm->execute(array($paciente_id));
 
+            if ($stm->errorInfo()[2] != null) {
+                print_r($stm->errorInfo());
+            }
 
             if ($stm->rowCount() > 0) {
                 $result = $stm->fetchAll(PDO::FETCH_OBJ);
@@ -56,8 +60,8 @@ if (isset($_REQUEST['guardar']) || isset($_REQUEST['listar'])) {
             } else {
 
                 $stm = $conexion->prepare("SELECT *
-                FROM segunda_toma_muestra_control
-                WHERE pacientes_id = ? AND resultado IS NOT NULL");
+                FROM prog_toma_muestra
+                WHERE pacientes_id = ? AND resultado !='Pendiente'");
                 $stm->execute(array($paciente_id));
 
                 if ($stm->errorInfo()[2] != null) {
@@ -66,7 +70,7 @@ if (isset($_REQUEST['guardar']) || isset($_REQUEST['listar'])) {
 
                 if ($stm->rowCount() > 0) {
 
-                    $stm = $conexion->prepare("UPDATE segunda_toma_muestra_control SET soporte_resultado = ? WHERE pacientes_id = ? AND soporte_resultado IS NULL");
+                    $stm = $conexion->prepare("INSERT INTO soporte_resultado VALUES (NULL, ?,?,NULL)");
                     $stm->execute(array($url, $paciente_id));
 
                     if ($stm->errorInfo()[2] != null) {
@@ -83,22 +87,23 @@ if (isset($_REQUEST['guardar']) || isset($_REQUEST['listar'])) {
                         }
 
                         $exito = 'Archivo Guardado';
-                    } else {
 
-                        $stm = $conexion->prepare("SELECT *
-                        FROM segunda_toma_muestra_control
-                        WHERE pacientes_id = ?
-                        AND soporte_resultado != ''");
-                        $stm->execute(array($paciente_id));
+                     } else {
 
-                        $resultado = $stm->fetch();
-                        $contador = $stm->rowCount();
+                       $stm = $conexion->prepare("SELECT *
+                       FROM soporte_resultado
+                       WHERE pacientes_id = ?");
+                       $stm->execute(array($paciente_id));
 
-                        $errores = 'El Paciente ya cuenta con ' . $contador . ' reporte, Favor Verifique';
-                    }
+                       $resultado = $stm->fetch();
+                       $contador = $stm->rowCount();
+
+                       $errores = 'El Paciente ya cuenta con ' . $contador . ' reporte, Favor Verifique';
+                }
+
                 } else {
 
-                    $errores = 'El paciente no cuenta con los resultados de la segunda toma de muestra, Favor Verifique';
+                    $errores = 'El paciente por lo menos debe cuenta con los resultados de la primera toma, Favor Verifique';
                 }
             }
         }
