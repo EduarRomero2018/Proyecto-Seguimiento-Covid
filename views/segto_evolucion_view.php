@@ -161,13 +161,20 @@
                                         <option value="No">No</option>
                                     </select>
                                 </div>
+
                                 <div class="col-md-4 form-group">
                                     <input type="hidden" id="complemento_seg_id">
                                     <input type="hidden" id="paciente_id" value="<?= $id ?>">
                                     <input type="hidden" id="id_usuario" value="<?= $_SESSION['id'] ?>">
-                                    <label>Asintomatico</label>
+                                    <label>Paciente Asintomatico</label>
                                     <input type="text" class="form-control" readonly id="asintomatico">
                                 </div>
+
+                                <div hidden class="col-md-4 form-group" id="fecha_sintomas">
+                                    <label>Fecha de Sintomas</label>
+                                    <input type="date" class="form-control" id="f_sintomas">
+                                </div>
+
                             </div>
                             <?php if (!isset($hidden)) : ?>
                                 <div class="row">
@@ -367,12 +374,29 @@
             })
         </script>
     <?php endif; ?>
+    <script>
+          $('select[name="sintomas"]').on('change',function(){
+        let sintomas = 0
+        for (const iterator of $('select[name="sintomas"]')) {
+            if(iterator.value == 'Si'){
+                sintomas += 1
+            }
 
+            if(sintomas != 0){
+                $('#fecha_sintomas').attr('hidden', false)
+            }else{
+                $('#fecha_sintomas').attr('hidden', true)
+            }
+        }
+        // alert('prueba');
+    })
+</script>
 
 </body>
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
 </script>
+
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
 </script>
 
