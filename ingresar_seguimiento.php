@@ -12,6 +12,7 @@ try {
     $complemento_seg_id = $_REQUEST['complemento_seg_id'];
     // $fecha_hora = date('Y-m-d :H:i:s');
     $asintomatico = $_REQUEST['asintomatico'];
+    $fecha_sintomas = $_REQUEST['fecha_sintomas'] == 'NULL' ? NULL:$_REQUEST['fecha_sintomas'];
     $fiebre_cuantificada = $_REQUEST['fiebre_cuantificada'];
     $tos = $_REQUEST['tos'];
     $dificultad_respiratoria = $_REQUEST['dificultad_respiratoria'];
@@ -27,7 +28,7 @@ try {
     $paciente_id = $_REQUEST['paciente_id'];
     $id_usuario = $_REQUEST['id_usuario'];
     $fecha_hora = date('Y-m-d :H:i:s');
-    
+
     if (!is_numeric($saturacion_oxigeno)){
         die(json_encode('different'));
     }
@@ -41,10 +42,11 @@ try {
     $stm = $conexion->prepare("UPDATE seguimiento_paciente SET actual = 'no' WHERE id = ?");
     $stm->execute(array($res['id']));
 
-    $stm = $conexion->prepare("INSERT INTO seguimiento_paciente VALUES(NULL,?,NOW(),?,?,?,?,?,?,?,?,?,?,?,?,?,'si',?,?)");
+    $stm = $conexion->prepare("INSERT INTO seguimiento_paciente VALUES(NULL,?,NOW(),?,?,?,?,?,?,?,?,?,?,?,?,?,?,'si',?,?)");
     $stm->execute(array(
         $complemento_seg_id,
         $asintomatico,
+        $fecha_sintomas,
         $fiebre_cuantificada,
         $tos,
         $dificultad_respiratoria,
