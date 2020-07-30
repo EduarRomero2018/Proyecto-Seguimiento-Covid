@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
     $('select[name="sintomas"]').on('change',function(){
-        let sintomas = 0 
+        let sintomas = 0
         for (const iterator of $('select[name="sintomas"]')) {
             if(iterator.value == 'Si'){
                 sintomas += 1
@@ -65,6 +65,7 @@ $(document).ready(function () {
         let complemento_seg_id = $('#complemento_seg_id').val()
         let paciente_id = $('#paciente_id').val()
         let asintomatico = $('#asintomatico').val()
+        let fecha_sintomas = $('#f_sintomas').val()
         let fiebre_cuantificada = $('#fiebre_cuantificada').val()
         let tos = $('#tos').val()
         let dificultad_respiratoria = $('#dificultad_respiratoria').val()
@@ -78,12 +79,16 @@ $(document).ready(function () {
         let ambito_atencion = $('#ambito_atencion').val()
         let saturacion_oxigeno = $('#saturacion_oxigeno').val()
         let id_usuario = $('#id_usuario').val()
-
+        if (fecha_sintomas == '') {
+            fecha_sintomas = 'NULL'
+        }
+        
         let datos = {
             complemento_seg_id,
             paciente_id,
             id_usuario,
             asintomatico,
+            fecha_sintomas,
             fiebre_cuantificada,
             tos,
             dificultad_respiratoria,
