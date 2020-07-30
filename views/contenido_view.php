@@ -10,7 +10,7 @@
     <link href="css/mdb.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.29.0/sweetalert2.all.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
+    <link rel="stylesheet" href="css/all.css">
     <link href="css/bootstrap.css" rel="stylesheet">
     <script src="js/jquery.js"></script>
 
@@ -86,7 +86,7 @@
                     </div>
                 </li>
             </ul>
-            <a href="cargue_masivo.php">
+            <a href="asignacion_pacientes.php">
             <button class="btn btn-outline-info  my-2 my-sm-0" type="submit">
             <i class=" fas fa-file-upload" style="font-size: 20px;"></i></button>
             </a>
