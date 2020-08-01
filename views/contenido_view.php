@@ -157,7 +157,6 @@
                 <!-- Card -->
                 <div class="card weather-card">
                     <div class="card-body pb-3  text-center hoverable">
-
                         <!-- Title -->
                         <h4 class="card-title font-weight-bold">Pacientes que aun no se le han Realizado Toma de Muestra</h4>
                         <hr>
