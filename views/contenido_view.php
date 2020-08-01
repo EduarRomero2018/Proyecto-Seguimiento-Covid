@@ -18,15 +18,6 @@
     <div class="linea1"></div>
     <div class="linea2"></div>
     <div class="linea3"></div>
-
-    <?php
-        if($_SESSION['role'] == 'Jefe de enfermeria'){
-            print_r ($_SESSION);
-        }else {
-            echo  'Este Usuario no es jefe de enfermeria';
-        }
-
-    ?>
     <!--******************************************************-->
     <nav class="navbar navbar-expand-lg navbar-light fondo-color img-nav">
         <a class="navbar-brand" href="#">
@@ -86,10 +77,12 @@
                     </div>
                 </li>
             </ul>
-            <a href="asignacion_pacientes.php">
-            <button class="btn btn-outline-info  my-2 my-sm-0" type="submit">
-            <i class=" fas fa-file-upload" style="font-size: 20px;"></i></button>
-            </a>
+            <?php if(isset($_SESSION) && $_SESSION['role'] == 'Jefe de Enfermeria'): ?>
+                <a href="asignacion_pacientes.php">
+                <button class="btn btn-outline-info  my-2 my-sm-0" type="submit">
+                <i class=" fas fa-file-upload" style="font-size: 20px;"></i></button>
+                </a>
+            <?php endif ?>
 
             <a href="cerrar.php">
                 <button class="btn btn-outline-info  my-2 my-sm-0" type="submit">
