@@ -158,7 +158,7 @@
                 <div class="card weather-card">
                     <div class="card-body pb-3  text-center hoverable">
                         <!-- Title -->
-                        <h4 class="card-title font-weight-bold">Pacientes que aun no se le han Realizado Toma de Muestra</h4>
+                        <h4 class="card-title font-weight-bold">Pacientes que aun no se le ha programado la Toma de Muestra</h4>
                         <hr>
                         <div class="d-flex justify-content-center">
                             <i class="fas fa-4x fa-stethoscope">
