@@ -4,7 +4,7 @@ include 'conexion.php';  // Funciona.
 
 foreach ($_REQUEST as $key) {
   if ($key == '') {
-    die(json_encode('empty'));
+    die(json_encode(array('empty',null)));
   }
 }
 
