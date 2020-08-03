@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.0/css/mdb.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.29.0/sweetalert2.all.min.js"></script>
     <link rel="stylesheet" href="css/stylos_formulario.css">
     <script src="js/jquery.js"></script>
     <!-- <script src="js/funciones.js"></script> -->
@@ -42,6 +43,7 @@
                                     <th style="background: #a9c5e7" class="text-center th-sm">Fecha Del Resultado<i class="text-left fas fa-sort ml-1"></i></th>
                                     <th style="background: #a9c5e7" class="text-center th-sm">Resultado Primera Muestra<i class="text-left fas fa-sort ml-1"></i></th>
                                     <th style="background: #a9c5e7" class="text-center th-sm">Usuario de Creacion<i class="text-left fas fa-sort ml-1"></i></th>
+                                    <th style="background: #a9c5e7" class="text-center th-sm">Inhabilitar paciente</th>
                                 </tr>
                             </thead>
                             <tbody id="tbl-llamadas">
@@ -59,6 +61,7 @@
                                         <td class="text-center"><?= $key->fecha_resultado ?></td>
                                         <td class="text-center"><?= $key->resultado ?></td>
                                         <td class="text-center"><?= $key->nombre_apellido ?></td>
+                                        <th class="text-center"><input type="checkbox" name="inhabilitar" id="<?= $key->id ?>"></th>
                                     </tr>
                                 <?php $i++;
                                 endforeach; ?>
@@ -75,6 +78,7 @@
                                     <th class="text-center">Fecha Del Resultado</th>
                                     <th class="text-center">Resultado Primera Muestra</th>
                                     <th class="text-center">Usuario de Creacion</th>
+                                    <th class="text-center">Inhabilitar paciente</th>
                                 </tr>
                             </tfoot>
                         </table>
@@ -91,4 +95,49 @@
 <script src="js/addons/datatables.min.js"></script>
 <script src="js/tables.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.0/js/mdb.min.js"></script>
+<script>
+    $('input[name="inhabilitar"]').on('click',function (e) {  
+        e.preventDefault()
+        let nombre = this.parentElement.parentElement.children[1].innerText
+        let identificacion = this.parentElement.parentElement.children[3].innerText
+        let row = this.parentElement.parentElement
+        
+        Swal.fire({
+            title: 'Esta seguro?',
+            text: `Modificando estado del paciente (${nombre}) esta accion no podra ser revertida`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Cancelar',
+            confirmButtonText: 'Si'
+        }).then((result) => {
+            if (result.value) {
+                let id = this.id
+                $.ajax({
+                    type: "POST",
+                    url: "cambioEstado.php",
+                    data: {id},
+                    success: function (response) {
+                        console.log(response);
+                        Swal.fire(
+                        'Inhabilitado!',
+                        'Cambio Realizado.',
+                        'success'
+                        )
+                        row.hidden = true
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        console.log(`Status: ${textStatus} Error: ${errorThrown}`);
+                    }
+                });
+                
+                
+
+            }
+        })
+
+        
+    })
+</script>
 </html>
