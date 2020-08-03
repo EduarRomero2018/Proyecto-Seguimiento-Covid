@@ -82,6 +82,19 @@ $(document).ready(function () {
                             customClass: 'animated heartBeat'
                         })
                         break;
+                    case 'empty':
+                        swal({
+                            type: 'error',
+                            title: "ERROR",
+                            text: 'Debe ingresar un numero de documento para realizar una busqueda',
+                            button: "Aceptar",
+                            icon: "error",
+                            button: "Aceptar",
+                            timer: 7000,
+                            animation: false,
+                            customClass: 'animated heartBeat'
+                        })
+                        break;
                 }
             }
         });
