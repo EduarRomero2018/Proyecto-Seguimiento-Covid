@@ -21,7 +21,7 @@ try {
     $cumple_criterio = $_REQUEST['cumple_criterio'];
     $comorbilidad = isset($_REQUEST['comorbilidad']) ? $_REQUEST['comorbilidad'] : null;
     $entrega_kits = isset ($_REQUEST ['entrega_kits']) ? $_REQUEST['entrega_kits'] : null;
-    $fecha_entrega_kits = isset($_REQUEST['fecha_entrega_kits']) ? $_REQUEST['fecha_entrega_kits'] : null;
+    $fecha_entrega_kits = isset($_REQUEST['fecha_entrega_kits']) != 'NULL' ? $_REQUEST['fecha_entrega_kits'] : null;
     $oxigeno_terapia = isset($_REQUEST['oxigeno_terapia']) ? $_REQUEST['oxigeno_terapia'] : null;
     $ambito_atencion = $_REQUEST['ambito_atencion'];
     $saturacion_oxigeno = $_REQUEST['saturacion_oxigeno'];
