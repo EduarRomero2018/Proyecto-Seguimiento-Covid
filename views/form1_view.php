@@ -83,7 +83,7 @@
         <label class="col-form-label">Sexo:</label>
         <select name="sexo" class="custom-select" required>
           <option selected value=""> </option>
-          <option value="MASCULINO">MACULINO</option>
+          <option value="MASCULINO">MASCULINO</option>
           <option value="FEMENINO">FEMENINO</option>
         </select>
       </div>
