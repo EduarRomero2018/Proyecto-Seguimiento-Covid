@@ -106,7 +106,7 @@
                         <select id="estado_paciente" class="custom-select">
                             <option selected value=""> </option>
                             <option value="VIVO">Vivo</option>
-                            <option value="MUERTO">Muerto</option>
+                            <!-- <option value="MUERTO">Muerto</option> -->
                         </select>
                     </div>
 
@@ -115,10 +115,14 @@
                         <input type="date" id="fecha_programacion" class="form-control">
                     </div>
 
-                    <div class="col-sm-3" id="fallecimiento" hidden>
+                    <!-- <div class="col-sm-3" name="fallecimiento" hidden>
                         <label class="col-form-label">Fecha de Fallecimiento</label>
                         <input type="date" id="fecha_fallecimiento" class="form-control">
                     </div>
+                    <div class="col-sm-3" name="fallecimiento" hidden>
+                        <label class="col-form-label">Lugar de Fallecimiento</label>
+                        <input type="text" id="lugar_fallecimiento" class="form-control">
+                    </div> -->
                     <div class="col-sm-3">
                         <br>
                         <input type="hidden" id="paciente_id" value="<?= $id ?>">
@@ -184,11 +188,13 @@
             let estado_paciente = $('#estado_paciente').val()
             let fecha_programacion = $('#fecha_programacion').val()
             let fecha_fallecimiento = $('#fecha_fallecimiento').val()
+            let lugar_fallecimiento = $('#lugar_fallecimiento').val()
             let paciente_id = $('#paciente_id').val()
             let usuario_id = $('#usuario_id').val()
 
             if (estado_paciente == 'VIVO') {
                 fecha_fallecimiento = ''
+                lugar_fallecimiento = 'Null'
             } else {
                 fecha_programacion = ''
             }
@@ -198,6 +204,7 @@
                 estado_paciente,
                 fecha_programacion,
                 fecha_fallecimiento,
+                lugar_fallecimiento,
                 paciente_id,
                 usuario_id
             }
@@ -206,6 +213,7 @@
             for (const key in datos) {
                 if (datos.hasOwnProperty(key)) {
                     const element = datos[key];
+                    
                     console.log(element);
                     if (element == '') {
                         i ++
@@ -288,17 +296,17 @@
 
                 if (this.value != '') {
                     if (this.value == 'MUERTO') {
-                        $('#fallecimiento').attr('hidden', false)
+                        $('div[name=fallecimiento]').attr('hidden', false)
                         $('#programacion').attr('hidden', true)
                         $('#error').attr('hidden', true)
                     } else {
-                        $('#fallecimiento').attr('hidden', true)
+                        $('div[name=fallecimiento]').attr('hidden', true)
                         $('#programacion').attr('hidden', false)
                         $('#error').attr('hidden', true)
                     }
                 } else {
                     $('#error').attr('hidden', false)
-                    $('#fallecimiento').attr('hidden', true)
+                    $('div[name=fallecimiento]').attr('hidden', true)
                     $('#programacion').attr('hidden', true)
                 }
             })

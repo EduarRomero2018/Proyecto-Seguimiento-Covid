@@ -198,7 +198,7 @@
                                     </select>
                                 </div>
 
-                                <div class="col-md-4 form-group">
+                                <div class="col-md-4 form-group" id="div-fecha_entrega_kits">
                                     <label>Fecha de entrega de kits</label>
                                     <input type="date" class="form-control" id="fecha_entrega_kits">
                                 </div>
