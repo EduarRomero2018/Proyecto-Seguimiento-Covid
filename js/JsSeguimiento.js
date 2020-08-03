@@ -1,5 +1,13 @@
 $(document).ready(function () {
 
+    $('#entrega_kits').on('change',function () { 
+        if (this.value == 'No') {
+           $('#div-fecha_entrega_kits').attr('hidden', true)
+        }else{
+           $('#div-fecha_entrega_kits').attr('hidden', false)
+        }
+    })
+
     $('select[name="sintomas"]').on('change',function(){
         let sintomas = 0
         for (const iterator of $('select[name="sintomas"]')) {
@@ -81,6 +89,10 @@ $(document).ready(function () {
         let id_usuario = $('#id_usuario').val()
         if (fecha_sintomas == '') {
             fecha_sintomas = 'NULL'
+        }
+
+        if(entrega_kits == 'No'){
+            fecha_entrega_kits = 'NULL'
         }
         
         let datos = {
