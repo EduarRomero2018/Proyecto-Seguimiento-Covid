@@ -18,7 +18,7 @@ if (!isset($_REQUEST['consulta'])) {
     FROM pacientes
     LEFT JOIN usuarios U ON pacientes.id_usuario = U.id
     LEFT JOIN prog_toma_muestra ON pacientes.id = prog_toma_muestra.pacientes_id
-    WHERE id_usuario = $usuario_id AND estado_paciente = 'VIVO'";
+    WHERE estado_paciente = 'VIVO'";
 
     $query = $conexion->prepare($consulta);
 
