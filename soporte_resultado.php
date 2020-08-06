@@ -28,7 +28,7 @@ if (isset($_REQUEST['guardar']) || isset($_REQUEST['listar'])) {
         $Nombre_Completo = $res['Nombre_Completo'];
 
         if(isset($_REQUEST['listar'])){
-            $stm = $conexion->prepare("SELECT * ,soporte_resultado.fecha_resgistro AS Fecha_registro
+            $stm = $conexion->prepare("SELECT * ,soporte_resultado.fecha_registro AS Fecha_registro
             FROM soporte_resultado
             WHERE pacientes_id = ?
             AND soporte_resultado != ''");
@@ -70,7 +70,7 @@ if (isset($_REQUEST['guardar']) || isset($_REQUEST['listar'])) {
 
                 if ($stm->rowCount() > 0) {
 
-                    $stm = $conexion->prepare("INSERT INTO soporte_resultado VALUES (NULL, ?,?,NULL)");
+                    $stm = $conexion->prepare("INSERT INTO soporte_resultado VALUES (NULL, ?,?,NOW())");
                     $stm->execute(array($url, $paciente_id));
 
                     if ($stm->errorInfo()[2] != null) {
@@ -103,7 +103,7 @@ if (isset($_REQUEST['guardar']) || isset($_REQUEST['listar'])) {
 
                 } else {
 
-                    $errores = 'El paciente por lo menos debe cuenta con los resultados de la primera toma, Favor Verifique';
+                    $errores = 'El paciente aun no cuenta con resultados, Favor Verifique';
                 }
             }
         }

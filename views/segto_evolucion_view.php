@@ -200,7 +200,7 @@
 
                                 <div class="col-md-4 form-group" id="div-fecha_entrega_kits">
                                     <label>Fecha de entrega de kits</label>
-                                    <input type="date" class="form-control" id="fecha_entrega_kits">
+                                    <input type="date" class="form-control" min="<?= $fecha_programacion ?>" id="fecha_entrega_kits">
                                 </div>
                                 <div class="col-md-4 form-group">
                                     <br>
@@ -255,7 +255,7 @@
                             <div class="row align-items-end">
                                 <div class="col-sm-3">
                                     <label class="col-form-label">Fecha de atencion domiciliaria</label>
-                                    <input type="date" id="fecha_atencion_medica_domiciliaria" class="form-control">
+                                    <input type="date" id="fecha_atencion_medica_domiciliaria" min="<?= $fecha_programacion ?>" class="form-control">
                                 </div>
 
                                 <div class="col-sm-3">

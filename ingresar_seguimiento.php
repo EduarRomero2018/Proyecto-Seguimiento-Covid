@@ -21,7 +21,11 @@ try {
     $cumple_criterio = $_REQUEST['cumple_criterio'];
     $comorbilidad = isset($_REQUEST['comorbilidad']) ? $_REQUEST['comorbilidad'] : null;
     $entrega_kits = isset ($_REQUEST ['entrega_kits']) ? $_REQUEST['entrega_kits'] : null;
-    $fecha_entrega_kits = isset($_REQUEST['fecha_entrega_kits']) != 'NULL' ? $_REQUEST['fecha_entrega_kits'] : null;
+    if (isset($_REQUEST['fecha_entrega_kits']) && $_REQUEST['fecha_entrega_kits'] != 'NULL') {
+        $fecha_entrega_kits =  $_REQUEST['fecha_entrega_kits'];
+    }else{
+        $fecha_entrega_kits = null;
+    }
     $oxigeno_terapia = isset($_REQUEST['oxigeno_terapia']) ? $_REQUEST['oxigeno_terapia'] : null;
     $ambito_atencion = $_REQUEST['ambito_atencion'];
     $saturacion_oxigeno = $_REQUEST['saturacion_oxigeno'];
@@ -46,7 +50,7 @@ try {
     }
 
 
-    $stm = $conexion->prepare("INSERT INTO seguimiento_paciente VALUES(NULL,?,NOW(),?,?,?,?,?,?,?,?,?,?,?,?,?,?,'si',?,?)");
+    $stm = $conexion->prepare("INSERT INTO seguimiento_paciente VALUES(NULL,?,NOW(),?,?,?,?,?,?,?,?,?,?,? ,?,?,?,'si',?,?)");
     $stm->execute(array(
         $complemento_seg_id,
         $asintomatico,

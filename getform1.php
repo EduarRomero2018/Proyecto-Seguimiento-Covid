@@ -7,7 +7,12 @@ $tipo_paciente = $_POST['tipo_paciente'];$primer_nombre = $_POST['primer_nombre'
 $primer_apellido = $_POST['primer_apellido'];$segundo_apellido = $_POST['segundo_apellido'];$tipo_documento = $_POST['tipo_documento'];
 $numero_identificacion = $_POST['numero_identificacion'];$edad = $_POST['edad'];$unidad_medida = $_POST['unidad_medida'];$sexo = $_POST['sexo'];
 $barrio= $_POST['barrio'];$correo= $_POST['correo'];$telefono= $_POST['telefono'];$aseguradora= $_POST['aseguradora'];
-$id_usuario= $_POST['id_usuario'];$fecha_recepcion_programacion= $_POST['fecha_recepcion_programacion_'].' '.date('h:i:s');
+$id_usuario= $_POST['id_usuario'];
+if(isset($_POST['fecha_recepcion_programacion']) != ''){
+  $fecha_recepcion_programacion=  $_POST['fecha_recepcion_programacion_'].' '.date('h:i:s');
+}else{
+  $fecha_recepcion_programacion = null;
+}
 $municipio = $_REQUEST['municipio'];
 $regimen = $_REQUEST['regimen'];
 $telefono2 = $_REQUEST['telefono2'];
@@ -39,22 +44,22 @@ if($consulta->rowCount() == 0){
     (:tipo_paciente, :primer_nombre, :segundo_nombre, :primer_apellido, :segundo_apellido, :tipo_documento, :numero_documento, :edad, :unidad_medida, :sexo, :barrio, :municipio, :correo, :telefono, :telefono, :aseguradora, :regimen, :fecha_prog_recep, :id_usuario)");
   
     $consulta->execute(array(
-     ':tipo_paciente'                       => $tipo_paciente,
-     ':primer_nombre'                       => $primer_nombre,
-     ':segundo_nombre'                      => $segundo_nombre,
-     ':primer_apellido'                     => $primer_apellido,
-     ':segundo_apellido'                    => $segundo_apellido,
+     ':tipo_paciente'                       => ucwords($tipo_paciente),
+     ':primer_nombre'                       => ucwords($primer_nombre),
+     ':segundo_nombre'                      => ucwords($segundo_nombre),
+     ':primer_apellido'                     => ucwords($primer_apellido),
+     ':segundo_apellido'                    => ucwords($segundo_apellido),
      ':tipo_documento'                      => $tipo_documento,
      ':numero_documento'                    => $numero_identificacion,
-     ':edad'                                => $edad,
-     ':unidad_medida'                       => $unidad_medida,
-     ':sexo'                                => $sexo,
-     ':barrio'                              => $barrio,
-     ':municipio'                           => $municipio,
+     ':edad'                                => ucwords($edad),
+     ':unidad_medida'                       => ucwords($unidad_medida),
+     ':sexo'                                => ucwords($sexo),
+     ':barrio'                              => ucwords($barrio),
+     ':municipio'                           => ucwords($municipio),
      ':correo'                              => $correo,
      ':telefono'                            => $telefono,
-     ':telefono2'                            => $telefono2,
-     ':aseguradora'                         => $aseguradora,
+     ':telefono2'                           => $telefono2,
+     ':aseguradora'                         => ucwords($aseguradora),
      ':regimen'                             => $regimen,
      ':id_usuario'                          => $id_usuario,
      ':fecha_prog_recep'                    => $fecha_recepcion_programacion

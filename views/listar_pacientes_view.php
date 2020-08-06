@@ -43,7 +43,7 @@
                                     <th style="background: #a9c5e7" class="text-center th-sm">Fecha Del Resultado</th>
                                     <th style="background: #a9c5e7" class="text-center th-sm">Resultado Primera Muestra</th>
                                     <th style="background: #a9c5e7" class="text-center th-sm">Usuario de Creacion</th>
-                                    <th style="background: #a9c5e7" class="text-center th-sm">Inhabilitar paciente</th>
+                                    <th style="background: #a9c5e7" class="text-center th-sm">Seleccione si el paciente a muerto</th>
                                 </tr>
                             </thead>
                             <tbody id="tbl-llamadas">

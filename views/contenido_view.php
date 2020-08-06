@@ -61,9 +61,9 @@
                         <a class="nav-link " href="#" id="navbarDropdown" data-target='#exampleModal' role="button" data-toggle="modal" aria-haspopup="true" aria-expanded="false">
                             Ingresar Resultado Primera Vez
                         </a>
-                        <a class="nav-link " href="#" id="navbarDropdown" data-target='#modalTomaMuestraControl' role="button" data-toggle="modal" aria-haspopup="true" aria-expanded="false">
+                        <!-- <a class="nav-link " href="#" id="navbarDropdown" data-target='#modalTomaMuestraControl' role="button" data-toggle="modal" aria-haspopup="true" aria-expanded="false">
                             Ingresar Resultado Segunda Vez (Control)
-                        </a>
+                        </a> -->
                     </div>
                 </li>
 

@@ -288,6 +288,7 @@ $(document).ready(function () {
                             customClass: 'animated heartBeat'
                         })
                         $('#contenido').attr('hidden',true)
+                        $('#form-seguimiento').attr('hidden',false)
                         break;
                     default:
                         swal({

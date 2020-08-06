@@ -136,7 +136,7 @@
       <div class="col-sm-4">
         <br>
         <label class="col-form-label">Fecha De Recepcion de Informacion</label>
-        <input type="date" name="fecha_recepcion_programacion " class="form-control" required>
+        <input type="date" name="fecha_recepcion_programacion " class="form-control">
       </div>
       <div class="col-sm-4">
         <br>

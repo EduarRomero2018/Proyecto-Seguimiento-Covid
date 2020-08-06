@@ -23,10 +23,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $consulta->execute(array($documento));
         $res = $consulta->fetch();
 
-        $consulta = $conexion->prepare(
-            "SELECT * FROM seguimiento_paciente WHERE id_pacientes = ?"
-        );
-        $consulta->execute(array($res['id']));
+        if($consulta->rowCount() > 0){
+            $consulta = $conexion->prepare(
+                "SELECT * FROM seguimiento_paciente WHERE id_pacientes = ?"
+            );
+            $consulta->execute(array($res['id']));
+        }
+
 
         if ($consulta->rowCount() > 0) {
             $hidden = '';
@@ -35,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (!empty($res)) {
             $consulta = $conexion->prepare(
                 "SELECT CONCAT(primer_nombre, ' ', primer_apellido) AS 'Nombre_Completo', tipo_documento,edad,
-                numero_documento,fecha_entrega_lab ,fecha_resultado,resultado,pacientes_id,fecha_programacion,
+                numero_documento,fecha_entrega_lab ,fecha_resultado,resultado,pacientes_id,DATE(fecha_programacion) AS fecha_programacion,
                 U.nombre_apellido AS 'usuario_creacion'
                 FROM pacientes
                 RIGHT JOIN prog_toma_muestra ON pacientes.id = prog_toma_muestra.pacientes_id
