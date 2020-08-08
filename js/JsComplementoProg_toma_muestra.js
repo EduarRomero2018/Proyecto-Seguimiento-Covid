@@ -29,8 +29,8 @@ $(document).ready(function () {
                             });
                             $('#tablePaciente3').attr('hidden',false)
                             $('#tbody-3').html(plantilla)
-                            $('#contenido').attr("hidden",true);
-                            $('#form-body-3').attr("hidden",false);
+                            $('#contenido').attr("hidden",false);
+                            $('#form-body-3').show();
                         break;
                     case '!found':
                         swal({
@@ -136,13 +136,15 @@ $(document).ready(function () {
         let visita_exitosa = $('#visita_exitosa').val()
         let tipo_prueba = $('#tipo_prueba').val()
         let observacion = $('#observacion').val()
+        let motivo = $('#motivo').val()
 
         let datos = {
             paciente_id,
             fecha_realizacion,
             visita_exitosa,
             tipo_prueba,
-            observacion
+            observacion,
+            motivo
         }
 
         console.log(datos);

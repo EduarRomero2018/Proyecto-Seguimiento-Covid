@@ -168,7 +168,7 @@
                 <div class="card weather-card">
                     <div class="card-body pb-3  text-center hoverable">
                         <h4 class="mb-1">
-                            <strong>Cantidad de Pacientes que estan Programados:</strong>
+                            <strong>Cantidad de Pacientes que estan pendientes por realizacion de toma de muestra:</strong>
                             <hr>
                         </h4>
                         <div class="d-flex justify-content-center">
@@ -379,7 +379,7 @@
                                 <tbody id="tbody-3"></tbody>
                             </table>
                         </div>
-                        <div hidden id="form-body-3">
+                        <div style="display: none;" id="form-body-3">
                             <div class="mt-2">
                                 <div class="form-group">
                                     <label for="">Fecha de programacion</label>
@@ -398,7 +398,7 @@
                                     <option value="NO">No</option>
                                 </select>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" name="ocultar">
                                 <label class="col-form-label">Tipo de prueba aplicada al paciente</label>
                                 <select id="tipo_prueba" class="custom-select">
                                     <option selected value=""> </option>
@@ -407,9 +407,13 @@
                                     <option value="IGM">IGM</option>
                                 </select>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" name="ocultar">
                                 <label class="col-form-label">Observacion</label>
                                 <input type="text" id="observacion" class="form-control" placeholder="Observacion">
+                            </div>
+                            <div class="form-group" id="div-motivo" hidden>
+                                <label class="col-form-label">Motivo</label>
+                                <input type="text" id="motivo" class="form-control" placeholder="Motivo">
                             </div>
                             <button id="guardar-complemento" type="button" class="btn btn-primary">Guardar datos</button>
                         </div>
@@ -442,6 +446,18 @@
             $('#buscarPaciente').on('click', function() {
                 $('#error').attr('hidden', true)
             })
+
+            $('#visita_exitosa').on('change', function () {
+                console.log(this.value);  
+                if (this.value == 'NO') {
+                    $('div[name="ocultar"]').attr('hidden',true)
+                    $('#div-motivo').attr('hidden', false)
+                }else{
+                    $('div[name="ocultar"]').attr('hidden',false)
+                    $('#div-motivo').attr('hidden', true)
+                }
+            })
+
             $('#fecha_entrega_laboratorio').on('change', function() {
                 let fecha_entrega_laboratorio = $('#fecha_entrega_laboratorio').val()
                 if (fecha_entrega_laboratorio != '') {
