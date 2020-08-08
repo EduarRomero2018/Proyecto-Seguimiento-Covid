@@ -98,22 +98,16 @@
                 <!--Grid row-->
                 <div class="row">
                     <!--Grid column-->
-                    <div class="col-md-4 offset-md-1 mx-3 my-3">
+                    <div class="col-md-4 ">
                         <!--Featured image-->
-                        <div class="view overlay ">
-
                             <div class="documento">
-                                <a href="" class="green-text">
-                                    <h6 class="font-bold pb-1">
-                                        <?php echo 'Bienvenido : ', $_SESSION['nombre_apellido'] ?>
-                                </a>
                             </div>
-
+                            <!-- <h4 style="color:#c18718">Bienvenido:</h4> -->
+                            <h4 style="color:#c18718"><?php echo $_SESSION['nombre_apellido'] ?></h4>
                             <img class="img-thumbnail" src="img/user.png" class="img-fluid z-depth-2-half " alt="imagen de user" data-holder-rendered="true">
                             <a>
                                 <div class="mask rgba-white-slight"></div>
                             </a>
-                        </div>
                     </div>
                     <div class="col-md-7 text-center hoverable">
                         <h4 class="mb-1">
