@@ -18,6 +18,8 @@
     <div class="linea1"></div>
     <div class="linea2"></div>
     <div class="linea3"></div>
+
+
     <!--******************************************************-->
     <nav class="navbar navbar-expand-lg navbar-light fondo-color img-nav">
         <a class="navbar-brand" href="#">
@@ -77,10 +79,10 @@
                     </div>
                 </li>
             </ul>
-            <?php if(isset($_SESSION) && $_SESSION['role'] == 'Jefe de Enfermeria'): ?>
+            <?php if (isset($_SESSION) && $_SESSION['role'] == 'Jefe de Enfermeria') : ?>
                 <a href="asignacion_pacientes.php">
-                <button class="btn btn-outline-info  my-2 my-sm-0" type="submit">
-                <i class=" fas fa-file-upload" style="font-size: 20px;"></i></button>
+                    <button class="btn btn-outline-info  my-2 my-sm-0" type="submit">
+                        <i class=" fas fa-file-upload" style="font-size: 20px;"></i></button>
                 </a>
             <?php endif ?>
 
@@ -100,15 +102,16 @@
                     <!--Grid column-->
                     <div class="col-md-4 ">
                         <!--Featured image-->
-                            <div class="documento">
-                            </div>
-                            <!-- <h4 style="color:#c18718">Bienvenido:</h4> -->
-                            <h4 style="color:#c18718"><?php echo $_SESSION['nombre_apellido'] ?></h4>
-                            <img class="img-thumbnail" src="img/user.png" class="img-fluid z-depth-2-half " alt="imagen de user" data-holder-rendered="true">
-                            <a>
-                                <div class="mask rgba-white-slight"></div>
-                            </a>
+                        <div class="documento">
+                        </div>
+                        <!-- <h4 style="color:#c18718">Bienvenido:</h4> -->
+                        <h4 style="color:#c18718"><?php echo $_SESSION['nombre_apellido'] ?></h4>
+                        <img class="img-thumbnail" src="img/user.png" class="img-fluid z-depth-2-half " alt="imagen de user" data-holder-rendered="true">
+                        <a>
+                            <div class="mask rgba-white-slight"></div>
+                        </a>
                     </div>
+
                     <div class="col-md-7 text-center hoverable">
                         <h4 class="mb-1">
                             <strong>Cantidad de Pacientes Positivos:</strong>
@@ -116,11 +119,15 @@
                         <hr>
                         <div class="d-flex justify-content-center">
                             <i class="fas fa-1x fa-briefcase-medical">
-                                <p class="display-1 degree"><?php echo $positivos ?></p>
+                                <a href="cantidad_p_p.php">
+                                    <p class="display-1 degree" data-toggle="tooltip" data-placement="bottom" title="Presione para saber cual son los pacientes positivos"><?php echo $positivos ?></p>
+                                </a>
                             </i>
                             <i class="fas fa-sun-o fa-5x pt-3 amber-text"></i>
                         </div>
                     </div>
+
+
                 </div>
             </div>
         </div>
@@ -439,6 +446,12 @@
     <script src="js/JsComplementoProg_toma_muestra.js"></script>
     <script src="js/jsContenido.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script>
+        // Tooltips Initialization
+        $(function() {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
     <!-- Bootstrap core JavaScript -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script>
     <script>
