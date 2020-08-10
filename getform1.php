@@ -39,9 +39,9 @@ if($consulta->rowCount() == 0){
     $consulta =
     $conexion->prepare(
     "INSERT INTO pacientes
-    (tipo_paciente, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, tipo_documento, numero_documento, edad, unidad_medida, sexo, barrio, municipio, correo, telefono, telefono2, aseguradora, regimen, fecha_prog_recep, id_usuario)
+    (tipo_paciente, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, tipo_documento, numero_documento, edad, unidad_medida, sexo, barrio, municipio, correo, telefono, telefono2, aseguradora, regimen, fecha_prog_recep)
     VALUES
-    (:tipo_paciente, :primer_nombre, :segundo_nombre, :primer_apellido, :segundo_apellido, :tipo_documento, :numero_documento, :edad, :unidad_medida, :sexo, :barrio, :municipio, :correo, :telefono, :telefono, :aseguradora, :regimen, :fecha_prog_recep, :id_usuario)");
+    (:tipo_paciente, :primer_nombre, :segundo_nombre, :primer_apellido, :segundo_apellido, :tipo_documento, :numero_documento, :edad, :unidad_medida, :sexo, :barrio, :municipio, :correo, :telefono, :telefono, :aseguradora, :regimen, :fecha_prog_recep)");
   
     $consulta->execute(array(
      ':tipo_paciente'                       => ucwords($tipo_paciente),
@@ -61,7 +61,6 @@ if($consulta->rowCount() == 0){
      ':telefono2'                           => $telefono2,
      ':aseguradora'                         => ucwords($aseguradora),
      ':regimen'                             => $regimen,
-     ':id_usuario'                          => $id_usuario,
      ':fecha_prog_recep'                    => $fecha_recepcion_programacion
    ));
 

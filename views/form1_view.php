@@ -15,7 +15,6 @@
   <link rel="stylesheet" href="../css/bootstrap.min.css">
   <link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
-  <script src="validaciones.js"></script>
 </head>
 
 <body>
@@ -41,6 +40,21 @@
             <option value="CONTACTO ESTRECHO">CONTACTO ESTRECHO</option>
           </select>
           <br>
+      </div>
+      <div class="col-sm-4">
+        <label class="col-form-label">Seleccione el tipo de documento:</label>
+        <select name="tipo_documento" class="custom-select" required>
+          <!--<option selected>Seleccione el tipo de documento</option>-->
+          <option selected value=""> </option>
+          <option value="CC">CEDULA DE CIUDADANIA</option>
+          <option value="TI">TARJETA DE INDENTIDAD</option>
+          <option value="RC">REGISTRO CIVIL</option>
+          <option value="CE">CEDULA EXTRANJERA</option>
+        </select>
+      </div>
+      <div class="col-sm-4">
+        <label class="col-form-label">Numero Documento:</label>
+        <input type="number" name="numero_identificacion" class="form-control" placeholder="" required>
       </div>
 
       <div class="col-sm-4">
@@ -97,7 +111,14 @@
       </div>
       <div class="col-sm-4">
         <label class="col-form-label">Aseguradora o EPS:</label>
-        <input type="text" name="aseguradora" class="form-control" placeholder="Escriba su EPS" required>
+        <select name="aseguradora" class="custom-select" required>
+          <option value=""></option>
+          <?php
+          $aseguradoras = ['Ambuq','Anaswayuu EPSI','ARS con vida','Asmet salud','Caja de prevecion','Cajacopi','Caprecom','Colsanitas','Comfamiliar','Comfenalco','Comparta','Compensar','Coomeva','Coosalud','Dadis','Emssanar','Famisanar','Ferrocariles','Inpec','Magisterio','Medimas','Mutual ser','Nueva EPS','Sabia Salud','Salud total','Sanidad militar','Sanitas','Sura'];
+          foreach($aseguradoras as $aseguradora => $valor): ?>
+            <option value="<?= strtoupper($valor) ?>"><?= $valor ?></option>
+          <?php endforeach; ?>
+        </select>
       </div>
       <div class="col-sm-4">
         <label class="col-form-label">Regimen:</label>
@@ -109,37 +130,18 @@
       </div>
 
       <div class="col-sm-4">
-        <label class="col-form-label">Seleccione el tipo de documento:</label>
-        <select name="tipo_documento" class="custom-select" required>
-          <!--<option selected>Seleccione el tipo de documento</option>-->
-          <option selected value=""> </option>
-          <option value="CC">CEDULA DE CIUDADANIA</option>
-          <option value="TI">TARJETA DE INDENTIDAD</option>
-          <option value="RC">REGISTRO CIVIL</option>
-          <option value="CE">CEDULA EXTRANJERA</option>
-        </select>
-      </div>
-      <div class="col-sm-4">
-        <label class="col-form-label">Numero Documento:</label>
-        <input type="number" name="numero_identificacion" class="form-control" placeholder="" required>
-      </div>
-      <div class="col-sm-4">
-        <br>
         <label class="col-form-label">Barrio y direccion Completa:</label>
         <input type="text" name="barrio" class="form-control" placeholder="ejemplo: Campestre mz:7 lt: 12" required>
       </div>
       <div class="col-sm-4">
-        <br>
         <label class="col-form-label">Email:</label>
         <input type="email" name="correo" class="form-control" placeholder="Correo Electronico" required>
       </div>
       <div class="col-sm-4">
-        <br>
         <label class="col-form-label">Fecha De Recepcion de Informacion</label>
         <input type="date" name="fecha_recepcion_programacion " class="form-control">
       </div>
       <div class="col-sm-4">
-        <br>
         <label>Municipio</label>
         <select name="municipio" class="custom-select" required>
           <option value=""></option>

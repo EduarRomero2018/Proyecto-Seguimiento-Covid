@@ -114,6 +114,8 @@
                     <select id="programacion_atencion" class="custom-select">
                         <option selected value=""> </option>
                         <option value="CERCO">Cerco</option>
+                        <option value="MAS 60">Mas 60</option>
+                        <option value="HOSPITALARIO">Hospitalario</option>
                         <option value="DOMICILIO">Domicilio</option>
                         <option value="CARCEL">Carcel</option>
                     </select>

@@ -47,6 +47,7 @@
                         <a href="toma_muestra_control.php" class="dropdown-item">Programar Segunda Toma Muestra (Control)</a>
                         <hr>
                         <a href="soporte_resultado.php" class="dropdown-item">Ingresar Soporte Resultado</a>
+                    </div>
                 </li>
 
 
@@ -79,7 +80,7 @@
                     </div>
                 </li>
             </ul>
-            <?php if (isset($_SESSION) && $_SESSION['role'] == 'Jefe de Enfermeria') : ?>
+            <?php if (isset($_SESSION) && $_SESSION['role'] == 'Coordinador covid') : ?>
                 <a href="asignacion_pacientes.php">
                     <button class="btn btn-outline-info  my-2 my-sm-0" type="submit">
                         <i class=" fas fa-file-upload" style="font-size: 20px;"></i></button>
@@ -126,8 +127,6 @@
                             <i class="fas fa-sun-o fa-5x pt-3 amber-text"></i>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>
@@ -410,8 +409,10 @@
                                 <select id="tipo_prueba" class="custom-select">
                                     <option selected value=""> </option>
                                     <option value="PRC">PCR</option>
-                                    <option value="IGG">IGG</option>
-                                    <option value="IGM">IGM</option>
+                                    <!-- <option value="IGG">IGG</option> -->
+                                    <option value="IGG Y IGM">IGG y IGM</option>
+                                    <option value="ANTIGENO">Antigeno</option>
+                                    <!-- <option value="IGM">IGM</option> -->
                                 </select>
                             </div>
                             <div class="form-group" name="ocultar">
