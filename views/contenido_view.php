@@ -66,7 +66,7 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <?php if(isset($_SESSION) && $_SESSION['role'] == 'Auxiliar de programacion' || $_SESSION['role'] == 'Coordinador covid'): ?>
                                 <a class="nav-link " href="#" id="navbarDropdown" data-target='#modalFechaRealizacion' role="button" data-toggle="modal" aria-haspopup="true" aria-expanded="false">
-                                    Ingresar Fecha de Realizacion de la toma
+                                    Ingresar Fecha de Realizacion de la primera toma de muestra
                                 </a>
                             <?php endif ?>
                             <?php if(isset($_SESSION) && $_SESSION['role'] == 'Digitador' || $_SESSION['role'] == 'Coordinador covid'): ?>
@@ -87,7 +87,7 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a href="listar_pacientes.php" class="dropdown-item" href="#">Listar Todos los Pacientes</a>
-                        <a href="listar_pacientes_fecha_realizacion_pendiente.php" class="dropdown-item">Listar pacientes pendientes por fecha de realizacion</a>
+                        <a href="listar_pacientes_fecha_realizacion_pendiente.php" class="dropdown-item">Listar pacientes pendientes por fecha de realizacion de la toma de muestra</a>
                     </div>
                 </li>
             </ul>
