@@ -38,6 +38,7 @@
             <option selected value=""> </option>
             <option value="CASO INDICE">CASO INDICE</option>
             <option value="CONTACTO ESTRECHO">CONTACTO ESTRECHO</option>
+            <option value="COMORBILIDAD">COMORBILIDAD</option>
           </select>
           <br>
       </div>
@@ -135,7 +136,7 @@
       </div>
       <div class="col-sm-4">
         <label class="col-form-label">Email:</label>
-        <input type="email" name="correo" class="form-control" placeholder="Correo Electronico" required>
+        <input type="email" name="correo" class="form-control" placeholder="Correo Electronico">
       </div>
       <div class="col-sm-4">
         <label class="col-form-label">Fecha De Recepcion de Informacion</label>

@@ -36,17 +36,22 @@
                         PROCESOS
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a href="getform1.php" class="dropdown-item" href="#">Ingresar Pacientes</a>
-                        <!--<a class="dropdown-item" href="#">Ingresar Datos Personales</a>-->
-                        <a href="progmuestra.php" class="dropdown-item" href="#">Programar Primera Toma Muestra</a>
-                        <!--<a class="dropdown-item" href="#">Programacion de Toma de Muestra</a>-->
-                        <a href="segto_evolucion.php" class="dropdown-item" href="#">Ingresar Seguimiento Diario Por
-                            Paciente</a>
-                        <!--<a class="dropdown-item" href="#">Seguimiento Semanal por Paciente</a>-->
-                        <a href="historial_paciente_fecha.php" class="dropdown-item">Ver Seguimiento Paciente</a>
-                        <a href="toma_muestra_control.php" class="dropdown-item">Programar Segunda Toma Muestra (Control)</a>
-                        <hr>
-                        <a href="soporte_resultado.php" class="dropdown-item">Ingresar Soporte Resultado</a>
+                        <?php if(isset($_SESSION) && $_SESSION['role'] == 'Auxiliar de programacion' || $_SESSION['role'] == 'Coordinador covid'): ?>
+                            <a href="getform1.php" class="dropdown-item" href="#">Ingresar Pacientes</a>
+                            <!--<a class="dropdown-item" href="#">Ingresar Datos Personales</a>-->
+                            <a href="progmuestra.php" class="dropdown-item" href="#">Programar Primera Toma Muestra</a>
+                        <?php endif ?>
+                        <?php if(isset($_SESSION) && $_SESSION['role'] == 'Auxiliar de seguimiento' || $_SESSION['role'] == 'Coordinador covid'): ?>
+                            <!--<a class="dropdown-item" href="#">Programacion de Toma de Muestra</a>-->
+                            <a href="segto_evolucion.php" class="dropdown-item" href="#">Ingresar Seguimiento Diario Por
+                                Paciente</a>
+                            <!--<a class="dropdown-item" href="#">Seguimiento Semanal por Paciente</a>-->
+                            <a href="historial_paciente_fecha.php" class="dropdown-item">Ver Seguimiento Paciente</a>
+                            <!-- <a href="toma_muestra_control.php" class="dropdown-item">Programar Segunda Toma Muestra (Control)</a> -->
+                        <?php endif ?>
+                        <?php if(isset($_SESSION) && $_SESSION['role'] == 'Digitador' || $_SESSION['role'] == 'Coordinador covid'): ?>
+                            <a href="soporte_resultado.php" class="dropdown-item">Ingresar Soporte Resultado</a>
+                        <?php endif ?> 
                     </div>
                 </li>
 
@@ -54,20 +59,26 @@
 
 
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        INGRESAR RESULTADOS
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="nav-link " href="#" id="navbarDropdown" data-target='#modalFechaRealizacion' role="button" data-toggle="modal" aria-haspopup="true" aria-expanded="false">
-                            Ingresar Fecha de Realizacion de la toma
+                    <?php if(isset($_SESSION) && $_SESSION['role'] == 'Digitador' || $_SESSION['role'] == 'Coordinador covid' || $_SESSION['role'] == 'Auxiliar de programacion'): ?>
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            INGRESAR RESULTADOS
                         </a>
-                        <a class="nav-link " href="#" id="navbarDropdown" data-target='#exampleModal' role="button" data-toggle="modal" aria-haspopup="true" aria-expanded="false">
-                            Ingresar Resultado Primera Vez
-                        </a>
-                        <!-- <a class="nav-link " href="#" id="navbarDropdown" data-target='#modalTomaMuestraControl' role="button" data-toggle="modal" aria-haspopup="true" aria-expanded="false">
-                            Ingresar Resultado Segunda Vez (Control)
-                        </a> -->
-                    </div>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <?php if(isset($_SESSION) && $_SESSION['role'] == 'Auxiliar de programacion' || $_SESSION['role'] == 'Coordinador covid'): ?>
+                                <a class="nav-link " href="#" id="navbarDropdown" data-target='#modalFechaRealizacion' role="button" data-toggle="modal" aria-haspopup="true" aria-expanded="false">
+                                    Ingresar Fecha de Realizacion de la toma
+                                </a>
+                            <?php endif ?>
+                            <?php if(isset($_SESSION) && $_SESSION['role'] == 'Digitador' || $_SESSION['role'] == 'Coordinador covid'): ?>
+                                <a class="nav-link " href="#" id="navbarDropdown" data-target='#exampleModal' role="button" data-toggle="modal" aria-haspopup="true" aria-expanded="false">
+                                    Ingresar Resultado Primera Vez
+                                </a>
+                            <?php endif ?>
+                            <!-- <a class="nav-link " href="#" id="navbarDropdown" data-target='#modalTomaMuestraControl' role="button" data-toggle="modal" aria-haspopup="true" aria-expanded="false">
+                                Ingresar Resultado Segunda Vez (Control)
+                            </a> -->
+                        </div>
+                    <?php endif ?>
                 </li>
 
                 <li class="nav-item dropdown">
@@ -81,7 +92,7 @@
                 </li>
             </ul>
             <?php if (isset($_SESSION) && $_SESSION['role'] == 'Coordinador covid') : ?>
-                <a href="asignacion_pacientes.php">
+                <a href="asignacion2.php">
                     <button class="btn btn-outline-info  my-2 my-sm-0" type="submit">
                         <i class=" fas fa-file-upload" style="font-size: 20px;"></i></button>
                 </a>
@@ -106,7 +117,7 @@
                         <div class="documento">
                         </div>
                         <!-- <h4 style="color:#c18718">Bienvenido:</h4> -->
-                        <h4 style="color:#c18718"><?php echo $_SESSION['nombre_apellido'] ?></h4>
+                        <h4 style="color:#c18718"><?php echo ucwords($_SESSION['nombre_apellido']) ?></h4>
                         <img class="img-thumbnail" src="img/user.png" class="img-fluid z-depth-2-half " alt="imagen de user" data-holder-rendered="true">
                         <a>
                             <div class="mask rgba-white-slight"></div>
@@ -120,8 +131,8 @@
                         <hr>
                         <div class="d-flex justify-content-center">
                             <i class="fas fa-1x fa-briefcase-medical">
-                                <a href="cantidad_p_p.php">
-                                    <p class="display-1 degree" data-toggle="tooltip" data-placement="bottom" title="Presione para saber cual son los pacientes positivos"><?php echo $positivos ?></p>
+                                <a href="cantidad_p_p.php" style="text-decoration: none; color: rgba(6, 62, 131, 0.9);">
+                                    <p class="display-1 degree" data-toggle="tooltip" data-placement="bottom" title="Presione para saber cual son los pacientes positivos"><?= $positivos ?></p>
                                 </a>
                             </i>
                             <i class="fas fa-sun-o fa-5x pt-3 amber-text"></i>
@@ -286,12 +297,7 @@
                                     <option value="2">Negativo</option>
                                 </select>
                             </div>
-                            <div class="custom-control custom-checkbox mb-3">
-                                <input type="checkbox" class="custom-control-input" name="notificado" id="defaultUnchecked">
-                                <label id="defaultUnchecked" name="check-label" class="custom-control-label" for="defaultUnchecked"></label>
-                            </div>
                             <button id="guardar" type="button" class="btn btn-primary">Guardar datos</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                         </div>
                     </form>
                 </div>
@@ -343,10 +349,6 @@
                                     <option value="Positivo">Positivo</option>
                                     <option value="Negativo">Negativo</option>
                                 </select>
-                            </div>
-                            <div class="custom-control custom-checkbox mb-3">
-                                <input type="checkbox" class="custom-control-input" name="notificado" id="defaultUnchecked-2">
-                                <label id="defaultUnchecked-2" name="check-label" class="custom-control-label" for="defaultUnchecked-2"></label>
                             </div>
                             <button id="guardarResultado" type="button" class="btn btn-primary">Guardar datos</button>
                         </div>
@@ -542,7 +544,7 @@
                     type: 'POST',
                     url: 'resultadoTomaDeMuestra.php?paciente_id=' + id +
                         '&fecha_entrega_laboratorio=' + fecha_entrega_laboratorio + '&fecha_procesamiento=' + fecha_procesamiento +
-                        '&fecha_resultado=' + fecha_resultado + '&resultado=' + resultado2 + '&notificado=' + notificado,
+                        '&fecha_resultado=' + fecha_resultado + '&resultado=' + resultado2,
                     success: function(res) {
 
                         let resultado1 = JSON.parse(res)
@@ -601,14 +603,6 @@
                 e.preventDefault()
                 let identificacion = $('#documento').val()
                 $('#guardar').attr('disabled', true)
-
-                $('#defaultUnchecked').on('click', function() {
-                    if ($('#defaultUnchecked').is(':checked') == true) {
-                        $('#guardar').attr('disabled', false)
-                    } else {
-                        $('#guardar').attr('disabled', true)
-                    }
-                })
 
                 $.ajax({
                     type: 'post',
@@ -699,7 +693,6 @@
                                 $('#paciente_id').attr('value', id)
                                 $('#form-body').attr('hidden', false)
                                 $('#tablePaciente').attr('hidden', false)
-                                $('label[name=check-label]')[0].innerText = `¿El paciente ha sido notificado? (Numero telefonico del paciente: ${numero_telefono})`
                                 $('#tbody').html(plantilla)
                                 break;
                         }

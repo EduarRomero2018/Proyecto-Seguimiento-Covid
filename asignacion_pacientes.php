@@ -30,3 +30,8 @@ if(isset($_REQUEST['asignar'])){
 }
 
 require 'views/asignacion_pacientes_view.php';
+
+
+/* 
+Auxiliares de enfermeria => notifican a los negativo
+Medico => notifican a los positivos*/

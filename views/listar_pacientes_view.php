@@ -100,12 +100,11 @@
         e.preventDefault()
         let nombre = this.parentElement.parentElement.children[1].innerText
         let identificacion = this.parentElement.parentElement.children[3].innerText
-        let row = this.parentElement.parentElement
+        let row = this.parentElement.parentElement  
         
         Swal.fire({
-            title: 'Esta seguro?',
-            text: `Modificando estado del paciente (${nombre}) esta accion no podra ser revertida`,
-            icon: 'warning',
+            title: `${nombre} Fecha de fallecimiento`,
+            html: '<input type="date" id="fecha_fellecimiento" class="form-control">',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -114,30 +113,35 @@
         }).then((result) => {
             if (result.value) {
                 let id = this.id
+                let fecha_f = $('#fecha_fellecimiento').val()
                 $.ajax({
                     type: "POST",
                     url: "cambioEstado.php",
-                    data: {id},
+                    data: {id,fecha_f},
                     success: function (response) {
                         console.log(response);
-                        Swal.fire(
-                        'Inhabilitado!',
-                        'Cambio Realizado.',
-                        'success'
-                        )
-                        row.hidden = true
+                        response = JSON.parse(response)
+                        if (response == 'ok') {
+                            Swal.fire(
+                                'Accion completada',
+                                'Datos guardados',
+                                'success'
+                            )
+                            row.hidden = true
+                        } else {
+                            Swal.fire(
+                                'Error!',
+                                'Campo fecha de fallecimiento es obligatorio',
+                                'error'
+                            )
+                        }
                     },
                     error: function (XMLHttpRequest, textStatus, errorThrown) {
                         console.log(`Status: ${textStatus} Error: ${errorThrown}`);
                     }
                 });
-                
-                
-
             }
         })
-
-        
     })
 </script>
 </html>

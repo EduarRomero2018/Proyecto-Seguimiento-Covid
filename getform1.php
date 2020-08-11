@@ -21,7 +21,7 @@ $telefono2 = $_REQUEST['telefono2'];
 $errores= '';
 $exito= '';
 
-if (!filter_var($correo, FILTER_VALIDATE_EMAIL)) {
+if ($correo != '' && !filter_var($correo, FILTER_VALIDATE_EMAIL)) {
   $errores .= 'Esta dirección de correo No es Validad';
 }
 
@@ -64,10 +64,7 @@ if($consulta->rowCount() == 0){
      ':fecha_prog_recep'                    => $fecha_recepcion_programacion
    ));
 
-  //  if($consulta->errorInfo()){
-  //    print_r($consulta->errorInfo());
-  //    die();
-  //  }
+   
    $exito = 'Datos Guardados Exitosamente';
     //header('Location:index.php');//despues de guardar el usuario en al bd lo redirreccionamos al login para que inicie sessión
   }

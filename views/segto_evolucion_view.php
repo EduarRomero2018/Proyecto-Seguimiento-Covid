@@ -211,6 +211,15 @@
                                         <option value="No">No</option>
                                     </select>
                                 </div>
+                                <div id="div-tipo_flujo" class="col-md-4 form-group" hidden>
+                                    <br>
+                                    <label>Sistema de oxigeno terapias</label>
+                                    <select class="custom-select" id="tipo_flujo">
+                                        <option value=""></option>
+                                        <option value="1">Alto flujo</option>
+                                        <option value="2">Bajo flujo</option>
+                                    </select>
+                                </div>
                                 <div class="col-md-4 form-group">
                                     <label>Cumple con los criterios de aislamiento en domicilio</label>
                                     <select class="custom-select" id="cumple_criterio">

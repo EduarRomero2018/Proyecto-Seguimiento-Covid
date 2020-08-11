@@ -8,6 +8,14 @@ $(document).ready(function () {
         }
     })
 
+    $('#oxigeno_terapia').on('change', function () {  
+        if ($('#oxigeno_terapia').val() == 'Si') {
+            $('#div-tipo_flujo').attr('hidden', false)
+        } else {
+            $('#div-tipo_flujo').attr('hidden', true)
+        }
+    })
+
     $('select[name="sintomas"]').on('change',function(){
         let sintomas = 0
         for (const iterator of $('select[name="sintomas"]')) {
@@ -84,15 +92,21 @@ $(document).ready(function () {
         let entrega_kits = $('#entrega_kits').val()
         let fecha_entrega_kits = $('#fecha_entrega_kits').val()
         let oxigeno_terapia = $('#oxigeno_terapia').val()
+        let tipo_flujo = $('#tipo_flujo').val()
         let ambito_atencion = $('#ambito_atencion').val()
         let saturacion_oxigeno = $('#saturacion_oxigeno').val()
         let id_usuario = $('#id_usuario').val()
+
         if (fecha_sintomas == '') {
             fecha_sintomas = 'NULL'
         }
 
         if(entrega_kits == 'No'){
             fecha_entrega_kits = 'NULL'
+        }
+
+        if(oxigeno_terapia == 'No'){
+            tipo_flujo = 'NULL'
         }
         
         let datos = {
@@ -111,6 +125,7 @@ $(document).ready(function () {
             entrega_kits,
             fecha_entrega_kits,
             oxigeno_terapia,
+            tipo_flujo,
             ambito_atencion,
             saturacion_oxigeno
         }

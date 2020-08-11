@@ -27,6 +27,7 @@ try {
         $fecha_entrega_kits = null;
     }
     $oxigeno_terapia = isset($_REQUEST['oxigeno_terapia']) ? $_REQUEST['oxigeno_terapia'] : null;
+    $tipo_flujo = isset($_REQUEST['tipo_flujo']) && $_REQUEST['tipo_flujo'] != 'NULL' ? $_REQUEST['tipo_flujo'] : null;
     $ambito_atencion = $_REQUEST['ambito_atencion'];
     $saturacion_oxigeno = $_REQUEST['saturacion_oxigeno'];
     $paciente_id = $_REQUEST['paciente_id'];
@@ -50,7 +51,7 @@ try {
     }
 
 
-    $stm = $conexion->prepare("INSERT INTO seguimiento_paciente VALUES(NULL,?,NOW(),?,?,?,?,?,?,?,?,?,?,? ,?,?,?,'si',?,?)");
+    $stm = $conexion->prepare("INSERT INTO seguimiento_paciente VALUES(NULL,?,NOW(),?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,'si',?,?)");
     $stm->execute(array(
         $complemento_seg_id,
         $asintomatico,
@@ -65,6 +66,7 @@ try {
         $entrega_kits,
         $fecha_entrega_kits,
         $oxigeno_terapia,
+        $tipo_flujo,
         $ambito_atencion,
         $saturacion_oxigeno,
         $id_usuario,
