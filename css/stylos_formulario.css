@@ -361,14 +361,14 @@ body h4 {
 	box-sizing: border-box;
 }
 
-a {
+/* a {
 	text-decoration: none;
 	color:#B8711B;
 }
 
 a:hover {
 	text-decoration: underline;
-}
+} */
 
 .contenedor {
 	max-width: 500px;
