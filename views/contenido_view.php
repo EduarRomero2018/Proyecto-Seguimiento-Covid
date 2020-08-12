@@ -36,12 +36,12 @@
                         PROCESOS
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <?php if(isset($_SESSION) && $_SESSION['role'] == 'Auxiliar de programacion' || $_SESSION['role'] == 'Coordinador covid'): ?>
+                        <?php if (isset($_SESSION) && $_SESSION['role'] == 'Auxiliar de programacion' || $_SESSION['role'] == 'Coordinador covid') : ?>
                             <a href="getform1.php" class="dropdown-item" href="#">Ingresar Pacientes</a>
                             <!--<a class="dropdown-item" href="#">Ingresar Datos Personales</a>-->
                             <a href="progmuestra.php" class="dropdown-item" href="#">Programar Primera Toma Muestra</a>
                         <?php endif ?>
-                        <?php if(isset($_SESSION) && $_SESSION['role'] == 'Auxiliar de seguimiento' || $_SESSION['role'] == 'Coordinador covid'): ?>
+                        <?php if (isset($_SESSION) && $_SESSION['role'] == 'Auxiliar de seguimiento' || $_SESSION['role'] == 'Coordinador covid') : ?>
                             <!--<a class="dropdown-item" href="#">Programacion de Toma de Muestra</a>-->
                             <a href="segto_evolucion.php" class="dropdown-item" href="#">Ingresar Seguimiento Diario Por
                                 Paciente</a>
@@ -49,7 +49,7 @@
                             <a href="historial_paciente_fecha.php" class="dropdown-item">Ver Seguimiento Paciente</a>
                             <!-- <a href="toma_muestra_control.php" class="dropdown-item">Programar Segunda Toma Muestra (Control)</a> -->
                         <?php endif ?>
-                        <?php if(isset($_SESSION) && $_SESSION['role'] == 'Digitador' || $_SESSION['role'] == 'Coordinador covid'): ?>
+                        <?php if (isset($_SESSION) && $_SESSION['role'] == 'Digitador' || $_SESSION['role'] == 'Coordinador covid') : ?>
                             <a href="soporte_resultado.php" class="dropdown-item">Ingresar Soporte Resultado</a>
                         <?php endif ?>
                     </div>
@@ -59,17 +59,17 @@
 
 
                 <li class="nav-item dropdown">
-                    <?php if(isset($_SESSION) && $_SESSION['role'] == 'Digitador' || $_SESSION['role'] == 'Coordinador covid' || $_SESSION['role'] == 'Auxiliar de programacion'): ?>
+                    <?php if (isset($_SESSION) && $_SESSION['role'] == 'Digitador' || $_SESSION['role'] == 'Coordinador covid' || $_SESSION['role'] == 'Auxiliar de programacion') : ?>
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             INGRESAR RESULTADOS
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <?php if(isset($_SESSION) && $_SESSION['role'] == 'Auxiliar de programacion' || $_SESSION['role'] == 'Coordinador covid'): ?>
+                            <?php if (isset($_SESSION) && $_SESSION['role'] == 'Auxiliar de programacion' || $_SESSION['role'] == 'Coordinador covid') : ?>
                                 <a class="nav-link " href="#" id="navbarDropdown" data-target='#modalFechaRealizacion' role="button" data-toggle="modal" aria-haspopup="true" aria-expanded="false">
                                     Ingresar Fecha de Realizacion de la primera toma de muestra
                                 </a>
                             <?php endif ?>
-                            <?php if(isset($_SESSION) && $_SESSION['role'] == 'Digitador' || $_SESSION['role'] == 'Coordinador covid'): ?>
+                            <?php if (isset($_SESSION) && $_SESSION['role'] == 'Digitador' || $_SESSION['role'] == 'Coordinador covid') : ?>
                                 <a class="nav-link " href="#" id="navbarDropdown" data-target='#exampleModal' role="button" data-toggle="modal" aria-haspopup="true" aria-expanded="false">
                                     Ingresar Resultado Primera Vez
                                 </a>
@@ -92,7 +92,7 @@
                 </li>
             </ul>
             <?php if (isset($_SESSION) && $_SESSION['role'] == 'Coordinador covid') : ?>
-                <a href="asignacion2.php">
+                <a href="asignacion_pacientes.php">
                     <button class="btn btn-outline-info  my-2 my-sm-0" type="submit">
                         <i class=" fas fa-file-upload" style="font-size: 20px;"></i></button>
                 </a>
@@ -131,7 +131,8 @@
                         <hr>
                         <div class="d-flex justify-content-center">
                             <i class="fas fa-1x fa-briefcase-medical">
-                                <a href="cantidad_p_p.php" style="text-decoration: none; color: rgba(6, 62, 131, 0.9);">
+                                <a href="cantidad_p_p.php">
+                                <!-- style="text-decoration: none; color: rgba(6, 62, 131, 0.9);" -->
                                     <p class="display-1 degree" data-toggle="tooltip" data-placement="bottom" title="Presione para saber cual son los pacientes positivos"><?= $positivos ?></p>
                                 </a>
                             </i>
@@ -156,7 +157,9 @@
                         </h4>
                         <div class="d-flex justify-content-center">
                             <i class="fas fa-4x fa-syringe">
-                                <p class="display-1 degree"><?php echo $numero_conteo ?></p>
+                                <a href="ppr.php">
+                                    <p class="display-1 degree" data-toggle="tooltip" data-placement="bottom" title="Presione para ver los pacientes que estan pendientes por resultados"><?php echo $numero_conteo ?></p>
+                                </a>
                             </i>
                             <i class="fas fa-sun-o fa-5x pt-3 amber-text"></i>
                         </div>
@@ -173,7 +176,9 @@
                         <hr>
                         <div class="d-flex justify-content-center">
                             <i class="fas fa-4x fa-stethoscope">
-                                <p class="display-1 degree"><?php echo $Cantidad_Pacientes ?></p>
+                                <a href="pptm.php">
+                                    <p class="display-1 degree" data-toggle="tooltip" data-placement="bottom" title="Presione para ver estos pacientes "><?php echo $Cantidad_Pacientes ?></p>
+                                </a>
                             </i>
                             <i class="fas fa-sun-o fa-5x pt-3 amber-text"></i>
                         </div>
@@ -185,12 +190,14 @@
                 <div class="card weather-card">
                     <div class="card-body pb-3  text-center hoverable">
                         <h4 class="mb-1">
-                            <strong>Cantidad de Pacientes que estan pendientes por realizacion de toma de muestra:</strong>
+                            <strong>Cantidad de Pacientes pendientes por toma de muestra:</strong>
                             <hr>
                         </h4>
                         <div class="d-flex justify-content-center">
                             <i class="fas fa-4x fa-user-md">
-                                <p class="display-1 degree"><?php echo $Cantidad_p_p_pendiente_por_toma ?></p>
+                                <a href="pptm.php">
+                                    <p class="display-1 degree" data-toggle="tooltip" data-placement="bottom" title="Presione para saber cuales son los pacientes que estan programados"><?php echo $Cantidad_p_p_pendiente_por_toma ?></p>
+                                </a>
                             </i>
                             <i class="fas fa-sun-o fa-5x pt-3 amber-text"></i>
                         </div>
@@ -211,7 +218,9 @@
                                 <hr>
                                 <div class="d-flex justify-content-center">
                                     <i class="fas fa-4x fa-file-medical-alt">
-                                        <p class="display-1 degree"><?= $asintomaticos ?></p>
+                                    <a href="cpa.php">
+                                            <p class="display-1 degree" data-toggle="tooltip" data-placement="bottom" title="Presione para ver los pacientes Asintomaticos"><?= $asintomaticos ?></p>
+                                        </a>
                                     </i>
                                     <i class="fas fa-sun-o fa-5x pt-3 amber-text"></i>
                                 </div>
@@ -230,18 +239,61 @@
                                 <hr>
                                 <div class="d-flex justify-content-center">
                                     <i class="fas fa-4x fa-file-medical-alt">
-                                        <p class="display-1 degree"><?= $sintomaticos ?></p>
+                                        <a href="cps.php">
+                                            <p class="display-1 degree" data-toggle="tooltip" data-placement="bottom" title="Presione para ver los pacientes Sintomaticos"><?= $sintomaticos ?></p>
+                                        </a>
                                     </i>
                                     <i class="fas fa-sun-o fa-5x pt-3 amber-text"></i>
                                 </div>
-
                             </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <!-- Card -->
+                        <div class="card weather-card">
+                            <div class="card-body pb-3  text-center hoverable">
+                                <!-- Title -->
+                                <h4 class="card-title font-weight-bold">Cantidad de kits Entregados:</h4>
+                                <hr>
+                                <div class="d-flex justify-content-center">
+                                    <i class="fas fa-4x fa-medkit">
+                                    <a href="ckep.php">
+                                            <p class="display-1 degree" data-toggle="tooltip" data-placement="bottom" title="Presione para ver los pacientes a los cuales se le han entregado kit"><?= $cantidad_kits ?></p>
+                                        </a>
+                                    </i>
+                                    <i class="fas fa-sun-o fa-5x pt-3 amber-text"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--************TERCERA FILA*************-->
+            <div class="container padre">
+                <br>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <!-- Card -->
+                        <div class="card weather-card">
+                            <div class="card-body pb-3  text-center hoverable">
+                                <!-- Title -->
+                                <h4 class="card-title font-weight-bold">Cantidad de Pacientes Fallecidos:</h4>
+                                <hr>
+                                <div class="d-flex justify-content-center">
+                                    <i class="fas fa-4x fa-book-dead">
+                                        <!-- <i class="fas fa-book-dead"></i> -->
 
+                                        <p class="display-1 degree"><?php echo $pacientes_fallecidos ?></p>
+                                    </i>
+                                    <i class="fas fa-sun-o fa-5x pt-3 amber-text"></i>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <br>
     </div>
     <!--******************MODALS************************-->
     <!-- Modal -->
@@ -463,13 +515,13 @@
                 $('#error').attr('hidden', true)
             })
 
-            $('#visita_exitosa').on('change', function () {
+            $('#visita_exitosa').on('change', function() {
                 console.log(this.value);
                 if (this.value == 'NO') {
-                    $('div[name="ocultar"]').attr('hidden',true)
+                    $('div[name="ocultar"]').attr('hidden', true)
                     $('#div-motivo').attr('hidden', false)
-                }else{
-                    $('div[name="ocultar"]').attr('hidden',false)
+                } else {
+                    $('div[name="ocultar"]').attr('hidden', false)
                     $('#div-motivo').attr('hidden', true)
                 }
             })
