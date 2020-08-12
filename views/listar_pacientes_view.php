@@ -42,8 +42,11 @@
                                     <th style="background: #a9c5e7" class="text-center th-sm">Fecha de Programacion<i</th>
                                     <th style="background: #a9c5e7" class="text-center th-sm">Fecha Del Resultado</th>
                                     <th style="background: #a9c5e7" class="text-center th-sm">Resultado Primera Muestra</th>
-                                    <th style="background: #a9c5e7" class="text-center th-sm">Usuario de Creacion</th>
-                                    <th style="background: #a9c5e7" class="text-center th-sm">Seleccione si el paciente a muerto</th>
+                                    <th style="background: #a9c5e7" class="text-center th-sm">Usuario de Programacion</th>
+                                    <th style="background: #a9c5e7" class="text-center th-sm">Usuario de Seguimiento</th>
+                                    <th style="background: #a9c5e7" class="text-center th-sm">Usuario de Resultado</th>
+                                    <th style="background: #a9c5e7" class="text-center th-sm">Usuario de Notificacion</th>
+                                    <!-- <th style="background: #a9c5e7" class="text-center th-sm">Seleccione si el paciente a muerto</th> -->
                                 </tr>
                             </thead>
                             <tbody id="tbl-llamadas">
@@ -60,8 +63,11 @@
                                         <td class="text-center"><?= $key->fecha_programacion?></td>
                                         <td class="text-center"><?= $key->fecha_resultado ?></td>
                                         <td class="text-center"><?= $key->resultado ?></td>
-                                        <td class="text-center"><?= $key->nombre_apellido ?></td>
-                                        <th class="text-center"><input type="checkbox" name="inhabilitar" id="<?= $key->id ?>"></th>
+                                        <td class="text-center"><?= $key->usuario_programacion ?></td>
+                                        <td class="text-center"><?= $key->usuario_seguimiento ?></td>
+                                        <td class="text-center"><?= $key->usuario_resultado ?></td>
+                                        <td class="text-center"><?= $key->usuario_medico ?></td>
+                                        <!-- <th class="text-center"><input type="checkbox" name="inhabilitar" id="<?= $key->id ?>"></th> -->
                                     </tr>
                                 <?php $i++;
                                 endforeach; ?>
@@ -77,8 +83,11 @@
                                     <th class="text-center">Fecha de Programacion</th>
                                     <th class="text-center">Fecha Del Resultado</th>
                                     <th class="text-center">Resultado Primera Muestra</th>
-                                    <th class="text-center">Usuario de Creacion</th>
-                                    <th class="text-center">Inhabilitar paciente</th>
+                                    <th class="text-center">Usuario de Programacion</th>
+                                    <th class="text-center">Usuario de Seguimiento</th>
+                                    <th class="text-center">Usuario de Resultado</th>
+                                    <th class="text-center">Usuario de Notificacion</th>
+                                    <!-- <th class="text-center">Inhabilitar paciente</th> -->
                                 </tr>
                             </tfoot>
                         </table>

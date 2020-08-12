@@ -10,10 +10,5 @@ include 'conexion.php';
 
             $consulta->execute();
             $res = $consulta->fetchAll(PDO::FETCH_OBJ);
-            // print_r($res);
-            $Nombre_Completo = $res['Nombre_Completo'];
-            $tipo_documento = $res['tipo_documento'];
-            $edad = $res['edad'];
-            $identificacion = $res['numero_documento'];
-
+            
             require 'views/cps_view.php';
