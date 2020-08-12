@@ -323,6 +323,7 @@
                             animation: false,
                             customClass: 'animated heartBeat'
                         })
+                        console.log('datos guardados')
                         $('#tablePaciente').attr('hidden', true)
                         $('#exampleModal').modal('hide')
                         $('#tbl_paciente').attr('hidden', true)
