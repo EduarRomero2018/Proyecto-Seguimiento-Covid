@@ -58,8 +58,7 @@ $res = $consulta ->fetch();
 $pacientes_fallecidos = $res['pacientes_fallecidos'];
 // print_r($cantidad_kits);
 
-
-  // cantidad de pacientes programados pero que estan pendientes por resultados
+  // cantidad de pacientes que tienen fecha de programacion pero les hace falta la toma de muestra
   $consulta = $conexion->prepare("SELECT COUNT(*) AS Cantidad_p_p_pendiente_por_toma
   FROM prog_toma_muestra
   WHERE fecha_programacion IS NOT NULL
