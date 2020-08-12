@@ -15,7 +15,7 @@
   <body>
     <div class="grid-container general">
       <div class="row small-text-center medium-text-center large-text-center">
-            <h1 class="subheader">Proyecto (covid-19)</h1>
+            <h1 class="subheader" style="color: blanchedalmond;">Proyecto (covid-19)</h1>
         <div class="grid-x">
           <!-- primera columna-->
            <div class="cell columns small-12 medium-6 large-6 columna1 ">
@@ -70,24 +70,6 @@
         </div>
       </div>
     </div>
-    <!--*************************CUADRO DE INFERIOR********************-->
-    <div class="grid-container">
-        <div class="row small-text-center medium-text-center large-text-center">
-          <div class="grid-x">
-            <div class="cell columns  small-12 medium-12 large-8 large-offset-2 ">
-                <div class="callout informacion" data-closable="slide-out-left">
-                    <h4 class="subheader">Programacion de Toma de Muestras (covid-19) 2020</h4>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                    when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-                    It has survived not only five centuries, but also the leap into electronic typesetting,
-                    remaining essentially unchanged. It was popularised in the 1960s with the release
-                    of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop
-                    publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-            </div>
-          </div>
-        </div>
-      </div>
     <script src="js/vendor/jquery.js"></script>
     <script src="js/vendor/what-input.js"></script>
     <script src="js/vendor/foundation.js"></script>
