@@ -253,7 +253,7 @@
                         <div class="card weather-card">
                             <div class="card-body pb-3  text-center hoverable">
                                 <!-- Title -->
-                                <h4 class="card-title font-weight-bold">Cantidad de kits Entregados a pacientes:</h4>
+                                <h4 class="card-title font-weight-bold">Cantidad de kit Entregados a pacientes:</h4>
                                 <hr>
                                 <div class="d-flex justify-content-center">
                                     <i class="fas fa-4x fa-medkit">

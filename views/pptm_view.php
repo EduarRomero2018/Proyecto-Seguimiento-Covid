@@ -22,7 +22,7 @@
         <?php if (isset($res) != '') : ?>
             <div class="card shadow mt-5">
                 <div class="card-body">
-                <h4>Pacientes Programados</h4>
+                <h4>Pacientes Pendientes por programacion de toma de muestra</h4>
                     <div class class="col text-left">
                         <a href="index.php">
                             <button type="button" class="btn btn-outline-secondary btn-lg"> <i class="fas fa-chevron-left"></i></button>
