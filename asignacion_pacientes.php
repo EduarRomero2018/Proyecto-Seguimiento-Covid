@@ -1,35 +1,272 @@
 <?php
 
+// require_once 'conexion.php';
+
+// $stm = $conexion->prepare("SELECT id, nombre_apellido, roles FROM usuarios WHERE nombre_apellido != 'sistemas'");
+// $stm->execute();
+
+// $usuarios = $stm->fetchAll(PDO::FETCH_OBJ);
+
+// $stm = $conexion->prepare("SELECT * FROM pacientes WHERE id_usuario IS NULL");
+// $stm->execute();
+
+// $cantidad_pacientes = $stm->rowCount();
+
+// if(isset($_REQUEST['asignar'])){
+//     $id_usuario = $_REQUEST['id_usuario'];
+//     $cantidad = $_REQUEST['cantidad_pacientes'];
+
+//     $stm = $conexion->prepare("SELECT id FROM pacientes WHERE id_usuario IS NULL LIMIT $cantidad");
+//     $stm->execute();
+
+//     foreach($stm->fetchAll(PDO::FETCH_OBJ) as $paciente){
+//         $stm = $conexion->prepare("UPDATE pacientes SET id_usuario = ? WHERE id = $paciente->id");
+//         $stm->execute(array($id_usuario));
+
+//         if($stm->errorInfo()[2] != NULL){
+//             exit(print_r($stm->errorInfo()));
+//         }
+//     }
+// }
+
+// require 'views/asignacion_pacientes_view.php';
+
 require_once 'conexion.php';
 
-$stm = $conexion->prepare("SELECT id, nombre_apellido, roles FROM usuarios WHERE nombre_apellido != 'sistemas'");
-$stm->execute();
+/** asignacion de pacientes a usuarios */
 
-$usuarios = $stm->fetchAll(PDO::FETCH_OBJ);
+if (isset($_REQUEST['proceso'])) {
 
-$stm = $conexion->prepare("SELECT * FROM pacientes WHERE id_usuario IS NULL");
-$stm->execute();
-
-$cantidad_pacientes = $stm->rowCount();
-
-if(isset($_REQUEST['asignar'])){
+    $proceso = $_REQUEST['proceso'];
+    $cantidad_pacientes = $_REQUEST['cantidad_pacientes'];
     $id_usuario = $_REQUEST['id_usuario'];
-    $cantidad = $_REQUEST['cantidad_pacientes'];
+    switch ($proceso) {
+        case 'programacion':
 
-    $stm = $conexion->prepare("SELECT id FROM pacientes WHERE id_usuario IS NULL LIMIT $cantidad");
-    $stm->execute();
+            $pacientes = "SELECT id FROM pacientes WHERE id_usuario_programacion IS NULL LIMIT $cantidad_pacientes";
 
-    foreach($stm->fetchAll(PDO::FETCH_OBJ) as $paciente){
-        $stm = $conexion->prepare("UPDATE pacientes SET id_usuario = ? WHERE id = $paciente->id");
-        $stm->execute(array($id_usuario));
+            $stm = $conexion->prepare($pacientes);
+            $stm->execute();
 
-        if($stm->errorInfo()[2] != NULL){
-            exit(print_r($stm->errorInfo()));
-        }
+            $result_pacientes = $stm->fetchAll(PDO::FETCH_OBJ);
+
+            foreach($result_pacientes as $paciente){
+                $stm = $conexion->prepare("UPDATE pacientes SET id_usuario = ?, id_usuario_programacion = ? WHERE id = ?");
+                $stm->execute(array(
+                    $id_usuario,
+                    $id_usuario,
+                    $paciente->id
+                ));
+            }
+
+            $pacientes = "SELECT * FROM pacientes WHERE id_usuario_programacion IS NULL";
+
+            $stm = $conexion->prepare($pacientes);
+            $stm->execute();
+
+            die(json_encode(array('ok',$stm->rowCount())));
+
+        break;
+        
+        case 'seguimiento':
+
+            $pacientes = "SELECT id FROM pacientes WHERE id_usuario_seguimiento IS NULL LIMIT $cantidad_pacientes";
+
+            $stm = $conexion->prepare($pacientes);
+            $stm->execute();
+
+            $result_pacientes = $stm->fetchAll(PDO::FETCH_OBJ);
+
+            foreach($result_pacientes as $paciente){
+                $stm = $conexion->prepare("UPDATE pacientes SET id_usuario_seguimiento = ? WHERE id = ?");
+                $stm->execute(array(
+                    $id_usuario,
+                    $paciente->id
+                ));
+            }
+
+            $pacientes = "SELECT * FROM pacientes WHERE id_usuario_seguimiento IS NULL";
+
+            $stm = $conexion->prepare($pacientes);
+            $stm->execute();
+
+            die(json_encode(array('ok',$stm->rowCount())));
+            
+        break;
+
+        case 'resultado':
+
+            $pacientes = "SELECT id FROM pacientes WHERE id_usuario_resultado IS NULL LIMIT $cantidad_pacientes";
+
+            $stm = $conexion->prepare($pacientes);
+            $stm->execute();
+
+            $result_pacientes = $stm->fetchAll(PDO::FETCH_OBJ);
+
+            foreach($result_pacientes as $paciente){
+                $stm = $conexion->prepare("UPDATE pacientes SET id_usuario_resultado = ? WHERE id = ?");
+                $stm->execute(array(
+                    $id_usuario,
+                    $paciente->id
+                ));
+            }
+
+            $pacientes = "SELECT * FROM pacientes WHERE id_usuario_resultado IS NULL";
+
+            $stm = $conexion->prepare($pacientes);
+            $stm->execute();
+
+            die(json_encode(array('ok',$stm->rowCount())));
+
+        break;
+
+        case 'medico':
+            
+            $pacientes = "SELECT id FROM pacientes WHERE id_usuario_notificacion IS NULL LIMIT $cantidad_pacientes";
+
+            $stm = $conexion->prepare($pacientes);
+            $stm->execute();
+
+            $result_pacientes = $stm->fetchAll(PDO::FETCH_OBJ);
+
+            foreach($result_pacientes as $paciente){
+                $stm = $conexion->prepare("UPDATE pacientes SET id_usuario_notificacion = ? WHERE id = ?");
+                $stm->execute(array(
+                    $id_usuario,
+                    $paciente->id
+                ));
+            }
+
+            $pacientes = "SELECT * FROM pacientes WHERE id_usuario_notificacion IS NULL";
+
+            $stm = $conexion->prepare($pacientes);
+            $stm->execute();
+
+            die(json_encode(array('ok',$stm->rowCount())));
+
+        break;
     }
 }
 
-require 'views/asignacion_pacientes_view.php';
+/** datos para la asignacion de pacientes */
+
+if(isset($_REQUEST['asignacion']))
+{
+    $proceso = $_REQUEST['asignacion'];
+    switch ($proceso) {
+        case 'programacion':
+
+            $usuarios = "SELECT * FROM usuarios WHERE roles = 'Auxiliar de programacion'";
+            $pacientes = "SELECT COUNT(*) as cantidad_pacientes FROM pacientes WHERE id_usuario_programacion IS NULL";
+
+            $stm = $conexion->prepare($usuarios);
+            $stm->execute();
+
+            if($stm->rowCount() == 0){
+                die(json_encode(array('!found_usuarios',null,null)));
+            }
+
+            $result_usuarios = $stm->fetchAll(PDO::FETCH_OBJ);
+
+            $stm = $conexion->prepare($pacientes);
+            $stm->execute();
+
+            if($stm->rowCount() == 0){
+                die(json_encode(array('!found',null,null)));
+            }
+
+            $result_pacientes = $stm->fetchAll(PDO::FETCH_OBJ);
+
+            die(json_encode(array('ok',$result_pacientes,$result_usuarios)));
+
+        break;
+        
+        case 'seguimiento':
+
+            $usuarios = "SELECT * FROM usuarios WHERE roles = 'Auxiliar de seguimiento'";
+            $pacientes = "SELECT COUNT(*) as cantidad_pacientes FROM pacientes WHERE id_usuario_seguimiento IS NULL";
+
+            $stm = $conexion->prepare($usuarios);
+            $stm->execute();
+
+            if($stm->rowCount() == 0){
+                die(json_encode(array('!found_usuarios',null,null)));
+            }
+
+            $result_usuarios = $stm->fetchAll(PDO::FETCH_OBJ);
+
+            $stm = $conexion->prepare($pacientes);
+            $stm->execute();
+
+            if($stm->rowCount() == 0){
+                die(json_encode(array('!found',null,null)));
+            }
+
+            $result_pacientes = $stm->fetchAll(PDO::FETCH_OBJ);
+
+            die(json_encode(array('ok',$result_pacientes,$result_usuarios)));
+            
+        break;
+
+        case 'resultado':
+
+            $usuarios = "SELECT * FROM usuarios WHERE roles = 'Digitador'";
+            $pacientes = "SELECT COUNT(*) as cantidad_pacientes FROM pacientes WHERE id_usuario_resultado IS NULL";
+
+            $stm = $conexion->prepare($usuarios);
+            $stm->execute();
+
+            if($stm->rowCount() == 0){
+                die(json_encode(array('!found_usuarios',null,null)));
+            }
+
+            $result_usuarios = $stm->fetchAll(PDO::FETCH_OBJ);
+
+            $stm = $conexion->prepare($pacientes);
+            $stm->execute();
+
+            if($stm->rowCount() == 0){
+                die(json_encode(array('!found',null,null)));
+            }
+
+            $result_pacientes = $stm->fetchAll(PDO::FETCH_OBJ);
+
+            die(json_encode(array('ok',$result_pacientes,$result_usuarios)));
+
+        break;
+
+        case 'medico':
+            
+            $usuarios = "SELECT * FROM usuarios WHERE roles = 'Medico'";
+            $pacientes = "SELECT COUNT(*) as cantidad_pacientes FROM pacientes WHERE id_usuario_notificacion IS NULL";
+
+            $stm = $conexion->prepare($usuarios);
+            $stm->execute();
+
+            if($stm->rowCount() == 0){
+                die(json_encode(array('!found_usuarios',null,null)));
+            }
+
+            $result_usuarios = $stm->fetchAll(PDO::FETCH_OBJ);
+
+            $stm = $conexion->prepare($pacientes);
+            $stm->execute();
+
+            if($stm->rowCount() == 0){
+                die(json_encode(array('!found',null,null)));
+            }
+
+            $result_pacientes = $stm->fetchAll(PDO::FETCH_OBJ);
+
+            die(json_encode(array('ok',$result_pacientes,$result_usuarios)));
+
+        break;
+    }
+}
+else 
+{
+    require_once 'views/asignacion2_view.php';
+}
 
 
 /* 
