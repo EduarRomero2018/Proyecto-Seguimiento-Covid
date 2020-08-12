@@ -148,124 +148,127 @@
     <!-- Card -->
     <div class="container padre">
         <div class="row">
-            <div style="height: 100%;" class="col-sm-4 text-center ">
-                <div class="card weather-card">
-                    <div class="card-body pb-3  text-center hoverable">
-                        <h4 class="mb-1">
-                            <strong>Pacientes que estan Pendientes Por Resultados:</strong>
+            <?php if(isset($_SESSION) && $_SESSION['role'] == 'Digitador' || $_SESSION['role'] == 'Coordinador covid'): ?>
+                <div style="height: 100%;" class="col-sm-4 text-center ">
+                    <div class="card weather-card">
+                        <div class="card-body pb-3  text-center hoverable">
+                            <h4 class="mb-1">
+                                <strong>Pacientes que estan Pendientes Por Resultados:</strong>
+                                <hr>
+                            </h4>
+                            <div class="d-flex justify-content-center">
+                                <i class="fas fa-4x fa-syringe">
+                                    <a href="ppr.php">
+                                        <p class="display-1 degree" data-toggle="tooltip" data-placement="bottom" title="Presione para ver los pacientes que estan pendientes por resultados"><?php echo $numero_conteo ?></p>
+                                    </a>
+                                </i>
+                                <i class="fas fa-sun-o fa-5x pt-3 amber-text"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php endif ?>
+            <?php if(isset($_SESSION) && $_SESSION['role'] == 'Auxiliar de programacion' || $_SESSION['role'] == 'Coordinador covid'): ?>
+                <div class="col-sm-4">
+                    <!-- Card -->
+                    <div class="card weather-card">
+                        <div class="card-body pb-3  text-center hoverable">
+                            <!-- Title -->
+                            <h4 class="card-title font-weight-bold">Pacientes que aun no se le ha programado la Toma de Muestra</h4>
                             <hr>
-                        </h4>
-                        <div class="d-flex justify-content-center">
-                            <i class="fas fa-4x fa-syringe">
-                                <a href="ppr.php">
-                                    <p class="display-1 degree" data-toggle="tooltip" data-placement="bottom" title="Presione para ver los pacientes que estan pendientes por resultados"><?php echo $numero_conteo ?></p>
-                                </a>
-                            </i>
-                            <i class="fas fa-sun-o fa-5x pt-3 amber-text"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                            <div class="d-flex justify-content-center">
+                                <i class="fas fa-4x fa-stethoscope">
+                                    <a href="pptm.php">
+                                        <p class="display-1 degree" data-toggle="tooltip" data-placement="bottom" title="Presione para ver estos pacientes "><?php echo $Cantidad_Pacientes ?></p>
+                                    </a>
+                                </i>
+                                <i class="fas fa-sun-o fa-5x pt-3 amber-text"></i>
+                            </div>
 
-            <div class="col-sm-4">
-                <!-- Card -->
-                <div class="card weather-card">
-                    <div class="card-body pb-3  text-center hoverable">
-                        <!-- Title -->
-                        <h4 class="card-title font-weight-bold">Pacientes que aun no se le ha programado la Toma de Muestra</h4>
-                        <hr>
-                        <div class="d-flex justify-content-center">
-                            <i class="fas fa-4x fa-stethoscope">
-                                <a href="pptm.php">
-                                    <p class="display-1 degree" data-toggle="tooltip" data-placement="bottom" title="Presione para ver estos pacientes "><?php echo $Cantidad_Pacientes ?></p>
-                                </a>
-                            </i>
-                            <i class="fas fa-sun-o fa-5x pt-3 amber-text"></i>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <div style="height: 100%;" class="col-sm-4 text-center ">
-                <div class="card weather-card">
-                    <div class="card-body pb-3  text-center hoverable">
-                        <h4 class="mb-1">
-                            <strong>Cantidad de Pacientes pendientes por toma de muestra:</strong>
-                            <hr>
-                        </h4>
-                        <div class="d-flex justify-content-center">
-                            <i class="fas fa-4x fa-user-md">
-                                <a href="cpp.php">
-                                    <p class="display-1 degree" data-toggle="tooltip" data-placement="bottom" title="Presione para saber cuales son los pacientes pendientes por toma de muestra"><?php echo $Cantidad_p_p_pendiente_por_toma ?></p>
-                                </a>
-                            </i>
-                            <i class="fas fa-sun-o fa-5x pt-3 amber-text"></i>
                         </div>
                     </div>
                 </div>
-            </div>
+            <?php endif ?>
+            <?php if(isset($_SESSION) && $_SESSION['role'] == 'Auxiliar de programacion' || $_SESSION['role'] == 'Coordinador covid'): ?>
+                <div style="height: 100%;" class="col-sm-4 text-center ">
+                    <div class="card weather-card">
+                        <div class="card-body pb-3  text-center hoverable">
+                            <h4 class="mb-1">
+                                <strong>Cantidad de Pacientes pendientes por toma de muestra:</strong>
+                                <hr>
+                            </h4>
+                            <div class="d-flex justify-content-center">
+                                <i class="fas fa-4x fa-user-md">
+                                    <a href="cpp.php">
+                                        <p class="display-1 degree" data-toggle="tooltip" data-placement="bottom" title="Presione para saber cuales son los pacientes pendientes por toma de muestra"><?php echo $Cantidad_p_p_pendiente_por_toma ?></p>
+                                    </a>
+                                </i>
+                                <i class="fas fa-sun-o fa-5x pt-3 amber-text"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php endif ?>
             <!--************SEGUNDA FILA*************-->
             <div class="container padre">
                 <br>
                 <div class="row">
-                    <div class="col-sm-4">
-                        <!-- Card -->
-                        <div class="card weather-card">
-                            <div class="card-body pb-3  text-center hoverable">
-
-                                <!-- Title -->
-                                <h4 class="card-title font-weight-bold">Cantidad de Pacientes Asintomaticos:</h4>
-                                <hr>
-                                <div class="d-flex justify-content-center">
-                                    <i class="fas fa-4x fa-file-medical-alt">
-                                    <a href="cpa.php">
-                                            <p class="display-1 degree" data-toggle="tooltip" data-placement="bottom" title="Presione para ver los pacientes Asintomaticos"><?= $asintomaticos ?></p>
-                                        </a>
-                                    </i>
-                                    <i class="fas fa-sun-o fa-5x pt-3 amber-text"></i>
-                                </div>
-
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <!-- Card -->
-                        <div class="card weather-card">
-                            <div class="card-body pb-3  text-center hoverable">
-
-                                <!-- Title -->
-                                <h4 class="card-title font-weight-bold">Cantidad de Pacientes Sintomaticos:</h4>
-                                <hr>
-                                <div class="d-flex justify-content-center">
-                                    <i class="fas fa-4x fa-file-medical-alt">
-                                        <a href="cps.php">
-                                            <p class="display-1 degree" data-toggle="tooltip" data-placement="bottom" title="Presione para ver los pacientes Sintomaticos"><?= $sintomaticos ?></p>
-                                        </a>
-                                    </i>
-                                    <i class="fas fa-sun-o fa-5x pt-3 amber-text"></i>
+                    <?php if(isset($_SESSION) && $_SESSION['role'] == 'Digitador' || $_SESSION['role'] == 'Coordinador covid'): ?>
+                        <div class="col-sm-4">
+                            <div class="card weather-card">
+                                <div class="card-body pb-3  text-center hoverable">
+                                    <h4 class="card-title font-weight-bold">Cantidad de Pacientes Asintomaticos:</h4>
+                                    <hr>
+                                    <div class="d-flex justify-content-center">
+                                        <i class="fas fa-4x fa-file-medical-alt">
+                                        <a href="cpa.php">
+                                                <p class="display-1 degree" data-toggle="tooltip" data-placement="bottom" title="Presione para ver los pacientes Asintomaticos"><?= $asintomaticos ?></p>
+                                            </a>
+                                        </i>
+                                        <i class="fas fa-sun-o fa-5x pt-3 amber-text"></i>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <!-- Card -->
-                        <div class="card weather-card">
-                            <div class="card-body pb-3  text-center hoverable">
-                                <!-- Title -->
-                                <h4 class="card-title font-weight-bold">Cantidad de kit Entregados a pacientes:</h4>
-                                <hr>
-                                <div class="d-flex justify-content-center">
-                                    <i class="fas fa-4x fa-medkit">
-                                    <a href="ckep.php">
-                                            <p class="display-1 degree" data-toggle="tooltip" data-placement="bottom" title="Presione para ver los pacientes a los cuales se le han entregado kit"><?= $cantidad_kits ?></p>
-                                        </a>
-                                    </i>
-                                    <i class="fas fa-sun-o fa-5x pt-3 amber-text"></i>
+                    
+                        <div class="col-sm-4">
+                            <!-- Card -->
+                            <div class="card weather-card">
+                                <div class="card-body pb-3  text-center hoverable">
+
+                                    <!-- Title -->
+                                    <h4 class="card-title font-weight-bold">Cantidad de Pacientes Sintomaticos:</h4>
+                                    <hr>
+                                    <div class="d-flex justify-content-center">
+                                        <i class="fas fa-4x fa-file-medical-alt">
+                                            <a href="cps.php">
+                                                <p class="display-1 degree" data-toggle="tooltip" data-placement="bottom" title="Presione para ver los pacientes Sintomaticos"><?= $sintomaticos ?></p>
+                                            </a>
+                                        </i>
+                                        <i class="fas fa-sun-o fa-5x pt-3 amber-text"></i>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                        <div class="col-sm-4">
+                            <!-- Card -->
+                            <div class="card weather-card">
+                                <div class="card-body pb-3  text-center hoverable">
+                                    <!-- Title -->
+                                    <h4 class="card-title font-weight-bold">Cantidad de kit Entregados a pacientes:</h4>
+                                    <hr>
+                                    <div class="d-flex justify-content-center">
+                                        <i class="fas fa-4x fa-medkit">
+                                        <a href="ckep.php">
+                                                <p class="display-1 degree" data-toggle="tooltip" data-placement="bottom" title="Presione para ver los pacientes a los cuales se le han entregado kit"><?= $cantidad_kits ?></p>
+                                            </a>
+                                        </i>
+                                        <i class="fas fa-sun-o fa-5x pt-3 amber-text"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endif ?>
                 </div>
             </div>
             <!--************TERCERA FILA*************-->

@@ -1,10 +1,33 @@
 <?php
 include 'conexion.php';
 $id = $_SESSION['id'];
+switch ($_SESSION['role']) {
+  case 'Coordinador covid':
+      $filtro = "";
+      break;
+  
+  case 'Auxiliar de programacion':
+      $id_session = $_SESSION['id'];
+      $filtro = "AND id_usuario = $id_session";
+      break;
+  case 'Auxiliar de seguimiento':
+      $id_session = $_SESSION['id'];
+      $filtro = "AND id_usuario_seguimiento = $id_session";
+      break;
+  case 'Digitador':
+      $id_session = $_SESSION['id'];
+      $filtro = "AND id_usuario_resultado = $id_session";
+      break;
+  case 'Medico':
+      $id_session = $_SESSION['id'];
+      $filtro = "AND id_usuario_notificacion = $id_session AND prog_toma_muestra.resultado = 1";
+      break;
+}
 // pacientes pendientes por resultados
 $consulta = $conexion->prepare("SELECT COUNT(*) AS Numero_Pacientes
 FROM prog_toma_muestra
-WHERE resultado = 'Pendiente'");
+LEFT JOIN pacientes ON pacientes.id = prog_toma_muestra.pacientes_id
+WHERE resultado = 'Pendiente'$filtro");
 $consulta->execute();
 $res = $consulta ->fetch();
 $numero_conteo = $res['Numero_Pacientes'];
@@ -14,7 +37,7 @@ $numero_conteo = $res['Numero_Pacientes'];
 $consulta = $conexion->prepare("SELECT COUNT(*) AS Cantidad_Pacientes
 FROM pacientes
 WHERE id NOT IN
-(SELECT pacientes_id FROM prog_toma_muestra)");
+(SELECT pacientes_id FROM prog_toma_muestra) $filtro");
 $consulta->execute();
 $res = $consulta ->fetch();
 $Cantidad_Pacientes = $res['Cantidad_Pacientes'];
@@ -61,8 +84,9 @@ $pacientes_fallecidos = $res['pacientes_fallecidos'];
   // cantidad de pacientes que tienen fecha de programacion pero les hace falta la toma de muestra
   $consulta = $conexion->prepare("SELECT COUNT(*) AS Cantidad_p_p_pendiente_por_toma
   FROM prog_toma_muestra
+  LEFT JOIN pacientes ON pacientes.id = prog_toma_muestra.pacientes_id
   WHERE fecha_programacion IS NOT NULL
-  AND fecha_realizacion IS NULL");
+  AND fecha_realizacion IS NULL $filtro");
   $consulta->execute();
   $res = $consulta ->fetch();
   $Cantidad_p_p_pendiente_por_toma= $res['Cantidad_p_p_pendiente_por_toma'];
