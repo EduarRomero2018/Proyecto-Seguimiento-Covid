@@ -51,7 +51,7 @@
                         <?php endif ?>
                         <?php if(isset($_SESSION) && $_SESSION['role'] == 'Digitador' || $_SESSION['role'] == 'Coordinador covid'): ?>
                             <a href="soporte_resultado.php" class="dropdown-item">Ingresar Soporte Resultado</a>
-                        <?php endif ?> 
+                        <?php endif ?>
                     </div>
                 </li>
 
@@ -464,7 +464,7 @@
             })
 
             $('#visita_exitosa').on('change', function () {
-                console.log(this.value);  
+                console.log(this.value);
                 if (this.value == 'NO') {
                     $('div[name="ocultar"]').attr('hidden',true)
                     $('#div-motivo').attr('hidden', false)
