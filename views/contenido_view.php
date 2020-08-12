@@ -195,8 +195,8 @@
                         </h4>
                         <div class="d-flex justify-content-center">
                             <i class="fas fa-4x fa-user-md">
-                                <a href="pptm.php">
-                                    <p class="display-1 degree" data-toggle="tooltip" data-placement="bottom" title="Presione para saber cuales son los pacientes que estan programados"><?php echo $Cantidad_p_p_pendiente_por_toma ?></p>
+                                <a href="cpp.php">
+                                    <p class="display-1 degree" data-toggle="tooltip" data-placement="bottom" title="Presione para saber cuales son los pacientes pendientes por toma de muestra"><?php echo $Cantidad_p_p_pendiente_por_toma ?></p>
                                 </a>
                             </i>
                             <i class="fas fa-sun-o fa-5x pt-3 amber-text"></i>
@@ -253,7 +253,7 @@
                         <div class="card weather-card">
                             <div class="card-body pb-3  text-center hoverable">
                                 <!-- Title -->
-                                <h4 class="card-title font-weight-bold">Cantidad de kits Entregados:</h4>
+                                <h4 class="card-title font-weight-bold">Cantidad de kits Entregados a pacientes:</h4>
                                 <hr>
                                 <div class="d-flex justify-content-center">
                                     <i class="fas fa-4x fa-medkit">
