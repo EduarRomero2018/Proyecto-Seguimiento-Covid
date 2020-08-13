@@ -39,6 +39,7 @@
                                     <th style="background: #ffc974" class="text-center th-sm">Edad</th>
                                     <th style="background: #ffc974" class="text-center th-sm">Identificacion</th>
                                     <th style="background: #ffc974" class="text-center th-sm">Fecha de entrega de Ktis</th>
+                                    <th style="background: #ffc974" class="text-center th-sm">Usuario de Seguimiento</th>
                                 </tr>
                             </thead>
                             <tbody id="tbl-llamadas">
@@ -52,6 +53,7 @@
                                         <td class="text-center"><?= $key->edad ?></td>
                                         <td class="text-center"><?= $key->numero_documento ?></td>
                                         <td class="text-center"><?= $key->fecha_entrega_kits ?></td>
+                                        <td class="text-center"><?= $key->Nombre_Usuario ?></td>
                                 <?php $i++;
                                 endforeach; ?>
                             </tbody>
