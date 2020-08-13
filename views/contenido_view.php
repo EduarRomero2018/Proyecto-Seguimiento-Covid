@@ -49,8 +49,8 @@
                             <a href="historial_paciente_fecha.php" class="dropdown-item">Ver Seguimiento Paciente</a>
                             <!-- <a href="toma_muestra_control.php" class="dropdown-item">Programar Segunda Toma Muestra (Control)</a> -->
                         <?php endif ?>
-                        <?php if (isset($_SESSION) && $_SESSION['role'] == 'Digitador' || $_SESSION['role'] == 'Coordinador covid') : ?>
-                            <a href="soporte_resultado.php" class="dropdown-item">Ingresar Soporte Resultado</a>
+                        <?php if (isset($_SESSION) && $_SESSION['role'] == 'Digitador' || $_SESSION['role'] == 'Coordinador covid' || $_SESSION['role'] == 'Medico') : ?>
+                            <a href="soporte_resultado.php" class="dropdown-item">Ingresar y Listar Soporte Resultado</a>
                         <?php endif ?>
                     </div>
                 </li>
@@ -118,6 +118,7 @@
                         </div>
                         <!-- <h4 style="color:#c18718">Bienvenido:</h4> -->
                         <h4 style="color:#c18718"><?php echo ucwords($_SESSION['nombre_apellido']) ?></h4>
+                        <h5 style="color:#c18718"><?php echo ucwords($_SESSION['role']) ?></h5>
                         <img class="img-thumbnail" src="img/user.png" class="img-fluid z-depth-2-half " alt="imagen de user" data-holder-rendered="true">
                         <a>
                             <div class="mask rgba-white-slight"></div>
@@ -213,7 +214,7 @@
             <div class="container padre">
                 <br>
                 <div class="row">
-                    <?php if(isset($_SESSION) && $_SESSION['role'] == 'Digitador' || $_SESSION['role'] == 'Coordinador covid'): ?>
+                    <?php if(isset($_SESSION) && $_SESSION['role'] == 'Digitador' || $_SESSION['role'] == 'Coordinador covid' || $_SESSION['role'] == 'Auxiliar de seguimiento'): ?>
                         <div class="col-sm-4">
                             <div class="card weather-card">
                                 <div class="card-body pb-3  text-center hoverable">
@@ -230,12 +231,10 @@
                                 </div>
                             </div>
                         </div>
-                    
                         <div class="col-sm-4">
                             <!-- Card -->
                             <div class="card weather-card">
                                 <div class="card-body pb-3  text-center hoverable">
-
                                     <!-- Title -->
                                     <h4 class="card-title font-weight-bold">Cantidad de Pacientes Sintomaticos:</h4>
                                     <hr>
@@ -272,6 +271,7 @@
                 </div>
             </div>
             <!--************TERCERA FILA*************-->
+            <?php if(isset($_SESSION) && $_SESSION['role'] == 'Digitador' || $_SESSION['role'] == 'Coordinador covid' || $_SESSION['role'] == 'Medico'): ?>
             <div class="container padre">
                 <br>
                 <div class="row">
@@ -294,7 +294,9 @@
                         </div>
                     </div>
                 </div>
+
             </div>
+            <?php endif ?>
         </div>
         <br>
     </div>
