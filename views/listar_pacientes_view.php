@@ -46,7 +46,9 @@
                                     <th style="background: #a9c5e7" class="text-center th-sm">Usuario de Seguimiento</th>
                                     <!-- <th style="background: #a9c5e7" class="text-center th-sm">Usuario de Resultado</th> -->
                                     <th style="background: #a9c5e7" class="text-center th-sm">Usuario de Notificacion</th>
-                                    <!-- <th style="background: #a9c5e7" class="text-center th-sm">Seleccione si el paciente a muerto</th> -->
+                                    <?php if($_SESSION['role'] == 'Medico'): ?>
+                                        <th style="background: #a9c5e7" class="text-center th-sm">Seleccione si el paciente a muerto</th>
+                                    <?php endif ?>
                                 </tr>
                             </thead>
                             <tbody id="tbl-llamadas">
@@ -67,7 +69,9 @@
                                         <td class="text-center"><?= $key->usuario_seguimiento ?></td>
                                         <!-- <td class="text-center"><?= $key->usuario_resultado ?></td> -->
                                         <td class="text-center"><?= $key->usuario_medico ?></td>
-                                        <!-- <th class="text-center"><input type="checkbox" name="inhabilitar" id="<?= $key->id ?>"></th> -->
+                                        <?php if($_SESSION['role'] == 'Medico'): ?>
+                                            <th class="text-center"><input type="checkbox" name="inhabilitar" id="<?= $key->id ?>"></th>    
+                                        <?php endif ?>
                                     </tr>
                                 <?php $i++;
                                 endforeach; ?>
@@ -81,13 +85,15 @@
                                     <th class="text-center">Telefono</th>
                                     <th class="text-center">Fecha de Creacion</th>
                                     <th class="text-center">Fecha de Programacion</th>
-                                    <th class="text-center">Fecha Del Resultado</th>
+                                    <th class="text-center">Fecha del Resultado</th>
                                     <th class="text-center">Resultado Primera Muestra</th>
                                     <th class="text-center">Usuario de Programacion</th>
                                     <th class="text-center">Usuario de Seguimiento</th>
                                     <!-- <th class="text-center">Usuario de Resultado</th> -->
                                     <th class="text-center">Usuario de Notificacion</th>
-                                    <!-- <th class="text-center">Inhabilitar paciente</th> -->
+                                    <?php if($_SESSION['role'] == 'Medico'): ?>
+                                        <th class="text-center">Inhabilitar paciente</th>
+                                    <?php endif ?>
                                 </tr>
                             </tfoot>
                         </table>

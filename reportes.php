@@ -20,6 +20,7 @@ switch ($_SESSION['role']) {
       break;
   case 'Medico':
       $id_session = $_SESSION['id'];
+      $join = "LEFT JOIN prog_toma_muestra ON prog_toma_muestra.pacientes_id = pacientes.id";
       $filtro = "AND id_usuario_notificacion = $id_session AND prog_toma_muestra.resultado = 1";
       break;
 }
@@ -36,7 +37,8 @@ $numero_conteo = $res['Numero_Pacientes'];
   // pacientes que no se le han realizado toma de muestra
 $consulta = $conexion->prepare("SELECT COUNT(*) AS Cantidad_Pacientes
 FROM pacientes
-WHERE id NOT IN
+$join
+WHERE pacientes.id NOT IN
 (SELECT pacientes_id FROM prog_toma_muestra) $filtro");
 $consulta->execute();
 $res = $consulta ->fetch();

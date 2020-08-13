@@ -11,8 +11,10 @@ if (isset($_REQUEST['guardar']) || isset($_REQUEST['listar'])) {
     $exito = '';
 
 
-    $stm = $conexion->prepare("SELECT CONCAT(primer_nombre, ' ', primer_apellido) AS 'Nombre_Completo', id
-     FROM pacientes WHERE numero_documento = ?");
+    $stm = $conexion->prepare("SELECT CONCAT(primer_nombre, ' ', primer_apellido) AS 'Nombre_Completo', pacientes.id, telefono, telefono2, prog_toma_muestra.notificado
+    FROM pacientes 
+    LEFT JOIN prog_toma_muestra ON pacientes.id = prog_toma_muestra.pacientes_id
+    WHERE numero_documento = ?");
     $stm->execute(array($documento));
 
     $res = $stm->fetch();
@@ -26,6 +28,9 @@ if (isset($_REQUEST['guardar']) || isset($_REQUEST['listar'])) {
 
         $paciente_id = $res['id'];
         $Nombre_Completo = $res['Nombre_Completo'];
+        $telefono = $res['telefono'];
+        $telefono2 = $res['telefono2'];
+        $notificado = $res['notificado'];
 
         if(isset($_REQUEST['listar'])){
             $stm = $conexion->prepare("SELECT * ,soporte_resultado.fecha_registro AS Fecha_registro

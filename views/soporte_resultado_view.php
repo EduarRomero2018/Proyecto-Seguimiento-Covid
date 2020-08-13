@@ -1,3 +1,4 @@
+<?php session_start() ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -90,6 +91,7 @@
             <div class="card shadow">
                 <div class="card-body">
                     <h3>Historial de soportes de resultado del paciente: <?= ucwords($Nombre_Completo) ?></h3>
+                    <h3>Telefono: <?= $telefono ?> <?php if($telefono2 != ''): ?>- Telefono 2: <?= $telefono2 ?><?php endif ?></h3>
                     <div class="table-wrapper-scroll-y my-custom-scrollbar table-hover">
                         <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
                         <thead>
@@ -99,6 +101,9 @@
                                     <th class="text-center th-sm">Fecha Registro<i class="text-left fas fa-sort ml-1"></i></th>
                                     <th class="text-center th-sm">Url</th>
                                     <th class="text-center th-sm">Descargar Archivo</th>
+                                    <?php if($notificado == 'NO'): ?>
+                                    <th class="text-center th-sm">Notificar paciente</th>
+                                    <?php endif ?>
                                 </tr>
                             </thead>
                             <tbody>
@@ -109,7 +114,10 @@
                                         <td id="documento"><?= $documento ?></td>
                                         <td><?= $row->Fecha_registro ?></td>
                                         <td><small class="text-muted"><?= base64_encode($row->soporte_resultado) ?></small></td>
-                                        <td class="text-center"><a name="descargar" id="<?= $row->soporte_resultado ?>" href="" class="btn btn-info btn-sm"><i style="font-size: 20px;" class="text-white fas fa-file-download"></i></a></td>
+                                        <td class="text-center"><a name="descargar" id="<?= $row->soporte_resultado ?>" href="" class="btn btn-info px-3"><i style="font-size: 30px;" class="text-white fas fa-file-download"></i></a></td>
+                                        <?php if($notificado == 'NO'): ?>
+                                        <th class="text-center"><a name="notificar"  data-toggle="modal" data-target="#modal-notificacion" class="btn btn-info px-3" id="<?= $key->id ?>"><i style="font-size: 30px;" class="fas fa-bell text-white"></i></a></th>
+                                        <?php endif ?>
                                     </tr>
                                 <?php $i = $i + 1;
                                 endforeach; ?>
@@ -121,15 +129,65 @@
                                     <th class="text-center">Fecha Registro</th>
                                     <th class="text-center">Url</th>
                                     <th class="text-center">Descargar Archivo</th>
+                                    <?php if($notificado == 'NO'): ?>
+                                    <th class="text-center">Notificar paciente</th>
+                                    <?php endif ?>
                                 </tr>
                             </tfoot>
                         </table>
                     </div>
                 </div>
             </div>
-        <legend hidden id="nombre"><?= $Nombre_Completo ?></legend>
+            <legend hidden id="nombre"><?= $Nombre_Completo ?></legend>
+            <legend hidden id="role"><?= $_SESSION['role'] ?></legend>
+            
+            <div class="modal fade" id="modal-notificacion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Notificar a un paciente</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="form-notificacion">
+                                <h5 id="text-modal"></h5>
+                                <div class="form-group">
+                                    <label>Llamada fallida</label>
+                                    <select id="llamada" class="custom-select">
+                                        <option value="">Seleccion una opcion</option>
+                                        <option value="Si">Si</option>
+                                        <option value="No">No</option>
+                                    </select>
+                                    <input type="text" id="id_usuario" value="<?= $_SESSION['id'] ?>" hidden class="form-control">
+                                    <input type="text" id="paciente_id" value="<?= $paciente_id ?>" hidden class="form-control">
+                                </div>
+                                <div class="form-group" name="hidden" hidden>
+                                    <label>Marque el numero al que se comunico</label>
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="telefono1">
+                                        <label class="custom-control-label" id="telefono1-l" for="telefono1"><?= $telefono ?></label>
+                                    </div>
+                                    <?php if($telefono2 != ''): ?>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="telefono2">
+                                            <label class="custom-control-label" id="telefono2-l" for="telefono2"><?= $telefono2 ?></label>
+                                        </div>
+                                    <?php endif ?>
+                                </div>
+                                <div name="hidden" hidden class="form-group">
+                                    <label>Motivo de la llamada fallida</label>
+                                    <textarea id="motivo" cols="30" rows="3" class="form-control" placeholder="Escirba el motivo de la llamada fallida"></textarea>
+                                </div>
+                                <a href="" name="hidden" id="notificar" class="btn btn-primary" hidden>Enviar</a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
     </div>
-<?php endif; ?>
 </body>
 <script src="js/addons/datatables.min.js"></script>
 <script src="js/tables.js"></script>
@@ -171,6 +229,91 @@
                 console.log(datos)
             })
         })
+    })
+
+    $('#llamada').on('change', function () {  
+        if (this.value == 'Si') {
+            $('div[name="hidden"]').attr('hidden', false)
+            $('a[name="hidden"]').attr('hidden', false)
+        } else {
+            $('div[name="hidden"]').attr('hidden', true)
+            $('a[name="hidden"]').attr('hidden', false)
+        }
+
+        if(this.value == ''){
+            $('a[name="hidden"]').attr('hidden', true)
+            
+        }
+    })
+
+    $('a[name="notificar"]').on('click', function (e) {  
+        let identificacion = this.parentElement.parentElement.children[1].innerText
+        let nombre = $('#nombre')[0].innerHTML
+
+        $('#text-modal').text(`Notificar al paciente ${nombre} - ${identificacion} de sus reslutados`)
+    })
+
+    $('#notificar').on('click', (e) => {
+        e.preventDefault()
+
+        let id_usuario = $('#id_usuario').val()
+        let paciente_id = $('#paciente_id').val()
+        let rol_usuario = $('#role')[0].innerHTML
+        let nombre_paciente = $('#nombre')[0].innerText
+        let telefono_paciente = ''
+        let telefono2_paciente = ''
+        let motivo = $('#motivo').val()
+        let llamada = $('#llamada').val()
+
+        for (let index = 1; index <= 2; index++) {
+            const element = `#telefono${index}`;
+
+            if ($(element).is(':checked') == true) {
+                if(element == '#telefono1'){
+                    telefono_paciente = $('#telefono1-l')[0].innerText
+                }else{
+                    telefono2_paciente = $('#telefono2-l')[0].innerText
+                }
+            }
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "notificar_paciente.php",
+            data: {
+                llamada,
+                paciente_id,
+                id_usuario,
+                rol_usuario,
+                nombre_paciente,
+                telefono_paciente,
+                telefono2_paciente,
+                motivo
+            },
+            success: function (response) {
+                console.log(response);
+                let res = JSON.parse(response)
+                switch (res) {
+                    case 'ok':
+                        Swal.fire(
+                            'Tarea realizada con exito!',
+                            'datos guardados',
+                            'success'
+                        )
+                        $('#modal-notificacion').modal('hide')
+                        $('#form-notificacion')[0].reset()
+                        break;
+                
+                    default:
+                        Swal.fire(
+                            'Error!',
+                            'Ha ocurrido un error al momento de realizar la tarea',
+                            'error'
+                        )
+                        break;
+                }
+            }
+        });
     })
 </script>
 
