@@ -28,16 +28,22 @@
                             <label>Ingrese el documento de Paciente</label>
                             <input class="form-control" type="text" name="documento">
                         </div>
-                        <div class="form-group">
-                            <label>Seleccionar PDF</label>
-                            <input type="file" accept="" name="soporte">
-                        </div>
+                        <?php if (isset($_SESSION) && $_SESSION['role'] != 'Medico') : ?>
+                            <div class="form-group">
+                                <label>Seleccionar PDF</label>
+                                <input type="file" accept="" name="soporte">
+                            </div>
+                        <?php endif ?>
+
                         <div class="row">
+
                             <div class="col-md-6">
-                                <input class="btn btn-success btn-block" type="submit" name="listar" value="listar">
+                            <?php if (isset($_SESSION) && $_SESSION['role'] != 'Medico') : ?>
+                                <input class="btn btn-primary btn-block" type="submit" name="guardar" value="Subir">
+                                <?php endif ?>
                             </div>
                             <div class="col-md-6">
-                                <input class="btn btn-primary btn-block" type="submit" name="guardar" value="Subir">
+                            <input class="btn btn-success btn-block" type="submit" name="listar" value="listar">
                             </div>
                         </div>
                         <br>
