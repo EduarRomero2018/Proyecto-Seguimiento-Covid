@@ -67,7 +67,7 @@ if (isset($_REQUEST['proceso'])) {
             die(json_encode(array('ok',$stm->rowCount())));
 
         break;
-        
+
         case 'seguimiento':
 
             $pacientes = "SELECT id FROM pacientes WHERE id_usuario_seguimiento IS NULL LIMIT $cantidad_pacientes";
@@ -91,7 +91,7 @@ if (isset($_REQUEST['proceso'])) {
             $stm->execute();
 
             die(json_encode(array('ok',$stm->rowCount())));
-            
+
         break;
 
         case 'resultado':
@@ -121,7 +121,7 @@ if (isset($_REQUEST['proceso'])) {
         break;
 
         case 'medico':
-            
+
             $pacientes = "SELECT id FROM pacientes WHERE id_usuario_notificacion IS NULL LIMIT $cantidad_pacientes";
 
             $stm = $conexion->prepare($pacientes);
@@ -180,7 +180,7 @@ if(isset($_REQUEST['asignacion']))
             die(json_encode(array('ok',$result_pacientes,$result_usuarios)));
 
         break;
-        
+
         case 'seguimiento':
 
             $usuarios = "SELECT * FROM usuarios WHERE roles = 'Auxiliar de seguimiento'";
@@ -205,38 +205,38 @@ if(isset($_REQUEST['asignacion']))
             $result_pacientes = $stm->fetchAll(PDO::FETCH_OBJ);
 
             die(json_encode(array('ok',$result_pacientes,$result_usuarios)));
-            
-        break;
-
-        case 'resultado':
-
-            $usuarios = "SELECT * FROM usuarios WHERE roles = 'Digitador'";
-            $pacientes = "SELECT COUNT(*) as cantidad_pacientes FROM pacientes WHERE id_usuario_resultado IS NULL";
-
-            $stm = $conexion->prepare($usuarios);
-            $stm->execute();
-
-            if($stm->rowCount() == 0){
-                die(json_encode(array('!found_usuarios',null,null)));
-            }
-
-            $result_usuarios = $stm->fetchAll(PDO::FETCH_OBJ);
-
-            $stm = $conexion->prepare($pacientes);
-            $stm->execute();
-
-            if($stm->rowCount() == 0){
-                die(json_encode(array('!found',null,null)));
-            }
-
-            $result_pacientes = $stm->fetchAll(PDO::FETCH_OBJ);
-
-            die(json_encode(array('ok',$result_pacientes,$result_usuarios)));
 
         break;
+
+        // case 'resultado':
+
+        //     $usuarios = "SELECT * FROM usuarios WHERE roles = 'Digitador'";
+        //     $pacientes = "SELECT COUNT(*) as cantidad_pacientes FROM pacientes WHERE id_usuario_resultado IS NULL";
+
+        //     $stm = $conexion->prepare($usuarios);
+        //     $stm->execute();
+
+        //     if($stm->rowCount() == 0){
+        //         die(json_encode(array('!found_usuarios',null,null)));
+        //     }
+
+        //     $result_usuarios = $stm->fetchAll(PDO::FETCH_OBJ);
+
+        //     $stm = $conexion->prepare($pacientes);
+        //     $stm->execute();
+
+        //     if($stm->rowCount() == 0){
+        //         die(json_encode(array('!found',null,null)));
+        //     }
+
+        //     $result_pacientes = $stm->fetchAll(PDO::FETCH_OBJ);
+
+        //     die(json_encode(array('ok',$result_pacientes,$result_usuarios)));
+
+        // break;
 
         case 'medico':
-            
+
             $usuarios = "SELECT * FROM usuarios WHERE roles = 'Medico'";
             $pacientes = "SELECT COUNT(*) as cantidad_pacientes FROM pacientes WHERE id_usuario_notificacion IS NULL";
 
@@ -263,12 +263,12 @@ if(isset($_REQUEST['asignacion']))
         break;
     }
 }
-else 
+else
 {
     require_once 'views/asignacion2_view.php';
 }
 
 
-/* 
+/*
 Auxiliares de enfermeria => notifican a los negativo
 Medico => notifican a los positivos*/
