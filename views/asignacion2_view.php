@@ -30,7 +30,7 @@
                                 <option value="">Seleccionar proceso</option>
                                 <option value="programacion">programacion</option>
                                 <option value="seguimiento">seguimiento</option>
-                                <option value="resultado">resultado</option>
+                                <!-- <option value="resultado">resultado</option> -->
                                 <option value="medico">medico</option>
                             </select>
                         </div>
@@ -69,7 +69,7 @@
             if(this.value != ''){
                 let asignacion = this.value
 
-                $('#cantidad_pacientes').val('') 
+                $('#cantidad_pacientes').val('')
 
                 $.ajax({
                     type: "post",
@@ -90,13 +90,13 @@
                                 $('#id_usuario').html(plantilla)
 
                                 result[1].forEach(pacientes => {
-                                   $('#cantidad_pacientes').attr('max',pacientes.cantidad_pacientes) 
+                                   $('#cantidad_pacientes').attr('max',pacientes.cantidad_pacientes)
                                    $('#cantidad_pacientes_text').text(`Cantidad de pacientes sin asignar: ${pacientes.cantidad_pacientes}`)
                                 });
 
                                 $('div[name="hidden"]').attr('hidden', false)
                             break;
-                        
+
                             case '!found':
                                 $('div[name="hidden"]').attr('hidden', true)
                                 Swal.fire(
@@ -134,7 +134,7 @@
             let id_usuario = $('#id_usuario').val()
             let cantidad_pacientes = $('#cantidad_pacientes').val()
             let proceso = $('#asignacion').val()
-            
+
             if (id_usuario != '' && cantidad_pacientes != '') {
                 $.ajax({
                     type: "post",
@@ -153,11 +153,11 @@
                                     'success'
                                 )
 
-                                $('#cantidad_pacientes').attr('max',cantidad_pacientes) 
-                                $('#cantidad_pacientes').val('') 
+                                $('#cantidad_pacientes').attr('max',cantidad_pacientes)
+                                $('#cantidad_pacientes').val('')
                                 $('#cantidad_pacientes_text').text(`Cantidad de pacientes sin asignar: ${cantidad_pacientes}`)
                             break;
-                        
+
                             default:
                                 break;
                         }
