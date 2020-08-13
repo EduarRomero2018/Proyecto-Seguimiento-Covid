@@ -42,9 +42,9 @@
                                     <th style="background: #a9c5e7" class="text-center th-sm">Fecha de Programacion<i</th>
                                     <th style="background: #a9c5e7" class="text-center th-sm">Fecha Del Resultado</th>
                                     <th style="background: #a9c5e7" class="text-center th-sm">Resultado Primera Muestra</th>
-                                    <th style="background: #a9c5e7" class="text-center th-sm">Usuario de Programacion</th>
+                                    <th style="background: #a9c5e7" class="text-center th-sm">Usuario de Creacion y Programacion</th>
                                     <th style="background: #a9c5e7" class="text-center th-sm">Usuario de Seguimiento</th>
-                                    <th style="background: #a9c5e7" class="text-center th-sm">Usuario de Resultado</th>
+                                    <!-- <th style="background: #a9c5e7" class="text-center th-sm">Usuario de Resultado</th> -->
                                     <th style="background: #a9c5e7" class="text-center th-sm">Usuario de Notificacion</th>
                                     <!-- <th style="background: #a9c5e7" class="text-center th-sm">Seleccione si el paciente a muerto</th> -->
                                 </tr>
@@ -65,7 +65,7 @@
                                         <td class="text-center"><?= $key->resultado ?></td>
                                         <td class="text-center"><?= $key->usuario_programacion ?></td>
                                         <td class="text-center"><?= $key->usuario_seguimiento ?></td>
-                                        <td class="text-center"><?= $key->usuario_resultado ?></td>
+                                        <!-- <td class="text-center"><?= $key->usuario_resultado ?></td> -->
                                         <td class="text-center"><?= $key->usuario_medico ?></td>
                                         <!-- <th class="text-center"><input type="checkbox" name="inhabilitar" id="<?= $key->id ?>"></th> -->
                                     </tr>
@@ -85,7 +85,7 @@
                                     <th class="text-center">Resultado Primera Muestra</th>
                                     <th class="text-center">Usuario de Programacion</th>
                                     <th class="text-center">Usuario de Seguimiento</th>
-                                    <th class="text-center">Usuario de Resultado</th>
+                                    <!-- <th class="text-center">Usuario de Resultado</th> -->
                                     <th class="text-center">Usuario de Notificacion</th>
                                     <!-- <th class="text-center">Inhabilitar paciente</th> -->
                                 </tr>
@@ -105,12 +105,12 @@
 <script src="js/tables.js"></script>
 <script type="text/javascript" src="js/mdb.min.js"></script>
 <script>
-    $('input[name="inhabilitar"]').on('click',function (e) {  
+    $('input[name="inhabilitar"]').on('click',function (e) {
         e.preventDefault()
         let nombre = this.parentElement.parentElement.children[1].innerText
         let identificacion = this.parentElement.parentElement.children[3].innerText
-        let row = this.parentElement.parentElement  
-        
+        let row = this.parentElement.parentElement
+
         Swal.fire({
             title: `${nombre} Fecha de fallecimiento`,
             html: '<input type="date" id="fecha_fellecimiento" class="form-control">',
