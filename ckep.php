@@ -1,32 +1,13 @@
 <?php session_start(); //vamos a trabajar con sessiones
 include 'conexion.php';
-switch ($_SESSION['role']) {
-    case 'Coordinador covid':
-        $filtro = "";
-        break;
-    
-    case 'Auxiliar de programacion':
-        $id_session = $_SESSION['id'];
-        $filtro = "AND id_usuario = $id_session";
-        break;
-    case 'Auxiliar de seguimiento':
-        $id_session = $_SESSION['id'];
-        $filtro = "AND id_usuario_seguimiento = $id_session";
-        break;
-    case 'Digitador':
-        $id_session = $_SESSION['id'];
-        $filtro = "AND id_usuario_resultado = $id_session";
-        break;
-    case 'Medico':
-        $id_session = $_SESSION['id'];
-        $filtro = "AND id_usuario_notificacion = $id_session AND prog_toma_muestra.resultado = 1";
-        break;
-}
+
             $consulta = $conexion->prepare(
-                "SELECT CONCAT(primer_nombre, ' ', primer_apellido) AS 'Nombre_Completo', P.tipo_documento, P.edad, P.numero_documento, SP.fecha_entrega_kits
+                "SELECT CONCAT(primer_nombre, ' ', primer_apellido) AS 'Nombre_Completo', P.tipo_documento, P.edad, P.numero_documento,
+                SP.fecha_entrega_kits, U.nombre_apellido AS 'Nombre_Usuario'
                 FROM seguimiento_paciente SP
                 RIGHT JOIN pacientes P ON SP.id_pacientes = P.id
-                WHERE entrega_kits = 'Si'$filtro");
+                RIGHT JOIN usuarios U ON P.id_usuario_seguimiento = U.id
+                WHERE entrega_kits = 'Si'");
 
             $consulta->execute();
             $res = $consulta->fetchAll(PDO::FETCH_OBJ);
