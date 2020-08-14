@@ -25,7 +25,7 @@ if (!isset($_REQUEST['consulta'])) {
             break;
         case 'Digitador':
             $id_session = $_SESSION['id'];
-            $filtro = "AND id_usuario_resultado = $id_session";
+            $filtro = "AND prog_toma_muestra.resultado = 3";
             break;
         case 'Medico':
             $id_session = $_SESSION['id'];
