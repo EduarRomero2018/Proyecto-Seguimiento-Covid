@@ -5,7 +5,7 @@ switch ($_SESSION['role']) {
   case 'Coordinador covid':
       $filtro = "";
       break;
-  
+
   case 'Auxiliar de programacion':
       $id_session = $_SESSION['id'];
       $filtro = "AND id_usuario = $id_session";
@@ -24,31 +24,13 @@ switch ($_SESSION['role']) {
       $filtro = "AND id_usuario_notificacion = $id_session AND prog_toma_muestra.resultado = 1";
       break;
 }
-// pacientes pendientes por resultados
-$consulta = $conexion->prepare("SELECT COUNT(*) AS Numero_Pacientes
-FROM prog_toma_muestra
-LEFT JOIN pacientes ON pacientes.id = prog_toma_muestra.pacientes_id
-WHERE resultado = 'Pendiente'$filtro");
-$consulta->execute();
-$res = $consulta ->fetch();
-$numero_conteo = $res['Numero_Pacientes'];
-   //var_dump ($consulta->errorInfo())  ;
 
-  // pacientes que no se le han realizado toma de muestra
-$consulta = $conexion->prepare("SELECT COUNT(*) AS Cantidad_Pacientes
-FROM pacientes
-$join
-WHERE pacientes.id NOT IN
-(SELECT pacientes_id FROM prog_toma_muestra) $filtro");
+//Cantidad de Pacientes Positivos://CONSULTA LISTA
+$consulta = $conexion->prepare("SELECT *
+FROM prog_toma_muestra PTM
+INNER JOIN pacientes P ON P.id = PTM.pacientes_id
+WHERE resultado = 'Positivo' AND P.estado_paciente = 'VIVO'");
 $consulta->execute();
-$res = $consulta ->fetch();
-$Cantidad_Pacientes = $res['Cantidad_Pacientes'];
-//print_r ($consulta->errorInfo())  ;
-
-// cantidad de pacientes positivos
-$consulta = $conexion->prepare("SELECT * FROM prog_toma_muestra WHERE resultado = 'Positivo'");
-$consulta->execute();
-
 if($consulta->rowCount() > 0){
   $positivos = $consulta->rowCount();
 }else{
@@ -56,23 +38,71 @@ if($consulta->rowCount() > 0){
   $positivos = 0;
 }
 
-/* Cantidad de Pacientes Sintomaticos */
-$consulta = $conexion->prepare("SELECT COUNT(*) AS Cantidad_Pacientes
-FROM pacientes
-WHERE id IN
-(SELECT pacientes_id FROM prog_toma_muestra)");
+// Pacientes que estan Pendientes Por Resultados://CONSULTA LISTA
+$consulta = $conexion->prepare("SELECT COUNT(*) AS Numero_Pacientes
+FROM prog_toma_muestra
+LEFT JOIN pacientes ON pacientes.id = prog_toma_muestra.pacientes_id
+WHERE resultado = 'Pendiente' AND estado_paciente = 'VIVO' $filtro");
 $consulta->execute();
 $res = $consulta ->fetch();
-$Cantidad_Pacientes_programados = $res['Cantidad_Pacientes'];
+$numero_conteo = $res['Numero_Pacientes'];
+//var_dump ($consulta->errorInfo())  ;
 
-/* Cantidad de kits entregados*/
+//Pacientes que aun no se le ha programado la Toma de Muestra//CONSULTA LISTA
+$consulta = $conexion->prepare("SELECT COUNT(*) AS Cantidad_Pacientes
+FROM pacientes
+$join
+WHERE pacientes.id NOT IN
+(SELECT pacientes_id FROM prog_toma_muestra) AND estado_paciente = 'VIVO' $filtro");
+$consulta->execute();
+$res = $consulta ->fetch();
+$Cantidad_Pacientes = $res['Cantidad_Pacientes'];
+//print_r ($consulta->errorInfo())  ;
+
+//Cantidad de Pacientes pendientes por toma de muestra://CONSULTA LISTA
+$consulta = $conexion->prepare("SELECT COUNT(*) AS Cantidad_p_p_pendiente_por_toma
+FROM prog_toma_muestra
+RIGHT JOIN pacientes ON pacientes.id = prog_toma_muestra.pacientes_id
+WHERE fecha_programacion IS NOT NULL
+AND fecha_realizacion IS NULL AND estado_paciente = 'VIVO' $filtro");
+$consulta->execute();
+$res = $consulta ->fetch();
+$Cantidad_p_p_pendiente_por_toma= $res['Cantidad_p_p_pendiente_por_toma'];
+//print_r ($consulta->errorInfo())  ;
+
+//Cantidad de Pacientes Asintomaticos://CONSULTA LISTA
+$consulta = $conexion->prepare(
+  "SELECT id_pacientes AS numero_de_asintomaticos
+  FROM seguimiento_paciente SP
+  LEFT JOIN pacientes P ON SP.id_pacientes
+  WHERE asintomatico = 'Si' AND actual = 'si' AND estado_paciente = 'VIVO'
+  GROUP BY id_pacientes"
+  );
+  $consulta->execute();
+  $asintomaticos = $consulta->rowCount();
+  // print_r($asintomaticos);
+
+  /* Cantidad de pacientes Sintomaticos*///CONSULTA LISTA
+  $consulta = $conexion->prepare(
+    "SELECT id_pacientes AS numero_de_sintomaticos
+    FROM seguimiento_paciente SP
+   LEFT JOIN pacientes P ON SP.id_pacientes
+   WHERE asintomatico = 'No' AND actual = 'si' AND estado_paciente = 'VIVO'
+    GROUP BY id_pacientes"
+  );
+  $consulta->execute();
+  $sintomaticos = $consulta->rowCount();
+
+/* Cantidad de kits entregados*///CONSULTA LISTA
 $consulta = $conexion->prepare("SELECT COUNT(*) AS Cantidad_kits
 FROM seguimiento_paciente
-WHERE entrega_kits = 'Si'");
+RIGHT JOIN pacientes P ON seguimiento_paciente.id_pacientes = P.id
+WHERE entrega_kits = 'Si' AND estado_paciente = 'VIVO'");
 $consulta->execute();
 $res = $consulta ->fetch();
 $cantidad_kits = $res['Cantidad_kits'];
 // var_dump($cantidad_kits);
+
 
 /* Cantidad de pacientes fallecidos*/
 $consulta = $conexion->prepare("SELECT COUNT(*) AS pacientes_fallecidos
@@ -83,37 +113,9 @@ $res = $consulta ->fetch();
 $pacientes_fallecidos = $res['pacientes_fallecidos'];
 // print_r($cantidad_kits);
 
-  // cantidad de pacientes que tienen fecha de programacion pero les hace falta la toma de muestra
-  $consulta = $conexion->prepare("SELECT COUNT(*) AS Cantidad_p_p_pendiente_por_toma
-  FROM prog_toma_muestra
-  LEFT JOIN pacientes ON pacientes.id = prog_toma_muestra.pacientes_id
-  WHERE fecha_programacion IS NOT NULL
-  AND fecha_realizacion IS NULL $filtro");
-  $consulta->execute();
-  $res = $consulta ->fetch();
-  $Cantidad_p_p_pendiente_por_toma= $res['Cantidad_p_p_pendiente_por_toma'];
-  //print_r ($consulta->errorInfo())  ;
 
-  /* Cantidad de pacientes Asintomaticos*/
-  $consulta = $conexion->prepare(
-    "SELECT id_pacientes AS numero_de_asintomaticos
-    FROM seguimiento_paciente
-    WHERE asintomatico = 'Si' AND actual = 'si'
-    GROUP BY id_pacientes"
-  );
-  $consulta->execute();
-  $asintomaticos = $consulta->rowCount();
-  // print_r($asintomaticos);
 
-  /* Cantidad de pacientes Sintomaticos*/
-  $consulta = $conexion->prepare(
-    "SELECT id_pacientes AS numero_de_asintomaticos
-    FROM seguimiento_paciente
-    WHERE asintomatico = 'No' AND actual = 'si'
-    GROUP BY id_pacientes"
-  );
-  $consulta->execute();
-  $sintomaticos = $consulta->rowCount();
+
 
 /* --CONSULTA PARA SABER CUALES SON LOS PACIENTES QUE SE LE HAN REALIZADO TOMA DE MUESTRA--
 
