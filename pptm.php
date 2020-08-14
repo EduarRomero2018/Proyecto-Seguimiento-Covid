@@ -4,7 +4,7 @@ switch ($_SESSION['role']) {
     case 'Coordinador covid':
         $filtro = "";
         break;
-    
+
     case 'Auxiliar de programacion':
         $id_session = $_SESSION['id'];
         $filtro = "AND id_usuario = $id_session";
@@ -15,7 +15,7 @@ switch ($_SESSION['role']) {
         break;
     case 'Digitador':
         $id_session = $_SESSION['id'];
-        $filtro = "AND id_usuario_resultado = $id_session";
+        $filtro = "";
         break;
     case 'Medico':
         $id_session = $_SESSION['id'];
@@ -26,9 +26,9 @@ switch ($_SESSION['role']) {
                 "SELECT CONCAT(primer_nombre, ' ', primer_apellido) AS 'Nombre_Completo', tipo_documento,edad, numero_documento, id_usuario
                 FROM pacientes P
                 WHERE P.id NOT IN
-                (SELECT pacientes_id FROM prog_toma_muestra) $filtro");
+                (SELECT pacientes_id FROM prog_toma_muestra) AND estado_paciente = 'VIVO' $filtro");
 
             $consulta->execute();
             $res = $consulta->fetchAll(PDO::FETCH_OBJ);
-            
+
             require 'views/pptm_view.php';

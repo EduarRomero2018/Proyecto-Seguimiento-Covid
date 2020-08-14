@@ -4,7 +4,7 @@ switch ($_SESSION['role']) {
     case 'Coordinador covid':
         $filtro = "";
         break;
-    
+
     case 'Auxiliar de programacion':
         $id_session = $_SESSION['id'];
         $filtro = "AND id_usuario = $id_session";
@@ -15,7 +15,7 @@ switch ($_SESSION['role']) {
         break;
     case 'Digitador':
         $id_session = $_SESSION['id'];
-        $filtro = "AND id_usuario_resultado = $id_session";
+        $filtro = "";
         break;
     case 'Medico':
         $id_session = $_SESSION['id'];
@@ -24,13 +24,16 @@ switch ($_SESSION['role']) {
 }
             $consulta = $conexion->prepare(
                 "SELECT CONCAT(primer_nombre, ' ', primer_apellido) AS 'Nombre_Completo', tipo_documento,edad,
-                numero_documento,DATE(fecha_programacion) AS fecha_programacion, PTM.fecha_entrega_lab ,fecha_resultado
+                numero_documento,DATE(fecha_programacion) AS fecha_programacion, U.nombre_apellido
                 FROM prog_toma_muestra PTM
                 RIGHT JOIN pacientes P ON PTM.pacientes_id = P.id
-                WHERE fecha_programacion IS NOT NULL $filtro
+                LEFT JOIN usuarios U ON P.id_usuario_seguimiento = U.id
+                WHERE fecha_programacion IS NOT NULL AND estado_paciente = 'VIVO'
                 AND fecha_realizacion IS NULL");
 
             $consulta->execute();
             $res = $consulta->fetchAll(PDO::FETCH_OBJ);
-            
+
             require 'views/cpp_view.php';
+
+

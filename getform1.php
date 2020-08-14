@@ -42,7 +42,7 @@ if($consulta->rowCount() == 0){
     (tipo_paciente, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, tipo_documento, numero_documento, edad, unidad_medida, sexo, barrio, municipio, correo, telefono, telefono2, aseguradora, regimen, fecha_prog_recep, id_usuario, id_usuario_programacion)
     VALUES
     (:tipo_paciente, :primer_nombre, :segundo_nombre, :primer_apellido, :segundo_apellido, :tipo_documento, :numero_documento, :edad, :unidad_medida, :sexo, :barrio, :municipio, :correo, :telefono, :telefono, :aseguradora, :regimen, :fecha_prog_recep, :id_usuario, :id_usuario_programacion)");
-  
+
     $consulta->execute(array(
      ':tipo_paciente'                       => ucwords($tipo_paciente),
      ':primer_nombre'                       => ucwords($primer_nombre),
@@ -66,7 +66,7 @@ if($consulta->rowCount() == 0){
      ':id_usuario_programacion'             => $id_usuario
    ));
 
-   
+
    $exito = 'Datos Guardados Exitosamente';
     //header('Location:index.php');//despues de guardar el usuario en al bd lo redirreccionamos al login para que inicie sessión
   }

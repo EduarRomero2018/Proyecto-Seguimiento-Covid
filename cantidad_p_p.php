@@ -6,9 +6,9 @@ include 'conexion.php';
         numero_documento,DATE(fecha_programacion) AS fecha_programacion, PTM.fecha_entrega_lab ,fecha_resultado
         FROM pacientes P
         RIGHT JOIN prog_toma_muestra PTM ON P.id = PTM.pacientes_id
-        WHERE resultado = 'Positivo'");
+        WHERE resultado = 'Positivo' AND estado_paciente = 'VIVO'");
 
     $consulta->execute();
     $res = $consulta->fetchAll(PDO::FETCH_OBJ);
-    
+
     require 'views/cantidad_p_p_view.php';

@@ -36,12 +36,12 @@
                         PROCESOS
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <?php if (isset($_SESSION) && $_SESSION['role'] == 'Auxiliar de programacion' || $_SESSION['role'] == 'Coordinador covid') : ?>
+                        <?php if (isset($_SESSION) && $_SESSION['role'] == 'Auxiliar de programacion' || $_SESSION['role'] == 'Coordinador covid' || $_SESSION['role'] == 'Digitador') : ?>
                             <a href="getform1.php" class="dropdown-item" href="#">Ingresar Pacientes</a>
                             <!--<a class="dropdown-item" href="#">Ingresar Datos Personales</a>-->
                             <a href="progmuestra.php" class="dropdown-item" href="#">Programar Primera Toma Muestra</a>
                         <?php endif ?>
-                        <?php if (isset($_SESSION) && $_SESSION['role'] == 'Auxiliar de seguimiento' || $_SESSION['role'] == 'Coordinador covid') : ?>
+                        <?php if (isset($_SESSION) && $_SESSION['role'] == 'Auxiliar de seguimiento' || $_SESSION['role'] == 'Coordinador covid' || $_SESSION['role'] == 'Digitador') : ?>
                             <!--<a class="dropdown-item" href="#">Programacion de Toma de Muestra</a>-->
                             <a href="segto_evolucion.php" class="dropdown-item" href="#">Ingresar Seguimiento Diario Por
                                 Paciente</a>
@@ -61,15 +61,15 @@
                 <li class="nav-item dropdown">
                     <?php if (isset($_SESSION) && $_SESSION['role'] == 'Digitador' || $_SESSION['role'] == 'Coordinador covid' || $_SESSION['role'] == 'Auxiliar de programacion') : ?>
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            INGRESAR RESULTADOS
+                            INGRESAR FECHA DE REALIZACION Y RESULTADOS
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <?php if (isset($_SESSION) && $_SESSION['role'] == 'Auxiliar de programacion' || $_SESSION['role'] == 'Coordinador covid') : ?>
+                            <?php if (isset($_SESSION) && $_SESSION['role'] == 'Auxiliar de programacion' || $_SESSION['role'] == 'Coordinador covid' || $_SESSION['role'] == 'Digitador') : ?>
                                 <a class="nav-link " href="#" id="navbarDropdown" data-target='#modalFechaRealizacion' role="button" data-toggle="modal" aria-haspopup="true" aria-expanded="false">
                                     Ingresar Fecha de Realizacion de la primera toma de muestra
                                 </a>
                             <?php endif ?>
-                            <?php if (isset($_SESSION) && $_SESSION['role'] == 'Digitador' || $_SESSION['role'] == 'Coordinador covid') : ?>
+                            <?php if (isset($_SESSION) && $_SESSION['role'] == 'Digitador' || $_SESSION['role'] == 'Coordinador covid' || $_SESSION['role'] == 'Digitador') : ?>
                                 <a class="nav-link " href="#" id="navbarDropdown" data-target='#exampleModal' role="button" data-toggle="modal" aria-haspopup="true" aria-expanded="false">
                                     Ingresar Resultado Primera Vez
                                 </a>
@@ -169,7 +169,7 @@
                     </div>
                 </div>
             <?php endif ?>
-            <?php if(isset($_SESSION) && $_SESSION['role'] == 'Auxiliar de programacion' || $_SESSION['role'] == 'Coordinador covid'): ?>
+            <?php if(isset($_SESSION) && $_SESSION['role'] == 'Auxiliar de programacion' || $_SESSION['role'] == 'Coordinador covid' || $_SESSION['role'] == 'Digitador'): ?>
                 <div class="col-sm-4">
                     <!-- Card -->
                     <div class="card weather-card">
@@ -190,7 +190,7 @@
                     </div>
                 </div>
             <?php endif ?>
-            <?php if(isset($_SESSION) && $_SESSION['role'] == 'Auxiliar de programacion' || $_SESSION['role'] == 'Coordinador covid'): ?>
+            <?php if(isset($_SESSION) && $_SESSION['role'] == 'Auxiliar de programacion' || $_SESSION['role'] == 'Coordinador covid' || $_SESSION['role'] == 'Digitador'): ?>
                 <div style="height: 100%;" class="col-sm-4 text-center ">
                     <div class="card weather-card">
                         <div class="card-body pb-3  text-center hoverable">

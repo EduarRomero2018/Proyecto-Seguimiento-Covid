@@ -5,7 +5,7 @@ switch ($_SESSION['role']) {
     case 'Coordinador covid':
         $filtro = "";
         break;
-    
+
     case 'Auxiliar de programacion':
         $id_session = $_SESSION['id'];
         $filtro = "AND id_usuario = $id_session";
@@ -16,7 +16,7 @@ switch ($_SESSION['role']) {
         break;
     case 'Digitador':
         $id_session = $_SESSION['id'];
-        $filtro = "AND id_usuario_resultado = $id_session";
+        $filtro = "";
         break;
     case 'Medico':
         $id_session = $_SESSION['id'];
@@ -29,9 +29,9 @@ switch ($_SESSION['role']) {
                 numero_documento,DATE(fecha_programacion) AS fecha_programacion, PTM.fecha_entrega_lab ,fecha_resultado
                 FROM prog_toma_muestra PTM
                 RIGHT JOIN pacientes P ON PTM.pacientes_id = P.id
-                WHERE resultado = 'Pendiente' $filtro");
+                WHERE resultado = 'Pendiente' AND estado_paciente = 'VIVO' $filtro");
 
             $consulta->execute();
             $res = $consulta->fetchAll(PDO::FETCH_OBJ);
-            
+
             require 'views/ppr_view.php';
