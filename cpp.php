@@ -22,14 +22,15 @@ switch ($_SESSION['role']) {
         $filtro = "AND id_usuario_notificacion = $id_session AND prog_toma_muestra.resultado = 1";
         break;
 }
-            $consulta = $conexion->prepare(
+$usuario_id = $_SESSION['id'];
+$consulta = $conexion->prepare(
                 "SELECT CONCAT(primer_nombre, ' ', primer_apellido) AS 'Nombre_Completo', tipo_documento,edad,
-                numero_documento,DATE(fecha_programacion) AS fecha_programacion, U.nombre_apellido
+                numero_documento,DATE(fecha_programacion) AS fecha_programacion, UM.nombre_apellido
                 FROM prog_toma_muestra PTM
                 RIGHT JOIN pacientes P ON PTM.pacientes_id = P.id
-                LEFT JOIN usuarios U ON P.id_usuario_seguimiento = U.id
+                LEFT JOIN usuarios UM ON P.id_usuario = UM.id
                 WHERE fecha_programacion IS NOT NULL AND estado_paciente = 'VIVO'
-                AND fecha_realizacion IS NULL");
+                AND fecha_realizacion IS NULL $filtro");
 
             $consulta->execute();
             $res = $consulta->fetchAll(PDO::FETCH_OBJ);
