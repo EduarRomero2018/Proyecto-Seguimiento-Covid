@@ -1,5 +1,5 @@
 -- --------------------------------------------------------
--- Host:                         127.0.0.1
+-- Host:                         localhost
 -- Versión del servidor:         5.7.24 - MySQL Community Server (GPL)
 -- SO del servidor:              Win64
 -- HeidiSQL Versión:             10.2.0.5599
@@ -16,22 +16,17 @@
 CREATE DATABASE IF NOT EXISTS `seguimiento_covid` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish_ci */;
 USE `seguimiento_covid`;
 
--- Volcando estructura para tabla seguimiento_covid.complemento_seg
-CREATE TABLE IF NOT EXISTS `complemento_seg` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `antecedentes_viaje` varchar(45) DEFAULT NULL,
-  `paises_ciudades_viajes` varchar(45) DEFAULT NULL,
-  `atencion_medica_domiciliaria` varchar(50) NOT NULL,
-  `fecha_atencion_medica_domiciliaria` date NOT NULL,
-  `realizacion_hemograma` varchar(50) NOT NULL,
-  `id_usuario` int(11) NOT NULL,
-  `id_pacientes` int(11) NOT NULL,
+-- Volcando estructura para tabla seguimiento_covid.usuarios
+CREATE TABLE IF NOT EXISTS `usuarios` (
+  `id` int(100) NOT NULL AUTO_INCREMENT,
+  `nombre_apellido` varchar(45) NOT NULL,
+  `identificacion` varchar(50) NOT NULL DEFAULT '',
+  `clave` varchar(100) NOT NULL,
+  `roles` enum('Auxiliar de programacion','Auxiliar de seguimiento','Coordinador covid','Medico','Digitador') NOT NULL,
+  `sede` enum('Cartagena','Barranquilla','Carmen de bolivar') DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `id_usuario` (`id_usuario`),
-  KEY `id_paciente` (`id_pacientes`),
-  CONSTRAINT `complemento_seg_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`),
-  CONSTRAINT `complemento_seg_ibfk_2` FOREIGN KEY (`id_pacientes`) REFERENCES `pacientes` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;
+  UNIQUE KEY `identificacion` (`identificacion`)
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8;
 
 -- La exportación de datos fue deseleccionada.
 
@@ -50,7 +45,7 @@ CREATE TABLE IF NOT EXISTS `pacientes` (
   `sexo` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `barrio` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `municipio` varchar(100) NOT NULL,
-  `correo` varchar(100) NOT NULL,
+  `correo` varchar(100) DEFAULT NULL,
   `telefono` bigint(100) NOT NULL,
   `telefono2` bigint(20) DEFAULT NULL,
   `aseguradora` text CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
@@ -60,11 +55,59 @@ CREATE TABLE IF NOT EXISTS `pacientes` (
   `fecha_prog_recep` datetime DEFAULT NULL,
   `fecha_registro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `id_usuario` int(20) DEFAULT NULL,
+  `id_usuario_programacion` int(20) DEFAULT NULL,
+  `id_usuario_seguimiento` int(20) DEFAULT NULL,
+  `id_usuario_resultado` int(20) DEFAULT NULL,
+  `id_usuario_notificacion` int(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `numero_documento` (`numero_documento`),
   KEY `id_usuario` (`id_usuario`),
-  CONSTRAINT `pacientes_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8;
+  KEY `FK_pacientes_usuarios_seguimiento` (`id_usuario_seguimiento`),
+  KEY `FK_pacientes_usuarios_resultado` (`id_usuario_resultado`),
+  KEY `FK_pacientes_usuarios_programacion` (`id_usuario_programacion`),
+  KEY `FK_pacientes_usuarios_notificacion` (`id_usuario_notificacion`),
+  CONSTRAINT `FK_pacientes_usuarios_notificacion` FOREIGN KEY (`id_usuario_notificacion`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `FK_pacientes_usuarios_programacion` FOREIGN KEY (`id_usuario_programacion`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `FK_pacientes_usuarios_resultado` FOREIGN KEY (`id_usuario_resultado`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `FK_pacientes_usuarios_seguimiento` FOREIGN KEY (`id_usuario_seguimiento`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `pacientes_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- La exportación de datos fue deseleccionada.
+
+-- Volcando estructura para tabla seguimiento_covid.complemento_seg
+CREATE TABLE IF NOT EXISTS `complemento_seg` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `antecedentes_viaje` varchar(45) DEFAULT NULL,
+  `paises_ciudades_viajes` varchar(45) DEFAULT NULL,
+  `atencion_medica_domiciliaria` varchar(50) NOT NULL,
+  `fecha_atencion_medica_domiciliaria` date NOT NULL,
+  `realizacion_hemograma` varchar(50) NOT NULL,
+  `id_usuario` int(11) NOT NULL,
+  `id_pacientes` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_usuario` (`id_usuario`),
+  KEY `id_paciente` (`id_pacientes`),
+  CONSTRAINT `complemento_seg_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`),
+  CONSTRAINT `complemento_seg_ibfk_2` FOREIGN KEY (`id_pacientes`) REFERENCES `pacientes` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- La exportación de datos fue deseleccionada.
+
+-- Volcando estructura para tabla seguimiento_covid.llamadas_fallidas
+CREATE TABLE IF NOT EXISTS `llamadas_fallidas` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_usuario` int(11) NOT NULL,
+  `role_usuario` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  `nombre_paciente` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  `telefono_paciente` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `telefono_paciente_2` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `motivo` text COLLATE utf8_spanish_ci NOT NULL,
+  `fecha_registro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `id_usuario` (`id_usuario`),
+  CONSTRAINT `FK_llamadas_fallidas_usuarios` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- La exportación de datos fue deseleccionada.
 
@@ -78,6 +121,7 @@ CREATE TABLE IF NOT EXISTS `prog_toma_muestra` (
   `visita_exitosa` varchar(50) DEFAULT NULL,
   `tipo_prueba` varchar(50) DEFAULT NULL,
   `observacion` varchar(45) DEFAULT NULL,
+  `motivo` text,
   `programacion_atencion` varchar(45) DEFAULT NULL,
   `programa_pertenece` varchar(45) DEFAULT NULL,
   `fecha_entrega_lab` date DEFAULT NULL,
@@ -92,7 +136,7 @@ CREATE TABLE IF NOT EXISTS `prog_toma_muestra` (
   UNIQUE KEY `pacientes_id` (`pacientes_id`),
   KEY `index_paciente` (`pacientes_id`),
   CONSTRAINT `prog_toma_muestra_ibfk_1` FOREIGN KEY (`pacientes_id`) REFERENCES `pacientes` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=146 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- La exportación de datos fue deseleccionada.
 
@@ -113,6 +157,7 @@ CREATE TABLE IF NOT EXISTS `seguimiento_paciente` (
   `entrega_kits` varchar(50) DEFAULT NULL,
   `fecha_entrega_kits` date DEFAULT NULL,
   `oxigeno_terapia` varchar(50) DEFAULT NULL,
+  `tipo_flujo` enum('Alto flujo','Bajo flujo') DEFAULT NULL,
   `ambito_atencion` varchar(50) NOT NULL,
   `saturacion_oxigeno` varchar(50) NOT NULL,
   `actual` enum('si','no') DEFAULT 'si',
@@ -123,7 +168,7 @@ CREATE TABLE IF NOT EXISTS `seguimiento_paciente` (
   KEY `seguimiento_paciente_ibfk_2` (`id_usuario`),
   KEY `complemento_seg_id` (`complemento_seg_id`),
   CONSTRAINT `seguimiento_paciente_ibfk_3` FOREIGN KEY (`complemento_seg_id`) REFERENCES `complemento_seg` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=80 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- La exportación de datos fue deseleccionada.
 
@@ -154,22 +199,8 @@ CREATE TABLE IF NOT EXISTS `soporte_resultado` (
   `pacientes_id` int(11) NOT NULL,
   `fecha_registro` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
-  KEY `pacientes_id` (`pacientes_id`),
-  CONSTRAINT `FK_soporte_resultado_pacientes` FOREIGN KEY (`pacientes_id`) REFERENCES `pacientes` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
--- La exportación de datos fue deseleccionada.
-
--- Volcando estructura para tabla seguimiento_covid.usuarios
-CREATE TABLE IF NOT EXISTS `usuarios` (
-  `id` int(100) NOT NULL AUTO_INCREMENT,
-  `nombre_apellido` varchar(45) NOT NULL,
-  `identificacion` varchar(50) NOT NULL DEFAULT '',
-  `clave` varchar(100) NOT NULL,
-  `roles` enum('Auxiliar de enfermeria','Jefe de Enfermeria','Medico general') NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `identificacion` (`identificacion`)
-) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8;
+  KEY `pacientes_id` (`pacientes_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- La exportación de datos fue deseleccionada.
 
