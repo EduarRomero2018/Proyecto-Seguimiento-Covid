@@ -39,6 +39,20 @@ try {
     }
     //comprobamos que los campos no esten vacios
 
+    if($_REQUEST['fecha_atencion_medica_domiciliaria'] != 'Null'){
+        
+        $fecha_atencion_medica_domiciliaria = $_REQUEST['fecha_atencion_medica_domiciliaria'];
+        $stm = $conexion->prepare("UPDATE complemento_seg SET fecha_atencion_medica_domiciliaria = ? WHERE id_pacientes = $paciente_id");
+        $stm->execute(array(
+            $fecha_atencion_medica_domiciliaria
+        ));
+
+        if ($stm->errorInfo()[2] != null) {
+            $err = $stm->errorInfo()[2];
+            die(json_encode($err));
+        }
+    }
+
     $stm = $conexion->prepare("SELECT id FROM seguimiento_paciente WHERE id_pacientes = ? ORDER BY id DESC LIMIT 1");
     $stm->execute(array($paciente_id));
 
