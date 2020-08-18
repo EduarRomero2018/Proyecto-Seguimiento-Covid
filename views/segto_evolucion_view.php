@@ -119,6 +119,12 @@
                     <form class="card">
                         <div class="card-body">
                             <div class="row align-items-end">
+                                <?php if($result['fecha_atencion_medica_domiciliaria'] == null): ?>
+                                    <div class="col-sm-3">
+                                        <label class="col-form-label">Fecha de atencion domiciliaria</label>
+                                        <input type="date" id="fecha_atencion_medica_domiciliaria" min="<?= $fecha_programacion ?>" max="<?= date('Y-m-d') ?>" class="form-control">
+                                    </div>
+                                <?php endif ?>
                                 <div class="col-md-4 form-group">
                                     <label>Fatiga/adinamia</label>
                                     <select class="custom-select" name="sintomas" id="fatiga_adinamia">
@@ -262,11 +268,6 @@
                     <form class="card">
                         <div class="card-body">
                             <div class="row align-items-end">
-                                <div class="col-sm-3">
-                                    <label class="col-form-label">Fecha de atencion domiciliaria</label>
-                                    <input type="date" id="fecha_atencion_medica_domiciliaria" min="<?= $fecha_programacion ?>" class="form-control">
-                                </div>
-
                                 <div class="col-sm-3">
                                     <label class="col-form-label">Atencion domiciliaria en 24 Horas</label>
                                     <select id="atencion_medica_domiciliaria" class="custom-select">
