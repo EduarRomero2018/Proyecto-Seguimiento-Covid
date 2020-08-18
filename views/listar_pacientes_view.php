@@ -46,7 +46,9 @@
                                     <th style="background: #a9c5e7" class="text-center th-sm">Usuario de Seguimiento</th>
                                     <th style="background: #a9c5e7" class="text-center th-sm">Usuario de Seguimiento</th>
                                     <!-- <th style="background: #a9c5e7" class="text-center th-sm">Usuario de Resultado</th> -->
-                                    <th style="background: #a9c5e7" class="text-center th-sm">Reprogramar</th>
+                                    <?php if($_SESSION['role'] == 'Auxiliar de programacion'): ?>
+                                        <th style="background: #a9c5e7" class="text-center th-sm">Reprogramar</th>
+                                    <?php endif ?>
                                     <?php if($_SESSION['role'] == 'Medico'): ?>
                                         <th style="background: #a9c5e7" class="text-center th-sm">Seleccione si el paciente a muerto</th>
                                     <?php endif ?>
@@ -70,7 +72,9 @@
                                         <td class="text-center"><?= $key->usuario_seguimiento ?></td>
                                         <!-- <td class="text-center"><?= $key->usuario_resultado ?></td> -->
                                         <td class="text-center"><?= $key->usuario_medico ?></td>
-                                        <td class="text-center"><a href="#" id="<?= $key->id ?>" name="reprogramar" class="btn btn-info px-3"><i style="font-size: 30px;" class="fas fa-calendar-alt text-white"></i></a></td>
+                                        <?php if($_SESSION['role'] == 'Auxiliar de programacion'): ?>
+                                            <td class="text-center"><a href="#" id="<?= $key->id ?>" name="reprogramar" class="btn btn-info px-3"><i style="font-size: 30px;" class="fas fa-calendar-alt text-white"></i></a></td>
+                                        <?php endif ?>
                                         <?php if($_SESSION['role'] == 'Medico'): ?>
                                             <th class="text-center"><input type="checkbox" name="inhabilitar" id="<?= $key->id ?>"></th>    
                                         <?php endif ?>
@@ -93,7 +97,9 @@
                                     <th class="text-center">Usuario de Seguimiento</th>
                                     <!-- <th class="text-center">Usuario de Resultado</th> -->
                                     <th class="text-center">Usuario de Notificacion</th>
-                                    <th class="text-center">Reprogramar</th>
+                                    <?php if($_SESSION['role'] == 'Auxiliar de programacion'): ?>
+                                        <th class="text-center">Reprogramar</th>
+                                    <?php endif ?>
                                     <?php if($_SESSION['role'] == 'Medico'): ?>
                                         <th class="text-center">Inhabilitar paciente</th>
                                     <?php endif ?>
