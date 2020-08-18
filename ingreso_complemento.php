@@ -11,7 +11,6 @@ foreach ($_REQUEST as $key) {
 try {
     $_REQUEST['paises_ciudades'] != '' ? NULL:$_REQUEST['paises_ciudades'];
     $atencion_medica_domiciliaria = $_REQUEST['atencion_medica_domiciliaria'];
-    $fecha_atencion_medica_domiciliaria = $_REQUEST['fecha_atencion_medica_domiciliaria'];
     $realizacion_hemograma = $_REQUEST['realizacion_hemograma'];
     $paises_ciudades = $_REQUEST['paises_ciudades'];
     $antecedentes_viaje = $_REQUEST['antecedentes_viaje'];
@@ -39,12 +38,11 @@ try {
     //     die(json_encode(3));
     // }
 
-    $stm = $conexion->prepare("INSERT INTO complemento_seg VALUES(NULL,?,?,?,?,?,?,?)");
+    $stm = $conexion->prepare("INSERT INTO complemento_seg VALUES(NULL,?,?,?,NULL,?,?,?)");
     $stm->execute(array(
         $antecedentes_viaje,
         $paises_ciudades,
         $atencion_medica_domiciliaria,
-        $fecha_atencion_medica_domiciliaria,
         $realizacion_hemograma,
         $id_usuario,
         $paciente_id
