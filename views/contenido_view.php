@@ -41,7 +41,7 @@
                             <!--<a class="dropdown-item" href="#">Ingresar Datos Personales</a>-->
                             <a href="progmuestra.php" class="dropdown-item" href="#">Programar Primera Toma Muestra</a>
                         <?php endif ?>
-                        <?php if (isset($_SESSION) && $_SESSION['role'] == 'Auxiliar de seguimiento' || $_SESSION['role'] == 'Coordinador covid' || $_SESSION['role'] == 'Digitador') : ?>
+                        <?php if (isset($_SESSION) && $_SESSION['role'] == 'Auxiliar de seguimiento' || $_SESSION['role'] == 'Coordinador covid' || $_SESSION['role'] == 'Digitador' || $_SESSION['role'] == 'Medico') : ?>
                             <!--<a class="dropdown-item" href="#">Programacion de Toma de Muestra</a>-->
                             <a href="segto_evolucion.php" class="dropdown-item" href="#">Ingresar Seguimiento Diario Por
                                 Paciente</a>
