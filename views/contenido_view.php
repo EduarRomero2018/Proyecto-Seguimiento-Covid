@@ -131,7 +131,7 @@
                         </h4>
                         <hr>
                         <div class="d-flex justify-content-center">
-                            <i class="fas fa-1x fa-briefcase-medical">
+                            <i class="fas fa-1x fa-user-plus">
                                 <a href="cantidad_p_p.php">
                                 <!-- style="text-decoration: none; color: rgba(6, 62, 131, 0.9);" -->
                                     <p class="display-1 degree" data-toggle="tooltip" data-placement="bottom" title="Presione para saber cual son los pacientes positivos"><?= $positivos ?></p>
@@ -287,6 +287,27 @@
                                         <!-- <i class="fas fa-book-dead"></i> -->
 
                                         <p class="display-1 degree"><?php echo $pacientes_fallecidos ?></p>
+                                    </i>
+                                    <i class="fas fa-sun-o fa-5x pt-3 amber-text"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <!-- Card -->
+                        <div class="card weather-card">
+                            <div class="card-body pb-3  text-center hoverable">
+                                <!-- Title -->
+                                <h4 class="card-title font-weight-bold">Cantidad de Pacientes Negativos:</h4>
+                                <hr>
+                                <div class="d-flex justify-content-center">
+                                    <i class="fas fa-4x fa-user-minus">
+                                <a href="cpn.php">
+                                <!-- style="text-decoration: none; color: rgba(6, 62, 131, 0.9);" -->
+                                    <p class="display-1 degree" data-toggle="tooltip" data-placement="bottom" title="Presione para saber cual son los pacientes negativos"><?= $negativos ?></p>
+                                </a>
+                            </i>
                                     </i>
                                     <i class="fas fa-sun-o fa-5x pt-3 amber-text"></i>
                                 </div>
