@@ -80,6 +80,7 @@ $(document).ready(function () {
 
         let complemento_seg_id = $('#complemento_seg_id').val()
         let paciente_id = $('#paciente_id').val()
+        let fecha_atencion_medica_domiciliaria = $('#fecha_atencion_medica_domiciliaria').val()
         let asintomatico = $('#asintomatico').val()
         let fecha_sintomas = $('#f_sintomas').val()
         let fiebre_cuantificada = $('#fiebre_cuantificada').val()
@@ -108,11 +109,16 @@ $(document).ready(function () {
         if(oxigeno_terapia == 'No'){
             tipo_flujo = 'NULL'
         }
+
+        if(fecha_atencion_medica_domiciliaria == ''){
+            fecha_atencion_medica_domiciliaria = 'Null'
+        }
         
         let datos = {
             complemento_seg_id,
             paciente_id,
             id_usuario,
+            fecha_atencion_medica_domiciliaria,
             asintomatico,
             fecha_sintomas,
             fiebre_cuantificada,
@@ -210,7 +216,6 @@ $(document).ready(function () {
         let antecedentes_viaje = $('#antecedentes_viaje').val()
         let id_usuario = $('#id_usuario').val()
         let paciente_id = $('#paciente_id').val()
-        let fecha_atencion_medica_domiciliaria = $('#fecha_atencion_medica_domiciliaria').val()
         let atencion_medica_domiciliaria = $('#atencion_medica_domiciliaria').val()
         let realizacion_hemograma = $('#realizacion_hemograma').val()
 
@@ -219,7 +224,6 @@ $(document).ready(function () {
             paises_ciudades,
             antecedentes_viaje,
             id_usuario,
-            fecha_atencion_medica_domiciliaria,
             atencion_medica_domiciliaria,
             realizacion_hemograma,
             paciente_id
