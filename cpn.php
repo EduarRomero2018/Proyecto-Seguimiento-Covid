@@ -2,7 +2,7 @@
 include 'conexion.php';
 
     $consulta = $conexion->prepare(
-        "SELECT CONCAT(primer_nombre, ' ', primer_apellido) AS 'Nombre_Completo', tipo_documento,edad,
+        "SELECT p.id, CONCAT(primer_nombre, ' ', primer_apellido) AS 'Nombre_Completo', tipo_documento,edad,telefono,telefono2,
         numero_documento,DATE(fecha_programacion) AS fecha_programacion, PTM.fecha_entrega_lab ,fecha_resultado
         FROM pacientes P
         RIGHT JOIN prog_toma_muestra PTM ON P.id = PTM.pacientes_id
