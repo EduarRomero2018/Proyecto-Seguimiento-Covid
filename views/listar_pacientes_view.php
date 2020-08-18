@@ -44,8 +44,9 @@
                                     <th style="background: #a9c5e7" class="text-center th-sm">Resultado Primera Muestra</th>
                                     <th style="background: #a9c5e7" class="text-center th-sm">Usuario de Creacion y Programacion</th>
                                     <th style="background: #a9c5e7" class="text-center th-sm">Usuario de Seguimiento</th>
+                                    <th style="background: #a9c5e7" class="text-center th-sm">Usuario de Seguimiento</th>
                                     <!-- <th style="background: #a9c5e7" class="text-center th-sm">Usuario de Resultado</th> -->
-                                    <th style="background: #a9c5e7" class="text-center th-sm">Usuario de Notificacion</th>
+                                    <th style="background: #a9c5e7" class="text-center th-sm">Reprogramar</th>
                                     <?php if($_SESSION['role'] == 'Medico'): ?>
                                         <th style="background: #a9c5e7" class="text-center th-sm">Seleccione si el paciente a muerto</th>
                                     <?php endif ?>
@@ -69,6 +70,7 @@
                                         <td class="text-center"><?= $key->usuario_seguimiento ?></td>
                                         <!-- <td class="text-center"><?= $key->usuario_resultado ?></td> -->
                                         <td class="text-center"><?= $key->usuario_medico ?></td>
+                                        <td class="text-center"><a href="#" id="<?= $key->id ?>" name="reprogramar" class="btn btn-info px-3"><i style="font-size: 30px;" class="fas fa-calendar-alt text-white"></i></a></td>
                                         <?php if($_SESSION['role'] == 'Medico'): ?>
                                             <th class="text-center"><input type="checkbox" name="inhabilitar" id="<?= $key->id ?>"></th>    
                                         <?php endif ?>
@@ -91,6 +93,7 @@
                                     <th class="text-center">Usuario de Seguimiento</th>
                                     <!-- <th class="text-center">Usuario de Resultado</th> -->
                                     <th class="text-center">Usuario de Notificacion</th>
+                                    <th class="text-center">Reprogramar</th>
                                     <?php if($_SESSION['role'] == 'Medico'): ?>
                                         <th class="text-center">Inhabilitar paciente</th>
                                     <?php endif ?>
@@ -147,6 +150,50 @@
                             Swal.fire(
                                 'Error!',
                                 'Campo fecha de fallecimiento es obligatorio',
+                                'error'
+                            )
+                        }
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        console.log(`Status: ${textStatus} Error: ${errorThrown}`);
+                    }
+                });
+            }
+        })
+    })
+
+    $('a[name="reprogramar"]').on('click', function(){
+        let nombre = this.parentElement.parentElement.children[1].innerText
+
+        Swal.fire({
+            title: `${nombre} Fecha de reprogramacion`,
+            html: '<input type="date" id="fecha_programacion" min="<?= date('Y-m-d') ?>" class="form-control">',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Cancelar',
+            confirmButtonText: 'Si'
+        }).then((result) => {
+            if (result.value) {
+                let id = this.id
+                let fecha_r = $('#fecha_programacion').val()
+                $.ajax({
+                    type: "POST",
+                    url: "reprogramar.php",
+                    data: {id,fecha_r},
+                    success: function (response) {
+                        console.log(response);
+                        response = JSON.parse(response)
+                        if (response == 'ok') {
+                            Swal.fire(
+                                'Accion completada',
+                                'Datos guardados',
+                                'success'
+                            )
+                        } else {
+                            Swal.fire(
+                                'Error!',
+                                'Campo fecha de reprogramacion es obligatoria',
                                 'error'
                             )
                         }
