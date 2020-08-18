@@ -29,7 +29,7 @@
                             <label>Ingrese el documento de Paciente</label>
                             <input class="form-control" type="text" name="documento">
                         </div>
-                        <?php if (isset($_SESSION) && $_SESSION['role'] != 'Medico') : ?>
+                        <?php if (isset($_SESSION) && $_SESSION['role'] == 'Medico') : ?>
                             <div class="form-group">
                                 <label>Seleccionar PDF</label>
                                 <input type="file" accept="" name="soporte">
@@ -39,7 +39,7 @@
                         <div class="row">
 
                             <div class="col-md-6">
-                            <?php if (isset($_SESSION) && $_SESSION['role'] != 'Medico') : ?>
+                            <?php if (isset($_SESSION) && $_SESSION['role'] == 'Medico') : ?>
                                 <input class="btn btn-primary btn-block" type="submit" name="guardar" value="Subir">
                                 <?php endif ?>
                             </div>
