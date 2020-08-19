@@ -36,7 +36,7 @@ if (!isset($_REQUEST['consulta'])) {
     $usuario_id = $_SESSION['id'];
     $consulta = "SELECT pacientes.id, CONCAT(primer_nombre, ' ', primer_apellido) AS 'Nombre_Completo',
     CONCAT(edad, ' ', unidad_medida) AS 'Edad',
-    CONCAT(tipo_documento, ' - ', numero_documento) AS 'Identificacion', telefono,
+    CONCAT(tipo_documento, ' - ', numero_documento) AS 'Identificacion', telefono, barrio,
     DATE(pacientes.fecha_registro) AS fecha_registro,
     DATE(fecha_programacion) AS fecha_programacion, fecha_resultado, resultado,
 	UP.nombre_apellido AS usuario_programacion,
