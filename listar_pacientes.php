@@ -17,7 +17,7 @@ if (!isset($_REQUEST['consulta'])) {
 
         case 'Auxiliar de programacion':
             $id_session = $_SESSION['id'];
-            $filtro = "AND id_usuario = $id_session";
+            $filtro = "";
             break;
         case 'Auxiliar de seguimiento':
             $id_session = $_SESSION['id'];
