@@ -133,7 +133,7 @@
                         <div class="d-flex justify-content-center">
                             <i class="fas fa-1x fa-user-plus">
                                 <a href="cantidad_p_p.php">
-                                <!-- style="text-decoration: none; color: rgba(6, 62, 131, 0.9);" -->
+                                    <!-- style="text-decoration: none; color: rgba(6, 62, 131, 0.9);" -->
                                     <p class="display-1 degree" data-toggle="tooltip" data-placement="bottom" title="Presione para saber cual son los pacientes positivos"><?= $positivos ?></p>
                                 </a>
                             </i>
@@ -149,7 +149,7 @@
     <!-- Card -->
     <div class="container padre">
         <div class="row">
-            <?php if(isset($_SESSION) && $_SESSION['role'] == 'Digitador' || $_SESSION['role'] == 'Coordinador covid'): ?>
+            <?php if (isset($_SESSION) && $_SESSION['role'] == 'Digitador' || $_SESSION['role'] == 'Coordinador covid') : ?>
                 <div style="height: 100%;" class="col-sm-4 text-center ">
                     <div class="card weather-card">
                         <div class="card-body pb-3  text-center hoverable">
@@ -169,7 +169,7 @@
                     </div>
                 </div>
             <?php endif ?>
-            <?php if(isset($_SESSION) && $_SESSION['role'] == 'Auxiliar de programacion' || $_SESSION['role'] == 'Coordinador covid' || $_SESSION['role'] == 'Digitador'): ?>
+            <?php if (isset($_SESSION) && $_SESSION['role'] == 'Auxiliar de programacion' || $_SESSION['role'] == 'Coordinador covid' || $_SESSION['role'] == 'Digitador') : ?>
                 <div class="col-sm-4">
                     <!-- Card -->
                     <div class="card weather-card">
@@ -190,7 +190,7 @@
                     </div>
                 </div>
             <?php endif ?>
-            <?php if(isset($_SESSION) && $_SESSION['role'] == 'Auxiliar de programacion' || $_SESSION['role'] == 'Coordinador covid' || $_SESSION['role'] == 'Digitador'): ?>
+            <?php if (isset($_SESSION) && $_SESSION['role'] == 'Auxiliar de programacion' || $_SESSION['role'] == 'Coordinador covid' || $_SESSION['role'] == 'Digitador') : ?>
                 <div style="height: 100%;" class="col-sm-4 text-center ">
                     <div class="card weather-card">
                         <div class="card-body pb-3  text-center hoverable">
@@ -214,7 +214,7 @@
             <div class="container padre">
                 <br>
                 <div class="row">
-                    <?php if(isset($_SESSION) && $_SESSION['role'] == 'Digitador' || $_SESSION['role'] == 'Coordinador covid' || $_SESSION['role'] == 'Auxiliar de seguimiento'): ?>
+                    <?php if (isset($_SESSION) && $_SESSION['role'] == 'Digitador' || $_SESSION['role'] == 'Coordinador covid' || $_SESSION['role'] == 'Auxiliar de seguimiento') : ?>
                         <div class="col-sm-4">
                             <div class="card weather-card">
                                 <div class="card-body pb-3  text-center hoverable">
@@ -222,7 +222,7 @@
                                     <hr>
                                     <div class="d-flex justify-content-center">
                                         <i class="fas fa-4x fa-file-medical-alt">
-                                        <a href="cpa.php">
+                                            <a href="cpa.php">
                                                 <p class="display-1 degree" data-toggle="tooltip" data-placement="bottom" title="Presione para ver los pacientes Asintomaticos"><?= $asintomaticos ?></p>
                                             </a>
                                         </i>
@@ -258,7 +258,7 @@
                                     <hr>
                                     <div class="d-flex justify-content-center">
                                         <i class="fas fa-4x fa-medkit">
-                                        <a href="ckep.php">
+                                            <a href="ckep.php">
                                                 <p class="display-1 degree" data-toggle="tooltip" data-placement="bottom" title="Presione para ver los pacientes a los cuales se le han entregado kit"><?= $cantidad_kits ?></p>
                                             </a>
                                         </i>
@@ -274,7 +274,7 @@
             <div class="container padre">
                 <br>
                 <div class="row">
-                    <?php if(isset($_SESSION) && $_SESSION['role'] == 'Digitador' || $_SESSION['role'] == 'Coordinador covid' || $_SESSION['role'] == 'Medico'): ?>
+                    <?php if (isset($_SESSION) && $_SESSION['role'] == 'Digitador' || $_SESSION['role'] == 'Coordinador covid' || $_SESSION['role'] == 'Medico') : ?>
                         <div class="col-sm-4">
                             <!-- Card -->
                             <div class="card weather-card">
@@ -294,8 +294,8 @@
                             </div>
                         </div>
                     <?php endif ?>
-                    
-                    <?php if(isset($_SESSION) && $_SESSION['role'] == 'Digitador' || $_SESSION['role'] == 'Coordinador covid' || $_SESSION['role'] == 'Auxiliar de seguimiento'): ?>
+
+                    <?php if (isset($_SESSION) && $_SESSION['role'] == 'Digitador' || $_SESSION['role'] == 'Coordinador covid' || $_SESSION['role'] == 'Auxiliar de seguimiento') : ?>
                         <div class="col-sm-4">
                             <!-- Card -->
                             <div class="card weather-card">
@@ -305,11 +305,11 @@
                                     <hr>
                                     <div class="d-flex justify-content-center">
                                         <i class="fas fa-4x fa-user-minus">
-                                    <a href="cpn.php">
-                                    <!-- style="text-decoration: none; color: rgba(6, 62, 131, 0.9);" -->
-                                        <p class="display-1 degree" data-toggle="tooltip" data-placement="bottom" title="Presione para saber cual son los pacientes negativos"><?= $negativos ?></p>
-                                    </a>
-                                </i>
+                                            <a href="cpn.php">
+                                                <!-- style="text-decoration: none; color: rgba(6, 62, 131, 0.9);" -->
+                                                <p class="display-1 degree" data-toggle="tooltip" data-placement="bottom" title="Presione para saber cual son los pacientes negativos"><?= $negativos ?></p>
+                                            </a>
+                                        </i>
                                         </i>
                                         <i class="fas fa-sun-o fa-5x pt-3 amber-text"></i>
                                     </div>
