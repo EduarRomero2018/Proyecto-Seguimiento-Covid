@@ -26,9 +26,10 @@ switch ($_SESSION['role']) {
 
             $consulta = $conexion->prepare(
                 "SELECT CONCAT(primer_nombre, ' ', primer_apellido) AS 'Nombre_Completo', tipo_documento,edad,
-                numero_documento,DATE(fecha_programacion) AS fecha_programacion, PTM.fecha_entrega_lab ,fecha_resultado
+                numero_documento,DATE(fecha_programacion) AS fecha_programacion, U.nombre_apellido
                 FROM prog_toma_muestra PTM
                 RIGHT JOIN pacientes P ON PTM.pacientes_id = P.id
+                LEFT JOIN usuarios U ON p.id_usuario = U.id
                 WHERE resultado = 'Pendiente' AND estado_paciente = 'VIVO' $filtro");
 
             $consulta->execute();
