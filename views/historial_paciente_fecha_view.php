@@ -119,7 +119,9 @@
     </div>
 
     <?php endif ?>
-    <?php if (!empty($exito)) : ?>
+
+<?php require_once 'views/footer_view.php' ?>
+<?php if (!empty($exito)) : ?>
     <script>
         swal({
             type: 'succes',
@@ -150,6 +152,3 @@
         })
     </script>
     <?php endif; ?>
-    <br>
-
-<?php require_once 'views/footer_view.php' ?>
