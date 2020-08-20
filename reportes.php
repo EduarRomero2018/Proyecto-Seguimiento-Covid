@@ -36,24 +36,14 @@ if($consulta->rowCount() > 0){
   // echo 'No se encontraron Pacientes Positivos';
   $positivos = 0;
 }
-//Cantidad de Pacientes Negativos://CONSULTA LISTA
-$consulta = $conexion->prepare("SELECT *
-FROM prog_toma_muestra PTM
-INNER JOIN pacientes P ON P.id = PTM.pacientes_id
-WHERE resultado = 'Negativo' AND P.estado_paciente = 'VIVO'");
-$consulta->execute();
-if($consulta->rowCount() > 0){
-  $negativos = $consulta->rowCount();
-}else{
-  // echo 'No se encontraron Pacientes Positivos';
-  $negativos = 0;
-}
 
-// Pacientes que estan Pendientes Por Resultados://CONSULTA LISTA
+// Pacientes que estan pendientes Por resultados de toma de muestra ://CONSULTA LISTA
 $consulta = $conexion->prepare("SELECT COUNT(*) AS Numero_Pacientes
-FROM prog_toma_muestra
-LEFT JOIN pacientes ON pacientes.id = prog_toma_muestra.pacientes_id
-WHERE resultado = 'Pendiente' AND estado_paciente = 'VIVO' $filtro");
+FROM prog_toma_muestra PTM
+LEFT JOIN pacientes ON pacientes.id = PTM.pacientes_id
+WHERE PTM.fecha_realizacion IS NOT NULL
+AND resultado = 'Pendiente'
+AND estado_paciente = 'VIVO'$filtro");
 $consulta->execute();
 $res = $consulta ->fetch();
 $numero_conteo = $res['Numero_Pacientes'];
@@ -122,6 +112,19 @@ $consulta->execute();
 $res = $consulta ->fetch();
 $pacientes_fallecidos = $res['pacientes_fallecidos'];
 // print_r($cantidad_kits);
+
+//Cantidad de Pacientes Negativos://CONSULTA LISTA
+$consulta = $conexion->prepare("SELECT *
+FROM prog_toma_muestra PTM
+INNER JOIN pacientes P ON P.id = PTM.pacientes_id
+WHERE resultado = 'Negativo' AND P.estado_paciente = 'VIVO'");
+$consulta->execute();
+if($consulta->rowCount() > 0){
+  $negativos = $consulta->rowCount();
+}else{
+  // echo 'No se encontraron Pacientes Positivos';
+  $negativos = 0;
+}
 
 
 
