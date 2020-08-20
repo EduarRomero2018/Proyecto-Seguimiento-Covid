@@ -133,37 +133,7 @@
         </div>
     </div>
 
-    <?php if (!empty($exito)) : ?>
-        <script>
-            swal({
-                type: 'succes',
-                title: "Exito",
-                text: "<?php echo $exito; ?>",
-                button: "Aceptar",
-                icon: "error",
-                button: "Aceptar",
-                timer: 7000,
-                animation: false,
-                customClass: 'animated heartBeat'
-            })
-        </script>
-    <?php endif; ?>
-
-    <?php if (!empty($errores)) : ?>
-        <script>
-            swal({
-                type: 'error',
-                title: "ERROR",
-                text: "<?php echo $errores; ?>",
-                button: "Aceptar",
-                icon: "error",
-                button: "Aceptar",
-                timer: 7000,
-                animation: false,
-                customClass: 'animated heartBeat'
-            })
-        </script>
-    <?php endif; ?>
+    
     <br>
     <br>
     <br>
@@ -364,7 +334,11 @@
 <script src="js/jquery.js"></script>
 <script src="js/JsComplementoProg_toma_muestra.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.29.0/sweetalert2.all.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
 </script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+</script>
+<script src="js/validacion.js"></script>
 
 <script>
     $('#mostrar').on('click', function(e){
@@ -734,11 +708,35 @@
         })
     })
 </script>
+<?php if (!empty($exito)) : ?>
+        <script>
+            swal({
+                type: 'succes',
+                title: "Exito",
+                text: "<?php echo $exito; ?>",
+                button: "Aceptar",
+                icon: "error",
+                button: "Aceptar",
+                timer: 7000,
+                animation: false,
+                customClass: 'animated heartBeat'
+            })
+        </script>
+    <?php endif; ?>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-</script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-</script>
-<script src="js/validacion.js"></script>
-
+    <?php if (!empty($errores)) : ?>
+        <script>
+            swal({
+                type: 'error',
+                title: "ERROR",
+                text: "<?php echo $errores; ?>",
+                button: "Aceptar",
+                icon: "error",
+                button: "Aceptar",
+                timer: 7000,
+                animation: false,
+                customClass: 'animated heartBeat'
+            })
+        </script>
+    <?php endif; ?>
 </html>
