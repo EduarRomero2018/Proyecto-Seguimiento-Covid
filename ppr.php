@@ -30,7 +30,7 @@ switch ($_SESSION['role']) {
                 FROM prog_toma_muestra PTM
                 RIGHT JOIN pacientes P ON PTM.pacientes_id = P.id
                 LEFT JOIN usuarios U ON p.id_usuario = U.id
-                WHERE resultado = 'Pendiente' AND estado_paciente = 'VIVO' $filtro");
+                WHERE PTM.fecha_realizacion AND resultado = 'Pendiente' AND estado_paciente = 'VIVO' $filtro");
 
             $consulta->execute();
             $res = $consulta->fetchAll(PDO::FETCH_OBJ);
