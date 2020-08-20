@@ -149,11 +149,6 @@
                                     <input disabled type="date" id="f_programacion" class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-form-label">Fecha de Realizacion</label>
-                                    <input type="date" id="fecha_realizacion" class="form-control">
-                                </div>
-                            </div>
-                            <div class="form-group">
                                 <label class="col-form-label">Visita Exitosa</label>
                                 <select id="visita_exitosa" class="custom-select">
                                     <option selected value=""> </option>
@@ -161,6 +156,11 @@
                                     <option value="NO">No</option>
                                 </select>
                             </div>
+                            </div>
+                                <div class="form-group" name="ocultar">
+                                    <label class="col-form-label">Fecha de Realizacion</label>
+                                    <input type="date" id="fecha_realizacion" class="form-control">
+                                </div>
                             <div class="form-group" name="ocultar">
                                 <label class="col-form-label">Tipo de prueba aplicada al paciente</label>
                                 <select id="tipo_prueba" class="custom-select">
@@ -193,7 +193,7 @@
 <footer class="final text-center mt-5">
     <div class="container-fluid centrar">
         <img src="img/vigilados-supersalud-pie.png" width="250" class="img-responsive" alt="super salud">
-        <br> 
+        <br>
         Copyright © 2020 Caminosips || Todos los derechos reservados.
     </div>
 </footer>
@@ -211,7 +211,7 @@
 
 <script>
     $(document).ready(function () {
- 
+
         if($('body').height() > $(window).height()){
             $("footer").removeClass("fixed-bottom")
             $("footer").addClass('footer')
@@ -582,7 +582,7 @@
     });
 </script>
 <script>
-    $('#llamada').on('change', function () {  
+    $('#llamada').on('change', function () {
         if (this.value == 'Si') {
             $('div[name="hidden"]').attr('hidden', false)
             $('a[name="hidden"]').attr('hidden', false)
@@ -593,11 +593,11 @@
 
         if(this.value == ''){
             $('a[name="hidden"]').attr('hidden', true)
-            
+
         }
     })
 
-    $('a[name="notificar"]').on('click', function (e) {  
+    $('a[name="notificar"]').on('click', function (e) {
         let identificacion = this.parentElement.parentElement.children[4].innerText
         let nombre =  this.parentElement.parentElement.children[1].innerText
         let telefono =  this.parentElement.parentElement.children[5].innerText
@@ -667,7 +667,7 @@
                         $('#modal-notificacion').modal('hide')
                         $('#form-notificacion')[0].reset()
                         break;
-                
+
                     default:
                         Swal.fire(
                             'Error!',
