@@ -205,7 +205,6 @@
 <script type="text/javascript" src="js/mdb.min.js"></script>
 <script src="js/JsComplementoProg_toma_muestra.js"></script>
 <script src="js/addons/datatables.min.js"></script>
-<script src="js/JsComplementoProg_toma_muestra.js"></script>
 <script src="js/jsContenido.js"></script>
 <script src="js/validacion.js"></script>
 <script src="js/tables.js"></script>
