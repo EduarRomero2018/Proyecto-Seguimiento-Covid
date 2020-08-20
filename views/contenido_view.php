@@ -49,7 +49,7 @@
                     <div class="card weather-card">
                         <div class="card-body pb-3  text-center hoverable">
                             <h4 class="mb-1">
-                                <strong>Pacientes que estan Pendientes Por Resultados:</strong>
+                                <strong>Pacientes que estan Pendientes Por Resultados de toma de muestra:</strong>
                                 <hr>
                             </h4>
                             <div class="d-flex justify-content-center">
