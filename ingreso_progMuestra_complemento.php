@@ -2,9 +2,10 @@
 include 'conexion.php';  // Funciona.
 //APERTURA DE VARIABLES Datos Personales
 
-$_REQUEST['observacion'] = empty($_REQUEST['observacion'])? 'sin observacion':$_REQUEST['observacion'];  
-$_REQUEST['motivo'] = empty($_REQUEST['motivo'])? 'sin motivo':$_REQUEST['motivo']; 
-$_REQUEST['tipo_prueba'] = empty($_REQUEST['tipo_prueba'])? 'Null':$_REQUEST['motivo']; 
+$_REQUEST['observacion'] = empty($_REQUEST['observacion'])? 'sin observacion':$_REQUEST['observacion'];
+$_REQUEST['motivo'] = empty($_REQUEST['motivo'])? 'sin motivo':$_REQUEST['motivo'];
+$_REQUEST['tipo_prueba'] = empty($_REQUEST['tipo_prueba'])? 'Null':$_REQUEST['motivo'];
+$_REQUEST['fecha_realizacion'] = empty($_REQUEST['fecha_realizacion'])? 'Null':$_REQUEST['fecha_realizacion'];
 
 foreach ($_REQUEST as $key) {
     if ($key == '') {
@@ -14,7 +15,7 @@ foreach ($_REQUEST as $key) {
 
 try {
     $paciente_id = $_REQUEST['paciente_id'];
-    $fecha_realizacion = $_REQUEST['fecha_realizacion'] . ' ' . date('h:i:s');
+    $fecha_realizacion = $_REQUEST['fecha_realizacion'] == 'Null' ? null : $_REQUEST['fecha_realizacion'] . ' ' . date('h:i:s');
     $visita_exitosa = $_REQUEST['visita_exitosa'];
     $tipo_prueba = $_REQUEST['tipo_prueba'] == 'Null' ? null : $_REQUEST['tipo_prueba'];
     $observacion = $_REQUEST['observacion'];
