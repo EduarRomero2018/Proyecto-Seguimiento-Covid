@@ -1,23 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/mdb.min.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.29.0/sweetalert2.all.min.js"></script>
-    <link rel="stylesheet" href="css/stylos_formulario.css">
-    <script src="js/jquery.js"></script>
-    <!-- <script src="js/funciones.js"></script> -->
-</head>
-
-<body>
-    <div class="linea1"></div>
-    <div class="linea2"></div>
-    <div class="linea3"></div>
-
+<?php require_once 'views/header_view.php' ?>
     <div class="container-fluid">
         <?php if (isset($res) != '') : ?>
             <div class="card shadow mt-5">
@@ -42,10 +23,10 @@
                                     <th style="background: #a9c5e7" class="text-center th-sm">Fecha de Creacion<i</th>
                                     <th style="background: #a9c5e7" class="text-center th-sm">Fecha de Programacion<i</th>
                                     <th style="background: #a9c5e7" class="text-center th-sm">Fecha Del Resultado</th>
+                                    <th style="background: #a9c5e7" class="text-center th-sm">Fecha de realizacion</th>
                                     <th style="background: #a9c5e7" class="text-center th-sm">Resultado Primera Muestra</th>
                                     <th style="background: #a9c5e7" class="text-center th-sm">Usuario de Creacion y Programacion</th>
                                     <th style="background: #a9c5e7" class="text-center th-sm">Usuario de Seguimiento</th>
-                                    <!-- <th style="background: #a9c5e7" class="text-center th-sm">Usuario de Seguimiento</th> -->
                                     <!-- <th style="background: #a9c5e7" class="text-center th-sm">Usuario de Resultado</th> -->
                                     <?php if($_SESSION['role'] == 'Auxiliar de programacion'): ?>
                                         <th style="background: #a9c5e7" class="text-center th-sm">Reprogramar fecha de toma</th>
@@ -69,10 +50,10 @@
                                         <td class="text-center"><?= $key->fecha_registro?></td>
                                         <td class="text-center"><?= $key->fecha_programacion?></td>
                                         <td class="text-center"><?= $key->fecha_resultado ?></td>
+                                        <td class="text-center"><?= $key->fecha_realizacion ?></td>
                                         <td class="text-center"><?= $key->resultado ?></td>
                                         <td class="text-center"><?= $key->usuario_programacion ?></td>
                                         <td class="text-center"><?= $key->usuario_seguimiento ?></td>
-                                        <!-- <td class="text-center"><?= $key->usuario_resultado ?></td> -->
                                         <!-- <td class="text-center"><?= $key->usuario_medico ?></td> -->
                                         <?php if($_SESSION['role'] == 'Auxiliar de programacion'): ?>
                                             <td class="text-center"><a href="#" id="<?= $key->id ?>" name="reprogramar" class="btn btn-info px-3"><i style="font-size: 30px;" class="fas fa-calendar-alt text-white"></i></a></td>
@@ -95,10 +76,10 @@
                                     <th class="text-center">Fecha de Creacion</th>
                                     <th class="text-center">Fecha de Programacion</th>
                                     <th class="text-center">Fecha del Resultado</th>
+                                    <th class="text-center">Fecha de realizacion</th>
                                     <th class="text-center">Resultado Primera Muestra</th>
                                     <th class="text-center">Usuario de Programacion</th>
                                     <th class="text-center">Usuario de Seguimiento</th>
-                                    <!-- <th class="text-center">Usuario de Resultado</th> -->
                                     <!-- <th class="text-center">Usuario de Notificacion</th> -->
                                     <?php if($_SESSION['role'] == 'Auxiliar de programacion'): ?>
                                         <th class="text-center">Reprogramar</th>
@@ -117,8 +98,8 @@
 </body>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js">
-</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.29.0/sweetalert2.all.min.js"></script>
 <script src="js/addons/datatables.min.js"></script>
 <script src="js/tables.js"></script>
 <script type="text/javascript" src="js/mdb.min.js"></script>

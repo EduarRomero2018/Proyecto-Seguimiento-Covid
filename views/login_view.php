@@ -44,17 +44,16 @@
                                 <div class="cell columns small-12 medium-12 large-12  ">
 
                                 <?php if(!empty($errores)):?>
-  <script>
-   swal({
-  type: 'error',
-  title: "Error al iniciar sesión!",
-  text: "<?php echo $errores; ?>",
-  button: "Aceptar",
-  timer: 5000,
-  animation: false,
-  customClass: 'animated tada'})
-</script>
-
+                                  <script>
+                                    swal({
+                                    type: 'error',
+                                    title: "Error al iniciar sesión!",
+                                    text: "<?php echo $errores; ?>",
+                                    button: "Aceptar",
+                                    timer: 5000,
+                                    animation: false,
+                                    customClass: 'animated tada'})
+                                  </script>
                                 <?php endif; ?>
                                 </div>
                             </div>
@@ -70,9 +69,6 @@
         </div>
       </div>
     </div>
-    <script src="js/vendor/jquery.js"></script>
-    <script src="js/vendor/what-input.js"></script>
-    <script src="js/vendor/foundation.js"></script>
-    <script src="js/app.js"></script>
+    <script src="js/jquery.js"></script>
   </body>
 </html>

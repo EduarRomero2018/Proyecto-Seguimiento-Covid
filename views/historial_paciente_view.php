@@ -1,40 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Historial Paciente</title>
-    <link rel="stylesheet" href="css/stylos_formulario.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.0/css/mdb.min.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.29.0/sweetalert2.all.min.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <script src="js/jquery.js"></script>
-    <script src="js/funciones.js"></script>
-    <!--<link rel="stylesheet" href="">-->
-
-<body>
-
-    <div class="linea1"></div>
-    <div class="linea2"></div>
-    <div class="linea3"></div>
-    <!--******************************************************-->
-    <nav class="navbar navbar-expand-lg navbar-light fondo-color img-nav">
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-
-                <li class="nav-item">
-                    <a class="nav-link" href="index.php">INICIO</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    <!--*********************EMPIEZA LA INFORMACION DEBAJO DE LA NAVEGACION*********************************-->
-
-    <div class="container padre">
+<?php require_once 'views/header_view.php' ?>
+    <div class="container padre mt-4">
         <div class="card mb-3 text-center hoverable">
             <h4 class="mb-1">
                 <strong>Historial de Seguimiento del Paciente</strong>
@@ -188,15 +153,4 @@
         })
     </script>
     <?php endif; ?>
-    <br>
-
-</body>
-</script>
-<br>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js">
-</script>
-<!-- Bootstrap core JavaScript -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js">
-</script>
-
-</html>
+<?php require_once 'views/footer_view.php' ?>

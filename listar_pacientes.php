@@ -39,6 +39,7 @@ if (!isset($_REQUEST['consulta'])) {
     CONCAT(tipo_documento, ' - ', numero_documento) AS 'Identificacion', telefono, barrio,
     DATE(pacientes.fecha_registro) AS fecha_registro,
     DATE(fecha_programacion) AS fecha_programacion, fecha_resultado, resultado,
+    DATE(fecha_realizacion) AS fecha_realizacion,
 	UP.nombre_apellido AS usuario_programacion,
 	US.nombre_apellido AS usuario_seguimiento,
 	UR.nombre_apellido AS usuario_resultado,

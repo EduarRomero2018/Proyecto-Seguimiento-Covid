@@ -1,17 +1,10 @@
 <?php
 require_once 'conexion.php';
 
-$stm = $conexion->prepare(
-    "SELECT COUNT(*) AS pacientes_auxiliar_enfermeria 
-    FROM pacientes 
-    INNER JOIN usuarios ON id_usuario = usuarios.id
-    WHERE DATE(fecha_registro) < DATE(NOW())"
-);
-$stm->execute();
+print_r($_REQUEST);
 
-$pacientes_auxiliar_enfermeria = $stm->fetchAll(PDO::FETCH_OBJ);
 
-echo ('pacientes_auxiliar_enfermeria: ' . $pacientes_auxiliar_enfermeria[0]->pacientes_auxiliar_enfermeria . '<br>');
+
 $date = date('Y-m-d');
 $anio = date('Y');
 $mes = date('m');
@@ -124,12 +117,13 @@ foreach ($res as $dato ) {
 print_r('Numero de resultados: ' . $stm->rowCount() . '<br>');
 echo '--------------------------------------------------- <br>';
 
-$mensual = date('m') - 1;
+$mensual = $_REQUEST['mes'];
+
 switch ($mensual) {
-    case 1:
+    case 'Enero':
         $dia = 31;
         break;
-    case 2:
+    case 'Febrero':
         $bisiesto = $anio % 4;
         if ($bisiesto == 0) {
             $dia = 29;
@@ -137,40 +131,42 @@ switch ($mensual) {
             $dia = 28;
         }
         break;
-    case 3:
+    case 'Marzo':
         $dia = 31;
         break;
-    case 4:
+    case 'Abril':
         $dia = 30;
         break;
-    case 5:
+    case 'Mayo':
         $dia = 31;
         break;
-    case 6:
+    case 'Junio':
         $dia = 30;
         break;
-    case 7:
+    case 'Julio':
         $dia = 31;
         break;
-    case 8:
+    case 'Agosto':
         $dia = 31;
         break;
-    case 9:
+    case 'Septiembre':
         $dia = 30;
         break;
-    case 10:
+    case 'Octubre':
         $dia = 31;
         break;
-    case 11:
+    case 'Noviembre':
         $dia = 30;
         break;
-    case 12:
+    case 'Diciembre':
         $dia = 31;
         break;
 }
 
 $fecha_inicial = date('Y') . '-' . $mensual . '-' . 1;
 $fecha_final = date('Y') . '-' . $mensual . '-' . $dia;
+$total_seg_mes = 0;
+
 for ($i=1; $i <= 3; $i++) { 
     $stm = $conexion->prepare(
         "SELECT * FROM seguimiento_paciente
@@ -179,7 +175,7 @@ for ($i=1; $i <= 3; $i++) {
     );
     $stm->execute(array($fecha_inicial,$fecha_final));
     
-    $seg_axu_enfermeria = $stm->rowCount();
+    $numero_seg = $stm->rowCount();
     switch ($i) {
         case 1:
             $rol = 'Auxiliar de enfermeria';
@@ -192,11 +188,15 @@ for ($i=1; $i <= 3; $i++) {
             $rol = 'Medico general';
             break;
     }
-    // print_r($stm->fetchAll(PDO::FETCH_OBJ));
+   
     echo '-- Cantidad de seguimiento realizado por ' . $rol . ' -- <br>';
     echo 'Fecha inicial: ' . $fecha_inicial .'<br>';
-    echo 'seguimiento realizado por ' . $rol . ': ' . $seg_axu_enfermeria . '<br>';
+    echo 'seguimiento realizado por ' . $rol . ': ' . $numero_seg . '<br>';
     echo 'Fecha final: ' . $fecha_final .'<br>';
     echo '------------------------------------------------------------------------------ <br>';
+    $total_seg_mes += $numero_seg; 
 }
 
+$mes_pasado = date('m') - 1;
+$meses = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+require_once 'views/informes_views.php';

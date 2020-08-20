@@ -1,4 +1,5 @@
 <?php
+session_start();
 //Listar Seguimiento
 //Dato Necesario ID_paciente
 //MARIO FERNANDEZ 2020-06-07

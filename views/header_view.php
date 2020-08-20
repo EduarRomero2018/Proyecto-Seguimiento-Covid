@@ -5,13 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Inicio</title>
-    <link rel="stylesheet" href="../css/stylos_formulario.css">
-    <link href="../css/mdb.min.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.29.0/sweetalert2.all.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet">
-    <link rel="stylesheet" href="../css/all.css">
-    <link href="../css/bootstrap.css" rel="stylesheet">
-    <script src="../js/jquery.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+    <link rel="stylesheet" href="css/stylos_formulario.css">
+    <link href="css/mdb.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/all.css">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 <body>
     <div class="linea1"></div>
     <div class="linea2"></div>
@@ -95,17 +94,3 @@
             </a>
         </div>
     </nav>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js">
-    </script>
-    <script src="js/JsComplementoProg_toma_muestra.js"></script>
-    <script src="js/jsContenido.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script>
-        // Tooltips Initialization
-        $(function() {
-            $('[data-toggle="tooltip"]').tooltip()
-        })
-    </script>
-    <!-- Bootstrap core JavaScript -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js">
-</script>

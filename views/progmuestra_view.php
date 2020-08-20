@@ -1,23 +1,4 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no">
-    <title>programacion-muestra</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.0/css/mdb.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/stylos_formulario.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.29.0/sweetalert2.all.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="js/jquery.js"></script>
-    <script src="js/funciones.js"></script>
-</head>
-
-<body>
-    <div class="linea1"></div>
-    <div class="linea2"></div>
-    <div class="linea3"></div>
+<?php require_once 'views/header_view.php' ?>
     <div class="container">
         <div class="row">
             <h3 class="titulo">Programacion Primera Toma de Muestra</h3>
@@ -77,7 +58,7 @@
                                     <hr>
                                     <div class="row">
                                         <div class="col-sm-12">
-                                            <button <?= $disabled ?> style='cursor: pointer;' type="button" class="btn btn-outline-secondary btn-lg" onClick="muestra_oculta('contenido')" value="mostrar">Programar Primera Toma de Muestra</button>
+                                            <button <?= $disabled ?> style='cursor: pointer;' type="button" id="mostrar" class="btn btn-outline-secondary btn-lg" value="mostrar">Programar Primera Toma de Muestra</button>
                                         </div>
                                     </div>
                                 </div>
@@ -89,8 +70,8 @@
         </div>
     </div>
     <!-- **********formulario de los 4 campos************** -->
-    <div id="contenido" class="container">
-        <div class="progmuestra">
+    <div class="container">
+        <div id="contenido" class="progmuestra" hidden>
             <div class="row">
                 <div class="col-sm-3">
                     <form id="form-TM">
@@ -140,7 +121,7 @@
                 </div>
                 <div class="col-sm-3">
                     <br>
-                    <button id="guardar" type="submit" class="btn btn-outline-secondary btn-lg">Guardar Datos</button>
+                    <button id="guardar-p" type="submit" class="btn btn-outline-secondary btn-lg">Guardar Datos</button>
                 </div>
                 <div class="col-sm-3">
                     <br>
@@ -148,42 +129,6 @@
                 </div>
                 </form>
 
-            </div>
-        </div>
-    </div>
-
-    <!-- **********formulario de los 3 campos************** -->
-    <div id="trescampos" class="container" hidden>
-        <div class="progmuestra">
-            <div class="row">
-                <div class="col-sm-3">
-                    <label for="">Fecha de programacion</label>
-                    <input disabled type="date" id="f_programacion" class="form-control">
-                </div>
-                <div class="col-sm-3">
-                    <form id="form-TM-2">
-                        <label class="col-form-label">Fecha de Realizacion</label>
-                        <input type="date" id="fecha_realizacion" class="form-control">
-                </div>
-                <div class="col-sm-3">
-                    <label class="col-form-label">Visita Exitosa</label>
-                    <select id="visita_exitosa" class="custom-select">
-                        <option selected value=""> </option>
-                        <option value="SI">Si</option>
-                        <option value="NO">No</option>
-                    </select>
-                </div>
-                <div class="col-sm-3">
-                    <label class="col-form-label">Observacion</label>
-                    <input type="text" id="observacion" class="form-control" placeholder="Observacion">
-                </div>
-
-                <div class="col-sm-3">
-                    <br>
-                    <button id="guardar-complemento" type="submit" class="btn btn-outline-secondary btn-lg">Guardar Datos</button>
-                </div>
-
-                </form>
             </div>
         </div>
     </div>
@@ -228,6 +173,11 @@
 </script>
 
 <script>
+    $('#mostrar').on('click', function(e){
+        e.preventDefault()
+        $('#contenido').attr('hidden', false)
+    })
+
     $('#fecha_programacion').on('change', function() {
         let fecha_programacion = $('#fecha_programacion').val()
         if (fecha_programacion != '') {
