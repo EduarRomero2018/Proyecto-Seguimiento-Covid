@@ -14,19 +14,19 @@
                         <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
                             <thead>
                                 <tr class="text-right ">
-                                    <th style="background: #a9c5e7" class="text-center th-sm "># Registro</th>
+                                <th style="background: #a9c5e7" class="text-center th-sm "># Registro</th>
                                     <th style="background: #a9c5e7" class="text-center th-sm">Nombre paciente</th>
                                     <th style="background: #a9c5e7" class="text-center th-sm">Edad</th>
                                     <th style="background: #a9c5e7" class="text-center th-sm">Identificacion</th>
                                     <th style="background: #a9c5e7" class="text-center th-sm">Telefono</th>
-                                    <th style="background: #a9c5e7" class="text-center th-sm">Dirrección</th>
-                                    <th style="background: #a9c5e7" class="text-center th-sm">Fecha de Creacion<i</th>
+									<th style="background: #a9c5e7" class="text-center th-sm">Dirrección</th>
                                     <th style="background: #a9c5e7" class="text-center th-sm">Fecha de Programacion<i</th>
+									<th style="background: #a9c5e7" class="text-center th-sm">Fecha de Realizacion<i</th>
                                     <th style="background: #a9c5e7" class="text-center th-sm">Fecha Del Resultado</th>
-                                    <th style="background: #a9c5e7" class="text-center th-sm">Fecha de realizacion</th>
                                     <th style="background: #a9c5e7" class="text-center th-sm">Resultado Primera Muestra</th>
-                                    <th style="background: #a9c5e7" class="text-center th-sm">Usuario de Creacion y Programacion</th>
+                                    <th style="background: #a9c5e7" class="text-center th-sm">Usuario de Programacion</th>
                                     <th style="background: #a9c5e7" class="text-center th-sm">Usuario de Seguimiento</th>
+                                    <th style="background: #a9c5e7" class="text-center th-sm">Usuario del Medico</th>
                                     <!-- <th style="background: #a9c5e7" class="text-center th-sm">Usuario de Resultado</th> -->
                                     <?php if($_SESSION['role'] == 'Auxiliar de programacion'): ?>
                                         <th style="background: #a9c5e7" class="text-center th-sm">Reprogramar fecha de toma</th>
@@ -41,19 +41,19 @@
                                 $i = 1;
                                 foreach ($res as $key) : ?>
                                     <tr>
-                                        <td class="text-center"><?= $i ?></td>
+                                    <td class="text-center"><?= $i ?></td>
                                         <td class="text-center"><?= $key->Nombre_Completo ?></td>
                                         <td class="text-center"><?= $key->Edad ?></td>
                                         <td class="text-center"><?= $key->Identificacion ?></td>
                                         <td class="text-center"><?= $key->telefono ?></td>
-                                        <td class="text-center"><?= $key->barrio?></td>
-                                        <td class="text-center"><?= $key->fecha_registro?></td>
+										<td class="text-center"><?= $key->barrio?></td>
                                         <td class="text-center"><?= $key->fecha_programacion?></td>
+										<td class="text-center"><?= $key->fecha_realizacion?></td>
                                         <td class="text-center"><?= $key->fecha_resultado ?></td>
-                                        <td class="text-center"><?= $key->fecha_realizacion ?></td>
                                         <td class="text-center"><?= $key->resultado ?></td>
                                         <td class="text-center"><?= $key->usuario_programacion ?></td>
                                         <td class="text-center"><?= $key->usuario_seguimiento ?></td>
+                                        <td class="text-center"><?= $key->usuario_medico ?></td>
                                         <!-- <td class="text-center"><?= $key->usuario_medico ?></td> -->
                                         <?php if($_SESSION['role'] == 'Auxiliar de programacion'): ?>
                                             <td class="text-center"><a href="#" id="<?= $key->id ?>" name="reprogramar" class="btn btn-info px-3"><i style="font-size: 30px;" class="fas fa-calendar-alt text-white"></i></a></td>
@@ -67,19 +67,19 @@
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <th class="text-center"># Registro</th>
+                                <th class="text-center"># Registro</th>
                                     <th class="text-center">Nombre paciente</th>
                                     <th class="text-center">Edad</th>
                                     <th class="text-center">Identificacion</th>
                                     <th class="text-center">Telefono</th>
-                                    <th class="text-center">Dirrección</th>
-                                    <th class="text-center">Fecha de Creacion</th>
+									<th class="text-center">Dirrección</th>
                                     <th class="text-center">Fecha de Programacion</th>
+									 <th class="text-center">Fecha de Realizacion</th>
                                     <th class="text-center">Fecha del Resultado</th>
-                                    <th class="text-center">Fecha de realizacion</th>
                                     <th class="text-center">Resultado Primera Muestra</th>
                                     <th class="text-center">Usuario de Programacion</th>
                                     <th class="text-center">Usuario de Seguimiento</th>
+                                    <th class="text-center">Usuario del Medico</th>
                                     <!-- <th class="text-center">Usuario de Notificacion</th> -->
                                     <?php if($_SESSION['role'] == 'Auxiliar de programacion'): ?>
                                         <th class="text-center">Reprogramar</th>
