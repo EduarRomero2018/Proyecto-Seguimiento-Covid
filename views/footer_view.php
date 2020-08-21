@@ -506,19 +506,24 @@
     <script>
     $(document).ready(function () {
 
+        $('#fecha_realizacion').on('change', function(){
+            $('#asignacion').attr('disabled', false)
+        })
+
         $('#asignacion').on('change', function(){
             if(this.value != ''){
                 let asignacion = this.value
+                let fecha_realizacion = $('#fecha_realizacion').val()
 
                 $('#cantidad_pacientes').val('')
 
                 $.ajax({
                     type: "post",
-                    url: "asignacion2.php",
-                    data: {asignacion},
+                    url: "asignacion_pacientes.php",
+                    data: {asignacion,fecha_realizacion},
                     success: function (response) {
+                        console.log(response);
                         let result = JSON.parse(response)
-                        console.log(result);
                         switch (result[0]) {
                             case 'ok':
                                 let plantilla = `<option value="">Seleccione una opcion</option>`
