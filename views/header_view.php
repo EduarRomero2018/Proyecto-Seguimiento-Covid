@@ -10,7 +10,9 @@
     <link rel="stylesheet" href="css/stylos_formulario.css">
     <link href="css/mdb.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/all.css">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.css" rel="stylesheet">
+
+    </head>
 <body>
     <div class="linea1"></div>
     <div class="linea2"></div>
