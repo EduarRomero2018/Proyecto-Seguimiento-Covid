@@ -10,6 +10,8 @@ if (isset($_REQUEST['proceso'])) {
     $proceso = $_REQUEST['proceso'];
     $cantidad_pacientes = $_REQUEST['cantidad_pacientes'];
     $id_usuario = $_REQUEST['id_usuario'];
+    $fecha_realizacion = $_REQUEST['fecha_realizacion'];
+
     switch ($proceso) {
         case 'programacion':
 
@@ -123,6 +125,7 @@ if (isset($_REQUEST['proceso'])) {
 if(isset($_REQUEST['asignacion']))
 {
     $proceso = $_REQUEST['asignacion'];
+    $fecha_realizacion = $_REQUEST['fecha_realizacion'];
     switch ($proceso) {
         case 'programacion':
 
@@ -154,7 +157,9 @@ if(isset($_REQUEST['asignacion']))
         case 'seguimiento':
 
             $usuarios = "SELECT * FROM usuarios WHERE roles = 'Auxiliar de seguimiento'";
-            $pacientes = "SELECT COUNT(*) as cantidad_pacientes FROM pacientes WHERE id_usuario_seguimiento IS NULL";
+            $pacientes = "SELECT COUNT(*) as cantidad_pacientes FROM pacientes
+            INNER JOIN prog_toma_muestra ON pacientes.id = pacientes_id
+            WHERE id_usuario_seguimiento IS NULL AND DATE(fecha_realizacion) = ?";
 
             $stm = $conexion->prepare($usuarios);
             $stm->execute();
@@ -166,7 +171,7 @@ if(isset($_REQUEST['asignacion']))
             $result_usuarios = $stm->fetchAll(PDO::FETCH_OBJ);
 
             $stm = $conexion->prepare($pacientes);
-            $stm->execute();
+            $stm->execute(array($fecha_realizacion));
 
             if($stm->rowCount() == 0){
                 die(json_encode(array('!found',null,null)));

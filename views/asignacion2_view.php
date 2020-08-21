@@ -8,7 +8,11 @@
                         <h4>Asignacion de pacientes a usuarios</h4>
                         <div class="form-group">
                             <label>Seleccionar en que proceso desea asignar</label>
-                            <select id="asignacion" class="custom-select">
+                            <input type="date" id="fecha_realizacion" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>Seleccionar en que proceso desea asignar</label>
+                            <select id="asignacion" class="custom-select" disabled>
                                 <option value="">Seleccionar proceso</option>
                                 <!-- <option value="programacion">programacion</option> -->
                                 <option value="seguimiento">seguimiento</option>
