@@ -26,7 +26,10 @@ switch ($_SESSION['role']) {
 
             $consulta = $conexion->prepare(
                 "SELECT CONCAT(primer_nombre, ' ', primer_apellido) AS 'Nombre_Completo', tipo_documento,edad,
-                numero_documento,DATE(fecha_programacion) AS fecha_programacion, U.nombre_apellido
+                numero_documento,
+                DATE(fecha_programacion) AS fecha_programacion,
+                DATE(fecha_realizacion) AS fecha_realizacion,
+                U.nombre_apellido
                 FROM prog_toma_muestra PTM
                 RIGHT JOIN pacientes P ON PTM.pacientes_id = P.id
                 LEFT JOIN usuarios U ON p.id_usuario = U.id
