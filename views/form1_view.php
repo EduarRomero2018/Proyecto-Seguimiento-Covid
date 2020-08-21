@@ -153,36 +153,4 @@
       </form>
     </div>
   </div>
-
-  <?php if (!empty($exito)) : ?>
-    <script>
-      swal({
-        type: 'success',
-        title: "Datos Guardados Exitosamente",
-        text: "<?php echo $exito; ?>",
-        button: "Aceptar",
-        icon: "error",
-        button: "Aceptar",
-        timer: 7000,
-        animation: false,
-        customClass: 'animated heartBeat'
-      })
-    </script>
-  <?php endif; ?>
-
-  <?php if (!empty($errores)) : ?>
-    <script>
-      swal({
-        type: 'error',
-        title: "ERROR",
-        text: "<?php echo $errores; ?>",
-        button: "Aceptar",
-        icon: "error",
-        button: "Aceptar",
-        timer: 7000,
-        animation: false,
-        customClass: 'animated heartBeat'
-      })
-    </script>
-  <?php endif; ?>
 <?php require_once 'views/footer_view.php' ?>
