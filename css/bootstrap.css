@@ -64,7 +64,7 @@ body {
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #212529;
+  /* color: #ffffff; */
   text-align: left;
   background-color: #fff;
 }
@@ -4385,7 +4385,7 @@ input[type="button"].btn-block {
   flex-direction: column;
   min-width: 0;
   word-wrap: break-word;
-  background-color: #4095bd33;
+  /* background-color: #4095bd33; */
   background-clip: border-box;
   border-right: 1px solid rgba(255, 179, 57, 0.7);
   border-left: 1px solid rgba(255, 179, 57, 0.7);
