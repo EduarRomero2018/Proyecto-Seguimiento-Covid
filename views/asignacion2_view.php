@@ -10,7 +10,7 @@
                             <label>Seleccionar en que proceso desea asignar</label>
                             <select id="asignacion" class="custom-select">
                                 <option value="">Seleccionar proceso</option>
-                                <option value="programacion">programacion</option>
+                                <!-- <option value="programacion">programacion</option> -->
                                 <option value="seguimiento">seguimiento</option>
                                 <!-- <option value="resultado">resultado</option> -->
                                 <option value="medico">medico</option>
