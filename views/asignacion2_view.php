@@ -7,7 +7,7 @@
                     <form>
                         <h4>Asignacion de pacientes a usuarios</h4>
                         <div class="form-group">
-                            <label>Seleccionar en que proceso desea asignar</label>
+                            <label>Seleccione la fecha de realizacion de la toma de muestra</label>
                             <input type="date" id="fecha_realizacion" class="form-control">
                         </div>
                         <div class="form-group">
