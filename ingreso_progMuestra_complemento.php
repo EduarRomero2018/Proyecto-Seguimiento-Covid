@@ -4,7 +4,7 @@ include 'conexion.php';  // Funciona.
 
 $_REQUEST['observacion'] = empty($_REQUEST['observacion'])? 'sin observacion':$_REQUEST['observacion'];
 $_REQUEST['motivo'] = empty($_REQUEST['motivo'])? 'sin motivo':$_REQUEST['motivo'];
-$_REQUEST['tipo_prueba'] = empty($_REQUEST['tipo_prueba'])? 'Null':$_REQUEST['motivo'];
+$_REQUEST['tipo_prueba'] = empty($_REQUEST['tipo_prueba'])? 'Null':$_REQUEST['tipo_prueba'];
 $_REQUEST['fecha_realizacion'] = empty($_REQUEST['fecha_realizacion'])? 'Null':$_REQUEST['fecha_realizacion'];
 
 foreach ($_REQUEST as $key) {
