@@ -42,10 +42,13 @@ if (isset($_REQUEST['proceso'])) {
 
         case 'seguimiento':
 
-            $pacientes = "SELECT id FROM pacientes WHERE id_usuario_seguimiento IS NULL LIMIT $cantidad_pacientes";
+            $pacientes = "SELECT pacientes.id 
+            FROM pacientes
+            INNER JOIN prog_toma_muestra ON pacientes.id = pacientes_id
+            WHERE id_usuario_seguimiento IS NULL AND DATE(fecha_realizacion) = ? LIMIT $cantidad_pacientes";
 
             $stm = $conexion->prepare($pacientes);
-            $stm->execute();
+            $stm->execute(array($fecha_realizacion));
 
             $result_pacientes = $stm->fetchAll(PDO::FETCH_OBJ);
 
@@ -57,10 +60,12 @@ if (isset($_REQUEST['proceso'])) {
                 ));
             }
 
-            $pacientes = "SELECT * FROM pacientes WHERE id_usuario_seguimiento IS NULL";
+            $pacientes = "SELECT * FROM pacientes
+            INNER JOIN prog_toma_muestra ON pacientes.id = pacientes_id
+            WHERE id_usuario_seguimiento IS NULL AND DATE(fecha_realizacion) = ?";
 
             $stm = $conexion->prepare($pacientes);
-            $stm->execute();
+            $stm->execute(array($fecha_realizacion));
 
             die(json_encode(array('ok',$stm->rowCount())));
 
