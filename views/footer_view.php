@@ -580,15 +580,16 @@
             let id_usuario = $('#id_usuario').val()
             let cantidad_pacientes = $('#cantidad_pacientes').val()
             let proceso = $('#asignacion').val()
+            let fecha_realizacion = $('#fecha_realizacion').val()
 
             if (id_usuario != '' && cantidad_pacientes != '') {
                 $.ajax({
                     type: "post",
-                    url: "asignacion2.php",
-                    data: {id_usuario,cantidad_pacientes,proceso},
+                    url: "asignacion_pacientes.php",
+                    data: {id_usuario,cantidad_pacientes,fecha_realizacion,proceso},
                     success: function (response) {
+                        console.log(response);
                         let result = JSON.parse(response)
-                        console.log(result);
 
                         switch (result[0]) {
                             case 'ok':
