@@ -20,6 +20,8 @@
                                     <th style="background: #ffc974" class="text-center th-sm">Tipo Documento</th>
                                     <th style="background: #ffc974" class="text-center th-sm">Edad</th>
                                     <th style="background: #ffc974" class="text-center th-sm">Identificacion</th>
+                                    <th style="background: #ffc974" class="text-center th-sm">Telefono 1</th>
+                                    <th style="background: #ffc974" class="text-center th-sm">Telefono 2</th>
                                     <th style="background: #ffc974" class="text-center th-sm">Fecha de Programacion<i</th>
                                     <th style="background: #ffc974" class="text-center th-sm">Fecha de entrega laboratorio<i</th>
                                     <th style="background: #ffc974" class="text-center th-sm">Fecha Del Resultado</th>
@@ -36,6 +38,8 @@
                                         <td class="text-center"><?= $key->tipo_documento ?></td>
                                         <td class="text-center"><?= $key->edad ?></td>
                                         <td class="text-center"><?= $key->numero_documento ?></td>
+                                        <td class="text-center"><?= $key->telefono?></td>
+                                        <td class="text-center"><?= $key->telefono2?></td>
                                         <td class="text-center"><?= $key->fecha_programacion ?></td>
                                         <td class="text-center"><?= $key->fecha_entrega_lab ?></td>
                                         <td class="text-center"><?= $key->fecha_resultado ?></td>
