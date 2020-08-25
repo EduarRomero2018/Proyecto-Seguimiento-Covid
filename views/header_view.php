@@ -19,7 +19,7 @@
     <div class="linea3"></div>
     <!--******************************************************-->
     <nav class="navbar navbar-expand-lg navbar-light fondo-color img-nav">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="login.php">
             <img src="img/logo_sin_fondo.png" class="img-fluid" alt="logo-caminos">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
