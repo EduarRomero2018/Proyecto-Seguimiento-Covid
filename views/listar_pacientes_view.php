@@ -54,7 +54,15 @@
                                         <td class="text-center"><?= $key->fecha_programacion?></td>
 										<td class="text-center"><?= $key->fecha_realizacion?></td>
                                         <td class="text-center"><?= $key->fecha_resultado ?></td>
-                                        <td class="text-center"><?= $key->resultado ?></td>
+                                        <?php if($key->resultado == 'Pendiente'): ?>
+                                            <td class="text-center bg-warning"><?= $key->resultado ?></td>
+                                        <?php endif ?>
+                                        <?php if($key->resultado == 'Positivo'): ?>
+                                            <td class="text-center bg-danger"><?= $key->resultado ?></td>
+                                        <?php endif ?>
+                                        <?php if($key->resultado == 'Negativo'): ?>
+                                            <td class="text-center bg-success"><?= $key->resultado ?></td>
+                                        <?php endif ?>
                                         <td class="text-center"><?= $key->usuario_programacion ?></td>
                                         <td class="text-center"><?= $key->usuario_seguimiento ?></td>
                                         <td class="text-center"><?= $key->usuario_medico ?></td>
