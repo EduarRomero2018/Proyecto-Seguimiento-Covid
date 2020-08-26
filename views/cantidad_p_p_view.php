@@ -20,9 +20,13 @@
                                     <th style="background: #ffc974" class="text-center th-sm">Tipo Documento</th>
                                     <th style="background: #ffc974" class="text-center th-sm">Edad</th>
                                     <th style="background: #ffc974" class="text-center th-sm">Identificacion</th>
+                                    <th style="background: #ffc974" class="text-center th-sm">Telefonos</th>
                                     <th style="background: #ffc974" class="text-center th-sm">Fecha de Programacion<i</th>
                                     <th style="background: #ffc974" class="text-center th-sm">Fecha de entrega laboratorio<i</th>
                                     <th style="background: #ffc974" class="text-center th-sm">Fecha Del Resultado</th>
+                                    <th style="background: #ffc974" class="text-center th-sm">Usuario Programacion</th>
+                                    <th style="background: #ffc974" class="text-center th-sm">Usuario Seguimiento</th>
+                                    <th style="background: #ffc974" class="text-center th-sm">Usuario Medico</th>
                                     <th style="background: #ffc974" class="text-center th-sm">Paciente Notificado</th>
                                 </tr>
                             </thead>
@@ -36,9 +40,13 @@
                                         <td class="text-center"><?= $key->tipo_documento ?></td>
                                         <td class="text-center"><?= $key->edad ?></td>
                                         <td class="text-center"><?= $key->numero_documento ?></td>
+                                        <td class="text-center"><?= $key->telefonos?></td>
                                         <td class="text-center"><?= $key->fecha_programacion ?></td>
                                         <td class="text-center"><?= $key->fecha_entrega_lab ?></td>
                                         <td class="text-center"><?= $key->fecha_resultado ?></td>
+                                        <td class="text-center"><?= $key->Usuario_Programacion ?></td>
+                                        <td class="text-center"><?= $key->Usuario_Seguimiento ?></td>
+                                        <td class="text-center"><?= $key->Usuario_Medico ?></td>
                                         <td class="text-center"><?= $key->notificado ?></td>
                                     </tr>
                                 <?php $i++;
