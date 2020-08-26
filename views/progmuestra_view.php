@@ -81,7 +81,7 @@
                             <option value="SI">Si</option>
                             <option value="NO">No</option>
                             <option value="LLAMADA NO EXITOSA">Llamada no Exitosa</option>
-                            <option value="NO APLICA">No Aplica</option>
+                            <option value="NO APLICA PARA CERCO">No aplica para (Cerco)</option>
                         </select>
                 </div>
                 <div class="col-sm-3">
@@ -133,7 +133,7 @@
         </div>
     </div>
 
-    
+
     <br>
     <br>
     <br>

@@ -20,6 +20,8 @@
                                     <th style="background: #a9c5e7" class="text-center th-sm">Identificacion</th>
                                     <th style="background: #a9c5e7" class="text-center th-sm">Telefono</th>
 									<th style="background: #a9c5e7" class="text-center th-sm">Dirrección</th>
+                                    <th style="background: #a9c5e7" class="text-center th-sm">Ubicacion del Paciente</th>
+									<th style="background: #a9c5e7" class="text-center th-sm">Toma de Muestra</th>
                                     <th style="background: #a9c5e7" class="text-center th-sm">Fecha de Programacion<i</th>
 									<th style="background: #a9c5e7" class="text-center th-sm">Fecha de Realizacion<i</th>
                                     <th style="background: #a9c5e7" class="text-center th-sm">Fecha Del Resultado</th>
@@ -47,6 +49,8 @@
                                         <td class="text-center"><?= $key->Identificacion ?></td>
                                         <td class="text-center"><?= $key->telefono ?></td>
 										<td class="text-center"><?= $key->barrio?></td>
+                                        <td class="text-center"><?= $key->municipio ?></td>
+										<td class="text-center"><?= $key->programacion_atencion?></td>
                                         <td class="text-center"><?= $key->fecha_programacion?></td>
 										<td class="text-center"><?= $key->fecha_realizacion?></td>
                                         <td class="text-center"><?= $key->fecha_resultado ?></td>
@@ -72,7 +76,9 @@
                                     <th class="text-center">Edad</th>
                                     <th class="text-center">Identificacion</th>
                                     <th class="text-center">Telefono</th>
-									<th class="text-center">Dirrección</th>
+                                    <th class="text-center">Dirrección</th>
+                                    <th class="text-center th-sm">Ubicacion del Paciente</th>
+                                    <th class="text-center th-sm">Toma de Muestra</th>
                                     <th class="text-center">Fecha de Programacion</th>
 									 <th class="text-center">Fecha de Realizacion</th>
                                     <th class="text-center">Fecha del Resultado</th>

@@ -38,12 +38,14 @@ if (!isset($_REQUEST['consulta'])) {
     CONCAT(edad, ' ', unidad_medida) AS 'Edad',
     CONCAT(tipo_documento, ' - ', numero_documento) AS 'Identificacion', telefono, barrio,
     DATE(fecha_programacion) AS fecha_programacion,
-    DATE(fecha_realizacion) AS fecha_realizacion, fecha_resultado, resultado,
+    DATE(fecha_realizacion) AS fecha_realizacion, fecha_resultado, municipio, resultado, programacion_atencion,
 	UP.nombre_apellido AS usuario_programacion,
 	US.nombre_apellido AS usuario_seguimiento,
 	UR.nombre_apellido AS usuario_resultado,
+	UM.nombre_apellido AS usuario_medico,
 	UM.nombre_apellido AS usuario_medico
 	FROM pacientes
+    LEFT JOIN usuarios U ON pacientes.id_usuario = U.id
     LEFT JOIN usuarios UP ON pacientes.id_usuario = UP.id
     LEFT JOIN usuarios US ON pacientes.id_usuario_seguimiento = US.id
     LEFT JOIN usuarios UR ON pacientes.id_usuario_resultado = UR.id
