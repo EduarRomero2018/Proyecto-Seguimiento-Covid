@@ -205,6 +205,7 @@
 <script type="text/javascript" src="js/mdb.min.js"></script>
 <script src="js/JsComplementoProg_toma_muestra.js"></script>
 <script src="js/addons/datatables.min.js"></script>
+<script src="js/JsSeguimiento.js"></script>
 <script src="js/jsContenido.js"></script>
 <script src="js/validacion.js"></script>
 <script src="js/tables.js"></script>
@@ -529,7 +530,7 @@
                                 let plantilla = `<option value="">Seleccione una opcion</option>`
                                 result[2].forEach(usuarios => {
                                     plantilla += `
-                                        <option value="${usuarios.id}">${usuarios.nombre_apellido}</option>
+                                        <option value="${usuarios.id}">${usuarios.nombre_apellido} (${usuarios.sede})</option>
                                     `
                                 })
 
@@ -932,6 +933,148 @@
                 }
             }
         })
+    })
+</script>
+<script>
+    $(document).ready(function() {
+        console.log('JQ')
+        document.getElementsByName('descargar').forEach(Element => {
+            Element.addEventListener('click', function(e) {
+                e.preventDefault()
+
+                console.log(this)
+                let nombre = $('#nombre')[0].innerHTML
+                let documento = $('#documento')[0].innerHTML
+                let url = this.id
+
+                let datos = {
+                    nombre,
+                    url,
+                    documento
+                }
+
+                $.ajax({
+                    type: 'post',
+                    url: 'descargar_soporte.php',
+                    data: datos,
+                    xhrFields: {
+                        responseType: 'blob'
+                    },
+                    success: function(res) {
+                        console.log(res)
+                        var link = document.createElement('a');
+                        link.href = window.URL.createObjectURL(res);
+                        link.download =
+                            `soporte-resultado-paciente-${nombre}_${documento}.pdf`;
+                        link.click();
+                    }
+                })
+
+                console.log(datos)
+            })
+        })
+    })
+
+    $('#llamada').on('change', function () {  
+        if (this.value == 'Si') {
+            $('div[name="hidden"]').attr('hidden', false)
+            $('a[name="hidden"]').attr('hidden', false)
+        } else {
+            $('div[name="hidden"]').attr('hidden', true)
+            $('a[name="hidden"]').attr('hidden', false)
+        }
+
+        if(this.value == ''){
+            $('a[name="hidden"]').attr('hidden', true)
+            
+        }
+    })
+
+    $('a[name="notificar"]').on('click', function (e) {  
+        let identificacion = this.parentElement.parentElement.children[1].innerText
+        let nombre = $('#nombre')[0].innerHTML
+
+        $('#text-modal').text(`Notificar al paciente ${nombre} - ${identificacion} de sus reslutados`)
+    })
+
+    $('#notificar').on('click', (e) => {
+        e.preventDefault()
+
+        let id_usuario = $('#id_usuario').val()
+        let paciente_id = $('#paciente_id').val()
+        let rol_usuario = $('#role')[0].innerHTML
+        let nombre_paciente = $('#nombre')[0].innerText
+        let telefono_paciente = ''
+        let telefono2_paciente = ''
+        let motivo = $('#motivo').val()
+        let llamada = $('#llamada').val()
+
+        for (let index = 1; index <= 2; index++) {
+            const element = `#telefono${index}`;
+
+            if ($(element).is(':checked') == true) {
+                if(element == '#telefono1'){
+                    telefono_paciente = $('#telefono1-l')[0].innerText
+                }else{
+                    telefono2_paciente = $('#telefono2-l')[0].innerText
+                }
+            }
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "notificar_paciente.php",
+            data: {
+                llamada,
+                paciente_id,
+                id_usuario,
+                rol_usuario,
+                nombre_paciente,
+                telefono_paciente,
+                telefono2_paciente,
+                motivo
+            },
+            success: function (response) {
+                console.log(response);
+                let res = JSON.parse(response)
+                switch (res) {
+                    case 'ok':
+                        Swal.fire(
+                            'Tarea realizada con exito!',
+                            'datos guardados',
+                            'success'
+                        )
+                        $('#modal-notificacion').modal('hide')
+                        $('#form-notificacion')[0].reset()
+                        break;
+                
+                    default:
+                        Swal.fire(
+                            'Error!',
+                            'Ha ocurrido un error al momento de realizar la tarea',
+                            'error'
+                        )
+                        break;
+                }
+            }
+        });
+    })
+</script>
+<script>
+    $('select[name="sintomas"]').on('change',function(){
+        let sintomas = 0
+        for (const iterator of $('select[name="sintomas"]')) {
+            if(iterator.value == 'Si'){
+                sintomas += 1
+            }
+
+            if(sintomas != 0){
+                $('#fecha_sintomas').attr('hidden', false)
+            }else{
+                $('#fecha_sintomas').attr('hidden', true)
+            }
+        }
+        // alert('prueba');
     })
 </script>
 </body>
