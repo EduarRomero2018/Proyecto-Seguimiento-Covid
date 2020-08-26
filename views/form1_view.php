@@ -103,6 +103,8 @@
           <option selected value=""> </option>
           <option value="SUBSIDIADO">Subsidiado</option>
           <option value="CONTRIBUTIVO">Contributivo</option>
+          <option value="REGIMEN ESPECIAL">Regimen Especial</option>
+          <option value="SIN AFILIACION">Sin Afilicion</option>
         </select>
       </div>
 
