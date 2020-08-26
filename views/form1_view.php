@@ -123,7 +123,7 @@
         <select name="municipio" class="custom-select" required>
           <option value=""></option>
           <?php
-          $municipios = ['cartagena (13001)', 'Santa catalina (13673)', 'Clemencia (13222)', 'Turbana (13838)', 'Turbaco (13836)', 'Arjona (13052)', 'Mahates (13433)', 'VillaNueva (13873)', 'Maria la baja (13442)', 'San jacinto (13654)', 'Carmen de bolivar (13244)', 'San juan nepomuceno (13657)', 'Zambrano (13894)', 'Calamar (13140)', 'Santa Rosa de lima (13683)', 'San estanislao (13647)', 'San cristobal (13620)', 'SoplaViento (13760)', 'El guamo (13248)', 'Arroyohondo (13062)', 'Cordoba (13212)'];
+          $municipios = ['Cartagena (13001)', 'Barranquilla (080001)', 'Santa catalina (13673)', 'Clemencia (13222)', 'Turbana (13838)', 'Turbaco (13836)', 'Arjona (13052)', 'Mahates (13433)', 'VillaNueva (13873)', 'Maria la baja (13442)', 'San jacinto (13654)', 'Carmen de bolivar (13244)', 'San juan nepomuceno (13657)', 'Zambrano (13894)', 'Calamar (13140)', 'Santa Rosa de lima (13683)', 'San estanislao (13647)', 'San cristobal (13620)', 'SoplaViento (13760)', 'El guamo (13248)', 'Arroyohondo (13062)', 'Cordoba (13212)'];
           foreach ($municipios as $municipio) : ?>
             <option value="<?= strtoupper($municipio) ?>"><?= ucwords($municipio) ?></option>
           <?php endforeach; ?>
