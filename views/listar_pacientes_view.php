@@ -14,12 +14,12 @@
                         <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
                             <thead>
                                 <tr class="text-right ">
-                                <th style="background: #a9c5e7" class="text-center th-sm "># Registro</th>
+                                    <th style="background: #a9c5e7" class="text-center th-sm"># Registro</th>
                                     <th style="background: #a9c5e7" class="text-center th-sm">Nombre paciente</th>
                                     <th style="background: #a9c5e7" class="text-center th-sm">Edad</th>
                                     <th style="background: #a9c5e7" class="text-center th-sm">Identificacion</th>
                                     <th style="background: #a9c5e7" class="text-center th-sm">Telefono</th>
-									<th style="background: #a9c5e7" class="text-center th-sm">Dirrección</th>
+									<th style="background: #a9c5e7" class="text-center th-sm">Dirección</th>
                                     <th style="background: #a9c5e7" class="text-center th-sm">Ubicacion del Paciente</th>
 									<th style="background: #a9c5e7" class="text-center th-sm">Toma de Muestra</th>
                                     <th style="background: #a9c5e7" class="text-center th-sm">Fecha de Programacion<i</th>
@@ -43,25 +43,25 @@
                                 $i = 1;
                                 foreach ($res as $key) : ?>
                                     <tr>
-                                    <td class="text-center"><?= $i ?></td>
-                                        <td class="text-center"><?= $key->Nombre_Completo ?></td>
-                                        <td class="text-center"><?= $key->Edad ?></td>
-                                        <td class="text-center"><?= $key->Identificacion ?></td>
-                                        <td class="text-center"><?= $key->telefono ?></td>
-										<td class="text-center"><?= $key->barrio?></td>
-                                        <td class="text-center"><?= $key->municipio ?></td>
-										<td class="text-center"><?= $key->programacion_atencion?></td>
-                                        <td class="text-center"><?= $key->fecha_programacion?></td>
-										<td class="text-center"><?= $key->fecha_realizacion?></td>
-                                        <td class="text-center"><?= $key->fecha_resultado ?></td>
+                                        <td class="text-center th-sm"><?= $i ?></td>
+                                        <td class="text-center th-sm"><?= $key->Nombre_Completo ?></td>
+                                        <td class="text-center th-sm"><?= $key->Edad ?></td>
+                                        <td class="text-center th-sm"><?= $key->Identificacion ?></td>
+                                        <td class="text-center th-sm"><?= $key->telefono ?></td>
+										<td class="text-center th-sm"><?= $key->barrio?></td>
+                                        <td class="text-center th-sm"><?= $key->municipio ?></td>
+										<td class="text-center th-sm"><?= $key->programacion_atencion?></td>
+                                        <td class="text-center th-sm"><?= $key->fecha_programacion?></td>
+										<td class="text-center th-sm"><?= $key->fecha_realizacion?></td>
+                                        <td class="text-center th-sm"><?= $key->fecha_resultado ?></td>
                                         <?php if($key->resultado == 'Pendiente'): ?>
-                                            <td class="text-center bg-warning"><?= $key->resultado ?></td>
+                                            <td class="text-center th-sm bg-warning"><?= $key->resultado ?></td>
                                         <?php endif ?>
                                         <?php if($key->resultado == 'Positivo'): ?>
-                                            <td class="text-center bg-danger"><?= $key->resultado ?></td>
+                                            <td class="text-center th-sm bg-danger"><?= $key->resultado ?></td>
                                         <?php endif ?>
                                         <?php if($key->resultado == 'Negativo'): ?>
-                                            <td class="text-center bg-success"><?= $key->resultado ?></td>
+                                            <td class="text-center th-sm bg-success"><?= $key->resultado ?></td>
                                         <?php endif ?>
                                         <td class="text-center"><?= $key->usuario_programacion ?></td>
                                         <td class="text-center"><?= $key->usuario_seguimiento ?></td>
@@ -80,20 +80,20 @@
                             <tfoot>
                                 <tr>
                                 <th class="text-center"># Registro</th>
-                                    <th class="text-center">Nombre paciente</th>
-                                    <th class="text-center">Edad</th>
-                                    <th class="text-center">Identificacion</th>
-                                    <th class="text-center">Telefono</th>
-                                    <th class="text-center">Dirrección</th>
+                                    <th class="text-center th-sm">Nombre paciente</th>
+                                    <th class="text-center th-sm">Edad</th>
+                                    <th class="text-center th-sm">Identificacion</th>
+                                    <th class="text-center th-sm">Telefono</th>
+                                    <th class="text-center th-sm">Dirrección</th>
                                     <th class="text-center th-sm">Ubicacion del Paciente</th>
                                     <th class="text-center th-sm">Toma de Muestra</th>
-                                    <th class="text-center">Fecha de Programacion</th>
-									 <th class="text-center">Fecha de Realizacion</th>
-                                    <th class="text-center">Fecha del Resultado</th>
-                                    <th class="text-center">Resultado Primera Muestra</th>
-                                    <th class="text-center">Usuario de Programacion</th>
-                                    <th class="text-center">Usuario de Seguimiento</th>
-                                    <th class="text-center">Usuario del Medico</th>
+                                    <th class="text-center th-sm">Fecha de Programacion</th>
+									<th class="text-center th-sm">Fecha de Realizacion</th>
+                                    <th class="text-center th-sm">Fecha del Resultado</th>
+                                    <th class="text-center th-sm">Resultado Primera Muestra</th>
+                                    <th class="text-center th-sm">Usuario de Programacion</th>
+                                    <th class="text-center th-sm">Usuario de Seguimiento</th>
+                                    <th class="text-center th-sm">Usuario del Medico</th>
                                     <!-- <th class="text-center">Usuario de Notificacion</th> -->
                                     <?php if($_SESSION['role'] == 'Auxiliar de programacion'): ?>
                                         <th class="text-center">Reprogramar</th>
