@@ -50,7 +50,7 @@ include 'conexion.php';  // Funciona.
              FROM `complemento_seg` C
              INNER JOIN pacientes P ON p.id = c.id_pacientes
              INNER JOIN seguimiento_paciente s ON s.complemento_seg_id = c.id
-             INNER JOIN usuarios u ON s.complemento_seg_id = u.id
+             INNER JOIN usuarios u ON s.id_usuario = u.id
              WHERE P.numero_documento = ? AND DATE(fecha_hora) = ?");
             $stm->execute(array($documento, $fecha_seguimiento));
             //print_r($stm);
