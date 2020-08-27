@@ -44,11 +44,13 @@ include 'conexion.php';  // Funciona.
             //mandamos un msg si no encontro nada
 
             $stm = $conexion->prepare("SELECT
-            s.fecha_hora, s.asintomatico, s.fiebre_cuantificada, s.tos, s.dificultad_respiratoria,
+             u.nombre_apellido,
+             s.fecha_hora, s.asintomatico, s.fiebre_cuantificada, s.tos, s.dificultad_respiratoria,
              s.odinofagia, s.fatiga_adinamia, cumple_criterios, comorbilidad, fecha_entrega_kits, oxigeno_terapia
              FROM `complemento_seg` C
              INNER JOIN pacientes P ON p.id = c.id_pacientes
              INNER JOIN seguimiento_paciente s ON s.complemento_seg_id = c.id
+             INNER JOIN usuarios u ON s.complemento_seg_id = u.id
              WHERE P.numero_documento = ? AND DATE(fecha_hora) = ?");
             $stm->execute(array($documento, $fecha_seguimiento));
             //print_r($stm);

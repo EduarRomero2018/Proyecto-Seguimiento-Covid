@@ -81,6 +81,9 @@
                     <div class="card-body card-body-cascade text-left">
                         <!-- Text -->
                         <p class="card-text ">
+                            <strong style="color:rgba(30, 80, 143)">Usuario seguimiento:
+                            </strong><?= $key->nombre_apellido ?>
+                            <br>
                             <strong style="color:rgba(30, 80, 143)">Fecha de Seguimiento:
                             </strong><?= $key->fecha_hora ?>
                             <br>
