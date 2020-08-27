@@ -42,7 +42,6 @@ if (!isset($_REQUEST['consulta'])) {
 	UP.nombre_apellido AS usuario_programacion,
 	US.nombre_apellido AS usuario_seguimiento,
 	UR.nombre_apellido AS usuario_resultado,
-	UM.nombre_apellido AS usuario_medico,
 	UM.nombre_apellido AS usuario_medico
 	FROM pacientes
     LEFT JOIN usuarios U ON pacientes.id_usuario = U.id
