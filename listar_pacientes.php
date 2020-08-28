@@ -38,7 +38,7 @@ if (!isset($_REQUEST['consulta'])) {
     CONCAT(edad, ' ', unidad_medida) AS 'Edad',
     CONCAT(tipo_documento, ' - ', numero_documento) AS 'Identificacion', telefono, barrio,
     DATE(fecha_programacion) AS fecha_programacion,
-    DATE(fecha_realizacion) AS fecha_realizacion, fecha_resultado, municipio, resultado, programacion_atencion,
+    DATE(fecha_realizacion) AS fecha_realizacion, motivo, fecha_resultado, municipio, resultado, programacion_atencion,
 	UP.nombre_apellido AS usuario_programacion,
 	US.nombre_apellido AS usuario_seguimiento,
 	UR.nombre_apellido AS usuario_resultado,

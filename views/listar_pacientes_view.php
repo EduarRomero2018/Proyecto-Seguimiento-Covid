@@ -24,6 +24,7 @@
 									<th style="background: #a9c5e7" class="text-center th-sm">Toma de Muestra</th>
                                     <th style="background: #a9c5e7" class="text-center th-sm">Fecha de Programacion<i</th>
 									<th style="background: #a9c5e7" class="text-center th-sm">Fecha de Realizacion<i</th>
+									<th style="background: #a9c5e7" class="text-center th-sm">Observacion<i</th>
                                     <th style="background: #a9c5e7" class="text-center th-sm">Fecha Del Resultado</th>
                                     <th style="background: #a9c5e7" class="text-center th-sm">Resultado Primera Muestra</th>
                                     <th style="background: #a9c5e7" class="text-center th-sm">Usuario de Programacion</th>
@@ -52,16 +53,9 @@
 										<td class="text-center th-sm"><?= $key->programacion_atencion?></td>
                                         <td class="text-center th-sm"><?= $key->fecha_programacion?></td>
 										<td class="text-center th-sm"><?= $key->fecha_realizacion?></td>
+										<td class="text-center th-sm"><?= $key->motivo?></td>
                                         <td class="text-center th-sm"><?= $key->fecha_resultado ?></td>
-                                        <?php if($key->resultado == 'Pendiente'): ?>
-                                            <td class="text-center th-sm bg-warning"><?= $key->resultado ?></td>
-                                        <?php endif ?>
-                                        <?php if($key->resultado == 'Positivo'): ?>
-                                            <td class="text-center th-sm bg-danger"><?= $key->resultado ?></td>
-                                        <?php endif ?>
-                                        <?php if($key->resultado == 'Negativo'): ?>
-                                            <td class="text-center th-sm bg-success"><?= $key->resultado ?></td>
-                                        <?php endif ?>
+                                        <td class="text-center th-sm"><?= $key->resultado ?></td>
                                         <td class="text-center"><?= $key->usuario_programacion ?></td>
                                         <td class="text-center"><?= $key->usuario_seguimiento ?></td>
                                         <td class="text-center"><?= $key->usuario_medico ?></td>
@@ -86,7 +80,8 @@
                                     <th class="text-center th-sm">Ubicacion del Paciente</th>
                                     <th class="text-center th-sm">Toma de Muestra</th>
                                     <th class="text-center th-sm">Fecha de Programacion</th>
-									<th class="text-center th-sm">Fecha de Realizacion</th>
+                                    <th class="text-center th-sm">Fecha de Realizacion</th>
+                                    <th class="text-center th-sm">Observacion</th>
                                     <th class="text-center th-sm">Fecha del Resultado</th>
                                     <th class="text-center th-sm">Resultado Primera Muestra</th>
                                     <th class="text-center th-sm">Usuario de Programacion</th>
