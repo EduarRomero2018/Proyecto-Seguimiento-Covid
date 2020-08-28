@@ -24,6 +24,16 @@ switch ($_SESSION['role']) {
       break;
 }
 
+//TOTAL DE PACIENTES
+$consulta = $conexion->prepare
+("SELECT COUNT(*) AS cantidad_pacientes
+FROM pacientes
+WHERE estado_paciente = 'VIVO'");
+$consulta->execute();
+$res = $consulta ->fetch();
+$cantidad_pacientes = $res['cantidad_pacientes'];
+// var_dump($cantidad_pacientes);
+
 //Cantidad de Pacientes Positivos://CONSULTA LISTA
 $consulta = $conexion->prepare("SELECT *
 FROM prog_toma_muestra PTM
@@ -94,7 +104,8 @@ $consulta = $conexion->prepare(
   $sintomaticos = $consulta->rowCount();
 
 /* Cantidad de kits entregados*///CONSULTA LISTA
-$consulta = $conexion->prepare("SELECT COUNT(*) AS Cantidad_kits
+$consulta = $conexion->prepare
+("SELECT COUNT(*) AS Cantidad_kits
 FROM seguimiento_paciente
 RIGHT JOIN pacientes P ON seguimiento_paciente.id_pacientes = P.id
 WHERE entrega_kits = 'Si' AND estado_paciente = 'VIVO'");
