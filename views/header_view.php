@@ -1,6 +1,3 @@
-<?php
-include 'reportes.php';
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -87,10 +84,6 @@ include 'reportes.php';
                     </div>
                 </li>
             </ul>
-
-
-            <!-- <button class="btn btn-outline-info  my-2 my-sm-0" type="submit"> -->
-            <i class="fas fa-2x fa-users"><?= ' ' . $cantidad_pacientes + 104?></i>
 
 
             <?php if (isset($_SESSION) && $_SESSION['role'] == 'Coordinador covid') : ?>
