@@ -16,7 +16,7 @@ switch ($_SESSION['role']) {
       break;
   case 'Digitador':
       $id_session = $_SESSION['id'];
-      $filtro = "AND id_usuario_resultado = $id_session";
+      $filtro = "";
       break;
   case 'Medico':
       $id_session = $_SESSION['id'];
@@ -53,11 +53,11 @@ FROM prog_toma_muestra PTM
 LEFT JOIN pacientes ON pacientes.id = PTM.pacientes_id
 WHERE PTM.fecha_realizacion IS NOT NULL
 AND resultado = 'Pendiente'
-AND estado_paciente = 'VIVO'$filtro");
+AND estado_paciente = 'VIVO' $filtro");
 $consulta->execute();
 $res = $consulta ->fetch();
 $numero_conteo = $res['Numero_Pacientes'];
-//var_dump ($consulta->errorInfo())  ;
+// var_dump ($consulta->errorInfo());
 
 //Pacientes que aun no se le ha programado la Toma de Muestra//CONSULTA LISTA
 $consulta = $conexion->prepare("SELECT COUNT(*) AS Cantidad_Pacientes
