@@ -224,71 +224,20 @@
         </div>
     </div>
 
-    <!-- Modal fecha de realizacion -->
-    <div class="modal fade" id="modalFechaRealizacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- Modal fecha de reprogramacion -->
+    <div class="modal fade" id="modalFechaReprogramacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Fecha de realizacion de la toma</h5>
+                    <h5 class="modal-title" id="tituloReprogramacion">Fecha de reprogramacion de la toma</h5>
                 </div>
                 <div class="modal-body">
                     <form id="form-container-3">
                         <div class="form-group">
-                            <label>Buscar Paciente</label>
-                            <input class="form-control" type="search" id="documento-3">
-                            <input type="hidden" id="paciente_id_3">
-                        </div>
-                        <input class="btn btn-secondary" type="submit" value="Consultar" id="buscar3">
-                        <div class="mt-2">
-                            <table hidden id="tablePaciente3" class="table table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Nombre</th>
-                                        <th scope="col">N° Identificacion</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="tbody-3"></tbody>
-                            </table>
-                        </div>
-                        <div style="display: none;" id="form-body-3">
-                            <div class="mt-2">
-                                <div class="form-group">
-                                    <label for="">Fecha de programacion</label>
-                                    <input disabled type="date" id="f_programacion" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-form-label">Fecha de Realizacion</label>
-                                    <input type="date" id="fecha_realizacion" class="form-control">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-form-label">Visita Exitosa</label>
-                                <select id="visita_exitosa" class="custom-select">
-                                    <option selected value=""> </option>
-                                    <option value="SI">Si</option>
-                                    <option value="NO">No</option>
-                                </select>
-                            </div>
-                            <div class="form-group" name="ocultar">
-                                <label class="col-form-label">Tipo de prueba aplicada al paciente</label>
-                                <select id="tipo_prueba" class="custom-select">
-                                    <option selected value=""> </option>
-                                    <option value="PRC">PCR</option>
-                                    <!-- <option value="IGG">IGG</option> -->
-                                    <option value="IGG Y IGM">IGG y IGM</option>
-                                    <option value="ANTIGENO">Antigeno</option>
-                                    <!-- <option value="IGM">IGM</option> -->
-                                </select>
-                            </div>
-                            <div class="form-group" name="ocultar">
-                                <label class="col-form-label">Observacion</label>
-                                <input type="text" id="observacion" class="form-control" placeholder="Observacion">
-                            </div>
-                            <div class="form-group" id="div-motivo" hidden>
-                                <label class="col-form-label">Motivo</label>
-                                <input type="text" id="motivo" class="form-control" placeholder="Motivo">
-                            </div>
-                            <button id="guardar-complemento" type="button" class="btn btn-primary">Guardar datos</button>
+                            <label>Fecha de reprogramacion: </label>
+                            <input type="hidden" id="id_reprogramacion">
+                            <input type="date" id="fecha_reprogramacion" min="<?= date('Y-m-d') ?>" class="form-control">
+                            <a href="#" id="reprogramacion" class="btn btn-primary">Reprogramar</a>
                         </div>
                     </form>
                 </div>
@@ -356,48 +305,50 @@
         })
     })
 
-    $('a[name="reprogramar"]').on('click', function(){
-        let nombre = this.parentElement.parentElement.children[1].innerText
+    $('#reprogramacion').on('click', function (e) {  
+        e.preventDefault()
 
-        Swal.fire({
-            title: `${nombre} Fecha de reprogramacion`,
-            html: '<input type="date" id="fecha_programacion" min="<?= date('Y-m-d') ?>" class="form-control">',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            cancelButtonText: 'Cancelar',
-            confirmButtonText: 'Si'
-        }).then((result) => {
-            if (result.value) {
-                let id = this.id
-                let fecha_r = $('#fecha_programacion').val()
-                $.ajax({
-                    type: "POST",
-                    url: "reprogramar.php",
-                    data: {id,fecha_r},
-                    success: function (response) {
-                        console.log(response);
-                        response = JSON.parse(response)
-                        if (response == 'ok') {
-                            Swal.fire(
-                                'Accion completada',
-                                'Datos guardados',
-                                'success'
-                            )
-                        } else {
-                            Swal.fire(
-                                'Error!',
-                                'Campo fecha de reprogramacion es obligatoria',
-                                'error'
-                            )
-                        }
-                    },
-                    error: function (XMLHttpRequest, textStatus, errorThrown) {
-                        console.log(`Status: ${textStatus} Error: ${errorThrown}`);
-                    }
-                });
+        let id = $('#id_reprogramacion').val()
+        let fecha_r = $('#fecha_reprogramacion').val()
+        $.ajax({
+            type: "POST",
+            url: "reprogramar.php",
+            data: {id,fecha_r},
+            success: function (response) {
+                console.log(id + ' ' + fecha_r);
+                console.log(response);
+                response = JSON.parse(response)
+                if (response == 'ok') {
+                    Swal.fire(
+                        'Accion completada',
+                        'Datos guardados',
+                        'success'
+                    )
+                } else {
+                    Swal.fire(
+                        'Error!',
+                        'Campo fecha de reprogramacion es obligatoria',
+                        'error'
+                    )
+                }
+                $('#modalFechaReprogramacion').modal('hide')
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                console.log(`Status: ${textStatus} Error: ${errorThrown}`);
             }
-        })
+        });
+    })
+
+    $('a[name="reprogramar"]').on('click', function(e){
+        e.preventDefault()
+        let nombre = this.parentElement.parentElement.children[1].innerText
+        $('#tituloReprogramacion').text(`${nombre} Fecha de reprogramacion de la toma`)
+        $('#id_reprogramacion').val(this.id)
+        $('#modalFechaReprogramacion').modal('show')
+    })
+
+    $('#modalFechaReprogramacion').on('hidden.bs.modal', function (e) {
+        $('#fecha_reprogramacion').val('')
     })
 
     $('#buscarPaciente').on('click', function() {
