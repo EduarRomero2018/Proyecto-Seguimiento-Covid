@@ -84,10 +84,12 @@
                     </div>
                 </li>
             </ul>
+
+
             <?php if (isset($_SESSION) && $_SESSION['role'] == 'Coordinador covid') : ?>
                 <a href="asignacion_pacientes.php">
                     <button class="btn btn-outline-info  my-2 my-sm-0" type="submit">
-                        <i class=" fas fa-file-upload" style="font-size: 20px;"></i></button>
+                        <i class=" fas fa-3x fa-file-upload" style="font-size: 20px;"></i></button>
                 </a>
             <?php endif ?>
             <a href="cerrar.php">

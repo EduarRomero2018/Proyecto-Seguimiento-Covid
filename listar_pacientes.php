@@ -38,7 +38,7 @@ if (!isset($_REQUEST['consulta'])) {
     CONCAT(edad, ' ', unidad_medida) AS 'Edad',
     CONCAT(tipo_documento, ' - ', numero_documento) AS 'Identificacion', telefono, barrio,
     DATE(fecha_programacion) AS fecha_programacion,
-    DATE(fecha_realizacion) AS fecha_realizacion, fecha_resultado, municipio, resultado, programacion_atencion,
+    DATE(fecha_realizacion) AS fecha_realizacion, motivo, fecha_resultado, municipio, resultado, programacion_atencion,
 	UP.nombre_apellido AS usuario_programacion,
 	US.nombre_apellido AS usuario_seguimiento,
 	UR.nombre_apellido AS usuario_resultado,
@@ -50,7 +50,7 @@ if (!isset($_REQUEST['consulta'])) {
     LEFT JOIN usuarios UR ON pacientes.id_usuario_resultado = UR.id
     LEFT JOIN usuarios UM ON pacientes.id_usuario_notificacion = UM.id
     LEFT JOIN prog_toma_muestra ON pacientes.id = prog_toma_muestra.pacientes_id
-    WHERE estado_paciente = 'VIVO' $filtro";
+    WHERE pacientes.estado_paciente = 'VIVO' AND prog_toma_muestra.resultado IS NULL || prog_toma_muestra.resultado != 'negativo' $filtro";
 
     $query = $conexion->prepare($consulta);
 

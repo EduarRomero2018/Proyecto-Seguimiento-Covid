@@ -16,13 +16,23 @@ switch ($_SESSION['role']) {
       break;
   case 'Digitador':
       $id_session = $_SESSION['id'];
-      $filtro = "AND id_usuario_resultado = $id_session";
+      $filtro = "";
       break;
   case 'Medico':
       $id_session = $_SESSION['id'];
       $filtro = "AND id_usuario_notificacion = $id_session AND prog_toma_muestra.resultado = 1";
       break;
 }
+
+//TOTAL DE PACIENTES
+$consulta = $conexion->prepare
+("SELECT COUNT(*) AS cantidad_pacientes
+FROM pacientes
+WHERE estado_paciente = 'VIVO'");
+$consulta->execute();
+$res = $consulta ->fetch();
+$cantidad_pacientes = $res['cantidad_pacientes'];
+// var_dump($cantidad_pacientes);
 
 //Cantidad de Pacientes Positivos://CONSULTA LISTA
 $consulta = $conexion->prepare("SELECT *
@@ -43,11 +53,11 @@ FROM prog_toma_muestra PTM
 LEFT JOIN pacientes ON pacientes.id = PTM.pacientes_id
 WHERE PTM.fecha_realizacion IS NOT NULL
 AND resultado = 'Pendiente'
-AND estado_paciente = 'VIVO'$filtro");
+AND estado_paciente = 'VIVO' $filtro");
 $consulta->execute();
 $res = $consulta ->fetch();
 $numero_conteo = $res['Numero_Pacientes'];
-//var_dump ($consulta->errorInfo())  ;
+// var_dump ($consulta->errorInfo());
 
 //Pacientes que aun no se le ha programado la Toma de Muestra//CONSULTA LISTA
 $consulta = $conexion->prepare("SELECT COUNT(*) AS Cantidad_Pacientes
@@ -94,7 +104,8 @@ $consulta = $conexion->prepare(
   $sintomaticos = $consulta->rowCount();
 
 /* Cantidad de kits entregados*///CONSULTA LISTA
-$consulta = $conexion->prepare("SELECT COUNT(*) AS Cantidad_kits
+$consulta = $conexion->prepare
+("SELECT COUNT(*) AS Cantidad_kits
 FROM seguimiento_paciente
 RIGHT JOIN pacientes P ON seguimiento_paciente.id_pacientes = P.id
 WHERE entrega_kits = 'Si' AND estado_paciente = 'VIVO'");
