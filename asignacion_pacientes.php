@@ -11,6 +11,7 @@ if (isset($_REQUEST['proceso'])) {
     $cantidad_pacientes = $_REQUEST['cantidad_pacientes'];
     $id_usuario = $_REQUEST['id_usuario'];
     $fecha_realizacion = $_REQUEST['fecha_realizacion'];
+    $municipio = $_REQUEST['municipio'];
 
     switch ($proceso) {
         case 'programacion':
@@ -45,10 +46,10 @@ if (isset($_REQUEST['proceso'])) {
             $pacientes = "SELECT pacientes.id 
             FROM pacientes
             INNER JOIN prog_toma_muestra ON pacientes.id = pacientes_id
-            WHERE estado_paciente = 'VIVO' AND id_usuario_seguimiento IS NULL AND DATE(fecha_realizacion) = ? LIMIT $cantidad_pacientes";
+            WHERE estado_paciente = 'VIVO' AND municipio = ? AND id_usuario_seguimiento IS NULL AND DATE(fecha_realizacion) = ? LIMIT $cantidad_pacientes";
 
             $stm = $conexion->prepare($pacientes);
-            $stm->execute(array($fecha_realizacion));
+            $stm->execute(array($municipio,$fecha_realizacion));
 
             $result_pacientes = $stm->fetchAll(PDO::FETCH_OBJ);
 
@@ -62,10 +63,10 @@ if (isset($_REQUEST['proceso'])) {
 
             $pacientes = "SELECT * FROM pacientes
             INNER JOIN prog_toma_muestra ON pacientes.id = pacientes_id
-            WHERE estado_paciente = 'VIVO' AND id_usuario_seguimiento IS NULL AND DATE(fecha_realizacion) = ?";
+            WHERE estado_paciente = 'VIVO' AND municipio = ?  AND id_usuario_seguimiento IS NULL AND DATE(fecha_realizacion) = ?";
 
             $stm = $conexion->prepare($pacientes);
-            $stm->execute(array($fecha_realizacion));
+            $stm->execute(array($municipio,$fecha_realizacion));
 
             die(json_encode(array('ok',$stm->rowCount())));
 
@@ -135,6 +136,8 @@ if(isset($_REQUEST['asignacion']))
 {
     $proceso = $_REQUEST['asignacion'];
     $fecha_realizacion = $_REQUEST['fecha_realizacion'];
+    $municipio = $_REQUEST['municipio'];
+
     switch ($proceso) {
         case 'programacion':
 
@@ -168,7 +171,7 @@ if(isset($_REQUEST['asignacion']))
             $usuarios = "SELECT * FROM usuarios WHERE roles = 'Auxiliar de seguimiento'";
             $pacientes = "SELECT COUNT(*) as cantidad_pacientes FROM pacientes
             INNER JOIN prog_toma_muestra ON pacientes.id = pacientes_id
-            WHERE estado_paciente = 1 AND id_usuario_seguimiento IS NULL AND DATE(fecha_realizacion) = ?";
+            WHERE estado_paciente = 1 AND municipio = ? AND id_usuario_seguimiento IS NULL AND DATE(fecha_realizacion) = ?";
 
             $stm = $conexion->prepare($usuarios);
             $stm->execute();
@@ -180,7 +183,7 @@ if(isset($_REQUEST['asignacion']))
             $result_usuarios = $stm->fetchAll(PDO::FETCH_OBJ);
 
             $stm = $conexion->prepare($pacientes);
-            $stm->execute(array($fecha_realizacion));
+            $stm->execute(array($municipio,$fecha_realizacion));
 
             if($stm->rowCount() == 0){
                 die(json_encode(array('!found',null,null)));

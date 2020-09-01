@@ -507,21 +507,26 @@
     <script>
     $(document).ready(function () {
 
-        $('#fecha_realizacion').on('change', function(){
+        $('#fecha_realizacion-asignacion').on('change', function(){
+            $('#municipio').attr('disabled', false)
+        })
+
+        $('#municipio').on('change', function(){
             $('#asignacion').attr('disabled', false)
         })
 
         $('#asignacion').on('change', function(){
             if(this.value != ''){
                 let asignacion = this.value
-                let fecha_realizacion = $('#fecha_realizacion').val()
+                let fecha_realizacion = $('#fecha_realizacion-asignacion').val()
+                let municipio = $('#municipio').val()
 
                 $('#cantidad_pacientes').val('')
 
                 $.ajax({
                     type: "post",
                     url: "asignacion_pacientes.php",
-                    data: {asignacion,fecha_realizacion},
+                    data: {asignacion,fecha_realizacion,municipio},
                     success: function (response) {
                         console.log(response);
                         let result = JSON.parse(response)
@@ -581,15 +586,17 @@
             let id_usuario = $('#id_usuario').val()
             let cantidad_pacientes = $('#cantidad_pacientes').val()
             let proceso = $('#asignacion').val()
-            let fecha_realizacion = $('#fecha_realizacion').val()
+            let fecha_realizacion = $('#fecha_realizacion-asignacion').val()
+            let municipio = $('#municipio').val()
 
-            if (id_usuario != '' && cantidad_pacientes != '') {
+            if (id_usuario != '' && cantidad_pacientes != '' && municipio != '') {
                 $.ajax({
                     type: "post",
                     url: "asignacion_pacientes.php",
-                    data: {id_usuario,cantidad_pacientes,fecha_realizacion,proceso},
+                    data: {id_usuario,cantidad_pacientes,fecha_realizacion,proceso,municipio},
                     success: function (response) {
-                        console.log(response);
+                        console.log(this.data);
+                        console.log(response)
                         let result = JSON.parse(response)
 
                         switch (result[0]) {

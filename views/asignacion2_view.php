@@ -8,15 +8,24 @@
                         <h4>Asignacion de pacientes a usuarios</h4>
                         <div class="form-group">
                             <label>Seleccione la fecha de realizacion de la toma de muestra</label>
-                            <input type="date" id="fecha_realizacion" class="form-control">
+                            <input type="date" id="fecha_realizacion-asignacion" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>Municipio</label>
+                            <select id="municipio" class="custom-select" disabled>
+                                <option value="">Seleccione un municipio</option>
+                                <?php
+                                $municipios = ['Cartagena (13001)', 'Barranquilla (080001)', 'Santa catalina (13673)', 'Clemencia (13222)', 'Turbana (13838)', 'Turbaco (13836)', 'Arjona (13052)', 'Mahates (13433)', 'VillaNueva (13873)', 'Maria la baja (13442)', 'San jacinto (13654)', 'Carmen de bolivar (13244)', 'San juan nepomuceno (13657)', 'Zambrano (13894)', 'Calamar (13140)', 'Santa Rosa de lima (13683)', 'San estanislao (13647)', 'San cristobal (13620)', 'SoplaViento (13760)', 'El guamo (13248)', 'Arroyohondo (13062)', 'Cordoba (13212)'];
+                                foreach ($municipios as $municipio) : ?>
+                                    <option value="<?= strtoupper($municipio) ?>"><?= ucwords($municipio) ?></option>
+                                <?php endforeach; ?>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label>Seleccionar en que proceso desea asignar</label>
                             <select id="asignacion" class="custom-select" disabled>
                                 <option value="">Seleccionar proceso</option>
-                                <!-- <option value="programacion">programacion</option> -->
                                 <option value="seguimiento">seguimiento</option>
-                                <!-- <option value="resultado">resultado</option> -->
                                 <option value="medico">medico</option>
                             </select>
                         </div>
