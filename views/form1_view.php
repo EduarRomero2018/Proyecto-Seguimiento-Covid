@@ -131,6 +131,10 @@
           <?php endforeach; ?>
         </select>
       </div>
+      <div class="col-sm-4">
+        <label class="col-form-label">Novedad del paciente:</label>
+        <input type="text" name="novedad_paciente" class="form-control" placeholder=" EJEMPLO: No contesta el telefono">
+      </div>
       <br>
       <div class="col-sm-4">
         <br>

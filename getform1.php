@@ -3,13 +3,13 @@ session_start();
 include 'conexion.php';  // Funciona.
 //APERTURA DE VARIABLES Datos Personales
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-// variables de Atención personal
 $tipo_paciente = $_POST['tipo_paciente'];$primer_nombre = $_POST['primer_nombre'];$segundo_nombre = $_POST['segundo_nombre'];
 $primer_apellido = $_POST['primer_apellido'];$segundo_apellido = $_POST['segundo_apellido'];$tipo_documento = $_POST['tipo_documento'];
 $numero_identificacion = $_POST['numero_identificacion'];$edad = $_POST['edad'];$unidad_medida = $_POST['unidad_medida'];$sexo = $_POST['sexo'];
-$barrio= $_POST['barrio'];$correo= $_POST['correo'];$telefono= $_POST['telefono'];$aseguradora= $_POST['aseguradora'];
+$barrio= $_POST['barrio'];$correo= $_POST['correo'];$telefono= $_POST['telefono'];$aseguradora= $_POST['aseguradora']; $novedad_paciente = $_POST['novedad_paciente'];
 $id_usuario= $_POST['id_usuario'];
-if(isset($_POST['fecha_recepcion_programacion']) != ''){
+
+if(isset($_POST['fecha_recepcion_programacion'] ) != ''){
   $fecha_recepcion_programacion=  $_POST['fecha_recepcion_programacion_'].' '.date('h:i:s');
 }else{
   $fecha_recepcion_programacion = null;
@@ -40,9 +40,9 @@ if($consulta->rowCount() == 0){
     $consulta =
     $conexion->prepare(
     "INSERT INTO pacientes
-    (tipo_paciente, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, tipo_documento, numero_documento, edad, unidad_medida, sexo, barrio, municipio, correo, telefono, telefono2, aseguradora, regimen, fecha_prog_recep, id_usuario, id_usuario_programacion)
+    (tipo_paciente, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, tipo_documento, numero_documento, edad, unidad_medida, sexo, barrio, municipio, correo, telefono, telefono2, aseguradora, novedad_paciente, regimen, fecha_prog_recep, id_usuario, id_usuario_programacion)
     VALUES
-    (:tipo_paciente, :primer_nombre, :segundo_nombre, :primer_apellido, :segundo_apellido, :tipo_documento, :numero_documento, :edad, :unidad_medida, :sexo, :barrio, :municipio, :correo, :telefono, :telefono, :aseguradora, :regimen, :fecha_prog_recep, :id_usuario, :id_usuario_programacion)");
+    (:tipo_paciente, :primer_nombre, :segundo_nombre, :primer_apellido, :segundo_apellido, :tipo_documento, :numero_documento, :edad, :unidad_medida, :sexo, :barrio, :municipio, :correo, :telefono, :telefono, :aseguradora, :novedad_paciente, :regimen, :fecha_prog_recep, :id_usuario, :id_usuario_programacion)");
 
     $consulta->execute(array(
      ':tipo_paciente'                       => ucwords($tipo_paciente),
@@ -61,6 +61,7 @@ if($consulta->rowCount() == 0){
      ':telefono'                            => $telefono,
      ':telefono2'                           => $telefono2,
      ':aseguradora'                         => ucwords($aseguradora),
+     ':novedad_paciente'                    => ucwords($novedad_paciente),
      ':regimen'                             => $regimen,
      ':fecha_prog_recep'                    => $fecha_recepcion_programacion,
      ':id_usuario'                          => $id_usuario,
