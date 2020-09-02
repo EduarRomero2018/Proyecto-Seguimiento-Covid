@@ -213,7 +213,7 @@
                         </div>
                     <?php endif ?>
 
-                    <?php if (isset($_SESSION) && $_SESSION['role'] == 'Medico') : ?>
+                    <?php if (isset($_SESSION) && $_SESSION['role'] == 'Medico' || $_SESSION['role'] == 'Coordinador covid') : ?>
                         <div class="col-sm-4">
                             <!-- Card -->
                             <div class="card weather-card">
@@ -237,7 +237,33 @@
                     <?php endif ?>
                 </div>
             </div>
-
+            <div class="container padre">
+                <br>
+                <div class="row">
+                <?php if (isset($_SESSION) && $_SESSION['role'] == 'Coordinador covid') : ?>
+                        <div class="col-sm-4">
+                            <!-- Card -->
+                            <div class="card weather-card">
+                                <div class="card-body pb-3  text-center hoverable">
+                                    <!-- Title -->
+                                    <h4 class="card-title font-weight-bold">Visita no Exitosa:</h4>
+                                    <hr>
+                                    <div class="d-flex justify-content-center">
+                                        <i class="fas fa-4x fa-user-minus">
+                                            <a href="vne.php">
+                                                <!-- style="text-decoration: none; color: rgba(6, 62, 131, 0.9);" -->
+                                                <p class="display-1 degree" data-toggle="tooltip" data-placement="bottom" title="Presione para saber cual son los pacientes que actualmente no estan notificado"><?= $cant_visita_exitosa ?></p>
+                                            </a>
+                                        </i>
+                                        </i>
+                                        <i class="fas fa-sun-o fa-5x pt-3 amber-text"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endif ?>
+                </div>
+            </div>
         </div>
         <br>
     </div>
