@@ -136,6 +136,14 @@ if($consulta->rowCount() > 0){
   // echo 'No se encontraron Pacientes Positivos';
   $negativos = 0;
 }
+//Cantidad de pacientes con visitas no exitosas ://CONSULTA LISTA
+$consulta = $conexion->prepare("SELECT COUNT(*) AS cant_visita_exitosa
+FROM prog_toma_muestra ptm
+RIGHT JOIN pacientes P ON ptm.pacientes_id = P.id
+WHERE visita_exitosa = 'NO' AND estado_paciente = 'VIVO'");
+$consulta->execute();
+$res = $consulta ->fetch();
+$cant_visita_exitosa = $res['cant_visita_exitosa'];
 
 
 
