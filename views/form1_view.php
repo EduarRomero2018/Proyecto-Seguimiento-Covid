@@ -51,7 +51,7 @@
 
       <div class="col-sm-4">
         <label class="col-form-label">Segundo Apellido:</label>
-        <input type="text" name="segundo_apellido" class="form-control" placeholder="Segundo Apellido" required>
+        <input type="text" name="segundo_apellido" class="form-control" placeholder="Segundo Apellido">
       </div>
 
 
