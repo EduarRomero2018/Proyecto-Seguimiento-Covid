@@ -80,7 +80,7 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a href="listar_pacientes.php" class="dropdown-item" href="#">Listar Todos los Pacientes</a>
-                        <a href="listar_pacientes_fecha_realizacion_pendiente.php" class="dropdown-item">Listar pacientes pendientes por fecha de realizacion de la toma de muestra</a>
+                        <!-- <a href="listar_pacientes_fecha_realizacion_pendiente.php" class="dropdown-item">Listar pacientes pendientes por fecha de realizacion de la toma de muestra</a> -->
                     </div>
                 </li>
             </ul>
