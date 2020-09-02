@@ -3,10 +3,20 @@ session_start();
 include 'conexion.php';  // Funciona.
 //APERTURA DE VARIABLES Datos Personales
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-$tipo_paciente = $_POST['tipo_paciente'];$primer_nombre = $_POST['primer_nombre'];$segundo_nombre = $_POST['segundo_nombre'];
-$primer_apellido = $_POST['primer_apellido'];$segundo_apellido = $_POST['segundo_apellido'];$tipo_documento = $_POST['tipo_documento'];
-$numero_identificacion = $_POST['numero_identificacion'];$edad = $_POST['edad'];$unidad_medida = $_POST['unidad_medida'];$sexo = $_POST['sexo'];
-$barrio= $_POST['barrio'];$correo= $_POST['correo'];$telefono= $_POST['telefono'];$aseguradora= $_POST['aseguradora']; $novedad_paciente = $_POST['novedad_paciente'];
+$tipo_paciente = $_POST['tipo_paciente'];
+$primer_nombre = $_POST['primer_nombre'];
+$segundo_nombre = $_POST['segundo_nombre'];
+$primer_apellido = $_POST['primer_apellido'];
+$segundo_apellido = $_POST['segundo_apellido'];
+$tipo_documento = $_POST['tipo_documento'];
+$numero_identificacion = $_POST['numero_identificacion'];
+$edad = $_POST['edad'];
+$unidad_medida = $_POST['unidad_medida'];
+$sexo = $_POST['sexo'];
+$barrio= $_POST['barrio'];
+$correo= $_POST['correo'];$telefono= $_POST['telefono'];
+$aseguradora= $_POST['aseguradora'];
+$novedad_paciente = $_POST['novedad_paciente'];
 $id_usuario= $_POST['id_usuario'];
 
 if(isset($_POST['fecha_recepcion_programacion'] ) != ''){
@@ -31,8 +41,7 @@ $consulta->execute(array($numero_identificacion));
 
 if($consulta->rowCount() == 0){
   //comprobamos que los campos no esten vacios
-  if (empty($tipo_paciente) || empty ($primer_nombre) || empty($primer_apellido) || empty($segundo_apellido)
-  || empty($tipo_documento) || empty($numero_identificacion) || empty($edad) || empty($unidad_medida) || empty($sexo) || empty($barrio) || empty($telefono) || empty($aseguradora)){
+  if (empty($tipo_paciente) || empty ($primer_nombre) || empty($primer_apellido) || empty($tipo_documento) || empty($numero_identificacion) || empty($edad) || empty($unidad_medida) || empty($sexo) || empty($barrio) || empty($telefono) || empty($aseguradora)){
   //si hay alguna variable vacia, entonces errores va hacer igual al contenido que tenga la variable
    $errores .= 'Todos los Campos deben estar diligenciados y con el Formato Adecuado';
   }
@@ -75,7 +84,6 @@ if($consulta->rowCount() == 0){
 }else{
   $errores = "Este paciente ya esta registrado";
 }
-
 
 }
  // require '/sesion/views/form1_view.php'; //llamamos la vista
