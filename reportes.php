@@ -74,7 +74,7 @@ $consulta = $conexion->prepare("SELECT COUNT(*) AS Cantidad_p_p_pendiente_por_to
 FROM prog_toma_muestra
 RIGHT JOIN pacientes ON pacientes.id = prog_toma_muestra.pacientes_id
 WHERE fecha_programacion IS NOT NULL
-AND fecha_realizacion IS NULL AND estado_paciente = 'VIVO' $filtro");
+AND fecha_realizacion IS NULL AND estado_paciente = 'VIVO' AND aseguradora = 'MUTUAL SER' $filtro");
 $consulta->execute();
 $res = $consulta ->fetch();
 $Cantidad_p_p_pendiente_por_toma= $res['Cantidad_p_p_pendiente_por_toma'];

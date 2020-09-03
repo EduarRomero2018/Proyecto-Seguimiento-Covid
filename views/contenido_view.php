@@ -90,7 +90,7 @@
                     <div class="card weather-card">
                         <div class="card-body pb-3  text-center hoverable">
                             <h4 class="mb-1">
-                                <strong>Cantidad de Pacientes pendientes por toma de muestra:</strong>
+                                <strong>Pacientes programados que no tienen toma de muestra:</strong>
                                 <hr>
                             </h4>
                             <div class="d-flex justify-content-center">

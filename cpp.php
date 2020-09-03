@@ -29,7 +29,7 @@ $consulta = $conexion->prepare(
                 FROM prog_toma_muestra PTM
                 RIGHT JOIN pacientes P ON PTM.pacientes_id = P.id
                 LEFT JOIN usuarios UM ON P.id_usuario = UM.id
-                WHERE fecha_programacion IS NOT NULL AND estado_paciente = 'VIVO'
+                WHERE fecha_programacion IS NOT NULL AND estado_paciente = 'VIVO' AND aseguradora = 'MUTUAL SER'
                 AND fecha_realizacion IS NULL $filtro");
 
             $consulta->execute();
