@@ -16,7 +16,7 @@ include 'conexion.php';  // Funciona.
     $nombre_programa = $_REQUEST['nombre_programa'];
     //comprobamos que los campos no esten vacios
 
-    $stm = $conexion->prepare("INSERT INTO prog_toma_muestra VALUES(NULL,?,?,?,NULL,NULL,NULL,NULL,?,?,NULL,NULL,NULL,'Pendiente','ACTIVO','NO',NULL)");
+    $stm = $conexion->prepare("INSERT INTO prog_toma_muestra VALUES(NULL,?,?,?,NULL,NULL,NULL,NULL,?,?,NULL,NULL,NULL,'Pendiente','ACTIVO','NO',NULL,NOW())");
     $stm->execute(
       array(
         $paciente_id,

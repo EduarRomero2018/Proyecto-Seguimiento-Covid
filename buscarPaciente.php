@@ -7,9 +7,9 @@ include 'conexion.php';  // Funciona.
 
     $identificacion = $_REQUEST['buscar'];
     $stm = $conexion->prepare("SELECT * FROM pacientes WHERE numero_documento = '$identificacion'");
-    //print_r($stm);
-    //die();
     $stm->execute();
+    // print_r(array($stm,$stm->execute(),$stm->rowCount()));
+    // die();
 
     if(!$stm->rowCount()){
         die(json_encode('err'));
@@ -17,7 +17,7 @@ include 'conexion.php';  // Funciona.
     $resultado = $stm->fetchAll(PDO::FETCH_OBJ);
     foreach ($resultado as $key => $row)
     validar($conexion,$row->id);
-
+    
     echo(json_encode($resultado));
 
     function validar($conexion,$id)
@@ -25,11 +25,11 @@ include 'conexion.php';  // Funciona.
         $consulta = $conexion->prepare(
             "SELECT *
             FROM prog_toma_muestra
-            WHERE pacientes_id = ?  AND fecha_realizacion IS NULL"
+            WHERE pacientes_id = ?  AND fecha_realizacion IS NOT NULL"
         );
         $consulta->execute(array($id));
 
-        if($consulta->rowCount() != 0 ){
+        if($consulta->rowCount() == 0 ){
             die(json_encode('null'));
         }
 

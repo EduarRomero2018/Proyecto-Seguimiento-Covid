@@ -1,5 +1,6 @@
 <?php
 include 'conexion.php';
+$id = $_SESSION['id'];
 /* PACIENTES PENDIENTES POR RESULTADOS*/
 $consulta = $conexion->prepare("SELECT COUNT(*) AS Numero_Pacientes
 FROM prog_toma_muestra

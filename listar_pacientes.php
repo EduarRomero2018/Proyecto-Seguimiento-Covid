@@ -13,7 +13,7 @@ if (!isset($_REQUEST['consulta'])) {
     $consulta = "SELECT pacientes.id, CONCAT(primer_nombre, ' ', primer_apellido) AS 'Nombre_Completo',
     CONCAT(edad, ' ', unidad_medida) AS 'Edad',
     CONCAT(tipo_documento, ' - ', numero_documento) AS 'Identificacion', telefono,
-    DATE(fecha_registro) AS fecha_registro,
+    DATE(pacientes.fecha_registro) AS fecha_registro,
     DATE(fecha_programacion) AS fecha_programacion, fecha_resultado, resultado, U.nombre_apellido
     FROM pacientes
     LEFT JOIN usuarios U ON pacientes.id_usuario = U.id

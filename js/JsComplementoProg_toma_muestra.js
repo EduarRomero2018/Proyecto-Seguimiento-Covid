@@ -17,6 +17,8 @@ $(document).ready(function () {
                             let plantilla
                             res[1].forEach(element => {
                                 $('#f_programacion').val(element.fecha_programacion)
+                                $('#fecha_realizacion').attr('min',element.fecha_programacion)
+                                fecha_realizacion
                                 $('#paciente_id_3').val(element.id)
                                 plantilla += `
                                     <tr>

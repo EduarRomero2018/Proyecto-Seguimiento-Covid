@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.0/css/mdb.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/mdb.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.29.0/sweetalert2.all.min.js"></script>
     <link rel="stylesheet" href="css/stylos_formulario.css">
     <script src="js/jquery.js"></script>
@@ -33,16 +33,16 @@
                         <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
                             <thead>
                                 <tr class="text-right ">
-                                    <th style="background: #a9c5e7" class="text-center th-sm "># Registro<i class="text-left fas fa-sort ml-1"></i></th>
-                                    <th style="background: #a9c5e7" class="text-center th-sm">Nombre paciente<i class="text-left fas fa-sort ml-1"></i></th>
-                                    <th style="background: #a9c5e7" class="text-center th-sm">Edad<i class="text-left fas fa-sort ml-1"></i></th>
-                                    <th style="background: #a9c5e7" class="text-center th-sm">Identificacion<i class="text-left fas fa-sort ml-1"></i></th>
-                                    <th style="background: #a9c5e7" class="text-center th-sm">Telefono<i class="text-left fas fa-sort ml-1"></i></th>
-                                    <th style="background: #a9c5e7" class="text-center th-sm">Fecha de Creacion<i class="text-center fas fa-sort ml-1"></i></th>
-                                    <th style="background: #a9c5e7" class="text-center th-sm">Fecha de Programacion<i class="text-center fas fa-sort ml-1"></i></th>
-                                    <th style="background: #a9c5e7" class="text-center th-sm">Fecha Del Resultado<i class="text-left fas fa-sort ml-1"></i></th>
-                                    <th style="background: #a9c5e7" class="text-center th-sm">Resultado Primera Muestra<i class="text-left fas fa-sort ml-1"></i></th>
-                                    <th style="background: #a9c5e7" class="text-center th-sm">Usuario de Creacion<i class="text-left fas fa-sort ml-1"></i></th>
+                                    <th style="background: #a9c5e7" class="text-center th-sm "># Registro</th>
+                                    <th style="background: #a9c5e7" class="text-center th-sm">Nombre paciente</th>
+                                    <th style="background: #a9c5e7" class="text-center th-sm">Edad</th>
+                                    <th style="background: #a9c5e7" class="text-center th-sm">Identificacion</th>
+                                    <th style="background: #a9c5e7" class="text-center th-sm">Telefono</th>
+                                    <th style="background: #a9c5e7" class="text-center th-sm">Fecha de Creacion<i</th>
+                                    <th style="background: #a9c5e7" class="text-center th-sm">Fecha de Programacion<i</th>
+                                    <th style="background: #a9c5e7" class="text-center th-sm">Fecha Del Resultado</th>
+                                    <th style="background: #a9c5e7" class="text-center th-sm">Resultado Primera Muestra</th>
+                                    <th style="background: #a9c5e7" class="text-center th-sm">Usuario de Creacion</th>
                                     <th style="background: #a9c5e7" class="text-center th-sm">Inhabilitar paciente</th>
                                 </tr>
                             </thead>
@@ -94,7 +94,7 @@
 </script>
 <script src="js/addons/datatables.min.js"></script>
 <script src="js/tables.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.0/js/mdb.min.js"></script>
+<script type="text/javascript" src="js/mdb.min.js"></script>
 <script>
     $('input[name="inhabilitar"]').on('click',function (e) {  
         e.preventDefault()

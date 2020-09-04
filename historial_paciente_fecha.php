@@ -19,36 +19,42 @@ include 'conexion.php';  // Funciona.
             if ($consulta->rowCount() > 0) {
             //CODIGO CARDS
                 $consulta = $conexion->prepare("SELECT pacientes.id as id, CONCAT(primer_nombre, ' ', primer_apellido) AS 'Nombre_Completo', numero_documento, tipo_documento,
-                    DATE(fecha_registro) AS fecha_registro,edad,DATE(ptm.fecha_programacion) AS fecha_programacion, DATE(fecha_realizacion) AS fecha_realizacion, programa_pertenece, DATE(fecha_entrega_lab) AS fecha_entrega_lab, DATE(fecha_resultado) AS fecha_resultado, resultado
+                    DATE(pacientes.fecha_registro) AS fecha_registro,edad,DATE(ptm.fecha_programacion) AS fecha_programacion, DATE(fecha_realizacion) AS fecha_realizacion, programa_pertenece, DATE(fecha_entrega_lab) AS fecha_entrega_lab, DATE(fecha_resultado) AS fecha_resultado, resultado
                     FROM pacientes
                     INNER JOIN prog_toma_muestra ptm ON ptm.pacientes_id = pacientes.id
                     WHERE numero_documento = :numero_documento"
                 );
                 $consulta->execute(array(':numero_documento' => $documento));
+
+                if($consulta->rowCount() > 0){
+                    $resultado = $consulta->fetch();
+                    $id = $resultado['id'];
+                    $Nombre_Completo = $resultado['Nombre_Completo'];
+                    $tipo_documento = $resultado['tipo_documento'];
+                    $numero_documento = $resultado['numero_documento'];
+                    $fecha_registro = $resultado['fecha_registro'];
+                    $edad = $resultado['edad'];
+                    $fecha_programacion = $resultado['fecha_programacion'];
+                    $fecha_realizacion = $resultado['fecha_realizacion'];
+                    $programa_pertenece = $resultado['programa_pertenece'];
+                    $fecha_entrega_lab = $resultado['fecha_entrega_lab'];
+                    $fecha_resultado = $resultado['fecha_resultado'];
+                    $resultadoP = $resultado['resultado'];
+                    
+                    $stm = $conexion->prepare("SELECT DATE(fecha_hora) as fecha_hora FROM seguimiento_paciente WHERE id_pacientes = $id GROUP BY DATE(fecha_hora)");
+                    $stm->execute();
+
+                    $res = $stm->fetchAll(PDO::FETCH_OBJ);
+
+                }
     
-                $resultado = $consulta->fetch();
-                $id = $resultado['id'];
-                $Nombre_Completo = $resultado['Nombre_Completo'];
-                $tipo_documento = $resultado['tipo_documento'];
-                $numero_documento = $resultado['numero_documento'];
-                $fecha_registro = $resultado['fecha_registro'];
-                $edad = $resultado['edad'];
-                $fecha_programacion = $resultado['fecha_programacion'];
-                $fecha_realizacion = $resultado['fecha_realizacion'];
-                $programa_pertenece = $resultado['programa_pertenece'];
-                $fecha_entrega_lab = $resultado['fecha_entrega_lab'];
-                $fecha_resultado = $resultado['fecha_resultado'];
-                $resultadoP = $resultado['resultado'];
                 //mandamos un msg si no encontro nada
     
-                $stm = $conexion->prepare("SELECT DATE(fecha_hora) as fecha_hora FROM seguimiento_paciente WHERE id_pacientes = $id GROUP BY DATE(fecha_hora)");
-                $stm->execute();
                 
-                if (!$stm->rowCount()) {
+                if (!$consulta->rowCount()) {
                     $errores = 'Este paciente no tiene seguimiento';
                 }
     
-                $res = $stm->fetchAll(PDO::FETCH_OBJ);
             }else{
                 $errores = 'Paciente no se encuentra Registrado';
             }

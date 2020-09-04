@@ -105,7 +105,7 @@
                 </div>
                 <div class="col-sm-3">
                     <label class="col-form-label">Fecha de Programacion</label>
-                    <input type="date"  min="2020-03-01" id="fecha_programacion" class="form-control">
+                    <input type="date"  min="<?= date('Y-m-d') ?>" id="fecha_programacion" class="form-control">
                 </div>
 
 

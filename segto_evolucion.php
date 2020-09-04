@@ -48,19 +48,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             if (empty($res)) {
                 $errores = 'El paciente no tiene programada la fecha de toma de muestra'; //enviamos el mensaje de error
+            }else{
+                $Nombre_Completo = $res['Nombre_Completo'];
+                $tipo_documento = $res['tipo_documento'];
+                $identificacion = $res['numero_documento'];
+                $edad = $res['edad'];
+                $usuario_creacion = $res['usuario_creacion'];
+                $fecha_entrega_laboratorio = $res['fecha_entrega_lab'];
+                $fecha_resultado = $res['fecha_resultado'];
+                $resultado = $res['resultado'];
+                $id = $res['pacientes_id'];
+                $fecha_programacion = $res['fecha_programacion'];
+                // print_r($res);
             }
 
-            $Nombre_Completo = $res['Nombre_Completo'];
-            $tipo_documento = $res['tipo_documento'];
-            $identificacion = $res['numero_documento'];
-            $edad = $res['edad'];
-            $usuario_creacion = $res['usuario_creacion'];
-            $fecha_entrega_laboratorio = $res['fecha_entrega_lab'];
-            $fecha_resultado = $res['fecha_resultado'];
-            $resultado = $res['resultado'];
-            $id = $res['pacientes_id'];
-            $fecha_programacion = $res['fecha_programacion'];
-            // print_r($res);
         } else {
             $errores = 'Paciente no encontrado';
         }

@@ -21,11 +21,13 @@ include 'conexion.php';  // Funciona.
         if ($consulta->rowCount() > 0) {
 
             $consulta = $conexion->prepare("SELECT CONCAT(primer_nombre, ' ', primer_apellido) AS 'Nombre_Completo', numero_documento, tipo_documento,
-        DATE(fecha_registro) AS fecha_registro,edad,DATE(ptm.fecha_programacion) AS fecha_programacion, DATE(fecha_realizacion) AS fecha_realizacion, programa_pertenece, DATE(fecha_entrega_lab) AS fecha_entrega_lab, DATE(fecha_resultado) AS fecha_resultado, resultado
+        DATE(pacientes.fecha_registro) AS fecha_registro,edad,DATE(ptm.fecha_programacion) AS fecha_programacion, DATE(ptm.fecha_realizacion) AS fecha_realizacion, programa_pertenece, DATE(fecha_entrega_lab) AS fecha_entrega_lab, DATE(fecha_resultado) AS fecha_resultado, resultado
          FROM pacientes
          INNER JOIN prog_toma_muestra ptm ON ptm.pacientes_id = pacientes.id
          WHERE numero_documento = :numero_documento");
             $consulta->execute(array(':numero_documento' => $documento));
+
+            
 
             $resultado = $consulta->fetch();
             $Nombre_Completo = $resultado['Nombre_Completo'];

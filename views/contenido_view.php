@@ -452,12 +452,14 @@
                 let fecha_entrega_laboratorio = $('#fecha_entrega_laboratorio').val()
                 if (fecha_entrega_laboratorio != '') {
                     $('#fecha_procesamiento').attr('disabled', false)
+                    $('#fecha_procesamiento').attr('min', fecha_entrega_laboratorio)
                 }
             })
 
             $('#fecha_procesamiento').on('change', function() {
                 let fecha_entrega_laboratorio = $('#fecha_entrega_laboratorio').val()
                 let fecha_procesamiento = $('#fecha_procesamiento').val()
+                $('#fecha_resultado').attr('min', fecha_procesamiento)
                 if (fecha_procesamiento < fecha_entrega_laboratorio) {
                     swal({
                         type: 'error',
@@ -664,12 +666,11 @@
                                     id = element.id
                                     numero_telefono = element.telefono
                                     plantilla += `
-                                    <tr>
-                                        <td>${element.primer_nombre}</td>
-                                        <td>${element.numero_documento}</td>
-                                    </tr>
-                                `
-                                    //plantilla += `<label>ID: ${element.id} Nombre: ${element.nombre} Identificacion: ${element.identificacion}</label>`
+                                        <tr>
+                                            <td>${element.primer_nombre}</td>
+                                            <td>${element.numero_documento}</td>
+                                        </tr>
+                                    `
                                 })
                                 $('#paciente_id').attr('value', id)
                                 $('#form-body').attr('hidden', false)
