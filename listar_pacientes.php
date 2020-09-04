@@ -35,7 +35,7 @@ if (!isset($_REQUEST['consulta'])) {
 
     $usuario_id = $_SESSION['id'];
     $consulta = "SELECT pacientes.id, CONCAT(primer_nombre, ' ', primer_apellido) AS 'Nombre_Completo',
-    CONCAT(edad, ' ', unidad_medida) AS 'Edad',
+    CONCAT(edad, ' ', unidad_medida) AS 'Edad', aseguradora,
     CONCAT(tipo_documento, ' - ', numero_documento) AS 'Identificacion', telefono, barrio,
     DATE(fecha_programacion) AS fecha_programacion,
     DATE(fecha_realizacion) AS fecha_realizacion, motivo, fecha_resultado, municipio, resultado, programacion_atencion,
@@ -50,7 +50,7 @@ if (!isset($_REQUEST['consulta'])) {
     LEFT JOIN usuarios UR ON pacientes.id_usuario_resultado = UR.id
     LEFT JOIN usuarios UM ON pacientes.id_usuario_notificacion = UM.id
     LEFT JOIN prog_toma_muestra ON pacientes.id = prog_toma_muestra.pacientes_id
-    WHERE pacientes.estado_paciente = 'VIVO' AND prog_toma_muestra.resultado IS NULL || prog_toma_muestra.resultado != 'negativo' $filtro";
+    WHERE pacientes.estado_paciente = 'VIVO' AND prog_toma_muestra.resultado IS NULL || prog_toma_muestra.resultado != 'negativo'$filtro";
 
     $query = $conexion->prepare($consulta);
 

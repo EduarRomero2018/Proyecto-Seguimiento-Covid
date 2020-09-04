@@ -3,6 +3,7 @@
         <?php if (isset($res) != '') : ?>
             <div class="card shadow mt-5">
                 <div class="card-body">
+                <h4>Trazabiliad de Pacientes</h4>
                     <div class class="col text-left">
                         <a href="index.php">
                             <button type="button" class="btn btn-outline-secondary btn-lg"> <i class="fas fa-chevron-left"></i></button>
@@ -17,6 +18,7 @@
                                     <th style="background: #a9c5e7" class="text-center th-sm"># Registro</th>
                                     <th style="background: #a9c5e7" class="text-center th-sm">Nombre paciente</th>
                                     <th style="background: #a9c5e7" class="text-center th-sm">Edad</th>
+                                    <th style="background: #a9c5e7" class="text-center th-sm">Eps</th>
                                     <th style="background: #a9c5e7" class="text-center th-sm">Identificacion</th>
                                     <th style="background: #a9c5e7" class="text-center th-sm">Telefono</th>
 									<th style="background: #a9c5e7" class="text-center th-sm">Dirección</th>
@@ -46,6 +48,7 @@
                                         <td class="text-center th-sm"><?= $i ?></td>
                                         <td class="text-center th-sm"><?= $key->Nombre_Completo ?></td>
                                         <td class="text-center th-sm"><?= $key->Edad ?></td>
+                                        <td class="text-center th-sm"><?= $key->aseguradora?></td>
                                         <td class="text-center th-sm"><?= $key->Identificacion ?></td>
                                         <td class="text-center th-sm"><?= $key->telefono ?></td>
 										<td class="text-center th-sm"><?= $key->barrio?></td>
@@ -300,7 +303,7 @@
         })
     })
 
-    $('#reprogramacion').on('click', function (e) {  
+    $('#reprogramacion').on('click', function (e) {
         e.preventDefault()
 
         let id = $('#id_reprogramacion').val()
