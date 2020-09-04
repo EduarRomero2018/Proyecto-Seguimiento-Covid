@@ -77,10 +77,10 @@
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        REPORTES
+                        PACIENTES
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a href="listar_pacientes.php" class="dropdown-item" href="#">Listar Todos los Pacientes</a>
+                        <a href="listar_pacientes.php" class="dropdown-item" href="#">Listar Todos los Pacientes Mutual</a>
                         <a href="lpnm.php" class="dropdown-item">Listar Pacientes que no son de mutual</a>
                     </div>
                 </li>
