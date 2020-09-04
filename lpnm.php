@@ -11,7 +11,7 @@ $exito = '';
 if (!isset($_REQUEST['consulta'])) {
     $usuario_id = $_SESSION['id'];
     $consulta = "SELECT  CONCAT(primer_nombre, ' ', primer_apellido) AS 'Nombre_Completo',
-    CONCAT(edad, ' ', unidad_medida) AS 'edad', tipo_documento, numero_documento, telefono,
+    CONCAT(edad, ' ', unidad_medida) AS 'edad' , unidad_medida, tipo_documento, numero_documento, telefono,
     aseguradora, estado_paciente,
     ptm.fecha_programacion,
     ptm.fecha_realizacion, aseguradora,

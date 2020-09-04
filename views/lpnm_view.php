@@ -3,6 +3,7 @@
         <?php if (isset($res) != '') : ?>
             <div class="card shadow mt-5">
                 <div class="card-body">
+                <h4>Pacientes que no pertenecen a mutual</h4>
                     <div class class="col text-left">
                         <a href="index.php">
                             <button type="button" class="btn btn-outline-secondary btn-lg"> <i class="fas fa-chevron-left"></i></button>
