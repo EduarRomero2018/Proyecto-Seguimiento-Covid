@@ -119,7 +119,7 @@
                     <form class="card">
                         <div class="card-body">
                             <div class="row align-items-end">
-                                <?php if($result['fecha_atencion_medica_domiciliaria'] == null): ?>
+                                <?php if(isset($result['fecha_atencion_medica_domiciliaria']) && $result['fecha_atencion_medica_domiciliaria'] == null): ?>
                                     <div class="col-sm-3">
                                         <label class="col-form-label">Fecha de atencion domiciliaria</label>
                                         <input type="date" id="fecha_atencion_medica_domiciliaria" min="<?= $fecha_programacion ?>" max="<?= date('Y-m-d') ?>" class="form-control">
@@ -250,6 +250,20 @@
                                     <br>
                                     <label class="col-form-label">Saturacion de oxigeno</label>
                                     <input type="number" min="0" id="saturacion_oxigeno" class="form-control">
+                                </div>
+                                <div class="col-md-4 form-group">
+                                    <br>
+                                    <label class="col-form-label">Novedades de paciente</label>
+                                    <input type="text" id="novedad_paciente" class="form-control">
+                                </div>
+                                <div class="col-md-4 form-group">
+                                    <br>
+                                    <label class="col-form-label">Paciente recuperado</label>
+                                    <select id="paciente_recuperado" class="custom-select">
+                                        <option value="">Seleccione una opcion</option>
+                                        <option value="1">Si</option>
+                                        <option value="2">No</option>
+                                    </select>
                                 </div>
                                 <div class="col-md-4 form-group">
                                     <br>

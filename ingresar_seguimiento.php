@@ -30,6 +30,8 @@ try {
     $tipo_flujo = isset($_REQUEST['tipo_flujo']) && $_REQUEST['tipo_flujo'] != 'NULL' ? $_REQUEST['tipo_flujo'] : null;
     $ambito_atencion = $_REQUEST['ambito_atencion'];
     $saturacion_oxigeno = $_REQUEST['saturacion_oxigeno'];
+    $paciente_recuperado = $_REQUEST['paciente_recuperado'];
+    $novedad_paciente = $_REQUEST['novedad_paciente'];
     $paciente_id = $_REQUEST['paciente_id'];
     $id_usuario = $_REQUEST['id_usuario'];
     $fecha_hora = date('Y-m-d :H:i:s');
@@ -39,7 +41,7 @@ try {
     }
     //comprobamos que los campos no esten vacios
 
-    if($_REQUEST['fecha_atencion_medica_domiciliaria'] != 'Null'){
+    if(isset($_REQUEST['fecha_atencion_medica_domiciliaria']) && $_REQUEST['fecha_atencion_medica_domiciliaria'] != 'Null'){
         
         $fecha_atencion_medica_domiciliaria = $_REQUEST['fecha_atencion_medica_domiciliaria'];
         $stm = $conexion->prepare("UPDATE complemento_seg SET fecha_atencion_medica_domiciliaria = ? WHERE id_pacientes = $paciente_id");
@@ -65,7 +67,7 @@ try {
     }
 
 
-    $stm = $conexion->prepare("INSERT INTO seguimiento_paciente VALUES(NULL,?,NOW(),?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,'si',?,?)");
+    $stm = $conexion->prepare("INSERT INTO seguimiento_paciente VALUES(NULL,?,NOW(),?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,'si',?,?,?,?)");
     $stm->execute(array(
         $complemento_seg_id,
         $asintomatico,
@@ -83,6 +85,8 @@ try {
         $tipo_flujo,
         $ambito_atencion,
         $saturacion_oxigeno,
+        $novedad_paciente,
+        $paciente_recuperado,
         $id_usuario,
         $paciente_id
     ));

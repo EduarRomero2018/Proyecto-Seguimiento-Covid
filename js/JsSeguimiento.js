@@ -96,6 +96,8 @@ $(document).ready(function () {
         let tipo_flujo = $('#tipo_flujo').val()
         let ambito_atencion = $('#ambito_atencion').val()
         let saturacion_oxigeno = $('#saturacion_oxigeno').val()
+        let novedad_paciente = $('#novedad_paciente').val()        
+        let paciente_recuperado = $('#paciente_recuperado').val()            
         let id_usuario = $('#id_usuario').val()
 
         if (fecha_sintomas == '') {
@@ -104,6 +106,10 @@ $(document).ready(function () {
 
         if(entrega_kits == 'No'){
             fecha_entrega_kits = 'NULL'
+        }
+
+        if(novedad_paciente == ''){
+            novedad_paciente = 'No hay novedad'
         }
 
         if(oxigeno_terapia == 'No'){
@@ -133,7 +139,9 @@ $(document).ready(function () {
             oxigeno_terapia,
             tipo_flujo,
             ambito_atencion,
-            saturacion_oxigeno
+            saturacion_oxigeno,
+            novedad_paciente,
+            paciente_recuperado
         }
 
         console.log(datos);
