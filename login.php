@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   // echo "$identificacion - $password";
 
 	$consulta = $conexion->prepare('SELECT * FROM usuarios WHERE identificacion = :identificacion AND clave = :clave');
-	$consulta->execute(array(':identificacion' =>$identificacion , ':clave'=>$password));
+	$consulta->execute(array(':identificacion' => $identificacion , ':clave'=> $password));
 
 
     $resultado = $consulta->fetch();
@@ -27,6 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$_SESSION['usuario'] = $identificacion;
 		$_SESSION['nombre_apellido'] = $resultado['nombre_apellido'];
 		$_SESSION['role'] = $resultado['roles'];
+		$_SESSION['sede'] = $resultado['sede'];
 		$_SESSION['id'] = $resultado['id'];
 
 		header('Location: index.php');
