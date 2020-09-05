@@ -30,8 +30,8 @@ try {
     $tipo_flujo = isset($_REQUEST['tipo_flujo']) && $_REQUEST['tipo_flujo'] != 'NULL' ? $_REQUEST['tipo_flujo'] : null;
     $ambito_atencion = $_REQUEST['ambito_atencion'];
     $saturacion_oxigeno = $_REQUEST['saturacion_oxigeno'];
-    $paciente_recuperado = $_REQUEST['paciente_recuperado'];
     $novedad_paciente = $_REQUEST['novedad_paciente'];
+    $paciente_recuperado = $_REQUEST['paciente_recuperado'];
     $paciente_id = $_REQUEST['paciente_id'];
     $id_usuario = $_REQUEST['id_usuario'];
     $fecha_hora = date('Y-m-d :H:i:s');
@@ -42,7 +42,7 @@ try {
     //comprobamos que los campos no esten vacios
 
     if(isset($_REQUEST['fecha_atencion_medica_domiciliaria']) && $_REQUEST['fecha_atencion_medica_domiciliaria'] != 'Null'){
-        
+
         $fecha_atencion_medica_domiciliaria = $_REQUEST['fecha_atencion_medica_domiciliaria'];
         $stm = $conexion->prepare("UPDATE complemento_seg SET fecha_atencion_medica_domiciliaria = ? WHERE id_pacientes = $paciente_id");
         $stm->execute(array(
@@ -59,7 +59,7 @@ try {
     $stm->execute(array($paciente_id));
 
     $res = $stm->fetchAll(PDO::FETCH_OBJ);
-    
+
     if($stm->rowCount() > 0){
         $id = $res[0]->id;
         $stm = $conexion->prepare("UPDATE seguimiento_paciente SET actual = 'no' WHERE id = ?");

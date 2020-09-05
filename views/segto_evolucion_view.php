@@ -253,7 +253,7 @@
                                 </div>
                                 <div class="col-md-4 form-group">
                                     <br>
-                                    <label class="col-form-label">Novedades de paciente</label>
+                                    <label class="col-form-label">Novedad del paciente</label>
                                     <input type="text" id="novedad_paciente" class="form-control">
                                 </div>
                                 <div class="col-md-4 form-group">
@@ -263,6 +263,7 @@
                                         <option value="">Seleccione una opcion</option>
                                         <option value="1">Si</option>
                                         <option value="2">No</option>
+                                        <option value="3">Por Definir</option>
                                     </select>
                                 </div>
                                 <div class="col-md-4 form-group">
