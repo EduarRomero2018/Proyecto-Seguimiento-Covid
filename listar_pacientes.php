@@ -51,7 +51,6 @@ if (!isset($_REQUEST['consulta'])) {
     LEFT JOIN usuarios UM ON pacientes.id_usuario_notificacion = UM.id
     LEFT JOIN prog_toma_muestra ON pacientes.id = prog_toma_muestra.pacientes_id
     WHERE pacientes.estado_paciente = 'VIVO' AND municipio LIKE '$sede%' AND prog_toma_muestra.resultado = 3 AND prog_toma_muestra.resultado != 2 $filtro";
-    echo $consulta;
     $query = $conexion->prepare($consulta);
 
     $query->execute();
