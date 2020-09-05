@@ -1,6 +1,6 @@
-$(document).ready(function () {
+    $(document).ready(function () {
 
-    $('#entrega_kits').on('change',function () { 
+    $('#entrega_kits').on('change',function () {
         if (this.value == 'No') {
            $('#div-fecha_entrega_kits').attr('hidden', true)
         }else{
@@ -8,7 +8,7 @@ $(document).ready(function () {
         }
     })
 
-    $('#oxigeno_terapia').on('change', function () {  
+    $('#oxigeno_terapia').on('change', function () {
         if ($('#oxigeno_terapia').val() == 'Si') {
             $('#div-tipo_flujo').attr('hidden', false)
         } else {
@@ -74,7 +74,6 @@ $(document).ready(function () {
             }
         })
     })
-
     $('#guardarSeguimiento').on('click', function (e) {
         e.preventDefault()
 
@@ -96,8 +95,8 @@ $(document).ready(function () {
         let tipo_flujo = $('#tipo_flujo').val()
         let ambito_atencion = $('#ambito_atencion').val()
         let saturacion_oxigeno = $('#saturacion_oxigeno').val()
-        let novedad_paciente = $('#novedad_paciente').val()        
-        let paciente_recuperado = $('#paciente_recuperado').val()            
+        let novedad_paciente = $('#novedad_paciente').val()
+        let paciente_recuperado = $('#paciente_recuperado').val()
         let id_usuario = $('#id_usuario').val()
 
         if (fecha_sintomas == '') {
@@ -109,7 +108,7 @@ $(document).ready(function () {
         }
 
         if(novedad_paciente == ''){
-            novedad_paciente = 'No hay novedad'
+            novedad_paciente = 'sin novedad'
         }
 
         if(oxigeno_terapia == 'No'){
@@ -119,7 +118,7 @@ $(document).ready(function () {
         if(fecha_atencion_medica_domiciliaria == ''){
             fecha_atencion_medica_domiciliaria = 'Null'
         }
-        
+
         let datos = {
             complemento_seg_id,
             paciente_id,
