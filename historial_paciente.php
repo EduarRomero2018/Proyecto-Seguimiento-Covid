@@ -27,7 +27,7 @@ include 'conexion.php';  // Funciona.
          WHERE numero_documento = :numero_documento");
             $consulta->execute(array(':numero_documento' => $documento));
 
-            
+
 
             $resultado = $consulta->fetch();
             $Nombre_Completo = $resultado['Nombre_Completo'];
@@ -46,7 +46,7 @@ include 'conexion.php';  // Funciona.
             $stm = $conexion->prepare("SELECT
              u.nombre_apellido,
              s.fecha_hora, s.asintomatico, s.fiebre_cuantificada, s.tos, s.dificultad_respiratoria,
-             s.odinofagia, s.fatiga_adinamia, cumple_criterios, comorbilidad, fecha_entrega_kits, oxigeno_terapia
+             s.odinofagia, s.fatiga_adinamia, cumple_criterios, comorbilidad, fecha_entrega_kits, oxigeno_terapia, s.novedad_paciente,s.paciente_recuperado
              FROM `complemento_seg` C
              INNER JOIN pacientes P ON p.id = c.id_pacientes
              INNER JOIN seguimiento_paciente s ON s.complemento_seg_id = c.id
