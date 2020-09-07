@@ -85,7 +85,7 @@ try {
         $tipo_flujo,
         $ambito_atencion,
         $saturacion_oxigeno,
-        strtoupper($novedad_paciente),
+        strtolower($novedad_paciente),
         $paciente_recuperado,
         $id_usuario,
         $paciente_id
