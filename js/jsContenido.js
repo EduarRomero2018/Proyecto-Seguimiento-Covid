@@ -5,7 +5,6 @@ $(document).ready(function () {
         $('#form-body-2').attr('hidden', true)
     })
 
-    $('#guardarResultado').attr('disabled', true)
     $('#fecha_toma').on('change', function () {
         let fecha_toma = $('#fecha_toma').val()
         let fecha_programacion = $('#fecha_programacion').val()
@@ -29,10 +28,7 @@ $(document).ready(function () {
         let paciente_id_2 = $('#paciente_id_2').val()
         let fecha_toma = $('#fecha_toma').val()
         let resultadoControl = $('#resultadoControl').val()
-        if ($('#defaultUnchecked-2').is(':checked') == true) {
-            notificado = 'SI'
-
-        }
+        let notificado = 'NO'
 
         $.ajax({
             type: 'POST',
@@ -108,7 +104,6 @@ $(document).ready(function () {
                 let resultado = JSON.parse(res)
                 let plantilla = ''
                 let id = ''
-                let numero_telefono = 0
 
                 switch (resultado) {
                     case 'empty':
@@ -198,19 +193,12 @@ $(document).ready(function () {
                                 </tr>
                             `
                         })
-                        $('#guardarResultado').attr('disabled', true)
+                        $('#guardarResultado').attr('disabled', false)
                         $('#paciente_id_2').attr('value', id)
                         $('#fecha_programacion').attr('value', fecha_programacion)
-                        $('#defaultUnchecked-2').on('click', function () {
-                            if ($('#defaultUnchecked-2').is(':checked') == true) {
-                                $('#guardarResultado').attr('disabled', false)
-                            } else {
-                                $('#guardarResultado').attr('disabled', true)
-                            }
-                        })
+                        $('#fecha_toma').attr('min', fecha_programacion)
                         $('#form-body-2').attr('hidden', false)
                         $('#tablePaciente2').attr('hidden', false)
-                        $('label[name=check-label]')[1].innerText = `¿El paciente ha sido notificado? (Numero telefonico del paciente: ${numero_telefono})`
                         $('#tbody-2').html(plantilla)
                         break;
                 }

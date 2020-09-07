@@ -2,8 +2,6 @@
 include 'conexion.php';  // Funciona.
 //APERTURA DE VARIABLES Datos Personales
 
-
-
 if (isset($_REQUEST['identificacion'])  && $_REQUEST['identificacion'] == '') {
     die(json_encode('empty'));
 }
@@ -36,18 +34,9 @@ die(json_encode($resultado));
 function validar($conexion, $id)
 {
     $consulta = $conexion->prepare("SELECT *
-        FROM segunda_toma_muestra_control
-        WHERE pacientes_id = ? AND segunda_toma_muestra_control.estado_paciente != ''");
-    $consulta->execute(array($id));
-
-    if ($consulta->rowCount() == 0) {
-        die(json_encode('null'));
-    }
-
-    $consulta = $conexion->prepare("SELECT *
         FROM pacientes
         WHERE id IN
-        (SELECT pacientes_id FROM segunda_toma_muestra_control WHERE estado_proceso = 'ACTIVO' AND notificado = 'NO' AND pacientes_id = $id)");
+        (SELECT pacientes_id FROM segunda_toma_muestra_control WHERE estado_proceso = 'ACTIVO' AND pacientes_id = $id)");
     $consulta->execute(array($id));
 
     if ($consulta->rowCount() != 1) {
