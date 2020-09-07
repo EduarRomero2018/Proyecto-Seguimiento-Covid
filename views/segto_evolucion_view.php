@@ -254,7 +254,7 @@
                                 <div class="col-md-4 form-group">
                                     <br>
                                     <label class="col-form-label">Novedad del paciente</label>
-                                    <input type="text" id="novedad_paciente" class="form-control">
+                                    <textarea type="text" id="novedad_paciente" class="form-control" placeholder="Si el paciente tiene alguna novedad escribala aqui"></textarea>
                                 </div>
                                 <div class="col-md-4 form-group">
                                     <br>
