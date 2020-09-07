@@ -45,7 +45,7 @@
                                 Paciente</a>
                             <!--<a class="dropdown-item" href="#">Seguimiento Semanal por Paciente</a>-->
                             <a href="historial_paciente_fecha.php" class="dropdown-item">Ver Seguimiento Paciente</a>
-                            <!-- <a href="toma_muestra_control.php" class="dropdown-item">Programar Segunda Toma Muestra (Control)</a> -->
+                            <a href="toma_muestra_control.php" class="dropdown-item">Programar Segunda Toma Muestra (Control)</a>
                         <?php endif ?>
                         <?php if (isset($_SESSION) && $_SESSION['role'] == 'Digitador' || $_SESSION['role'] == 'Coordinador covid' || $_SESSION['role'] == 'Medico') : ?>
                             <a href="soporte_resultado.php" class="dropdown-item">Ingresar y Listar Soporte Resultado</a>
@@ -69,9 +69,9 @@
                                     Ingresar Resultado Primera Vez
                                 </a>
                             <?php endif ?>
-                            <!-- <a class="nav-link " href="#" id="navbarDropdown" data-target='#modalTomaMuestraControl' role="button" data-toggle="modal" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link " href="#" id="navbarDropdown" data-target='#modalTomaMuestraControl' role="button" data-toggle="modal" aria-haspopup="true" aria-expanded="false">
                                 Ingresar Resultado Segunda Vez (Control)
-                            </a> -->
+                            </a>
                         </div>
                     <?php endif ?>
                 </li>

@@ -112,7 +112,7 @@
 
                     <div class="col-sm-3" id="programacion" hidden>
                         <label class="col-form-label">Fecha de Programacion</label>
-                        <input type="date" id="fecha_programacion" class="form-control">
+                        <input type="date" id="fecha_programacion" min="<?= date('Y-m-d') ?>" class="form-control">
                     </div>
 
                     <!-- <div class="col-sm-3" name="fallecimiento" hidden>
