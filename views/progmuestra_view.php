@@ -82,6 +82,7 @@
                             <option value="NO">No</option>
                             <option value="LLAMADA NO EXITOSA">Llamada no Exitosa</option>
                             <option value="NO APLICA PARA CERCO">No aplica para (Cerco)</option>
+                            <option value="SEDE DE CAMINOS">Sede Caminos IPS</option>
                         </select>
                 </div>
                 <div class="col-sm-3">
@@ -99,6 +100,7 @@
                         <option value="HOSPITALARIO">Hospitalario</option>
                         <option value="DOMICILIO">Domicilio</option>
                         <option value="CARCEL">Carcel</option>
+                        <option value="SEDE DE CAMINOS">Caminos IPS</option>
                     </select>
                 </div>
 
