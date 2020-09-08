@@ -155,6 +155,24 @@ $consulta->execute();
 $res = $consulta ->fetch();
 $Pendientes_notificar = $res['Pendientes_notificar'];
 
+//Cantidad de pacientes recuperados://CONSULTA LISTA
+  $consulta = $conexion->prepare("SELECT COUNT(*) AS 'Total_Pacientes'
+  FROM prog_toma_muestra PTM
+  INNER JOIN pacientes P ON P.id = PTM.pacientes_id
+  INNER JOIN seguimiento_paciente SP ON P.id = SP.id_pacientes
+  WHERE P.estado_paciente = 'VIVO'
+  AND P.aseguradora = 'MUTUAL SER'
+  AND SP.paciente_recuperado = 'SI'
+  GROUP BY SP.id_pacientes");
+  $consulta->execute();
+
+  if($consulta->rowCount() > 0){
+    $pacientes_recuperados = $consulta->rowCount();
+  }else{
+    // echo 'No se encontraron Pacientes Positivos';
+    $pacientes_recuperados = 0;
+  }
+
 
 
 
