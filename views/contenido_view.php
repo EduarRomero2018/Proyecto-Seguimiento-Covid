@@ -222,7 +222,7 @@
                                     <h4 class="card-title font-weight-bold">Pacientes pendientes por notificar:</h4>
                                     <hr>
                                     <div class="d-flex justify-content-center">
-                                        <i class="fas fa-4x fa-user-minus">
+                                        <i class="fas fa-4x fa-user-edit">
                                             <a href="cppn.php">
                                                 <!-- style="text-decoration: none; color: rgba(6, 62, 131, 0.9);" -->
                                                 <p class="display-1 degree" data-toggle="tooltip" data-placement="bottom" title="Presione para saber cual son los pacientes que actualmente no estan notificado"><?= $Pendientes_notificar ?></p>

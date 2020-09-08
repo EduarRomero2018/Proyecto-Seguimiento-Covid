@@ -39,6 +39,7 @@
                                         <td class="text-center"><?= $key->municipio ?></td>
                                         <td class="text-center"><?= $key->resultado?></td>
                                         <td class="text-center"><?= $key->fecha_resultado?></td>
+                                        <td class="text-center"><?= $key->notificado?></td>
                                         <td class="text-center"><?= $key->Usuario_Medico ?></td>
                                     </tr>
                                 <?php $i++;
