@@ -145,6 +145,16 @@ $consulta->execute();
 $res = $consulta ->fetch();
 $cant_visita_exitosa = $res['cant_visita_exitosa'];
 
+//Cantidad de pacientes pendientes por notificar://CONSULTA LISTA
+$consulta = $conexion->prepare("SELECT COUNT(*) AS 'Pendientes_notificar'
+FROM prog_toma_muestra PTM
+INNER JOIN pacientes P ON P.id = PTM.pacientes_id
+LEFT JOIN usuarios UR ON P.id_usuario_notificacion = UR.id
+WHERE P.estado_paciente = 'VIVO' AND notificado = 'NO' AND resultado = 'positivo'");
+$consulta->execute();
+$res = $consulta ->fetch();
+$Pendientes_notificar = $res['Pendientes_notificar'];
+
 
 
 
