@@ -512,7 +512,76 @@
         })
 
         $('#municipio').on('change', function(){
+            let municipio = $('#municipio').val()
+            let fecha_realizacion = $('#fecha_realizacion-asignacion').val()
             $('#asignacion').attr('disabled', false)
+
+            $.ajax({
+                type: "GET",
+                url: "lista_pacientes_mutual.php",
+                data: {municipio, fecha_realizacion},
+                success: function (response) {
+                    let res = JSON.parse(response)
+                    console.log(res);
+                    switch (res[0]) {
+                        case 'ok':
+                                let headerTable = 
+                                `
+                                    <h4>Pacientes pendientes por asignar por fecha seleccionada</h4>
+                                    <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+                                        <thead>
+                                            <tr class="text-right">
+                                                <th style="background: #ffc974" class="text-center th-sm "># Registro</th>
+                                                <th style="background: #ffc974" class="text-center th-sm">Nombre del paciente</th>
+                                                <th style="background: #ffc974" class="text-center th-sm">Tipo Documento</th>
+                                                <th style="background: #ffc974" class="text-center th-sm">Identificacion</th>
+                                                <th style="background: #ffc974" class="text-center th-sm">Fecha de Programacion<i</th>
+                                                <th style="background: #ffc974" class="text-center th-sm">Fecha de Realizacion<i</th>
+                                                <th style="background: #ffc974" class="text-center th-sm">Eps<i</th>
+                                                <th style="background: #ffc974" class="text-center th-sm">Municipio<i</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tbl-llamadas">
+                                `
+                                let bodyTable = ``
+                                let footerTable = 
+                                `
+                                        </tbody>
+                                    </table>
+                                `
+                                let i = 1
+                                res[1].forEach(paciente => {
+
+                                    bodyTable += 
+                                    `
+                                        <tr>
+                                            <td class="text-center">${i}</td>
+                                            <td class="text-center">${paciente.Nombre_Completo}</td>
+                                            <td class="text-center">${paciente.tipo_documento}</td>
+                                            <td class="text-center">${paciente.numero_documento}</td>
+                                            <td class="text-center">${paciente.fecha_programacion}</td>
+                                            <td class="text-center">${paciente.fecha_realizacion}</td>
+                                            <td class="text-center">${paciente.aseguradora}</td>
+                                            <td class="text-center">${paciente.municipio}</td>
+                                        </tr>
+                                    `
+                                    i++
+                                })
+
+                                let plantilla = headerTable + bodyTable + footerTable
+
+                                $('#tableMutual').html(plantilla);
+                            break;
+                    
+                        default:
+                                Swal.fire(
+                                    'Mensaje',
+                                    `No se encontraron pacientes pendientes por asignar de MUTUAL SER en la fecha ${fecha_realizacion}`
+                                )
+                            break;
+                    }
+                }
+            });
         })
 
         $('#asignacion').on('change', function(){
