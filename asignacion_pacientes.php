@@ -43,7 +43,7 @@ if (isset($_REQUEST['proceso'])) {
 
         case 'seguimiento':
 
-            $pacientes = "SELECT pacientes.id 
+            $pacientes = "SELECT pacientes.id
             FROM pacientes
             INNER JOIN prog_toma_muestra ON pacientes.id = pacientes_id
             WHERE estado_paciente = 'VIVO' AND municipio = ? AND id_usuario_seguimiento IS NULL AND DATE(fecha_realizacion) = ? LIMIT $cantidad_pacientes";
@@ -172,6 +172,16 @@ if(isset($_REQUEST['asignacion']))
             $pacientes = "SELECT COUNT(*) as cantidad_pacientes FROM pacientes
             INNER JOIN prog_toma_muestra ON pacientes.id = pacientes_id
             WHERE estado_paciente = 1 AND municipio = ? AND id_usuario_seguimiento IS NULL AND DATE(fecha_realizacion) = ?";
+
+            $todos_pacientes = "SELECT CONCAT(p.primer_nombre, ' ', p.primer_apellido) AS 'Nombre_Completo', p.tipo_documento, p.numero_documento,
+            fecha_programacion, fecha_realizacion , p.aseguradora, p.municipio
+            FROM prog_toma_muestra ptm
+            LEFT JOIN pacientes p ON ptm.pacientes_id = p.id
+            WHERE DATE(fecha_realizacion) = ?'
+            AND fecha_programacion IS NOT NULL
+            AND estado_paciente = 1
+            AND p.aseguradora = 'MUTUAL SER'
+            AND municipio = ?";
 
             $stm = $conexion->prepare($usuarios);
             $stm->execute();
