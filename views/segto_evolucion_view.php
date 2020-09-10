@@ -261,9 +261,9 @@
                                     <label class="col-form-label">Paciente recuperado</label>
                                     <select id="paciente_recuperado" class="custom-select">
                                         <option value="">Seleccione una opcion</option>
-                                        <option value="1">Si</option>
+<?php if (isset($_SESSION) && $_SESSION['role'] == 'Medico' || $_SESSION['role'] == 'Coordinador covid') : ?><option value="1">Si</option><?php endif ?>
                                         <option value="2">No</option>
-                                        <option value="3">Por Definir</option>
+                                        <!-- <option value="3">Por Definir</option> -->
                                     </select>
                                 </div>
                                 <div class="col-md-4 form-group">
