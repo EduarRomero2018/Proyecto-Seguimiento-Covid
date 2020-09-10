@@ -190,7 +190,7 @@
             </div>
         </div>
     </div>
-<footer class="final text-center mt-5">
+<footer class="final text-center">
     <div class="container-fluid centrar">
         <img src="img/vigilados-supersalud-pie.png" width="250" class="img-responsive" alt="super salud">
         <br>
@@ -525,7 +525,7 @@
                     console.log(res);
                     switch (res[0]) {
                         case 'ok':
-                                let headerTable = 
+                                let headerTable =
                                 `
                                     <h4>Pacientes pendientes por asignar por fecha seleccionada</h4>
                                     <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
@@ -544,7 +544,7 @@
                                         <tbody id="tbl-llamadas">
                                 `
                                 let bodyTable = ``
-                                let footerTable = 
+                                let footerTable =
                                 `
                                         </tbody>
                                     </table>
@@ -552,7 +552,7 @@
                                 let i = 1
                                 res[1].forEach(paciente => {
 
-                                    bodyTable += 
+                                    bodyTable +=
                                     `
                                         <tr>
                                             <td class="text-center">${i}</td>
@@ -572,7 +572,7 @@
 
                                 $('#tableMutual').html(plantilla);
                             break;
-                    
+
                         default:
                                 Swal.fire(
                                     'Mensaje',
@@ -1051,7 +1051,7 @@
         })
     })
 
-    $('#llamada').on('change', function () {  
+    $('#llamada').on('change', function () {
         if (this.value == 'Si') {
             $('div[name="hidden"]').attr('hidden', false)
             $('a[name="hidden"]').attr('hidden', false)
@@ -1062,11 +1062,11 @@
 
         if(this.value == ''){
             $('a[name="hidden"]').attr('hidden', true)
-            
+
         }
     })
 
-    $('a[name="notificar"]').on('click', function (e) {  
+    $('a[name="notificar"]').on('click', function (e) {
         let identificacion = this.parentElement.parentElement.children[1].innerText
         let nombre = $('#nombre')[0].innerHTML
 
@@ -1123,7 +1123,7 @@
                         $('#modal-notificacion').modal('hide')
                         $('#form-notificacion')[0].reset()
                         break;
-                
+
                     default:
                         Swal.fire(
                             'Error!',

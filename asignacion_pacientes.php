@@ -171,7 +171,10 @@ if(isset($_REQUEST['asignacion']))
             $usuarios = "SELECT * FROM usuarios WHERE roles = 'Auxiliar de seguimiento'";
             $pacientes = "SELECT COUNT(*) as cantidad_pacientes FROM pacientes
             INNER JOIN prog_toma_muestra ON pacientes.id = pacientes_id
-            WHERE estado_paciente = 1 AND municipio = ? AND id_usuario_seguimiento IS NULL AND DATE(fecha_realizacion) = ?";
+            WHERE estado_paciente = 1
+            AND municipio = ?
+            AND id_usuario_seguimiento IS NULL
+            AND DATE(fecha_realizacion) = ?";
 
             $stm = $conexion->prepare($usuarios);
             $stm->execute();

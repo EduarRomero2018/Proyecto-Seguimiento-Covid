@@ -5,16 +5,18 @@ require_once 'conexion.php';
 $fecha_realizacion = $_REQUEST['fecha_realizacion'];
 $municipio = $_REQUEST['municipio'];
 
-$todos_pacientes = "SELECT CONCAT(p.primer_nombre, ' ', p.primer_apellido) AS 'Nombre_Completo', 
+$todos_pacientes = "SELECT CONCAT(p.primer_nombre, ' ', p.primer_apellido) AS 'Nombre_Completo',
 p.tipo_documento, p.numero_documento,
 fecha_programacion, DATE(fecha_realizacion) as fecha_realizacion , p.aseguradora, p.municipio
 FROM prog_toma_muestra ptm
 LEFT JOIN pacientes p ON ptm.pacientes_id = p.id
 WHERE DATE(fecha_realizacion) = ?
 AND fecha_programacion IS NOT NULL
+AND id_usuario_seguimiento IS NULL
 AND estado_paciente = 1
 AND p.aseguradora = 'MUTUAL SER'
 AND municipio = ?";
+
 
 $stm = $conexion->prepare($todos_pacientes);
 $stm->execute(array($fecha_realizacion,$municipio));
