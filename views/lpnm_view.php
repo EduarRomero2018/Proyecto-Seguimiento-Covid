@@ -19,8 +19,7 @@
                                     <th style="background: #a9c5e7" class="text-center th-sm"># Registro</th>
                                     <th style="background: #a9c5e7" class="text-center th-sm">Nombre paciente</th>
                                     <th style="background: #a9c5e7" class="text-center th-sm">Edad</th>
-									<th style="background: #a9c5e7" class="text-center th-sm">Tipo Documento</th>
-                                    <th style="background: #a9c5e7" class="text-center th-sm">Numero Documento</th>
+									<th style="background: #a9c5e7" class="text-center th-sm">Documento</th>
                                     <th style="background: #a9c5e7" class="text-center th-sm">Eps</th>
                                     <th style="background: #a9c5e7" class="text-center th-sm">Fecha de Programacion<i</th>
 									<th style="background: #a9c5e7" class="text-center th-sm">Fecha de Realizacion<i</th>
@@ -35,8 +34,7 @@
                                         <td class="text-center th-sm"><?= $i ?></td>
                                         <td class="text-center th-sm"><?= $key->Nombre_Completo ?></td>
                                         <td class="text-center th-sm"><?= $key->edad ?></td>
-										<td class="text-center th-sm"><?= $key->tipo_documento?></td>
-                                        <td class="text-center th-sm"><?= $key->numero_documento ?></td>
+										<td class="text-center th-sm"><?= $key->documento?></td>
                                         <td class="text-center th-sm"><?= $key->aseguradora ?></td>
                                         <td class="text-center th-sm"><?= $key->fecha_programacion?></td>
 										<td class="text-center th-sm"><?= $key->fecha_realizacion?></td>
