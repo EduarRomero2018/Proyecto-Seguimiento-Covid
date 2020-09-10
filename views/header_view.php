@@ -80,8 +80,8 @@
                         PACIENTES
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a href="listar_pacientes.php" class="dropdown-item" href="#">Listar Todos los Pacientes Mutual</a>
-                        <a href="lpnm.php" class="dropdown-item">Listar Pacientes que no son de mutual</a>
+                        <a href="listar_pacientes.php" class="dropdown-item" href="#">Listar pacientes Mutual</a>
+                        <a href="lpnm.php" class="dropdown-item">Listar Pacientes no mutual</a>
                     </div>
                 </li>
             </ul>
