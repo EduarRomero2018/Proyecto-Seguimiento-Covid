@@ -1,3 +1,4 @@
+<!-- PACIENTES QUE NO SON DE MUTUAL -->
 <?php require_once 'views/header_view.php' ?>
     <div class="container-fluid">
         <?php if (isset($res) != '') : ?>
