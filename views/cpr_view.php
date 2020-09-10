@@ -21,6 +21,7 @@
                                     <th style="background: #ffc974" class="text-center th-sm">Tipo Documento</th>
                                     <th style="background: #ffc974" class="text-center th-sm">Identificacion</th>
                                     <th style="background: #ffc974" class="text-center th-sm">Paciente Recuperado</th>
+                                    <th style="background: #ffc974" class="text-center th-sm">Usuario de notificado</th>
                                 </tr>
                             </thead>
                             <tbody id="tbl-llamadas">
@@ -32,7 +33,8 @@
                                         <td class="text-center"><?= $key->Nombre_Completo ?></td>
                                         <td class="text-center"><?= $key->tipo_documento ?></td>
                                         <td class="text-center"><?= $key->numero_documento ?></td>
-                                        <td class="text-center"><?= $key->paciente_recuperado?></td>
+                                        <td class="text-center"><?= $key->paciente_recuperado ?></td>
+                                        <td class="text-center"><?= $key->nombre_apellido ?></td>
                                     </tr>
                                 <?php $i++;
                                 endforeach; ?>
