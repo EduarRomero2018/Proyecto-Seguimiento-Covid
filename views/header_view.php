@@ -84,6 +84,11 @@
                         <a href="lpnm.php" class="dropdown-item">Listar Pacientes no mutual</a>
                     </div>
                 </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link " href="actualizacionPaciente.php">
+                        ACTUALIZAR DATOS DE PACIENTES
+                    </a>
+                </li>
             </ul>
 
 

@@ -144,20 +144,24 @@
                             <option value="SIN AFILIACION">Sin Afilicion</option>
                         </select>
                     </div>
-                    <div class="form-group col-md-4">
-                        <label for="">Estado del paciente</label>
-                        <select name="estado_paciente" id="estado_paciente" class="custom-select">
-                            <option value="<?= $paciente->estado_paciente ?>"><?= $paciente->estado_paciente ?></option>
-                            <option value="VIVO">Vivo</option>
-                            <option value="MUERTO">Muerto</option>
-                        </select>
-                    </div>                  
+                    <?php if($_SESSION['role'] != 'Auxiliar de programacion'): ?>
+                        <div class="form-group col-md-4">
+                            <label for="">Estado del paciente</label>
+                            <select name="estado_paciente" id="estado_paciente" class="custom-select">
+                                <option value="<?= $paciente->estado_paciente ?>"><?= $paciente->estado_paciente ?></option>
+                                <option value="VIVO">Vivo</option>
+                                <option value="MUERTO">Muerto</option>
+                            </select>
+                        </div>   
+                    <?php endif ?>
                 </div>
                 <div class="row">
-                    <div class="form-group col-md-4">
-                        <label for="">Fecha de fallecimiento</label>
-                        <input type="date" name="fecha_fallecimiento" id="fecha_fallecimiento" value="<?= $paciente->fecha_fallecimiento ?>" class="form-control">
-                    </div>                 
+                    <?php if($_SESSION['role'] != 'Auxiliar de programacion'): ?>
+                        <div class="form-group col-md-4">
+                            <label for="">Fecha de fallecimiento</label>
+                            <input type="date" name="fecha_fallecimiento" id="fecha_fallecimiento" value="<?= $paciente->fecha_fallecimiento ?>" class="form-control">
+                        </div>                 
+                    <?php endif ?>
                 </div>
                 <input type="submit" name="actualizar" value="Actualizar datos" class="btn btn-success">
             </form>
