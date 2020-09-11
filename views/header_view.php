@@ -84,11 +84,13 @@
                         <a href="lpnm.php" class="dropdown-item">Listar Pacientes no mutual</a>
                     </div>
                 </li>
+                <?php if($_SESSION['role'] == 'Auxiliar de programacion'): ?>
                 <li class="nav-item dropdown">
                     <a class="nav-link " href="actualizacionPaciente.php">
                         ACTUALIZAR DATOS DE PACIENTES
                     </a>
                 </li>
+                <?php endif ?>
             </ul>
 
 

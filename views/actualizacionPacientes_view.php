@@ -43,7 +43,7 @@
                     <div class="form-group col-md-4">
                         <label for="">Primer nombre</label>
                         <input type="text" name="primer_nombre" value="<?= $paciente->primer_nombre ?>" class="form-control">
-                    </div>                  
+                    </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-md-4">
@@ -57,7 +57,7 @@
                     <div class="form-group col-md-4">
                         <label for="">Segundo nombre</label>
                         <input type="text" name="segundo_apellido" value="<?= $paciente->segundo_apellido ?>" class="form-control">
-                    </div>                  
+                    </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-md-4">
@@ -81,7 +81,7 @@
                             <option value="MESES">MESES</option>
                             <option value="DIAS">DIAS</option>
                         </select>
-                    </div>                  
+                    </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-md-4">
@@ -106,7 +106,7 @@
                                 <option value="<?= strtoupper($municipio) ?>"><?= ucwords($municipio) ?></option>
                             <?php endforeach; ?>
                         </select>
-                    </div>                  
+                    </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-md-4">
@@ -120,7 +120,7 @@
                     <div class="form-group col-md-4">
                         <label for="">Telefono 2 (Opcional)</label>
                         <input type="text" name="telefono2" value="<?= $paciente->telefono2 ?>" class="form-control">
-                    </div>                  
+                    </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-md-4">
@@ -144,26 +144,14 @@
                             <option value="SIN AFILIACION">Sin Afilicion</option>
                         </select>
                     </div>
-                    <?php if($_SESSION['role'] != 'Auxiliar de programacion'): ?>
-                        <div class="form-group col-md-4">
-                            <label for="">Estado del paciente</label>
-                            <select name="estado_paciente" id="estado_paciente" class="custom-select">
-                                <option value="<?= $paciente->estado_paciente ?>"><?= $paciente->estado_paciente ?></option>
-                                <option value="VIVO">Vivo</option>
-                                <option value="MUERTO">Muerto</option>
-                            </select>
-                        </div>   
-                    <?php endif ?>
+                    <br>
+                    <div class="form-group col-md-4">
+                        <br>
+                        <input type="submit" name="actualizar" value="Actualizar datos" class="btn btn-success">
+                    </div>
+
                 </div>
-                <div class="row">
-                    <?php if($_SESSION['role'] != 'Auxiliar de programacion'): ?>
-                        <div class="form-group col-md-4">
-                            <label for="">Fecha de fallecimiento</label>
-                            <input type="date" name="fecha_fallecimiento" id="fecha_fallecimiento" value="<?= $paciente->fecha_fallecimiento ?>" class="form-control">
-                        </div>                 
-                    <?php endif ?>
-                </div>
-                <input type="submit" name="actualizar" value="Actualizar datos" class="btn btn-success">
+
             </form>
         </div>
     </div>
