@@ -147,11 +147,35 @@
                     <br>
                     <div class="form-group col-md-4">
                         <br>
-                        <input type="submit" name="actualizar" value="Actualizar datos" class="btn btn-success">
+                        <input type="submit" name="actualizar-paciente" value="Actualizar datos" class="btn btn-success">
                     </div>
-
                 </div>
-
+            </form>
+        </div>
+    </div>
+    <div class="card mt-4">
+        <div class="card-body">
+            <?= !empty($error) ? $error : '' ?>
+            <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
+                <h2 class="titulo mt-0">Actualizar datos de paciente (Programacion de toma de muestra)</h2>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="">Fecha de programacion</label>
+                            <input type="hidden" name="id" value="<?= $programacion->id ?>">
+                            <input type="date" value="<?= $programacion->fecha_programacion ?>" name="fecha_programacion" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="">Fecha de realizacion</label>
+                            <input type="date" value="<?= $programacion->fecha_realizacion ?>" name="fecha_realizacion" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-md-4">
+                    <input type="submit" name="actualizar-programacion" value="Actualizar datos" class="btn btn-success">
+                </div>
             </form>
         </div>
     </div>
