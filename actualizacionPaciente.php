@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once 'conexion.php';
-print_r($_REQUEST);
+
 if (isset($_REQUEST['buscar']) && $_REQUEST['buscar'])
 {
     $cedula = $_REQUEST['Bcedula'];
