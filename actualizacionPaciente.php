@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once 'conexion.php';
-
+print_r($_REQUEST);
 if (isset($_REQUEST['buscar']) && $_REQUEST['buscar'])
 {
     $cedula = $_REQUEST['Bcedula'];
@@ -12,9 +12,18 @@ if (isset($_REQUEST['buscar']) && $_REQUEST['buscar'])
 
     $DatosPaciente = $stm->fetchAll(PDO::FETCH_OBJ);
     foreach ($DatosPaciente as $paciente ) {}
+
+    $stm = $conexion->prepare("SELECT DATE(fecha_programacion) AS fecha_programacion, DATE(fecha_realizacion) AS fecha_realizacion, id
+    FROM prog_toma_muestra WHERE pacientes_id = ?");
+    $stm->execute(array($paciente->id));
+
+    $DatosProgTomaMuestra = $stm->fetchAll(PDO::FETCH_OBJ);
+    foreach ($DatosProgTomaMuestra as $programacion ) {}
+
+
 }
 
-if(isset($_REQUEST['actualizar']) && $_REQUEST['actualizar'])
+if(isset($_REQUEST['actualizar-paciente']))
 {
     $id = $_REQUEST['id'];
     $tipo_documento = $_REQUEST['tipo_documento'];
@@ -81,6 +90,30 @@ if(isset($_REQUEST['actualizar']) && $_REQUEST['actualizar'])
     {
         $error = $stm->errorInfo()[2];
         echo $error;
+    }
+
+    if($stm->rowCount() > 0){
+        $success = 'ok';
+    }
+}
+
+if(isset($_REQUEST['actualizar-programacion']))
+{
+    $id = $_REQUEST['id'];
+    $fecha_programacion = $_REQUEST['fecha_programacion'];
+    $fecha_realizacion = $_REQUEST['fecha_realizacion'];
+
+    $stm = $conexion->prepare("UPDATE prog_toma_muestra SET fecha_programacion = ?, fecha_realizacion = ? WHERE id = ?");
+    $stm->execute(array(
+        $fecha_programacion,
+        $fecha_realizacion,
+        $id
+    ));
+
+    if($stm->errorInfo()[2] != null)
+    {
+        $error = $stm->errorInfo()[2];
+        die($error);
     }
 
     if($stm->rowCount() > 0){
