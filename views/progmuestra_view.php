@@ -101,6 +101,8 @@
                         <option value="DOMICILIO">Domicilio</option>
                         <option value="CARCEL">Carcel</option>
                         <option value="SEDE DE CAMINOS">Caminos IPS</option>
+                        <option value="INTRAMURO 1">Intramuro 1</option>
+                        <option value="INTRAMURO 2">Intramuro 2</option>
                     </select>
                 </div>
 
