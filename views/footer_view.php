@@ -511,15 +511,17 @@
             $('#municipio').attr('disabled', false)
         })
 
-        $('#municipio').on('change', function(){
+        $('#municipio').on('change',function(){
+            $('#asignacion').attr('disabled', false)
+        })
+        function table(proceso){
             let municipio = $('#municipio').val()
             let fecha_realizacion = $('#fecha_realizacion-asignacion').val()
-            $('#asignacion').attr('disabled', false)
 
             $.ajax({
                 type: "GET",
                 url: "lista_pacientes_mutual.php",
-                data: {municipio, fecha_realizacion},
+                data: {municipio, fecha_realizacion, proceso},
                 success: function (response) {
                     let res = JSON.parse(response)
                     console.log(res);
@@ -578,11 +580,12 @@
                                     'Mensaje',
                                     `No se encontraron pacientes pendientes por asignar de MUTUAL SER en la fecha ${fecha_realizacion}`
                                 )
+                                $('#tableMutual').html('');
                             break;
                     }
                 }
             });
-        })
+        }
 
         $('#asignacion').on('change', function(){
             if(this.value != ''){
@@ -601,6 +604,7 @@
                         let result = JSON.parse(response)
                         switch (result[0]) {
                             case 'ok':
+                                table(asignacion)
                                 let plantilla = `<option value="">Seleccione una opcion</option>`
                                 result[2].forEach(usuarios => {
                                     plantilla += `
