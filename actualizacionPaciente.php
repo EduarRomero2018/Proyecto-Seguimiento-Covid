@@ -6,16 +6,26 @@ if (isset($_REQUEST['buscar']) && $_REQUEST['buscar'])
 {
     $cedula = $_REQUEST['Bcedula'];
 
-    $stm = $conexion->prepare("SELECT *
-    FROM pacientes WHERE numero_documento = ?");
+    $stm = $conexion->prepare("SELECT pacientes.id AS id_pacientes,tipo_documento,numero_documento,primer_nombre,
+    segundo_nombre,primer_apellido,segundo_apellido,tipo_paciente,edad,unidad_medida,sexo,barrio,municipio,
+    correo,telefono,telefono2,aseguradora,regimen,id_usuario_seguimiento,
+    usuarios.id AS id_usuarios,usuarios.nombre_apellido,usuarios.sede 
+    FROM pacientes 
+    LEFT JOIN usuarios ON pacientes.id_usuario_seguimiento = usuarios.id 
+    WHERE numero_documento = ?");
     $stm->execute(array($cedula));
 
     $DatosPaciente = $stm->fetchAll(PDO::FETCH_OBJ);
     foreach ($DatosPaciente as $paciente ) {}
 
+    $stm = $conexion->prepare("SELECT * FROM usuarios WHERE roles = 'Auxiliar de seguimiento'");
+    $stm->execute(array($cedula));
+
+    $usuarios = $stm->fetchAll(PDO::FETCH_OBJ);
+
     $stm = $conexion->prepare("SELECT DATE(fecha_programacion) AS fecha_programacion, DATE(fecha_realizacion) AS fecha_realizacion, id
     FROM prog_toma_muestra WHERE pacientes_id = ?");
-    $stm->execute(array($paciente->id));
+    $stm->execute(array($paciente->id_pacientes));
 
     $DatosProgTomaMuestra = $stm->fetchAll(PDO::FETCH_OBJ);
     foreach ($DatosProgTomaMuestra as $programacion ) {}
@@ -43,6 +53,7 @@ if(isset($_REQUEST['actualizar-paciente']))
     $telefono2 = $_REQUEST['telefono2'];
     $aseguradora = $_REQUEST['aseguradora'];
     $regimen = $_REQUEST['regimen'];
+    $id_usuario_seguimiento = empty($_REQUEST['id_usuario_seguimiento']) ? null : $_REQUEST['id_usuario_seguimiento'];
 
 
     $stm = $conexion->prepare(
@@ -63,7 +74,8 @@ if(isset($_REQUEST['actualizar-paciente']))
         telefono = ?,
         telefono2 = ?,
         aseguradora = ?,
-        regimen = ?
+        regimen = ?,
+        id_usuario_seguimiento = ?
         WHERE id = ?");
     $stm->execute(array(
         $primer_nombre,
@@ -83,6 +95,7 @@ if(isset($_REQUEST['actualizar-paciente']))
         $telefono2,
         $aseguradora,
         $regimen,
+        $id_usuario_seguimiento,
         $id
     ));
 
@@ -98,10 +111,10 @@ if(isset($_REQUEST['actualizar-paciente']))
 }
 
 if(isset($_REQUEST['actualizar-programacion']))
-{
+{    
     $id = $_REQUEST['id'];
     $fecha_programacion = $_REQUEST['fecha_programacion'];
-    $fecha_realizacion = $_REQUEST['fecha_realizacion'];
+    $fecha_realizacion = isset($_REQUEST['!fecha_realizacion']) ? null : $_REQUEST['fecha_realizacion'];
 
     $stm = $conexion->prepare("UPDATE prog_toma_muestra SET fecha_programacion = ?, fecha_realizacion = ? WHERE id = ?");
     $stm->execute(array(

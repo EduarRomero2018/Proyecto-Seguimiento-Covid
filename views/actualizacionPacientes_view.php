@@ -29,11 +29,13 @@
                 <div class="row">
                     <div class="form-group col-md-4">
                         <label for="">Tipo de documento</label>
-                        <input type="hidden" name="id" value="<?= $paciente->id ?>">
+                        <input type="hidden" name="id" value="<?= $paciente->id_pacientes ?>">
                         <select name="tipo_documento" class="custom-select">
                             <option value="<?= $paciente->tipo_documento ?>"><?= $paciente->tipo_documento ?></option>
-                            <option value="CC">Cedula de ciudadania</option>
-                            <option value="TI">Tarjeta de identidad</option>
+                            <option value="CC">CEDULA DE CIUDADANIA</option>
+                            <option value="TI">TARJETA DE INDENTIDAD</option>
+                            <option value="RC">REGISTRO CIVIL</option>
+                            <option value="CE">CEDULA EXTRANJERA</option>
                         </select>
                     </div>
                     <div class="form-group col-md-4">
@@ -144,11 +146,21 @@
                             <option value="SIN AFILIACION">Sin Afilicion</option>
                         </select>
                     </div>
-                    <br>
-                    <div class="form-group col-md-4">
-                        <br>
-                        <input type="submit" name="actualizar-paciente" value="Actualizar datos" class="btn btn-success">
-                    </div>
+                    <?php if($_SESSION['role'] == 'Coordinador covid'): ?>
+                        <div class="form-group col-md-4">
+                            <label for="">Medico de seguimiento</label>
+                            <select name="id_usuario_seguimiento" class="custom-select">
+                                <option value="<?= $paciente->id_usuario_seguimiento ?>"><?= empty($paciente->nombre_apellido) ? 'No asignado' : $paciente->nombre_apellido . " ($paciente->sede)"?></option>
+                                <?php foreach($usuarios as $usuario): ?>
+                                    <option value="<?= $usuario->id ?>"><?= $usuario->nombre_apellido ?> (<?= $usuario->sede ?>)</option>
+                                <?php endforeach ?>
+                                <option value="">Ninguno</option>
+                            </select>
+                        </div>
+                    <?php endif ?>
+                </div>
+                <div class="form-group col-md-4">
+                    <input type="submit" name="actualizar-paciente" value="Actualizar datos" class="btn btn-success">
                 </div>
             </form>
         </div>
@@ -169,7 +181,11 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="">Fecha de realizacion</label>
-                            <input type="date" value="<?= $programacion->fecha_realizacion ?>" name="fecha_realizacion" class="form-control">
+                            <input type="date" value="<?= $programacion->fecha_realizacion ?>" id="fecha_realizacion" name="fecha_realizacion" class="form-control">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="fecha_realizacion_chck" name="!fecha_realizacion">
+                                <label class="custom-control-label" for="fecha_realizacion_chck">Quitar fecha de realizacion</label>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -194,6 +210,9 @@
 <?php endif ?>
 <script>
     $(document).ready(function () {
+
+        const fecha_realizacion_original = $('#fecha_realizacion').val()
+
         $('#estado_paciente').on('change', function(){
             if(this.value == 'MUERTO')
             {
@@ -203,6 +222,18 @@
             {
                 $('#fecha_fallecimiento').val('')
                 $('#fecha_fallecimiento').attr('disabled', true)
+            }
+        })
+
+        $('#fecha_realizacion_chck').on('click', function(){
+            if(this.checked == true)
+            {
+                $('#fecha_realizacion').text('')
+                $('#fecha_realizacion').val('')
+            }
+            else
+            {
+                $('#fecha_realizacion').val(fecha_realizacion_original)
             }
         })
     });
