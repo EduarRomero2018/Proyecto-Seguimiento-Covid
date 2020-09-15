@@ -116,7 +116,29 @@ if(isset($_REQUEST['actualizar-programacion']))
     $fecha_programacion = $_REQUEST['fecha_programacion'];
     $fecha_realizacion = isset($_REQUEST['!fecha_realizacion']) ? null : $_REQUEST['fecha_realizacion'];
 
-    $stm = $conexion->prepare("UPDATE prog_toma_muestra SET fecha_programacion = ?, fecha_realizacion = ? WHERE id = ?");
+    if($fecha_realizacion == null)
+    {
+        $stm = $conexion->prepare("UPDATE prog_toma_muestra 
+            SET fecha_programacion = ?, 
+            fecha_realizacion = ?,
+            visita_exitosa = null,
+            tipo_prueba = null,
+            observacion = null,
+            motivo = null,
+            fecha_entrega_lab = null,
+            fecha_procesamiento = null,
+            fecha_resultado = null,
+            resultado = 3,
+            estado_proceso = 'ACTIVO',
+            notificado = 'NO',
+            fecha_notificacion = null
+            WHERE id = ?
+        ");
+    }
+    else
+    {
+        $stm = $conexion->prepare("UPDATE prog_toma_muestra SET fecha_programacion = ?, fecha_realizacion = ? WHERE id = ?");
+    }
     $stm->execute(array(
         $fecha_programacion,
         $fecha_realizacion,
