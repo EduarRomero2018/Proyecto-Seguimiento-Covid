@@ -9,6 +9,12 @@ include 'conexion.php';  // Funciona.
   }
 
   try {
+    $tabla = 'prog_toma_muestra';
+    if(!empty($_REQUEST['programacion_2']) && $_REQUEST['programacion_2'] == 2)
+    {
+      $tabla = 'segunda_toma_muestra_control_2';
+    }
+
     $paciente_id = $_REQUEST['paciente_id'];
     $acepta_visita = $_REQUEST['acepta_visita'];
     $fecha_programcion = $_REQUEST['fecha_programacion'] . ' ' . date('h:i:s');
@@ -16,7 +22,7 @@ include 'conexion.php';  // Funciona.
     $nombre_programa = $_REQUEST['nombre_programa'];
     //comprobamos que los campos no esten vacios
 
-    $stm = $conexion->prepare("INSERT INTO prog_toma_muestra VALUES(NULL,?,?,?,NULL,NULL,NULL,NULL,NULL,?,?,NULL,NULL,NULL,'Pendiente','ACTIVO','NO',NULL,NOW())");
+    $stm = $conexion->prepare("INSERT INTO $tabla VALUES(NULL,?,?,?,NULL,NULL,NULL,NULL,NULL,?,?,NULL,NULL,NULL,'Pendiente','ACTIVO','NO',NULL,NOW())");
     $stm->execute(
       array(
         $paciente_id,
