@@ -59,10 +59,10 @@
                                         <td class="text-center th-sm"><?= $key->motivo?></td>
                                         <td class="text-center th-sm"><?= $key->fecha_resultado ?></td>
                                         <?php if($key->resultado == 'Pendiente'): ?>
-                                            <td class="text-center red lighten-4 th-sm"><?= $key->resultado ?></td>
+                                            <td class="text-center blue lighten-4 th-sm"><?= $key->resultado ?></td>
                                         <?php endif ?>
                                         <?php if($key->resultado == 'Positivo'): ?>
-                                            <td class="text-center blue lighten-4 th-sm"><?= $key->resultado ?></td>
+                                            <td class="text-center red lighten-4 th-sm"><?= $key->resultado ?></td>
                                         <?php endif ?>
                                         <td class="text-center"><?= $key->usuario_programacion ?></td>
                                         <td class="text-center"><?= $key->usuario_seguimiento ?></td>
