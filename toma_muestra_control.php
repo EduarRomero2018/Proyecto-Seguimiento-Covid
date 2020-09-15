@@ -25,7 +25,7 @@ else{
   P.numero_documento, P.edad, P.barrio AS 'Direccion_Residencia', P.telefono, P.aseguradora, P.fecha_registro AS 'fecha_creacion_paciente',
   STM.fecha_programacion AS 'fecha_primera_toma_muestra', PTM.resultado AS 'resultado_toma', PTM.notificado
   FROM `pacientes` P
-  LEFT JOIN segunda_toma_muestra_control STM ON P.id = STM.pacientes_id
+  LEFT JOIN segunda_toma_muestra_control_2 STM ON P.id = STM.pacientes_id
   LEFT JOIN prog_toma_muestra PTM ON P.id = PTM.pacientes_id
   WHERE numero_documento = :numero_documento LIMIT 1");
   $consulta->execute(array(':numero_documento' => $documento));
