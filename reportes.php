@@ -38,7 +38,8 @@ $cantidad_pacientes = $res['cantidad_pacientes'];
 $consulta = $conexion->prepare("SELECT *
 FROM prog_toma_muestra PTM
 INNER JOIN pacientes P ON P.id = PTM.pacientes_id
-WHERE resultado = 'Positivo' AND P.estado_paciente = 'VIVO'");
+LEFT JOIN seguimiento_paciente SP ON P.id = SP.id_pacientes
+WHERE resultado = 'Positivo' AND P.estado_paciente = 'VIVO' AND SP.actual = 1 AND SP.paciente_recuperado = 2");
 $consulta->execute();
 if($consulta->rowCount() > 0){
   $positivos = $consulta->rowCount();

@@ -46,7 +46,7 @@ if (isset($_REQUEST['proceso'])) {
             $pacientes = "SELECT pacientes.id
             FROM pacientes
             INNER JOIN prog_toma_muestra ON pacientes.id = pacientes_id
-            WHERE estado_paciente = 'VIVO' AND municipio = ? AND id_usuario_seguimiento IS NULL AND DATE(fecha_realizacion) = ? LIMIT $cantidad_pacientes";
+            WHERE estado_paciente = 'VIVO' AND municipio = ? AND aseguradora = 'MUTUAL SER' AND id_usuario_seguimiento IS NULL AND DATE(fecha_realizacion) = ? LIMIT $cantidad_pacientes";
 
             $stm = $conexion->prepare($pacientes);
             $stm->execute(array($municipio,$fecha_realizacion));
@@ -63,7 +63,7 @@ if (isset($_REQUEST['proceso'])) {
 
             $pacientes = "SELECT * FROM pacientes
             INNER JOIN prog_toma_muestra ON pacientes.id = pacientes_id
-            WHERE estado_paciente = 'VIVO' AND municipio = ?  AND id_usuario_seguimiento IS NULL AND DATE(fecha_realizacion) = ?";
+            WHERE estado_paciente = 'VIVO' AND municipio = ? AND aseguradora = 'MUTUAL SER' AND id_usuario_seguimiento IS NULL AND DATE(fecha_realizacion) = ?";
 
             $stm = $conexion->prepare($pacientes);
             $stm->execute(array($municipio,$fecha_realizacion));
