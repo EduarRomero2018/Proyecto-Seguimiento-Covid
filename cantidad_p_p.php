@@ -6,7 +6,6 @@ include 'conexion.php';
         numero_documento,
         CONCAT(telefono, '-', telefono2) AS 'telefonos', barrio,
         DATE(PTM.fecha_programacion) AS fecha_programacion,
-        DATE(PTMC.fecha_programacion) AS fecha_programacion_control,
         PTM.fecha_entrega_lab ,PTM.fecha_resultado,
         PTM.notificado,
         UP.nombre_apellido AS 'Usuario_Programacion',
@@ -14,11 +13,14 @@ include 'conexion.php';
         UR.nombre_apellido AS 'Usuario_Medico'
         FROM pacientes P
         RIGHT JOIN prog_toma_muestra PTM ON P.id = PTM.pacientes_id
-        RIGHT JOIN segunda_toma_muestra_control PTMC ON P.id = PTMC.pacientes_id
+        LEFT JOIN seguimiento_paciente SP ON p.id = SP.id_pacientes
         LEFT JOIN usuarios UP ON P.id_usuario_programacion = UP.id
         LEFT JOIN usuarios US ON P.id_usuario_seguimiento = US.id
         LEFT JOIN usuarios UR ON P.id_usuario_notificacion = UR.id
-        WHERE PTM.resultado = 'Positivo' AND estado_paciente = 'VIVO'");
+        WHERE PTM.resultado = 'Positivo' 
+        AND estado_paciente = 'VIVO' 
+        AND SP.actual = 'SI' 
+        AND SP.paciente_recuperado = 2");
 
     $consulta->execute();
     $res = $consulta->fetchAll(PDO::FETCH_OBJ);

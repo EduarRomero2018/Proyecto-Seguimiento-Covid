@@ -29,7 +29,6 @@
                                     <th style="background: #ffc974" class="text-center th-sm">Usuario Seguimiento</th>
                                     <th style="background: #ffc974" class="text-center th-sm">Usuario Medico</th>
                                     <th style="background: #ffc974" class="text-center th-sm">Paciente Notificado</th>
-                                    <th style="background: #ffc974" class="text-center th-sm">Fecha de Programacion (Control)<i</th>
                                 </tr>
                             </thead>
                             <tbody id="tbl-llamadas">
@@ -51,7 +50,6 @@
                                         <td class="text-center"><?= $key->Usuario_Seguimiento ?></td>
                                         <td class="text-center"><?= $key->Usuario_Medico ?></td>
                                         <td class="text-center"><?= $key->notificado ?></td>
-                                        <td class="text-center"><?= $key->fecha_programacion_control ?></td>
                                     </tr>
                                 <?php $i++;
                                 endforeach; ?>
