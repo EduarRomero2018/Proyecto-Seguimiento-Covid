@@ -1,6 +1,6 @@
 <!-- CANTIDAD DE PACIENTES PENDIENTES POR NOTIFICAR -->
 <?php require_once 'views/header_view.php'; ?>
-    <div class="container-fluid">
+    <div class="container">
         <?php if (isset($res) != '') : ?>
             <div class="card shadow mt-5">
                 <div class="card-body">
@@ -39,7 +39,7 @@
                                         <td class="text-center"><?= $key->municipio ?></td>
                                         <td class="text-center"><?= $key->resultado?></td>
                                         <td class="text-center"><?= $key->fecha_resultado?></td>
-                                        <td class="text-center"><?= $key->notificado?></td>
+										<td class="text-center"><?= $key->notificado?></td>
                                         <td class="text-center"><?= $key->Usuario_Medico ?></td>
                                     </tr>
                                 <?php $i++;

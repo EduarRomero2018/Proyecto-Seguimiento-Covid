@@ -38,8 +38,12 @@
                                             <?php echo $numero_documento;?></p>
                                         <p style="color:rgba(13, 70, 177, 0.972)" ;class="card-text">Tipo Documento:
                                             <?php echo $tipo_documento;?></p>
+											<p style="color:rgba(13, 70, 177, 0.972)" ;class="card-text">Telefonos:
+                                            <?php echo $telefonos;?></p>
                                         <p style="color:rgba(13, 70, 177, 0.972)" ;class="card-text">Edad:
                                             <?php echo $edad;?></p>
+											<p style="color:rgba(13, 70, 177, 0.972)" ;class="card-text">Direccion:
+                                            <?php echo $barrio;?></p>
                                         <p style="color:rgba(13, 70, 177, 0.972)" ;class="card-text">Fecha de Registro:
                                             <?php echo $fecha_registro;?></p>
                                         <p style="color:rgba(13, 70, 177, 0.972)" ;class="card-text">Fecha de

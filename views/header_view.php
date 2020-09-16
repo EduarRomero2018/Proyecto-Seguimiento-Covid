@@ -1,4 +1,3 @@
-<!-- listar pacientes no mutual -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +19,7 @@
     <div class="linea3"></div>
     <!--******************************************************-->
     <nav class="navbar navbar-expand-lg navbar-light fondo-color img-nav">
-        <a class="navbar-brand" href="login.php">
+        <a class="navbar-brand" href="index.php">
             <img src="img/logo_sin_fondo.png" class="img-fluid" alt="logo-caminos">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -45,7 +44,7 @@
                                 Paciente</a>
                             <!--<a class="dropdown-item" href="#">Seguimiento Semanal por Paciente</a>-->
                             <a href="historial_paciente_fecha.php" class="dropdown-item">Ver Seguimiento Paciente</a>
-                            <a href="toma_muestra_control.php" class="dropdown-item">Programar Segunda Toma Muestra (Control)</a>
+                            <!-- <a href="toma_muestra_control.php" class="dropdown-item">Programar Segunda Toma Muestra (Control)</a> -->
                         <?php endif ?>
                         <?php if (isset($_SESSION) && $_SESSION['role'] == 'Digitador' || $_SESSION['role'] == 'Coordinador covid' || $_SESSION['role'] == 'Medico') : ?>
                             <a href="soporte_resultado.php" class="dropdown-item">Ingresar y Listar Soporte Resultado</a>
@@ -54,7 +53,7 @@
                 </li>
 
                 <li class="nav-item dropdown">
-                    <?php if (isset($_SESSION) && $_SESSION['role'] == 'Digitador' || $_SESSION['role'] == 'Coordinador covid' || $_SESSION['role'] == 'Auxiliar de programacion') : ?>
+                    <?php if (isset($_SESSION) && $_SESSION['role'] == 'Digitador' || $_SESSION['role'] == 'Coordinador covid' || $_SESSION['role'] == 'Auxiliar de programacion' || $_SESSION['role'] == 'Auxiliar de seguimiento') : ?>
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             INGRESAR FECHA DE REALIZACION Y RESULTADOS
                         </a>
@@ -64,14 +63,14 @@
                                     Ingresar Fecha de Realizacion de la primera toma de muestra
                                 </a>
                             <?php endif ?>
-                            <?php if (isset($_SESSION) && $_SESSION['role'] == 'Digitador' || $_SESSION['role'] == 'Coordinador covid' || $_SESSION['role'] == 'Digitador') : ?>
+                            <?php if (isset($_SESSION) && $_SESSION['role'] == 'Digitador' || $_SESSION['role'] == 'Coordinador covid' || $_SESSION['role'] == 'Auxiliar de seguimiento') : ?>
                                 <a class="nav-link " href="#" id="navbarDropdown" data-target='#exampleModal' role="button" data-toggle="modal" aria-haspopup="true" aria-expanded="false">
                                     Ingresar Resultado Primera Vez
                                 </a>
                             <?php endif ?>
-                            <a class="nav-link " href="#" id="navbarDropdown" data-target='#modalTomaMuestraControl' role="button" data-toggle="modal" aria-haspopup="true" aria-expanded="false">
+                            <!-- <a class="nav-link " href="#" id="navbarDropdown" data-target='#modalTomaMuestraControl' role="button" data-toggle="modal" aria-haspopup="true" aria-expanded="false">
                                 Ingresar Resultado Segunda Vez (Control)
-                            </a>
+                            </a> -->
                         </div>
                     <?php endif ?>
                 </li>
@@ -84,7 +83,7 @@
                         <a href="lpnm.php" class="dropdown-item">Listar Pacientes no mutual</a>
                     </div>
                 </li>
-                <?php if($_SESSION['role'] == 'Auxiliar de programacion'): ?>
+				 <?php if($_SESSION['role'] == 'Auxiliar de programacion' || $_SESSION['role'] == 'Digitador') :?>
                 <li class="nav-item dropdown">
                     <a class="nav-link " href="actualizacionPaciente.php">
                         ACTUALIZAR DATOS DE PACIENTES
@@ -92,9 +91,8 @@
                 </li>
                 <?php endif ?>
             </ul>
-
-
-            <?php if (isset($_SESSION) && $_SESSION['role'] == 'Coordinador covid') : ?>
+			<!--<i class="fas fa-2x fa-users"><?//= ' ' . $cantidad_pacientes?></i>-->
+            <?php if (isset($_SESSION) && $_SESSION['role'] == 'Coordinador covid' || $_SESSION['role'] == 'Digitador' ) : ?>
                 <a href="asignacion_pacientes.php">
                     <button class="btn btn-outline-info  my-2 my-sm-0" type="submit">
                         <i class=" fas fa-3x fa-file-upload" style="font-size: 20px;"></i></button>

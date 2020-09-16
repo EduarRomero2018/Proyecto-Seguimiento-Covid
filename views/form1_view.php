@@ -27,6 +27,7 @@
           <option value="TI">TARJETA DE INDENTIDAD</option>
           <option value="RC">REGISTRO CIVIL</option>
           <option value="CE">CEDULA EXTRANJERA</option>
+		   <option value="PE">PERMISO ESPECIAL</option>
         </select>
       </div>
       <div class="col-sm-4">
@@ -131,7 +132,7 @@
           <?php endforeach; ?>
         </select>
       </div>
-      <div class="col-sm-4">
+      <div hidden class="col-sm-4">
         <label class="col-form-label">Novedad del paciente:</label>
         <input type="text" name="novedad_paciente" class="form-control" placeholder=" EJEMPLO: No contesta el telefono">
       </div>

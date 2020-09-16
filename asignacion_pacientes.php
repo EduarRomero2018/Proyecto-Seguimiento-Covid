@@ -142,7 +142,9 @@ if(isset($_REQUEST['asignacion']))
         case 'programacion':
 
             $usuarios = "SELECT * FROM usuarios WHERE roles = 'Auxiliar de programacion'";
-            $pacientes = "SELECT COUNT(*) as cantidad_pacientes FROM pacientes WHERE id_usuario_programacion IS NULL";
+            $pacientes = "SELECT COUNT(*) as cantidad_pacientes 
+			FROM pacientes 
+			WHERE id_usuario_programacion IS NULL";
 
             $stm = $conexion->prepare($usuarios);
             $stm->execute();
@@ -173,7 +175,7 @@ if(isset($_REQUEST['asignacion']))
             INNER JOIN prog_toma_muestra ON pacientes.id = pacientes_id
             WHERE estado_paciente = 1
             AND municipio = ?
-            AND aseguradora = 'MUTUAL SER'
+			AND aseguradora = 'MUTUAL SER'
             AND id_usuario_seguimiento IS NULL
             AND DATE(fecha_realizacion) = ?";
 

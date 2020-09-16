@@ -935,7 +935,6 @@
         let fecha_programacion = $('#fecha_programacion').val()
         let programacion_atencion = $('#programacion_atencion').val()
         let nombre_programa = $('#nombre_programa').val()
-        let programacion_2 = $('#programacion_2').val()
 
         $.ajax({
             type: 'POST',
@@ -945,7 +944,6 @@
                 acepta_visita,
                 fecha_programacion,
                 programacion_atencion,
-                programacion_2,
                 nombre_programa
             },
             success: function(res) {

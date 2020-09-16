@@ -1,5 +1,5 @@
 <?php require_once 'views/header_view.php' ?>
-    <div class="container">
+    <div class="container-fluid">
         <?php if (isset($res) != '') : ?>
             <div class="card shadow mt-5">
                 <div class="card-body">

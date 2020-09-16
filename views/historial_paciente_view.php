@@ -5,7 +5,7 @@
                 <strong>Historial de Seguimiento del Paciente</strong>
                 <hr>
                 </h4>
-            <div class="card-body">
+            <div class="card-body">    
                 <div class="col-sm-12">
                     <div class="comtainer">
                         <?php
@@ -114,11 +114,11 @@
                             <br>
                             <strong style="color:rgba(30, 80, 143)">Paciente con terapia de oxigeno:
                             </strong><?= $key->oxigeno_terapia ?>
-                            <br>
-                            <strong style="color:rgba(30, 80, 143)">Paciente recuperado?
+							<br>
+                            <strong style="color:rgba(30, 80, 143)">Paciente recuperado:
                             </strong><?= $key->paciente_recuperado ?>
                             <br>
-                            <strong style="color:rgba(30, 80, 143)">Novedad del paciente
+                            <strong style="color:rgba(30, 80, 143)">Novedad del paciente:
                             </strong><?= $key->novedad_paciente ?>
                         </p>
                     </div>

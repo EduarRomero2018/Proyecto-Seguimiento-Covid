@@ -29,7 +29,7 @@
                             <label>Ingrese el documento de Paciente</label>
                             <input class="form-control" type="text" name="documento">
                         </div>
-                        <?php if (isset($_SESSION) && $_SESSION['role'] == 'Medico') : ?>
+                        <?php if (isset($_SESSION) && $_SESSION['role'] == 'Digitador') : ?>
                             <div class="form-group">
                                 <label>Seleccionar PDF</label>
                                 <input type="file" accept="" name="soporte">
@@ -39,12 +39,14 @@
                         <div class="row">
 
                             <div class="col-md-6">
-                                <?php if (isset($_SESSION) && $_SESSION['role'] == 'Medico' || $_SESSION['role'] == 'Coordinador covid') : ?>
+                            <?php if (isset($_SESSION) && $_SESSION['role'] == 'Medico' || $_SESSION['role'] == 'Digitador') : ?>
                                 <input class="btn btn-primary btn-block" type="submit" name="guardar" value="Subir">
                                 <?php endif ?>
                             </div>
                             <div class="col-md-6">
+							  <?php if (isset($_SESSION) && $_SESSION['role'] == 'Medico' || $_SESSION['role'] == 'Digitador') : ?>
                             <input class="btn btn-success btn-block" type="submit" name="listar" value="listar">
+							 <?php endif ?>
                             </div>
                         </div>
                         <br>
@@ -140,7 +142,7 @@
             </div>
             <legend hidden id="nombre"><?= $Nombre_Completo ?></legend>
             <legend hidden id="role"><?= $_SESSION['role'] ?></legend>
-
+            
             <div class="modal fade" id="modal-notificacion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -231,7 +233,7 @@
         })
     })
 
-    $('#llamada').on('change', function () {
+    $('#llamada').on('change', function () {  
         if (this.value == 'Si') {
             $('div[name="hidden"]').attr('hidden', false)
             $('a[name="hidden"]').attr('hidden', false)
@@ -242,11 +244,11 @@
 
         if(this.value == ''){
             $('a[name="hidden"]').attr('hidden', true)
-
+            
         }
     })
 
-    $('a[name="notificar"]').on('click', function (e) {
+    $('a[name="notificar"]').on('click', function (e) {  
         let identificacion = this.parentElement.parentElement.children[1].innerText
         let nombre = $('#nombre')[0].innerHTML
 
@@ -303,7 +305,7 @@
                         $('#modal-notificacion').modal('hide')
                         $('#form-notificacion')[0].reset()
                         break;
-
+                
                     default:
                         Swal.fire(
                             'Error!',

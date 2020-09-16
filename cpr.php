@@ -12,8 +12,9 @@ include 'conexion.php';
         INNER JOIN seguimiento_paciente SP ON P.id = SP.id_pacientes
         RIGHT JOIN usuarios UR ON UR.id = SP.id_usuario
         WHERE P.estado_paciente = 'VIVO'
+        AND P.aseguradora = 'MUTUAL SER'
         AND SP.paciente_recuperado = 'SI'
-        AND P.aseguradora = 'MUTUAL SER'");
+        GROUP BY SP.id_pacientes");
         $consulta->execute();
         $res = $consulta->fetchAll(PDO::FETCH_OBJ);
         require 'views/cpr_view.php';

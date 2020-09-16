@@ -18,8 +18,14 @@ include 'conexion.php';  // Funciona.
             $consulta->execute();
             if ($consulta->rowCount() > 0) {
             //CODIGO CARDS
-                $consulta = $conexion->prepare("SELECT pacientes.id as id, CONCAT(primer_nombre, ' ', primer_apellido) AS 'Nombre_Completo', numero_documento, tipo_documento,
-                    DATE(pacientes.fecha_registro) AS fecha_registro,edad,DATE(ptm.fecha_programacion) AS fecha_programacion, DATE(fecha_realizacion) AS fecha_realizacion, programa_pertenece, DATE(fecha_entrega_lab) AS fecha_entrega_lab, DATE(fecha_resultado) AS fecha_resultado, resultado
+                $consulta = $conexion->prepare("SELECT pacientes.id as id, 
+				    CONCAT(primer_nombre, '', primer_apellido) AS 'Nombre_Completo', numero_documento, tipo_documento,
+					CONCAT(telefono, '--', telefono2) AS 'telefonos',
+                    DATE(pacientes.fecha_registro) AS fecha_registro, edad, barrio,
+					DATE(ptm.fecha_programacion) AS fecha_programacion, 
+					DATE(fecha_realizacion) AS fecha_realizacion, programa_pertenece, 
+					DATE(fecha_entrega_lab) AS fecha_entrega_lab, 
+					DATE(fecha_resultado) AS fecha_resultado, resultado
                     FROM pacientes
                     INNER JOIN prog_toma_muestra ptm ON ptm.pacientes_id = pacientes.id
                     WHERE numero_documento = :numero_documento"
@@ -31,9 +37,11 @@ include 'conexion.php';  // Funciona.
                     $id = $resultado['id'];
                     $Nombre_Completo = $resultado['Nombre_Completo'];
                     $tipo_documento = $resultado['tipo_documento'];
+					$telefonos = $resultado['telefonos'];
                     $numero_documento = $resultado['numero_documento'];
                     $fecha_registro = $resultado['fecha_registro'];
                     $edad = $resultado['edad'];
+					$barrio = $resultado['barrio'];
                     $fecha_programacion = $resultado['fecha_programacion'];
                     $fecha_realizacion = $resultado['fecha_realizacion'];
                     $programa_pertenece = $resultado['programa_pertenece'];

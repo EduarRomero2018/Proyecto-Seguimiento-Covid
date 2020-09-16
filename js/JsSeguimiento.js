@@ -108,7 +108,7 @@
         }
 
         if(novedad_paciente == ''){
-            novedad_paciente = 'sin novedad'
+            novedad_paciente = 'Sin novedad'
         }
 
         if(oxigeno_terapia == 'No'){

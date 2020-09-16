@@ -229,7 +229,7 @@
             </div>
         <?php endif ?>
 
-        <?php if (isset($_SESSION) && $_SESSION['role'] == 'Medico' || $_SESSION['role'] == 'Coordinador covid') : ?>
+        <?php if (isset($_SESSION) && $_SESSION['role'] == 'Medico' || $_SESSION['role'] == 'Coordinador covid' || $_SESSION['role'] == 'Digitador') : ?>
             <div class="col-sm-4">
                 <!-- Card -->
                 <div class="card weather-card">
@@ -238,7 +238,7 @@
                         <h4 class="card-title font-weight-bold">Pacientes Recuperados:</h4>
                         <hr>
                         <div class="d-flex justify-content-center">
-                            <i class="fas fa-4x fa-user-edit">
+                            <i class="fas fa-4x fa-hospital-alt">
                                 <a href="cpr.php">
                                     <!-- style="text-decoration: none; color: rgba(6, 62, 131, 0.9);" -->
                                     <p class="display-1 degree" data-toggle="tooltip" data-placement="bottom" title="Presione para saber cual son los pacientes recuperados"><?= $pacientes_recuperados ?></p>

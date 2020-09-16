@@ -82,7 +82,7 @@
                             <option value="NO">No</option>
                             <option value="LLAMADA NO EXITOSA">Llamada no Exitosa</option>
                             <option value="NO APLICA PARA CERCO">No aplica para (Cerco)</option>
-                            <option value="SEDE DE CAMINOS">Sede Caminos IPS</option>
+							<option value="INTRAMURAL">Intramural</option>
                         </select>
                 </div>
                 <div class="col-sm-3">
@@ -96,13 +96,13 @@
                     <select id="programacion_atencion" class="custom-select">
                         <option selected value=""> </option>
                         <option value="CERCO">Cerco</option>
-                        <option value="MAS 60">Mas 60</option>
+                        <!--<option value="MAS 60">Mas 60</option>-->
                         <option value="HOSPITALARIO">Hospitalario</option>
                         <option value="DOMICILIO">Domicilio</option>
                         <option value="CARCEL">Carcel</option>
-                        <option value="SEDE DE CAMINOS">Caminos IPS</option>
-                        <option value="INTRAMURO 1">Intramuro 1</option>
-                        <option value="INTRAMURO 2">Intramuro 2</option>
+						<option value="INTRAMURO 1">Intramuro 1</option>
+						<option value="INTRAMURO 2">Intramuro 2</option>
+						 <option value="SEDE DE CAMINOS">Caminos IPS</option>
                     </select>
                 </div>
 

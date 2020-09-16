@@ -3,7 +3,6 @@
         <?php if (isset($res) != '') : ?>
             <div class="card shadow mt-5">
                 <div class="card-body">
-                <h4>Trazabiliad de Pacientes</h4>
                     <div class class="col text-left">
                         <a href="index.php">
                             <button type="button" class="btn btn-outline-secondary btn-lg"> <i class="fas fa-chevron-left"></i></button>
@@ -18,7 +17,6 @@
                                     <th style="background: #a9c5e7" class="text-center th-sm"># Registro</th>
                                     <th style="background: #a9c5e7" class="text-center th-sm">Nombre paciente</th>
                                     <th style="background: #a9c5e7" class="text-center th-sm">Edad</th>
-                                    <th style="background: #a9c5e7" class="text-center th-sm">Eps</th>
                                     <th style="background: #a9c5e7" class="text-center th-sm">Identificacion</th>
                                     <th style="background: #a9c5e7" class="text-center th-sm">Telefono</th>
 									<th style="background: #a9c5e7" class="text-center th-sm">Dirección</th>
@@ -48,7 +46,6 @@
                                         <td class="text-center th-sm"><?= $i ?></td>
                                         <td class="text-center th-sm"><?= $key->Nombre_Completo ?></td>
                                         <td class="text-center th-sm"><?= $key->Edad ?></td>
-                                        <td class="text-center th-sm"><?= $key->aseguradora?></td>
                                         <td class="text-center th-sm"><?= $key->Identificacion ?></td>
                                         <td class="text-center th-sm"><?= $key->telefono ?></td>
 										<td class="text-center th-sm"><?= $key->barrio?></td>
@@ -56,9 +53,9 @@
 										<td class="text-center th-sm"><?= $key->programacion_atencion?></td>
                                         <td class="text-center th-sm"><?= $key->fecha_programacion?></td>
 										<td class="text-center th-sm"><?= $key->fecha_realizacion?></td>
-                                        <td class="text-center th-sm"><?= $key->motivo?></td>
+										<td class="text-center th-sm"><?= $key->motivo?></td>
                                         <td class="text-center th-sm"><?= $key->fecha_resultado ?></td>
-                                        <?php if($key->resultado == 'Pendiente'): ?>
+										 <?php if($key->resultado == 'Pendiente'): ?>
                                             <td class="text-center blue lighten-4 th-sm"><?= $key->resultado ?></td>
                                         <?php endif ?>
                                         <?php if($key->resultado == 'Positivo'): ?>
@@ -232,7 +229,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="tituloReprogramacion">Fecha de reprogramacion de la toma</h5>
+                    <h5 class="modal-title" id="tituloReprogramacion"></h5>
                 </div>
                 <div class="modal-body">
                     <form id="form-container-3">

@@ -1,28 +1,31 @@
-<!-- PACIENTES QUE NO SON DE MUTUAL -->
 <?php
 session_start();
 include 'conexion.php';  // Funciona.
 //variables globales que recogen al final el estado del condicional
 $errores = '';
 $exito = '';
+
+
+//sexo, direccion, correo,fecha_entrega_lab
+
 if (!isset($_REQUEST['consulta'])) {
     $usuario_id = $_SESSION['id'];
     $consulta = "SELECT  CONCAT(primer_nombre, ' ', primer_apellido) AS 'Nombre_Completo',
-    CONCAT(edad, ' ', unidad_medida) AS 'edad', CONCAT(tipo_documento, '-', numero_documento) AS 'documento', 
-    aseguradora, estado_paciente,
-    ptm.fecha_programacion,
-    ptm.fecha_realizacion, aseguradora, P.municipio,
-    U.nombre_apellido AS 'Usuario_de_Programacion'
-    FROM pacientes p
-    LEFT JOIN usuarios U ON P.id_usuario_programacion = U.id
-    LEFT JOIN prog_toma_muestra ptm ON ptm.pacientes_id = P.id
-    WHERE aseguradora != 'MUTUAL SER'
-	AND estado_paciente = 1";
+    CONCAT(edad, ' ', unidad_medida) AS 'Edad',
+    CONCAT(tipo_documento, ' - ', numero_documento) AS 'Identificacion', telefono,
+    DATE(fecha_registro) AS fecha_registro,
+    DATE(fecha_programacion) AS fecha_programacion, fecha_resultado, resultado, U.nombre_apellido
+    FROM pacientes
+    LEFT JOIN usuarios U ON pacientes.id_usuario = U.id
+    LEFT JOIN prog_toma_muestra ON pacientes.id = prog_toma_muestra.pacientes_id
+    WHERE fecha_programacion IS NOT NULL AND fecha_realizacion IS NULL";
 
     $query = $conexion->prepare($consulta);
+
     $query->execute();
+
     $res = $query->fetchAll(PDO::FETCH_OBJ);
-    // print_r($res);
+    //print_r($res);
 
     $consulta = "SELECT * FROM pacientes";
     $query = $conexion->prepare($consulta);
@@ -38,5 +41,5 @@ if (!isset($_REQUEST['consulta'])) {
         echo ('No hay pacientes registrados');
     }
 
-    include 'views/lpnm_view.php';
+    include 'views/listar_pacientes_fecha_realizacion_pendientes_view.php';
 }
