@@ -108,8 +108,8 @@ $consulta = $conexion->prepare(
 $consulta = $conexion->prepare
 ("SELECT COUNT(*) AS Cantidad_kits
 FROM seguimiento_paciente
-RIGHT JOIN pacientes P ON seguimiento_paciente.id_pacientes = P.id
-WHERE entrega_kits = 'Si' AND estado_paciente = 'VIVO'");
+LEFT JOIN pacientes P ON seguimiento_paciente.id_pacientes = P.id
+WHERE entrega_kits = 'Si' AND estado_paciente = 'VIVO' AND actual = 1");
 $consulta->execute();
 $res = $consulta ->fetch();
 $cantidad_kits = $res['Cantidad_kits'];
