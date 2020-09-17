@@ -3,11 +3,9 @@
 include 'conexion.php';  // Funciona.
 //APERTURA DE VARIABLES Datos Personales
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    //print_r ($_POST);
 
     // variables de Atención personal
     $documento = $_POST['documento'];
-    //echo $documento;
 
     //variables globales que recogen al final el estado del condicional
     $errores = '';
@@ -45,7 +43,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             );
             $consulta->execute(array($documento));
             $res = $consulta->fetch();
-            // print_r($res);
 
             if (empty($res)) {
                 $errores = 'El paciente no tiene programada la fecha de toma de muestra'; //enviamos el mensaje de error
@@ -58,7 +55,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $fecha_entrega_laboratorio = $res['fecha_entrega_lab'];
                 $fecha_resultado = $res['fecha_resultado'];
                 $resultado = $res['resultado'];
-                $id = $res['pacientes_id'];
                 $fecha_programacion = $res['fecha_programacion'];
                 $id = $res['id'];
 
@@ -67,6 +63,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 );
                 $consulta->execute();
                 $result = $consulta->fetch();
+
+                $stm = $conexion->prepare(
+                    "SELECT * FROM seguimiento_paciente WHERE id_pacientes = $id AND actual = 1 AND paciente_recuperado = 1"
+                );
+                $stm->execute();
+                $result_actual = $stm->fetch();
             }
 
         } else {

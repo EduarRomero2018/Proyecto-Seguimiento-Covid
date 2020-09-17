@@ -85,7 +85,7 @@
                                                 <?php echo $resultado; ?></h5>
                                         </div>
                                     <?php endif ?>
-                                    <?php if ($resultado == 'positivo') : ?>
+                                    <?php if ($resultado == 'Positivo') : ?>
                                         <div class="text-center text-light bg-danger py-1">
                                             <h5>Resultado:
                                                 <?php echo $resultado; ?></h5>
@@ -99,7 +99,7 @@
                                     <?php endif ?>
 
                                     <hr>
-                                    <button style='cursor: pointer;' id="continuar" type="button" class="btn btn-outline-secondary btn-lg" value="mostrar">Ingresar Seguimiento</button>
+                                    <button style='cursor: pointer;' id="continuar" type="button" class="btn btn-outline-secondary btn-lg" value="mostrar" <?= !empty($result_actual) ? 'disabled' : '' ?> >Ingresar Seguimiento</button>
                                 </div>
                             </div>
 
@@ -349,6 +349,16 @@
                 animation: false,
                 customClass: 'animated heartBeat'
             })
+        </script>
+    <?php endif ?>
+
+    <?php if (!empty($result_actual)) : ?>
+        <script>
+            swal.fire(
+                "Mensaje",
+                "Este paciente ya esta recuperado",
+                "info"
+            )
         </script>
     <?php endif ?>
 
