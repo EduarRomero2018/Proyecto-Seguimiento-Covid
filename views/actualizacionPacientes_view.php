@@ -36,6 +36,7 @@
                             <option value="TI">TARJETA DE INDENTIDAD</option>
                             <option value="RC">REGISTRO CIVIL</option>
                             <option value="CE">CEDULA EXTRANJERA</option>
+		                    <option value="PE">PERMISO ESPECIAL</option>
                         </select>
                     </div>
                     <div class="form-group col-md-4">
@@ -208,6 +209,16 @@
         )
     </script>
 <?php endif ?>
+<?php if(empty($DatosPaciente) && isset($_REQUEST['buscar'])): ?>
+    <script>
+        Swal.fire(
+            'Advertencia',
+            'Paciente no encontrado',
+            'warning'
+        )
+    </script>
+<?php endif ?>
+
 <script>
     $(document).ready(function () {
 

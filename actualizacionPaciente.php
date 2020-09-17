@@ -18,17 +18,21 @@ if (isset($_REQUEST['buscar']) && $_REQUEST['buscar'])
     $DatosPaciente = $stm->fetchAll(PDO::FETCH_OBJ);
     foreach ($DatosPaciente as $paciente ) {}
 
-    $stm = $conexion->prepare("SELECT * FROM usuarios WHERE roles = 'Auxiliar de seguimiento'");
-    $stm->execute(array($cedula));
+    if(!empty($DatosPaciente))
+    {
+        $stm = $conexion->prepare("SELECT * FROM usuarios WHERE roles = 'Auxiliar de seguimiento'");
+        $stm->execute(array($cedula));
+    
+        $usuarios = $stm->fetchAll(PDO::FETCH_OBJ);
+    
+        $stm = $conexion->prepare("SELECT DATE(fecha_programacion) AS fecha_programacion, DATE(fecha_realizacion) AS fecha_realizacion, id
+        FROM prog_toma_muestra WHERE pacientes_id = ?");
+        $stm->execute(array($paciente->id_pacientes));
+    
+        $DatosProgTomaMuestra = $stm->fetchAll(PDO::FETCH_OBJ);
+        foreach ($DatosProgTomaMuestra as $programacion ) {}
+    }
 
-    $usuarios = $stm->fetchAll(PDO::FETCH_OBJ);
-
-    $stm = $conexion->prepare("SELECT DATE(fecha_programacion) AS fecha_programacion, DATE(fecha_realizacion) AS fecha_realizacion, id
-    FROM prog_toma_muestra WHERE pacientes_id = ?");
-    $stm->execute(array($paciente->id_pacientes));
-
-    $DatosProgTomaMuestra = $stm->fetchAll(PDO::FETCH_OBJ);
-    foreach ($DatosProgTomaMuestra as $programacion ) {}
 
 
 }
