@@ -99,7 +99,7 @@
                                     <?php endif ?>
 
                                     <hr>
-                                    <button style='cursor: pointer;' id="continuar" type="button" class="btn btn-outline-secondary btn-lg" value="mostrar">Ingresar Seguimiento</button>
+                                    <button style='cursor: pointer;' id="continuar" type="button" class="btn btn-outline-secondary btn-lg" value="mostrar" <?= !empty($result_actual) ? 'disabled' : '' ?> >Ingresar Seguimiento</button>
                                 </div>
                             </div>
 
