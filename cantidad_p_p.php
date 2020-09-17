@@ -12,12 +12,16 @@ include 'conexion.php';
         US.nombre_apellido AS 'Usuario_Seguimiento',
         UR.nombre_apellido AS 'Usuario_Medico'
         FROM pacientes P
-        RIGHT JOIN prog_toma_muestra PTM ON P.id = PTM.pacientes_id
+        LEFT JOIN prog_toma_muestra PTM ON P.id = PTM.pacientes_id
         LEFT JOIN seguimiento_paciente SP ON P.id = SP.id_pacientes
         LEFT JOIN usuarios UP ON P.id_usuario_programacion = UP.id
         LEFT JOIN usuarios US ON P.id_usuario_seguimiento = US.id
         LEFT JOIN usuarios UR ON P.id_usuario_notificacion = UR.id
-        WHERE resultado = 'Positivo' AND estado_paciente = 'VIVO' AND SP.actual = 1 AND SP.paciente_recuperado = 2");
+        WHERE resultado = 'Positivo'
+        AND estado_paciente = 'VIVO'
+        AND aseguradora = 'MUTUAL SER'
+        AND SP.actual = 'si'
+        AND SP.paciente_recuperado = 2");
 
     $consulta->execute();
     $res = $consulta->fetchAll(PDO::FETCH_OBJ);
