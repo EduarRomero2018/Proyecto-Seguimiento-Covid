@@ -31,8 +31,7 @@
                         <div hidden id="form-body">
                             <div class="mt-2">
                                 <div class="form-group">
-                                    <label class="col-form-label">Fecha de Entrega al laboratorio toma de
-                                        muestra</label>
+                                    <label class="col-form-label">Fecha de Entrega al laboratorio toma de muestra</label>
                                     <input type="date" id="fecha_entrega_laboratorio" value="" class="form-control">
                                 </div>
                                 <div class="form-group">

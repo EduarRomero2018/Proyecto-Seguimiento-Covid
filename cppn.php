@@ -13,7 +13,7 @@ include 'conexion.php';
         FROM prog_toma_muestra PTM
         INNER JOIN pacientes P ON P.id = PTM.pacientes_id
         LEFT JOIN usuarios UR ON P.id_usuario_notificacion = UR.id
-        WHERE P.estado_paciente = 'VIVO' AND notificado = 'NO' AND resultado = 'positivo'");
+        WHERE P.estado_paciente = 'VIVO' AND notificado = 'NO' AND resultado = 'positivo' AND aseguradora = 'MUTUAL SER'");
     $consulta->execute();
     $res = $consulta->fetchAll(PDO::FETCH_OBJ);
 

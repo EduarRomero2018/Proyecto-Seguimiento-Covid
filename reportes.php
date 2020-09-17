@@ -39,7 +39,7 @@ $consulta = $conexion->prepare("SELECT *
 FROM prog_toma_muestra PTM
 INNER JOIN pacientes P ON P.id = PTM.pacientes_id
 LEFT JOIN seguimiento_paciente SP ON P.id = SP.id_pacientes
-WHERE resultado = 'Positivo' AND P.estado_paciente = 'VIVO' AND SP.actual = 1 AND SP.paciente_recuperado = 2");
+WHERE resultado = 'Positivo' AND P.estado_paciente = 'VIVO' AND P.aseguradora = 'MUTUAL SER' AND SP.actual = 1 AND SP.paciente_recuperado = 2");
 $consulta->execute();
 if($consulta->rowCount() > 0){
   $positivos = $consulta->rowCount();
@@ -65,7 +65,7 @@ $numero_conteo = $res['Numero_Pacientes'];
 $consulta = $conexion->prepare("SELECT COUNT(*) AS Cantidad_Pacientes
 FROM pacientes
 WHERE id NOT IN
-(SELECT pacientes_id FROM prog_toma_muestra) $filtro");
+(SELECT pacientes_id FROM prog_toma_muestra) AND aseguradora = 'MUTUAL SER' $filtro");
 $consulta->execute();
 $res = $consulta ->fetch();
 $Cantidad_Pacientes = $res['Cantidad_Pacientes'];
@@ -84,11 +84,10 @@ $Cantidad_p_p_pendiente_por_toma= $res['Cantidad_p_p_pendiente_por_toma'];
 
 //Cantidad de Pacientes Asintomaticos://CONSULTA LISTA
 $consulta = $conexion->prepare(
-  "SELECT id_pacientes AS numero_de_asintomaticos
+  "SELECT id_pacientes, pacientes.id, pacientes.primer_nombre, pacientes.primer_apellido, pacientes.aseguradora
   FROM seguimiento_paciente SP
-  LEFT JOIN pacientes P ON SP.id_pacientes
-  WHERE asintomatico = 'Si' AND actual = 'si' AND estado_paciente = 'VIVO'
-  GROUP BY id_pacientes"
+  LEFT JOIN pacientes ON pacientes.id = SP.id_pacientes
+  WHERE asintomatico = 'Si' AND actual = 'si' AND estado_paciente = 'VIVO' AND pacientes.aseguradora = 'MUTUAL SER'"
   );
   $consulta->execute();
   $asintomaticos = $consulta->rowCount();
@@ -96,11 +95,10 @@ $consulta = $conexion->prepare(
 
   /* Cantidad de pacientes Sintomaticos*///CONSULTA LISTA
   $consulta = $conexion->prepare(
-    "SELECT id_pacientes AS numero_de_sintomaticos
+    "SELECT id_pacientes
     FROM seguimiento_paciente SP
-   LEFT JOIN pacientes P ON SP.id_pacientes
-   WHERE asintomatico = 'No' AND actual = 'si' AND estado_paciente = 'VIVO'
-    GROUP BY id_pacientes"
+    LEFT JOIN pacientes ON pacientes.id = SP.id_pacientes
+    WHERE asintomatico = 'No' AND actual = 'si' AND estado_paciente = 'VIVO' AND pacientes.aseguradora = 'MUTUAL SER'"
   );
   $consulta->execute();
   $sintomaticos = $consulta->rowCount();
@@ -110,7 +108,7 @@ $consulta = $conexion->prepare
 ("SELECT COUNT(*) AS Cantidad_kits
 FROM seguimiento_paciente
 LEFT JOIN pacientes P ON seguimiento_paciente.id_pacientes = P.id
-WHERE entrega_kits = 'Si' AND estado_paciente = 'VIVO' AND actual = 1");
+WHERE entrega_kits = 'Si' AND estado_paciente = 'VIVO' AND actual = 1 AND P.aseguradora = 'MUTUAL SER'");
 $consulta->execute();
 $res = $consulta ->fetch();
 $cantidad_kits = $res['Cantidad_kits'];
@@ -120,7 +118,7 @@ $cantidad_kits = $res['Cantidad_kits'];
 /* Cantidad de pacientes fallecidos*/
 $consulta = $conexion->prepare("SELECT COUNT(*) AS pacientes_fallecidos
 FROM pacientes
-WHERE estado_paciente = 'MUERTO'");
+WHERE estado_paciente = 'MUERTO' AND aseguradora = 'MUTUAL SER'");
 $consulta->execute();
 $res = $consulta ->fetch();
 $pacientes_fallecidos = $res['pacientes_fallecidos'];
@@ -130,7 +128,7 @@ $pacientes_fallecidos = $res['pacientes_fallecidos'];
 $consulta = $conexion->prepare("SELECT *
 FROM prog_toma_muestra PTM
 INNER JOIN pacientes P ON P.id = PTM.pacientes_id
-WHERE resultado = 'Negativo' AND P.estado_paciente = 'VIVO'");
+WHERE resultado = 'Negativo' AND P.estado_paciente = 'VIVO' AND P.aseguradora = 'MUTUAL SER'");
 $consulta->execute();
 if($consulta->rowCount() > 0){
   $negativos = $consulta->rowCount();
@@ -142,7 +140,7 @@ if($consulta->rowCount() > 0){
 $consulta = $conexion->prepare("SELECT COUNT(*) AS cant_visita_exitosa
 FROM prog_toma_muestra ptm
 RIGHT JOIN pacientes P ON ptm.pacientes_id = P.id
-WHERE visita_exitosa = 'NO' AND estado_paciente = 'VIVO'");
+WHERE visita_exitosa = 'NO' AND estado_paciente = 'VIVO' AND P.aseguradora = 'MUTUAL SER'");
 $consulta->execute();
 $res = $consulta ->fetch();
 $cant_visita_exitosa = $res['cant_visita_exitosa'];
@@ -152,20 +150,20 @@ $consulta = $conexion->prepare("SELECT COUNT(*) AS 'Pendientes_notificar'
 FROM prog_toma_muestra PTM
 INNER JOIN pacientes P ON P.id = PTM.pacientes_id
 LEFT JOIN usuarios UR ON P.id_usuario_notificacion = UR.id
-WHERE P.estado_paciente = 'VIVO' AND notificado = 'NO' AND resultado = 'positivo'");
+WHERE P.estado_paciente = 'VIVO' AND notificado = 'NO' AND resultado = 'positivo' AND P.aseguradora = 'MUTUAL SER'");
 $consulta->execute();
 $res = $consulta ->fetch();
 $Pendientes_notificar = $res['Pendientes_notificar'];
 
 //Cantidad de pacientes recuperados://CONSULTA LISTA
-  $consulta = $conexion->prepare("SELECT COUNT(*) AS 'Total_Pacientes'
+  $consulta = $conexion->prepare("SELECT * 
   FROM prog_toma_muestra PTM
   INNER JOIN pacientes P ON P.id = PTM.pacientes_id
-  INNER JOIN seguimiento_paciente SP ON P.id = SP.id_pacientes
+  LEFT JOIN seguimiento_paciente SP ON P.id = SP.id_pacientes
   WHERE P.estado_paciente = 'VIVO'
   AND P.aseguradora = 'MUTUAL SER'
   AND SP.paciente_recuperado = 'SI'
-  GROUP BY SP.id_pacientes");
+  AND actual = 1");
   $consulta->execute();
 
   if($consulta->rowCount() > 0){

@@ -10,11 +10,11 @@ include 'conexion.php';
         FROM prog_toma_muestra PTM
         INNER JOIN pacientes P ON P.id = PTM.pacientes_id
         INNER JOIN seguimiento_paciente SP ON P.id = SP.id_pacientes
-        RIGHT JOIN usuarios UR ON UR.id = SP.id_usuario
+        LEFT JOIN usuarios UR ON UR.id = SP.id_usuario
         WHERE P.estado_paciente = 'VIVO'
         AND P.aseguradora = 'MUTUAL SER'
         AND SP.paciente_recuperado = 'SI'
-        GROUP BY SP.id_pacientes");
+        AND actual = 1");
         $consulta->execute();
         $res = $consulta->fetchAll(PDO::FETCH_OBJ);
         require 'views/cpr_view.php';

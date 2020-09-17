@@ -26,8 +26,8 @@ switch ($_SESSION['role']) {
                 "SELECT CONCAT(primer_nombre, ' ', primer_apellido) AS 'Nombre_Completo', P.tipo_documento, P.edad, P.numero_documento
                 FROM seguimiento_paciente SP
                 LEFT JOIN pacientes P ON SP.id_pacientes = P.id
-                WHERE asintomatico = 'Si' AND actual = 'si' AND estado_paciente = 'VIVO' /*$filtro*/
-                GROUP BY id_pacientes");
+                WHERE asintomatico = 'Si' AND actual = 'si' AND estado_paciente = 'VIVO' AND aseguradora = 'MUTUAL SER' /*$filtro*/
+            ");
 
             $consulta->execute();
             $res = $consulta->fetchAll(PDO::FETCH_OBJ);
