@@ -6,7 +6,7 @@ include 'conexion.php';
         numero_documento,DATE(fecha_programacion) AS fecha_programacion, PTM.fecha_entrega_lab ,fecha_resultado, PTM.notificado
         FROM pacientes P
         RIGHT JOIN prog_toma_muestra PTM ON P.id = PTM.pacientes_id
-        WHERE resultado = 'Negativo' AND estado_paciente = 'VIVO'");
+        WHERE resultado = 'Negativo' AND estado_paciente = 'VIVO' AND aseguradora = 'MUTUAL SER'");
 
     $consulta->execute();
     $res = $consulta->fetchAll(PDO::FETCH_OBJ);
