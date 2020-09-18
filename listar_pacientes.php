@@ -51,8 +51,10 @@ if (!isset($_REQUEST['consulta'])) {
     LEFT JOIN usuarios UR ON pacientes.id_usuario_resultado = UR.id
     LEFT JOIN usuarios UM ON pacientes.id_usuario_notificacion = UM.id
     LEFT JOIN prog_toma_muestra ptm ON pacientes.id = ptm.pacientes_id
+    LEFT JOIN seguimiento_paciente SP ON SP.id_pacientes = pacientes.id
     WHERE pacientes.estado_paciente = 1
     AND ptm.resultado != 2
+    AND SP.paciente_recuperado = 2
     AND aseguradora = 'MUTUAL SER'";
 
     $query = $conexion->prepare($consulta);
