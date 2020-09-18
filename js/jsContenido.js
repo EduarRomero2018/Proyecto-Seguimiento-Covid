@@ -101,7 +101,7 @@ $(document).ready(function () {
             type: 'post',
             url: 'modal_toma_muestra_resultado.php',
             data: {
-                identificacion
+                identificacion,
             },
             success: function (res) {
                 console.log(res);

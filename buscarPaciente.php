@@ -6,25 +6,27 @@ include 'conexion.php';  // Funciona.
     }
 
     $identificacion = $_REQUEST['buscar'];
+    $tabla = $_REQUEST['tabla'];
     $stm = $conexion->prepare("SELECT * FROM pacientes WHERE numero_documento = '$identificacion'");
     $stm->execute();
-    // print_r(array($stm,$stm->execute(),$stm->rowCount()));
-    // die();
 
     if(!$stm->rowCount()){
         die(json_encode('err'));
     }
+
     $resultado = $stm->fetchAll(PDO::FETCH_OBJ);
+
     foreach ($resultado as $key => $row)
-    validar($conexion,$row->id);
+
+    validar($conexion,$row->id,$tabla);
     
     echo(json_encode($resultado));
 
-    function validar($conexion,$id)
+    function validar($conexion,$id,$tabla)
     {
         $consulta = $conexion->prepare(
             "SELECT *
-            FROM prog_toma_muestra
+            FROM $tabla
             WHERE pacientes_id = ?  AND fecha_realizacion IS NOT NULL"
         );
         $consulta->execute(array($id));
@@ -35,8 +37,8 @@ include 'conexion.php';  // Funciona.
 
         $consulta = $conexion->prepare(
             "SELECT *
-            FROM prog_toma_muestra
-            WHERE pacientes_id = ? AND prog_toma_muestra.resultado != 'Pendiente'"
+            FROM $tabla
+            WHERE pacientes_id = ? AND resultado != 'Pendiente'"
         );
         $consulta->execute(array($id));
 
@@ -44,6 +46,5 @@ include 'conexion.php';  // Funciona.
             die(json_encode($consulta->rowCount()));
         }
 
-        $ok = json_encode('ok');
     }
 ?>

@@ -16,6 +16,13 @@
                             <input class="form-control" type="search" id="documento">
                             <input type="hidden" id="paciente_id">
                         </div>
+                        <div class="form-group">
+                            <label for="">Seleccionar toma de muestra</label>
+                            <select id="tabla-resultado" class="custom-select">
+                                <option value="prog_toma_muestra">Primera toma de muestra</option>
+                                <option value="segunda_toma_muestra_control_2">Segunda toma de muestra</option>
+                            </select>
+                        </div>
                         <input class="btn btn-secondary" type="submit" value="Consultar" id="buscarPaciente">
                         <div class="mt-2">
                             <table hidden id="tablePaciente" class="table table-bordered">
@@ -128,6 +135,13 @@
                             <label>Buscar Paciente</label>
                             <input class="form-control" type="search" id="documento-3">
                             <input type="hidden" id="paciente_id_3">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Seleccionar toma de muestra</label>
+                            <select id="tabla-fr" class="custom-select">
+                                <option value="prog_toma_muestra">Primera toma de muestra</option>
+                                <option value="segunda_toma_muestra_control_2">Segunda toma de muestra</option>
+                            </select>
                         </div>
                         <input class="btn btn-secondary" type="submit" value="Consultar" id="buscar3">
                         <div class="mt-2">
@@ -332,6 +346,7 @@
             $('#guardar').on('click', function(e) {
                 e.preventDefault()
                 let id = $('#paciente_id').val()
+                let tabla = $('#tabla-resultado').val()
                 let fecha_entrega_laboratorio = $('#fecha_entrega_laboratorio').val()
                 let fecha_procesamiento = $('#fecha_procesamiento').val()
                 let fecha_resultado = $('#fecha_resultado').val()
@@ -347,6 +362,7 @@
                     url: 'resultadoTomaDeMuestra.php?paciente_id=' + id +
                         '&fecha_entrega_laboratorio=' + fecha_entrega_laboratorio + '&fecha_procesamiento=' + fecha_procesamiento +
                         '&fecha_resultado=' + fecha_resultado + '&resultado=' + resultado2,
+                    data: {tabla},
                     success: function(res) {
 
                         let resultado1 = JSON.parse(res)
@@ -404,11 +420,13 @@
             $('#buscarPaciente').on('click', function(e) {
                 e.preventDefault()
                 let identificacion = $('#documento').val()
+                let tabla = $('#tabla-resultado').val()
                 $('#guardar').attr('disabled', true)
 
                 $.ajax({
                     type: 'post',
                     url: 'buscarPaciente.php?buscar=' + identificacion,
+                    data: {tabla},
                     success: function(res) {
                         console.log(res);
                         let resultado = JSON.parse(res)
@@ -934,6 +952,7 @@
         let fecha_programacion = $('#fecha_programacion').val()
         let programacion_atencion = $('#programacion_atencion').val()
         let nombre_programa = $('#nombre_programa').val()
+        let programacion_2 = $('#programacion_2').val()
 
         $.ajax({
             type: 'POST',
@@ -943,6 +962,7 @@
                 acepta_visita,
                 fecha_programacion,
                 programacion_atencion,
+                programacion_2,
                 nombre_programa
             },
             success: function(res) {

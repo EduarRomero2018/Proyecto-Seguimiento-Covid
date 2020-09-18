@@ -2,12 +2,14 @@ $(document).ready(function () {
     $('#buscar3').on('click', function (e) {
         e.preventDefault()
         let identificacion = $('#documento-3').val()
+        let tabla = $('#tabla-fr').val()
 
         $.ajax({
             type: "post",
             url: "validacion_progMuestra.php",
             data: {
-                identificacion
+                identificacion,
+                tabla
             },
             success: function (response) {
                 console.log(response);
@@ -18,7 +20,6 @@ $(document).ready(function () {
                             res[1].forEach(element => {
                                 $('#f_programacion').val(element.fecha_programacion)
                                 $('#fecha_realizacion').attr('min',element.fecha_programacion)
-                                fecha_realizacion
                                 $('#paciente_id_3').val(element.id)
                                 plantilla += `
                                     <tr>
@@ -131,6 +132,7 @@ $(document).ready(function () {
     $('#guardar-complemento').on('click',function (e) {
         e.preventDefault()
 
+        let tabla = $('#tabla-fr').val()
         let paciente_id = $('#paciente_id_3').val()
         let fecha_realizacion = $('#fecha_realizacion').val()
         let visita_exitosa = $('#visita_exitosa').val()
@@ -139,6 +141,7 @@ $(document).ready(function () {
         let motivo = $('#motivo').val()
 
         let datos = {
+            tabla,
             paciente_id,
             fecha_realizacion,
             visita_exitosa,

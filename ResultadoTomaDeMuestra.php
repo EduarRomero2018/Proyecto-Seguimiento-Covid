@@ -8,7 +8,7 @@ foreach ($_REQUEST as $key) {
 }
 
   try {
-
+    $tabla = $_REQUEST['tabla'];
     $fecha_entrega_laboratorio = $_REQUEST['fecha_entrega_laboratorio'];
     $fecha_procesamiento = $_REQUEST['fecha_procesamiento'];
     $fecha_resultado = $_REQUEST['fecha_resultado'];
@@ -16,7 +16,7 @@ foreach ($_REQUEST as $key) {
     $id = $_REQUEST['paciente_id'];
     //comprobamos que los campos no esten vacios
 
-    $stm = $conexion->prepare("UPDATE prog_toma_muestra SET fecha_entrega_lab = ?, fecha_procesamiento = ?,fecha_resultado = ?,resultado = ?,estado_proceso = 'FINALIZADO' WHERE pacientes_id = $id");
+    $stm = $conexion->prepare("UPDATE $tabla SET fecha_entrega_lab = ?, fecha_procesamiento = ?,fecha_resultado = ?,resultado = ?,estado_proceso = 'FINALIZADO' WHERE pacientes_id = $id");
     //die("UPDATE prog_toma_muestra SET fecha_entrega_lab = '$fecha_entrega_laboratorio',fecha_resultado = '$fecha_resultado',resultado = '$resultado', notificado = '$notificado', fecha_notificacion = '$fecha_notificacion' WHERE pacientes_id = $id");
     $stm->execute(array(
         $fecha_entrega_laboratorio,

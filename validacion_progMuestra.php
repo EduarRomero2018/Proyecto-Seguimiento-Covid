@@ -10,6 +10,7 @@ foreach ($_REQUEST as $key) {
 
 try {
   $numero_documento = $_REQUEST['identificacion'];
+  $tabla = $_REQUEST['tabla'];
   //comprobamos que los campos no esten vacios
   $stm = $conexion->prepare(
     "SELECT 
@@ -39,7 +40,7 @@ try {
   $stm = $conexion->prepare(
     "SELECT 
     id
-    FROM prog_toma_muestra
+    FROM $tabla
     WHERE pacientes_id = ? AND fecha_realizacion IS NOT NULL"
   );
   $stm->execute(
@@ -60,11 +61,11 @@ try {
 
   $stm = $conexion->prepare(
     "SELECT 
-    DATE(fecha_programacion) AS fecha_programacion,
+    DATE(fecha_programacion) AS fecha_programacion, DATE(fecha_realizacion) AS fecha_realizacion,
     pacientes.id,pacientes.primer_nombre,pacientes.numero_documento
-    FROM prog_toma_muestra
-    RIGHT JOIN pacientes ON  pacientes.id = prog_toma_muestra.pacientes_id
-    WHERE prog_toma_muestra.pacientes_id = ? AND fecha_realizacion IS NULL"
+    FROM $tabla
+    RIGHT JOIN pacientes ON  pacientes.id = pacientes_id
+    WHERE pacientes_id = ? AND fecha_realizacion IS NULL"
   );
   $stm->execute(
     array(

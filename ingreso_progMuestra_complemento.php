@@ -14,6 +14,8 @@ foreach ($_REQUEST as $key) {
 }
 
 try {
+
+    $tabla = $_REQUEST['tabla'];
     $paciente_id = $_REQUEST['paciente_id'];
     $fecha_realizacion = $_REQUEST['fecha_realizacion'] == 'Null' ? null : $_REQUEST['fecha_realizacion'] . ' ' . date('h:i:s');
     $visita_exitosa = $_REQUEST['visita_exitosa'];
@@ -23,7 +25,7 @@ try {
 
     //comprobamos que los campos no esten vacios
 
-    $stm = $conexion->prepare("UPDATE prog_toma_muestra SET fecha_realizacion = ?, visita_exitosa = ?, tipo_prueba = ?, observacion = ?, motivo = ? WHERE pacientes_id = ?");
+    $stm = $conexion->prepare("UPDATE $tabla SET fecha_realizacion = ?, visita_exitosa = ?, tipo_prueba = ?, observacion = ?, motivo = ? WHERE pacientes_id = ?");
     $stm->execute(
         array(
             $fecha_realizacion,
