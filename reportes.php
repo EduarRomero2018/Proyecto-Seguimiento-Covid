@@ -118,7 +118,8 @@ $cantidad_kits = $res['Cantidad_kits'];
 /* Cantidad de pacientes fallecidos*/
 $consulta = $conexion->prepare("SELECT COUNT(*) AS pacientes_fallecidos
 FROM pacientes
-WHERE estado_paciente = 'MUERTO' AND aseguradora = 'MUTUAL SER'");
+WHERE estado_paciente = 'MUERTO'
+AND aseguradora = 'MUTUAL SER'");
 $consulta->execute();
 $res = $consulta ->fetch();
 $pacientes_fallecidos = $res['pacientes_fallecidos'];
@@ -156,7 +157,7 @@ $res = $consulta ->fetch();
 $Pendientes_notificar = $res['Pendientes_notificar'];
 
 //Cantidad de pacientes recuperados://CONSULTA LISTA
-  $consulta = $conexion->prepare("SELECT * 
+  $consulta = $conexion->prepare("SELECT *
   FROM prog_toma_muestra PTM
   INNER JOIN pacientes P ON P.id = PTM.pacientes_id
   LEFT JOIN seguimiento_paciente SP ON P.id = SP.id_pacientes

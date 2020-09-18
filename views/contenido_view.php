@@ -173,8 +173,9 @@
                         <div class="d-flex justify-content-center">
                             <i class="fas fa-4x fa-book-dead">
                                 <!-- <i class="fas fa-book-dead"></i> -->
-
+                                <a href="cpf.php">
                                 <p class="display-1 degree"><?php echo $pacientes_fallecidos ?></p>
+                                </a>
                             </i>
                             <i class="fas fa-sun-o fa-5x pt-3 amber-text"></i>
                         </div>
