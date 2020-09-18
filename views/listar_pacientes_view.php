@@ -264,7 +264,7 @@
         let row = this.parentElement.parentElement
 
         Swal.fire({
-            title: `${nombre} Fecha de fallecimiento`,
+            title: `Seleccione la fecha de fallecimiento del paciente ${nombre}`,
             html: '<input type="date" id="fecha_fellecimiento" class="form-control">',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
