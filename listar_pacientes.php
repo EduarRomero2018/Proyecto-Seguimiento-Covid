@@ -54,6 +54,7 @@ if (!isset($_REQUEST['consulta'])) {
     LEFT JOIN seguimiento_paciente SP ON SP.id_pacientes = pacientes.id
     WHERE pacientes.estado_paciente = 1
     AND ptm.resultado != 2
+    AND SP.actual = 1
     AND SP.paciente_recuperado = 2
     AND aseguradora = 'MUTUAL SER'";
 
