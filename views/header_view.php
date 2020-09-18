@@ -65,7 +65,7 @@
                             <?php endif ?>
                             <?php if (isset($_SESSION) && $_SESSION['role'] == 'Digitador' || $_SESSION['role'] == 'Coordinador covid' || $_SESSION['role'] == 'Auxiliar de seguimiento') : ?>
                                 <a class="nav-link " href="#" id="navbarDropdown" data-target='#exampleModal' role="button" data-toggle="modal" aria-haspopup="true" aria-expanded="false">
-                                    Ingresar Resultado Primera Vez
+                                    Ingresar Resultado
                                 </a>
                             <?php endif ?>
                             <!-- <a class="nav-link " href="#" id="navbarDropdown" data-target='#modalTomaMuestraControl' role="button" data-toggle="modal" aria-haspopup="true" aria-expanded="false">
@@ -82,6 +82,11 @@
                         <a href="listar_pacientes.php" class="dropdown-item" href="#">Listar pacientes Mutual</a>
                         <a href="lpnm.php" class="dropdown-item">Listar Pacientes no mutual</a>
                     </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="toma_muestra_control.php">
+                        PROGRAMAR SEGUNDA TOMA DE MUESTRA
+                    </a>
                 </li>
 				 <?php if($_SESSION['role'] == 'Auxiliar de programacion' || $_SESSION['role'] == 'Digitador') :?>
                 <li class="nav-item dropdown">
