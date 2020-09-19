@@ -2,11 +2,12 @@
 include 'conexion.php';
 
     $consulta = $conexion->prepare(
-        "SELECT CONCAT(primer_nombre, ' ', primer_apellido, ' ', segundo_apellido) AS 'Nombre_Completo', tipo_documento,edad,
-        numero_documento,
+        "SELECT
+        CONCAT(primer_nombre, ' ', primer_apellido, ' ', segundo_apellido) AS 'Nombre_Completo',
+        CONCAT(tipo_documento, '-', numero_documento) AS 'numero_documento',
         CONCAT(telefono, '-', telefono2) AS 'telefonos',barrio,
         DATE(fecha_programacion) AS fecha_programacion,
-        PTM.fecha_entrega_lab ,fecha_resultado,
+        DATE (PTM.fecha_realizacion) AS fecha_realizacion, fecha_resultado,
         PTM.notificado,
         UP.nombre_apellido AS 'Usuario_Programacion',
         US.nombre_apellido AS 'Usuario_Seguimiento',
