@@ -36,7 +36,8 @@
                         <?php if (isset($_SESSION) && $_SESSION['role'] == 'Auxiliar de programacion' || $_SESSION['role'] == 'Coordinador covid' || $_SESSION['role'] == 'Digitador') : ?>
                             <a href="getform1.php" class="dropdown-item" href="#">Ingresar Pacientes</a>
                             <!--<a class="dropdown-item" href="#">Ingresar Datos Personales</a>-->
-                            <a href="progmuestra.php" class="dropdown-item" href="#">Programar Primera Toma Muestra</a>
+                            <a href="progmuestra.php" class="dropdown-item">Programar Primera Toma Muestra</a>
+                            <a class="dropdown-item" href="toma_muestra_control.php">Programar Segunda Toma de Muestra</a>
                         <?php endif ?>
                         <?php if (isset($_SESSION) && $_SESSION['role'] == 'Auxiliar de seguimiento' || $_SESSION['role'] == 'Coordinador covid' || $_SESSION['role'] == 'Digitador' || $_SESSION['role'] == 'Medico') : ?>
                             <!--<a class="dropdown-item" href="#">Programacion de Toma de Muestra</a>-->
@@ -82,11 +83,6 @@
                         <a href="listar_pacientes.php" class="dropdown-item" href="#">Listar pacientes Mutual</a>
                         <a href="lpnm.php" class="dropdown-item">Listar Pacientes no mutual</a>
                     </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="toma_muestra_control.php">
-                        PROGRAMAR SEGUNDA TOMA DE MUESTRA
-                    </a>
                 </li>
 				 <?php if($_SESSION['role'] == 'Auxiliar de programacion' || $_SESSION['role'] == 'Digitador') :?>
                 <li class="nav-item dropdown">
