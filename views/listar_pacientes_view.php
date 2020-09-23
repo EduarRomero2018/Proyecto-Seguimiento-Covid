@@ -61,6 +61,9 @@
                                         <?php if($key->resultado == 'Positivo'): ?>
                                             <td class="text-center red lighten-4 th-sm"><?= $key->resultado ?></td>
                                         <?php endif ?>
+                                        <?php if($key->resultado == 'Negativo'): ?>
+                                            <td class="text-center green lighten-4 th-sm"><?= $key->resultado ?></td>
+                                        <?php endif ?>
                                         <td class="text-center"><?= $key->usuario_programacion ?></td>
                                         <td class="text-center"><?= $key->usuario_seguimiento ?></td>
                                         <td class="text-center"><?= $key->usuario_medico ?></td>
