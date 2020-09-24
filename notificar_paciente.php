@@ -5,10 +5,16 @@ if($_REQUEST['llamada'] == 'No'){
     
     $paciente_id = $_REQUEST['paciente_id'];
 
-    $sql = "UPDATE prog_toma_muestra SET estado_proceso = 'FINALIZADO', notificado = 'SI', fecha_notificacion = ? WHERE pacientes_id = $paciente_id";
+    if(isset($_REQUEST['stm']) && $_REQUEST['stm'] == 'stm')
+    {
+        $tabla = 'segunda_toma_muestra_control_2';
+    }else{
+        $tabla = 'prog_toma_muestra';
+    }
 
+    $sql = "UPDATE $tabla SET estado_proceso = 'FINALIZADO', notificado = 'SI', fecha_notificacion = NOW() WHERE pacientes_id = $paciente_id";
     $stm = $conexion->prepare($sql);
-    $stm->execute(array(date('Y-m-d h:i:s')));
+    $stm->execute();
 
     if ($stm->rowCount() > 0) {
         die(json_encode('ok'));

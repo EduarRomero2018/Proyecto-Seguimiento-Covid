@@ -747,6 +747,12 @@
             $('#div-telefono2').attr('hidden', false)
         }
 
+        if(this.href == "http://proyecto-seguimiento-covid.test/stm"){
+            $('#stm').val('stm')
+        }else{
+            $('#stm').val()
+        }
+
         $('#nombre').text(nombre)
         $('#paciente_id').val(id)
         $('#telefono1-l').text(telefono)
@@ -765,6 +771,7 @@
         let telefono2_paciente = ''
         let motivo = $('#motivo').val()
         let llamada = $('#llamada').val()
+        let stm = $('#stm').val()
 
         for (let index = 1; index <= 2; index++) {
             const element = `#telefono${index}`;
@@ -782,6 +789,7 @@
             type: "POST",
             url: "notificar_paciente.php",
             data: {
+                stm,
                 llamada,
                 paciente_id,
                 id_usuario,
@@ -794,6 +802,7 @@
             success: function (response) {
                 console.log(response);
                 let res = JSON.parse(response)
+
                 switch (res) {
                     case 'ok':
                         Swal.fire(
@@ -1094,69 +1103,6 @@
         let nombre = $('#nombre')[0].innerHTML
 
         $('#text-modal').text(`Notificar al paciente ${nombre} - ${identificacion} de sus reslutados`)
-    })
-
-    $('#notificar').on('click', (e) => {
-        e.preventDefault()
-
-        let id_usuario = $('#id_usuario').val()
-        let paciente_id = $('#paciente_id').val()
-        let rol_usuario = $('#role')[0].innerHTML
-        let nombre_paciente = $('#nombre')[0].innerText
-        let telefono_paciente = ''
-        let telefono2_paciente = ''
-        let motivo = $('#motivo').val()
-        let llamada = $('#llamada').val()
-
-        for (let index = 1; index <= 2; index++) {
-            const element = `#telefono${index}`;
-
-            if ($(element).is(':checked') == true) {
-                if(element == '#telefono1'){
-                    telefono_paciente = $('#telefono1-l')[0].innerText
-                }else{
-                    telefono2_paciente = $('#telefono2-l')[0].innerText
-                }
-            }
-        }
-
-        $.ajax({
-            type: "POST",
-            url: "notificar_paciente.php",
-            data: {
-                llamada,
-                paciente_id,
-                id_usuario,
-                rol_usuario,
-                nombre_paciente,
-                telefono_paciente,
-                telefono2_paciente,
-                motivo
-            },
-            success: function (response) {
-                console.log(response);
-                let res = JSON.parse(response)
-                switch (res) {
-                    case 'ok':
-                        Swal.fire(
-                            'Tarea realizada con exito!',
-                            'datos guardados',
-                            'success'
-                        )
-                        $('#modal-notificacion').modal('hide')
-                        $('#form-notificacion')[0].reset()
-                        break;
-
-                    default:
-                        Swal.fire(
-                            'Error!',
-                            'Ha ocurrido un error al momento de realizar la tarea',
-                            'error'
-                        )
-                        break;
-                }
-            }
-        });
     })
 </script>
 <script>

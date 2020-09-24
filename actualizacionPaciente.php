@@ -118,7 +118,7 @@ if(isset($_REQUEST['actualizar-programacion']))
 {    
     $id = $_REQUEST['id'];
     $fecha_programacion = $_REQUEST['fecha_programacion'];
-    $fecha_realizacion = isset($_REQUEST['!fecha_realizacion']) ? null : $_REQUEST['fecha_realizacion'];
+    $fecha_realizacion = empty($_REQUEST['!fecha_realizacion']) ? null : $_REQUEST['fecha_realizacion'];
 
     $stm = $conexion->prepare("UPDATE prog_toma_muestra SET fecha_programacion = ?, fecha_realizacion = ? WHERE id = ?");
     $stm->execute(array(

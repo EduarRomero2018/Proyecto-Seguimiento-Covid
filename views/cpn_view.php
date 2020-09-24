@@ -25,8 +25,10 @@
                                     <th style="background: #ffc974" class="text-center th-sm">Fecha de Programacion<i</th>
                                     <th style="background: #ffc974" class="text-center th-sm">Fecha de entrega laboratorio<i</th>
                                     <th style="background: #ffc974" class="text-center th-sm">Fecha Del Resultado</th>
-                                    <th style="background: #ffc974" class="text-center th-sm">Paciente Notificado</th>
-                                    <th style="background: #ffc974" class="text-center th-sm">Notificar paciente</th>
+                                    <th style="background: #ffc974" class="text-center th-sm">Paciente Notificado (Primera toma)</th>
+                                    <th style="background: #ffc974" class="text-center th-sm">Paciente Notificado (segunda toma)</th>
+                                    <th style="background: #ffc974" class="text-center th-sm">Notificar paciente (Primera toma)</th>
+                                    <th style="background: #ffc974" class="text-center th-sm">Notificar paciente (segunda toma)</th>
                                 </tr>
                             </thead>
                             <tbody id="tbl-llamadas">
@@ -45,7 +47,15 @@
                                         <td class="text-center"><?= $key->fecha_entrega_lab ?></td>
                                         <td class="text-center"><?= $key->fecha_resultado ?></td>
                                         <td class="text-center"><?= $key->notificado ?></td>
-                                        <th class="text-center"><a name="notificar"  data-toggle="modal" data-target="#modal-notificacion" class="btn btn-info px-3" id="<?= $key->id ?>"><i style="font-size: 30px;" class="fas fa-bell text-white"></i></a></th>
+                                        <td class="text-center"><?= $key->notificado_2 ?></td>
+                                        <th class="text-center"><a name="notificar"  data-toggle="modal" data-target="#modal-notificacion" class="btn btn-info px-3" id="<?= $key->id ?>"><i style="font-size: 30px; color: white" class="fas fa-bell"></i></a></th>
+                                        <th class="text-center">
+                                            <?php if(!empty($key->notificado_2)): ?>
+                                                <a name="notificar" href="stm"  data-toggle="modal" data-target="#modal-notificacion" class="btn btn-info px-3" id="<?= $key->id ?>">
+                                                    <i style="font-size: 30px; color: white" class="fas fa-bell"></i>
+                                                </a>
+                                            <?php endif; ?>
+                                        </th>
                                     </tr>
                                 <?php $i++;
                                 endforeach; ?>
@@ -95,6 +105,7 @@
                                 </select>
                                 <input type="text" id="id_usuario" value="<?= $_SESSION['id'] ?>" hidden class="form-control">
                                 <input type="text" id="paciente_id" value="" hidden class="form-control">
+                                <input type="hidden" id="stm" value="">
                             </div>
                             <div class="form-group" name="hidden" hidden>
                                 <label>Marque el numero al que se comunico</label>
