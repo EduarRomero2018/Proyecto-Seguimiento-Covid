@@ -15,14 +15,14 @@
   <body>
     <div class="grid-container general">
       <div class="row small-text-center medium-text-center large-text-center">
-            <h1 class="subheader" style="color: blanchedalmond;">Proyecto (covid-19)</h1>
+            <h1 class="subheader" style="color: blanchedalmond;">Proyecto (covid-19-EV)</h1>
         <div class="grid-x">
           <!-- primera columna-->
-           <div class="cell columns small-12 medium-6 large-6 columna1 ">
-            <img src="img/logo3.jpg" alt="logo">
+           <div class="column small-5 large-centered columna1 ">
+            <img src="img/cami.png" alt="logo">
           </div>
           <!-- segunda columna-->
-          <div class="cell columns small-12 medium-6 large-6 caja">
+          <div class="column small-7 caja">
             <div class="fondo_form ">
                 <h4 class="subheader">Iniciar Sesión</h4>
                 <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST" class="formulario" name="login">

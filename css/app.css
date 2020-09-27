@@ -1,18 +1,18 @@
 body{
     height: 100%;
-    background: linear-gradient(rgba(255, 179, 57, 0.2),#cdedff,#f7f8fa,#fff,rgb(173, 185, 210),#063e83);
-    background: -webkit-linear-gradient(rgba(255, 179, 57, 0.2),#cdedff,#f7f8fa,#fff,rgb(173, 185, 210),#063e83);
-    background: -moz-linear-gradient(rgba(255, 179, 57, 0.2),#cdedff,#f7f8fa,#fff,rgb(173, 185, 210),#063e83);
-    background: -o-linear-gradient(rgba(255, 179, 57, 0.2),#cdedff,#f7f8fa,#fff,rgb(173, 185, 210),#063e83);
+    background: linear-gradient(rgba(255, 179, 57, 0.2),#cdedff,#f7f8fa,#fff,rgb(255, 255, 255),#fff);
+    background: -webkit-linear-gradient(rgba(255, 179, 57, 0.2),#cdedff,#f7f8fa,#fff,rgb(255, 255, 255),#fff);
+    background: -moz-linear-gradient(rgba(255, 179, 57, 0.2),#cdedff,#f7f8fa,#fff,rgb(255, 255, 255),#fff);
+    background: -o-linear-gradient(rgba(255, 179, 57, 0.2),#cdedff,#f7f8fa,#fff,rgb(255, 255, 255),#fff);
     background-attachment: fixed;
-    
+
   }
-.general {    
-     background: linear-gradient(#063e83 10%, #e8ebf0 60%,rgb(255, 255, 255) 100%); 
+.general {
+     background: linear-gradient(#003364 10%, #e8ebf0 60%,rgb(255, 255, 255) 100%);
    border-top-right-radius: 20px;
    border-top-left-radius: 20px;
-   border-bottom-left-radius: 20px;
-   border-bottom-right-radius: 20px;
+   /* border-bottom-left-radius: 20px;
+   border-bottom-right-radius: 20px; */
 }
 .general .caja {
     background: #fff;
@@ -20,20 +20,22 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
 }
 .general .caja i{
     font-size: 20px;
-    
+
 }
 .general .caja .fondo_form {
     border-radius: 10px;
-    background: #f1f3f6;
+    background: #fff;
     height: auto;
-    width: 70%; 
+    width: 70%;
     padding-left: 10px;
     padding-right: 10px;
     padding-bottom: 10px;
-    padding-top:10px;
+    padding-top: 10px;
 }
 .general .caja .fondo_form input{
    border-top-right-radius:20px;
@@ -64,16 +66,18 @@ body{
 }
 .general .caja .fondo_form .boton1 {
     align-items: right;
-    justify-content: center;    
+    justify-content: center;
 }
 .button-group {
     margin-bottom: 0rem;
 }
-.columna1 {    
+.columna1 {
     background: #fff;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
 }
 .columna1 img {
-   height:auto;  
+   height:auto;
 }
 /*STYLOS DEL CUADRO INFERIOR*/
 .informacion {
@@ -101,11 +105,5 @@ body{
 }
 .informacion.boton1 {
     align-items: right;
-    justify-content: center;    
+    justify-content: center;
 }
-/*STYLOS DE LA CAJA DE ERRORES DE PHP*/
-.errores .error {
-    background-color: rgba(211, 28, 28, 0.2);
-    height: auto;
-    border-radius: 5px;
-    }
