@@ -21,10 +21,16 @@ if (!isset($_REQUEST['consulta'])) {
             $id_session = $_SESSION['id'];
             $condicion = "WHERE pacientes.estado_paciente = 1 AND ptm.resultado != 2 AND SP.actual = 1 AND SP.paciente_recuperado = 2 AND aseguradora = 'MUTUAL SER'";
             break;
+
         case 'Auxiliar de seguimiento':
             $id_session = $_SESSION['id'];
-            $condicion = "WHERE pacientes.estado_paciente = 1 AND SP.actual = 1 AND SP.paciente_recuperado = 2 AND aseguradora = 'MUTUAL SER' AND ptm.notificado = 'NO' AND ptm.fecha_programacion IS NOT null";
+            $condicion = "WHERE pacientes.estado_paciente = 1
+            AND pacientes.id_usuario_seguimiento = $id_session
+            AND aseguradora = 'MUTUAL SER'
+            AND ptm.notificado = 'NO'
+            AND ptm.fecha_programacion IS NOT null";
             break;
+            
         case 'Digitador':
             $id_session = $_SESSION['id'];
             $condicion = "WHERE pacientes.estado_paciente = 1 AND ptm.resultado != 2 AND SP.actual = 1 AND SP.paciente_recuperado = 2 AND aseguradora = 'MUTUAL SER'";

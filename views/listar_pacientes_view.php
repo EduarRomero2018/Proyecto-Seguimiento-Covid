@@ -16,12 +16,16 @@
                                 <tr class="text-right ">
                                     <th style="background: #a9c5e7" class="text-center th-sm"># Registro</th>
                                     <th style="background: #a9c5e7" class="text-center th-sm">Nombre paciente</th>
+                                    <?php if($_SESSION['role'] != 'Auxiliar de seguimiento'): ?>
                                     <th style="background: #a9c5e7" class="text-center th-sm">Edad</th>
+                                    <?php endif ?>
                                     <th style="background: #a9c5e7" class="text-center th-sm">Identificacion</th>
                                     <th style="background: #a9c5e7" class="text-center th-sm">Telefono</th>
-									<th style="background: #a9c5e7" class="text-center th-sm">Dirección</th>
+                                    <?php if($_SESSION['role'] != 'Auxiliar de seguimiento'): ?>
+                                    <th style="background: #a9c5e7" class="text-center th-sm">Dirección</th>
                                     <th style="background: #a9c5e7" class="text-center th-sm">Ubicacion del Paciente</th>
 									<th style="background: #a9c5e7" class="text-center th-sm">Toma de Muestra</th>
+                                    <?php endif ?>
                                     <th style="background: #a9c5e7" class="text-center th-sm">Fecha de Programacion<i</th>
 									<th style="background: #a9c5e7" class="text-center th-sm">Fecha de Realizacion<i</th>
 									<th style="background: #a9c5e7" class="text-center th-sm">Observacion<i</th>
@@ -45,12 +49,16 @@
                                     <tr>
                                         <td class="text-center th-sm"><?= $i ?></td>
                                         <td class="text-center th-sm"><?= $key->Nombre_Completo ?></td>
+                                        <?php if($_SESSION['role'] != 'Auxiliar de seguimiento'): ?>
                                         <td class="text-center th-sm"><?= $key->Edad ?></td>
+                                        <?php endif ?>
                                         <td class="text-center th-sm"><?= $key->Identificacion ?></td>
                                         <td class="text-center th-sm"><?= $key->telefono ?></td>
-										<td class="text-center th-sm"><?= $key->barrio?></td>
+                                        <?php if($_SESSION['role'] != 'Auxiliar de seguimiento'): ?>
+                                        <td class="text-center th-sm"><?= $key->barrio?></td>
                                         <td class="text-center th-sm"><?= $key->municipio ?></td>
 										<td class="text-center th-sm"><?= $key->programacion_atencion?></td>
+                                        <?php endif ?>
                                         <td class="text-center th-sm"><?= $key->fecha_programacion?></td>
 										<td class="text-center th-sm"><?= $key->fecha_realizacion?></td>
 										<td class="text-center th-sm"><?= $key->motivo?></td>
@@ -81,12 +89,16 @@
                                 <tr>
                                 <th class="text-center"># Registro</th>
                                     <th class="text-center th-sm">Nombre paciente</th>
+                                    <?php if($_SESSION['role'] != 'Auxiliar de seguimiento'): ?>
                                     <th class="text-center th-sm">Edad</th>
+                                    <?php endif ?>
                                     <th class="text-center th-sm">Identificacion</th>
                                     <th class="text-center th-sm">Telefono</th>
+                                    <?php if($_SESSION['role'] != 'Auxiliar de seguimiento'): ?>
                                     <th class="text-center th-sm">Dirrección</th>
                                     <th class="text-center th-sm">Ubicacion del Paciente</th>
                                     <th class="text-center th-sm">Toma de Muestra</th>
+                                    <?php endif ?>
                                     <th class="text-center th-sm">Fecha de Programacion</th>
                                     <th class="text-center th-sm">Fecha de Realizacion</th>
                                     <th class="text-center th-sm">Observacion</th>
