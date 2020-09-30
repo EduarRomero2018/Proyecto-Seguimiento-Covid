@@ -817,5 +817,252 @@
             })
         })
 
+    $(document).ready(function() {
+            $('#buscarPaciente').on('click', function() {
+                $('#error').attr('hidden', true)
+            })
+
+            $('#visita_exitosa').on('change', function() {
+                console.log(this.value);
+                if (this.value == 'NO') {
+                    $('div[name="ocultar"]').attr('hidden', true)
+                    $('#div-motivo').attr('hidden', false)
+                } else {
+                    $('div[name="ocultar"]').attr('hidden', false)
+                    $('#div-motivo').attr('hidden', true)
+                }
+            })
+
+            $('#fecha_entrega_laboratorio').on('change', function() {
+                let fecha_entrega_laboratorio = $('#fecha_entrega_laboratorio').val()
+                if (fecha_entrega_laboratorio != '') {
+                    $('#fecha_procesamiento').attr('disabled', false)
+                    $('#fecha_procesamiento').attr('min', fecha_entrega_laboratorio)
+                }
+            })
+
+            $('#fecha_procesamiento').on('change', function() {
+                let fecha_entrega_laboratorio = $('#fecha_entrega_laboratorio').val()
+                let fecha_procesamiento = $('#fecha_procesamiento').val()
+                $('#fecha_resultado').attr('min', fecha_procesamiento)
+                if (fecha_procesamiento < fecha_entrega_laboratorio) {
+                    swal({
+                        type: 'error',
+                        title: "ERROR",
+                        text: "La fecha de procesamiento no puede ser menor a la fecha de entrega de laboratorio",
+                        button: "Aceptar",
+                        icon: "error",
+                        button: "Aceptar",
+                        timer: 7000,
+                        animation: false,
+                        customClass: 'animated heartBeat'
+                    })
+                    $('#guardar').attr('disabled', true)
+                } else {
+                    $('#fecha_resultado').attr('disabled', false)
+                    $('#guardar').attr('disabled', false)
+                }
+            })
+
+            $('#fecha_resultado').on('change', function() {
+                let fecha_entrega_laboratorio = $('#fecha_entrega_laboratorio').val()
+                let fecha_procesamiento = $('#fecha_procesamiento').val()
+                let fecha_resultado = $('#fecha_resultado').val()
+                if (fecha_resultado < fecha_entrega_laboratorio || fecha_resultado < fecha_procesamiento) {
+                    swal({
+                        type: 'error',
+                        title: "ERROR",
+                        text: "La fecha de resultado no puede ser menor a la fecha de entrega de laboratorio y a la fecha de procesamiento de la toma",
+                        button: "Aceptar",
+                        icon: "error",
+                        button: "Aceptar",
+                        timer: 7000,
+                        animation: false,
+                        customClass: 'animated heartBeat'
+                    })
+
+                    $('#guardar').attr('disabled', true)
+                } else {
+                    $('#guardar').attr('disabled', false)
+                }
+            })
+            $('#guardar').on('click', function(e) {
+                e.preventDefault()
+                let id = $('#paciente_id').val()
+                let tabla = $('#tabla-resultado').val()
+                let fecha_entrega_laboratorio = $('#fecha_entrega_laboratorio').val()
+                let fecha_procesamiento = $('#fecha_procesamiento').val()
+                let fecha_resultado = $('#fecha_resultado').val()
+                let resultado2 = $('#resultado').val()
+                let notificado = ''
+                if ($('#defaultUnchecked').is(':checked') == true) {
+                    notificado = 'SI'
+
+                }
+
+                $.ajax({
+                    type: 'POST',
+                    url: 'resultadoTomaDeMuestra.php?paciente_id=' + id +
+                        '&fecha_entrega_laboratorio=' + fecha_entrega_laboratorio + '&fecha_procesamiento=' + fecha_procesamiento +
+                        '&fecha_resultado=' + fecha_resultado + '&resultado=' + resultado2,
+                    data: {tabla},
+                    success: function(res) {
+
+                        let resultado1 = JSON.parse(res)
+                        switch (resultado1) {
+                            case 'empty':
+                                console.log(resultado1)
+                                swal({
+                                    type: 'error',
+                                    title: "ERROR",
+                                    text: "Todos los campos son obligatorios",
+                                    button: "Aceptar",
+                                    icon: "error",
+                                    button: "Aceptar",
+                                    timer: 7000,
+                                    animation: false,
+                                    customClass: 'animated heartBeat'
+                                })
+                                break;
+                            case 'bad':
+                                swal({
+                                    type: 'error',
+                                    title: "ERROR",
+                                    text: "Ha ocurrido un error al intentar guardar los datos",
+                                    button: "Aceptar",
+                                    icon: "error",
+                                    button: "Aceptar",
+                                    timer: 7000,
+                                    animation: false,
+                                    customClass: 'animated heartBeat'
+                                })
+                                break;
+                            default:
+                                let t = ''
+                                swal({
+                                    type: 'success',
+                                    title: "Exito",
+                                    text: "Datos guardados exitosamente",
+                                    button: "Aceptar",
+                                    icon: "success",
+                                    button: "Aceptar",
+                                    timer: 7000,
+                                    animation: false,
+                                    customClass: 'animated heartBeat'
+                                })
+                                $('#tablePaciente').attr('hidden', true)
+                                $('#exampleModal').modal('hide')
+                                $('#form-container')[0].reset()
+                                $('#form-body').attr('hidden', true)
+                                break;
+                        }
+                    }
+                })
+            })
+
+            $('#buscarPaciente').on('click', function(e) {
+                e.preventDefault()
+                let identificacion = $('#documento').val()
+                let tabla = $('#tabla-resultado').val()
+                $('#guardar').attr('disabled', true)
+
+                $.ajax({
+                    type: 'post',
+                    url: 'buscarPaciente.php?buscar=' + identificacion,
+                    data: {tabla},
+                    success: function(res) {
+                        console.log(res);
+                        let resultado = JSON.parse(res)
+                        let plantilla = ''
+                        let id = ''
+                        let numero_telefono = 0
+                        switch (resultado) {
+
+                            case "empty":
+                                swal({
+                                    type: 'error',
+                                    title: "ERROR",
+                                    text: "Debe ingresar un numero de documento para realizar la busqueda",
+                                    button: "Aceptar",
+                                    icon: "error",
+                                    button: "Aceptar",
+                                    timer: 7000,
+                                    animation: false,
+                                    customClass: 'animated heartBeat'
+                                })
+                                $('#form').attr('hidden', true)
+                                $('#tablePaciente').attr('hidden', true)
+                                break;
+
+                            case 1:
+                                swal({
+                                    type: 'error',
+                                    title: "ERROR",
+                                    text: "El paciente ya tiene Resultados, Por favor Verifique",
+                                    button: "Aceptar",
+                                    icon: "error",
+                                    button: "Aceptar",
+                                    timer: 7000,
+                                    animation: false,
+                                    customClass: 'animated heartBeat'
+                                })
+                                $('#form').attr('hidden', true)
+                                $('#tablePaciente').attr('hidden', true)
+                                break;
+
+                            case 'null':
+                                swal({
+                                    type: 'error',
+                                    title: "ERROR",
+                                    text: "Este Paciente aun no cuenta con una realizacion de toma de muestra, favor verifique",
+                                    button: "Aceptar",
+                                    icon: "error",
+                                    button: "Aceptar",
+                                    timer: 10000,
+                                    animation: false,
+                                    customClass: 'animated heartBeat'
+                                })
+                                $('#form').attr('hidden', true)
+                                $('#tablePaciente').attr('hidden', true)
+                                break;
+
+                            case 'err':
+                                swal({
+                                    type: 'error',
+                                    title: "ERROR",
+                                    text: "Paciente no Encontrado... Verifique si Existe",
+                                    button: "Aceptar",
+                                    icon: "error",
+                                    button: "Aceptar",
+                                    timer: 7000,
+                                    animation: false,
+                                    customClass: 'animated heartBeat'
+                                })
+                                $('#form-body').attr('hidden', true)
+                                $('#tablePaciente').attr('hidden', true)
+                                break;
+
+                            default:
+                                resultado.forEach(element => {
+                                    id = element.id
+                                    numero_telefono = element.telefono
+                                    plantilla += `
+                                        <tr>
+                                            <td>${element.primer_nombre}</td>
+                                            <td>${element.numero_documento}</td>
+                                        </tr>
+                                    `
+                                })
+                                $('#paciente_id').attr('value', id)
+                                $('#form-body').attr('hidden', false)
+                                $('#tablePaciente').attr('hidden', false)
+                                $('#tbody').html(plantilla)
+                                break;
+                        }
+                    }
+                })
+            })
+        })
+
 </script>
 </html>

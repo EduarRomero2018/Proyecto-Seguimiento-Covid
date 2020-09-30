@@ -103,9 +103,8 @@
                                     <th class="text-center th-sm">Fecha Registro<i class="text-left fas fa-sort ml-1"></i></th>
                                     <th class="text-center th-sm">Url</th>
                                     <th class="text-center th-sm">Descargar Archivo</th>
-                                    <?php if($notificado == 'NO'): ?>
                                     <th class="text-center th-sm">Notificar paciente</th>
-                                    <?php endif ?>
+                                    <th class="text-center th-sm">Notificar paciente (segunda toma)</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -117,9 +116,12 @@
                                         <td><?= $row->Fecha_registro ?></td>
                                         <td><small class="text-muted"><?= base64_encode($row->soporte_resultado) ?></small></td>
                                         <td class="text-center"><a name="descargar" id="<?= $row->soporte_resultado ?>" href="" class="btn btn-info px-3"><i style="font-size: 30px;" class="text-white fas fa-file-download"></i></a></td>
-                                        <?php if($notificado == 'NO'): ?>
-                                        <th class="text-center"><a name="notificar"  data-toggle="modal" data-target="#modal-notificacion" class="btn btn-info px-3" id="<?= $key->id ?>"><i style="font-size: 30px;" class="fas fa-bell text-white"></i></a></th>
-                                        <?php endif ?>
+                                        <th class="text-center"><a name="notificar"  data-toggle="modal" data-target="#modal-notificacion" class="btn btn-info px-3" id="<?= $row->id ?>"><i style="font-size: 30px;" class="fas fa-bell text-white"></i></a></th>
+                                        <th>
+                                            <a name="notificar" href="stm"  data-toggle="modal" data-target="#modal-notificacion" class="btn btn-info px-3" id="<?= $row->id ?>">
+                                                <i style="font-size: 30px; color: white" class="fas fa-bell"></i>
+                                            </a>
+                                        </th>
                                     </tr>
                                 <?php $i = $i + 1;
                                 endforeach; ?>
@@ -134,6 +136,7 @@
                                     <?php if($notificado == 'NO'): ?>
                                     <th class="text-center">Notificar paciente</th>
                                     <?php endif ?>
+                                    <th class="text-center th-sm">Notificar paciente (segunda toma)</th>
                                 </tr>
                             </tfoot>
                         </table>
@@ -162,6 +165,7 @@
                                         <option value="Si">Si</option>
                                         <option value="No">No</option>
                                     </select>
+                                    <input type="hidden" id="stm" value="">
                                     <input type="text" id="id_usuario" value="<?= $_SESSION['id'] ?>" hidden class="form-control">
                                     <input type="text" id="paciente_id" value="<?= $paciente_id ?>" hidden class="form-control">
                                 </div>
@@ -249,8 +253,15 @@
     })
 
     $('a[name="notificar"]').on('click', function (e) {  
+        console.log('click');
         let identificacion = this.parentElement.parentElement.children[1].innerText
         let nombre = $('#nombre')[0].innerHTML
+
+        if(this.href == "http://proyecto-seguimiento-covid.test/stm"){
+            $('#stm').val('stm')
+        }else{
+            $('#stm').val()
+        }
 
         $('#text-modal').text(`Notificar al paciente ${nombre} - ${identificacion} de sus reslutados`)
     })
@@ -266,6 +277,7 @@
         let telefono2_paciente = ''
         let motivo = $('#motivo').val()
         let llamada = $('#llamada').val()
+        let stm = $('#stm').val()
 
         for (let index = 1; index <= 2; index++) {
             const element = `#telefono${index}`;
@@ -283,6 +295,7 @@
             type: "POST",
             url: "notificar_paciente.php",
             data: {
+                stm,
                 llamada,
                 paciente_id,
                 id_usuario,
@@ -293,7 +306,6 @@
                 motivo
             },
             success: function (response) {
-                console.log(response);
                 let res = JSON.parse(response)
                 switch (res) {
                     case 'ok':

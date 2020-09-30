@@ -547,7 +547,7 @@
                                 let headerTable =
                                 `
                                     <h4>Pacientes pendientes por asignar por fecha seleccionada</h4>
-                                    <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+                                    <table id="dtBasicExample" class="table table-striped table-bordered table-sm mb-4" cellspacing="0" width="100%">
                                         <thead>
                                             <tr class="text-right">
                                                 <th style="background: #ffc974" class="text-center th-sm "># Registro</th>
@@ -1041,68 +1041,6 @@
                 }
             }
         })
-    })
-</script>
-<script>
-    $(document).ready(function() {
-        console.log('JQ')
-        document.getElementsByName('descargar').forEach(Element => {
-            Element.addEventListener('click', function(e) {
-                e.preventDefault()
-
-                console.log(this)
-                let nombre = $('#nombre')[0].innerHTML
-                let documento = $('#documento')[0].innerHTML
-                let url = this.id
-
-                let datos = {
-                    nombre,
-                    url,
-                    documento
-                }
-
-                $.ajax({
-                    type: 'post',
-                    url: 'descargar_soporte.php',
-                    data: datos,
-                    xhrFields: {
-                        responseType: 'blob'
-                    },
-                    success: function(res) {
-                        console.log(res)
-                        var link = document.createElement('a');
-                        link.href = window.URL.createObjectURL(res);
-                        link.download =
-                            `soporte-resultado-paciente-${nombre}_${documento}.pdf`;
-                        link.click();
-                    }
-                })
-
-                console.log(datos)
-            })
-        })
-    })
-
-    $('#llamada').on('change', function () {
-        if (this.value == 'Si') {
-            $('div[name="hidden"]').attr('hidden', false)
-            $('a[name="hidden"]').attr('hidden', false)
-        } else {
-            $('div[name="hidden"]').attr('hidden', true)
-            $('a[name="hidden"]').attr('hidden', false)
-        }
-
-        if(this.value == ''){
-            $('a[name="hidden"]').attr('hidden', true)
-
-        }
-    })
-
-    $('a[name="notificar"]').on('click', function (e) {
-        let identificacion = this.parentElement.parentElement.children[1].innerText
-        let nombre = $('#nombre')[0].innerHTML
-
-        $('#text-modal').text(`Notificar al paciente ${nombre} - ${identificacion} de sus reslutados`)
     })
 </script>
 <script>
