@@ -92,7 +92,7 @@
         <select name="aseguradora" class="custom-select" required>
           <option value=""></option>
           <?php
-          $aseguradoras = ['Ambuq','Anaswayuu EPSI','ARS con vida','Asmet salud','Caja de prevecion','Cajacopi','Caprecom','Colsanitas','Comfamiliar','Comfenalco','Comparta','Compensar','Coomeva','Coosalud','Dadis','Emssanar','Famisanar','Ferrocariles','Inpec','Magisterio','Medimas','Mutual ser','Nueva EPS','Salud publica','Sabia Salud','Salud total','Sanidad militar','Sanitas','Sura'];
+          $aseguradoras = ['Ambuq','Anaswayuu EPSI','ARS con vida','Asmet salud','Caja de prevecion','Cajacopi','Caprecom','Colsanitas','Comfamiliar','Comfenalco','Comparta','Compensar','Coomeva','Coosalud','Dadis','Ecopetrol','Emssanar','Famisanar','Ferrocariles','Inpec','Magisterio','Medimas','Mutual ser','Nueva EPS','Policia nacional','Salud publica','Sabia Salud','Salud total','Sanidad militar','Sanitas','Sura'];
           foreach($aseguradoras as $aseguradora => $valor): ?>
             <option value="<?= strtoupper($valor) ?>"><?= $valor ?></option>
           <?php endforeach; ?>

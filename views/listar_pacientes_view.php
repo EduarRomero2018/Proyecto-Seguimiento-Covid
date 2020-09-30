@@ -139,6 +139,13 @@
                             <input class="form-control" type="search" id="documento">
                             <input type="hidden" id="paciente_id">
                         </div>
+                        <div class="form-group">
+                            <label for="">Seleccionar toma de muestra</label>
+                            <select id="tabla-resultado" class="custom-select">
+                                <option value="prog_toma_muestra">Primera toma de muestra</option>
+                                <option value="segunda_toma_muestra_control_2">Segunda toma de muestra</option>
+                            </select>
+                        </div>
                         <input class="btn btn-secondary" type="submit" value="Consultar" id="buscarPaciente">
                         <div class="mt-2">
                             <table hidden id="tablePaciente" class="table table-bordered">
@@ -154,8 +161,7 @@
                         <div hidden id="form-body">
                             <div class="mt-2">
                                 <div class="form-group">
-                                    <label class="col-form-label">Fecha de Entrega al laboratorio toma de
-                                        muestra</label>
+                                    <label class="col-form-label">Fecha de Entrega al laboratorio toma de muestra</label>
                                     <input type="date" id="fecha_entrega_laboratorio" value="" class="form-control">
                                 </div>
                                 <div class="form-group">
@@ -239,20 +245,78 @@
         </div>
     </div>
 
-    <!-- Modal fecha de reprogramacion -->
-    <div class="modal fade" id="modalFechaReprogramacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- Modal fecha de realizacion -->
+    <div class="modal fade" id="modalFechaRealizacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="tituloReprogramacion"></h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Fecha de realizacion de la toma</h5>
                 </div>
                 <div class="modal-body">
                     <form id="form-container-3">
                         <div class="form-group">
-                            <label>Fecha de reprogramacion: </label>
-                            <input type="hidden" id="id_reprogramacion">
-                            <input type="date" id="fecha_reprogramacion" min="<?= date('Y-m-d') ?>" class="form-control">
-                            <a href="#" id="reprogramacion" class="btn btn-primary">Reprogramar</a>
+                            <label>Buscar Paciente</label>
+                            <input class="form-control" type="search" id="documento-3">
+                            <input type="hidden" id="paciente_id_3">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Seleccionar toma de muestra</label>
+                            <select id="tabla-fr" class="custom-select">
+                                <option value="prog_toma_muestra">Primera toma de muestra</option>
+                                <option value="segunda_toma_muestra_control_2">Segunda toma de muestra</option>
+                            </select>
+                        </div>
+                        <input class="btn btn-secondary" type="submit" value="Consultar" id="buscar3">
+                        <div class="mt-2">
+                            <table hidden id="tablePaciente3" class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Nombre</th>
+                                        <th scope="col">N° Identificacion</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody-3"></tbody>
+                            </table>
+                        </div>
+                        <div style="display: none;" id="form-body-3">
+                            <div class="mt-2">
+                                <div class="form-group">
+                                    <label for="">Fecha de programacion</label>
+                                    <input disabled type="date" id="f_programacion" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                <label class="col-form-label">Visita Exitosa</label>
+                                <select id="visita_exitosa" class="custom-select">
+                                    <option selected value=""> </option>
+                                    <option value="SI">Si</option>
+                                    <option value="NO">No</option>
+                                </select>
+                            </div>
+                            </div>
+                                <div class="form-group" name="ocultar">
+                                    <label class="col-form-label">Fecha de Realizacion</label>
+                                    <input type="date" id="fecha_realizacion" class="form-control">
+                                </div>
+                            <div class="form-group" name="ocultar">
+                                <label class="col-form-label">Tipo de prueba aplicada al paciente</label>
+                                <select id="tipo_prueba" class="custom-select">
+                                    <option selected value=""> </option>
+                                    <option value="PRC">PCR</option>
+                                    <!-- <option value="IGG">IGG</option> -->
+                                    <option value="IGG Y IGM">IGG y IGM</option>
+                                    <option value="ANTIGENO">Antigeno</option>
+                                    <!-- <option value="IGM">IGM</option> -->
+                                </select>
+                            </div>
+                            <div class="form-group" name="ocultar">
+                                <label class="col-form-label">Observacion</label>
+                                <input type="text" id="observacion" class="form-control" placeholder="Observacion">
+                            </div>
+                            <div class="form-group" id="div-motivo" hidden>
+                                <label class="col-form-label">Motivo</label>
+                                <input type="text" id="motivo" class="form-control" placeholder="Motivo">
+                            </div>
+                            <button id="guardar-complemento" type="button" class="btn btn-primary">Guardar datos</button>
                         </div>
                     </form>
                 </div>
@@ -506,106 +570,252 @@
         })
     })
 
-    $('#buscarPaciente').on('click', function(e) {
-        e.preventDefault()
-        let identificacion = $('#documento').val()
-        $('#guardar').attr('disabled', true)
+    $(document).ready(function() {
+            $('#buscarPaciente').on('click', function() {
+                $('#error').attr('hidden', true)
+            })
 
-        $.ajax({
-            type: 'post',
-            url: 'buscarPaciente.php?buscar=' + identificacion,
-            success: function(res) {
-                console.log(res);
-                let resultado = JSON.parse(res)
-                let plantilla = ''
-                let id = ''
-                let numero_telefono = 0
-                switch (resultado) {
-
-                    case "empty":
-                        swal({
-                            type: 'error',
-                            title: "ERROR",
-                            text: "Debe ingresar un numero de documento para realizar la busqueda",
-                            button: "Aceptar",
-                            icon: "error",
-                            button: "Aceptar",
-                            timer: 7000,
-                            animation: false,
-                            customClass: 'animated heartBeat'
-                        })
-                        $('#form').attr('hidden', true)
-                        $('#tablePaciente').attr('hidden', true)
-                        break;
-
-                    case 1:
-                        swal({
-                            type: 'error',
-                            title: "ERROR",
-                            text: "El paciente ya tiene Resultados, Por favor Verifique",
-                            button: "Aceptar",
-                            icon: "error",
-                            button: "Aceptar",
-                            timer: 7000,
-                            animation: false,
-                            customClass: 'animated heartBeat'
-                        })
-                        $('#form').attr('hidden', true)
-                        $('#tablePaciente').attr('hidden', true)
-                        break;
-
-                    case 'null':
-                        swal({
-                            type: 'error',
-                            title: "ERROR",
-                            text: "Este Paciente aun no cuenta con una realizacion de toma de muestra, favor verifique",
-                            button: "Aceptar",
-                            icon: "error",
-                            button: "Aceptar",
-                            timer: 10000,
-                            animation: false,
-                            customClass: 'animated heartBeat'
-                        })
-                        $('#form').attr('hidden', true)
-                        $('#tablePaciente').attr('hidden', true)
-                        break;
-
-                    case 'err':
-                        swal({
-                            type: 'error',
-                            title: "ERROR",
-                            text: "Paciente no Encontrado... Verifique si Existe",
-                            button: "Aceptar",
-                            icon: "error",
-                            button: "Aceptar",
-                            timer: 7000,
-                            animation: false,
-                            customClass: 'animated heartBeat'
-                        })
-                        $('#form-body').attr('hidden', true)
-                        $('#tablePaciente').attr('hidden', true)
-                        break;
-
-                    default:
-                        resultado.forEach(element => {
-                            id = element.id
-                            numero_telefono = element.telefono
-                            plantilla += `
-                                <tr>
-                                    <td>${element.primer_nombre}</td>
-                                    <td>${element.numero_documento}</td>
-                                </tr>
-                            `
-                        })
-                        $('#paciente_id').attr('value', id)
-                        $('#form-body').attr('hidden', false)
-                        $('#tablePaciente').attr('hidden', false)
-                        $('#tbody').html(plantilla)
-                        break;
+            $('#visita_exitosa').on('change', function() {
+                console.log(this.value);
+                if (this.value == 'NO') {
+                    $('div[name="ocultar"]').attr('hidden', true)
+                    $('#div-motivo').attr('hidden', false)
+                } else {
+                    $('div[name="ocultar"]').attr('hidden', false)
+                    $('#div-motivo').attr('hidden', true)
                 }
-            }
+            })
+
+            $('#fecha_entrega_laboratorio').on('change', function() {
+                let fecha_entrega_laboratorio = $('#fecha_entrega_laboratorio').val()
+                if (fecha_entrega_laboratorio != '') {
+                    $('#fecha_procesamiento').attr('disabled', false)
+                    $('#fecha_procesamiento').attr('min', fecha_entrega_laboratorio)
+                }
+            })
+
+            $('#fecha_procesamiento').on('change', function() {
+                let fecha_entrega_laboratorio = $('#fecha_entrega_laboratorio').val()
+                let fecha_procesamiento = $('#fecha_procesamiento').val()
+                $('#fecha_resultado').attr('min', fecha_procesamiento)
+                if (fecha_procesamiento < fecha_entrega_laboratorio) {
+                    swal({
+                        type: 'error',
+                        title: "ERROR",
+                        text: "La fecha de procesamiento no puede ser menor a la fecha de entrega de laboratorio",
+                        button: "Aceptar",
+                        icon: "error",
+                        button: "Aceptar",
+                        timer: 7000,
+                        animation: false,
+                        customClass: 'animated heartBeat'
+                    })
+                    $('#guardar').attr('disabled', true)
+                } else {
+                    $('#fecha_resultado').attr('disabled', false)
+                    $('#guardar').attr('disabled', false)
+                }
+            })
+
+            $('#fecha_resultado').on('change', function() {
+                let fecha_entrega_laboratorio = $('#fecha_entrega_laboratorio').val()
+                let fecha_procesamiento = $('#fecha_procesamiento').val()
+                let fecha_resultado = $('#fecha_resultado').val()
+                if (fecha_resultado < fecha_entrega_laboratorio || fecha_resultado < fecha_procesamiento) {
+                    swal({
+                        type: 'error',
+                        title: "ERROR",
+                        text: "La fecha de resultado no puede ser menor a la fecha de entrega de laboratorio y a la fecha de procesamiento de la toma",
+                        button: "Aceptar",
+                        icon: "error",
+                        button: "Aceptar",
+                        timer: 7000,
+                        animation: false,
+                        customClass: 'animated heartBeat'
+                    })
+
+                    $('#guardar').attr('disabled', true)
+                } else {
+                    $('#guardar').attr('disabled', false)
+                }
+            })
+            $('#guardar').on('click', function(e) {
+                e.preventDefault()
+                let id = $('#paciente_id').val()
+                let tabla = $('#tabla-resultado').val()
+                let fecha_entrega_laboratorio = $('#fecha_entrega_laboratorio').val()
+                let fecha_procesamiento = $('#fecha_procesamiento').val()
+                let fecha_resultado = $('#fecha_resultado').val()
+                let resultado2 = $('#resultado').val()
+                let notificado = ''
+                if ($('#defaultUnchecked').is(':checked') == true) {
+                    notificado = 'SI'
+
+                }
+
+                $.ajax({
+                    type: 'POST',
+                    url: 'resultadoTomaDeMuestra.php?paciente_id=' + id +
+                        '&fecha_entrega_laboratorio=' + fecha_entrega_laboratorio + '&fecha_procesamiento=' + fecha_procesamiento +
+                        '&fecha_resultado=' + fecha_resultado + '&resultado=' + resultado2,
+                    data: {tabla},
+                    success: function(res) {
+
+                        let resultado1 = JSON.parse(res)
+                        switch (resultado1) {
+                            case 'empty':
+                                console.log(resultado1)
+                                swal({
+                                    type: 'error',
+                                    title: "ERROR",
+                                    text: "Todos los campos son obligatorios",
+                                    button: "Aceptar",
+                                    icon: "error",
+                                    button: "Aceptar",
+                                    timer: 7000,
+                                    animation: false,
+                                    customClass: 'animated heartBeat'
+                                })
+                                break;
+                            case 'bad':
+                                swal({
+                                    type: 'error',
+                                    title: "ERROR",
+                                    text: "Ha ocurrido un error al intentar guardar los datos",
+                                    button: "Aceptar",
+                                    icon: "error",
+                                    button: "Aceptar",
+                                    timer: 7000,
+                                    animation: false,
+                                    customClass: 'animated heartBeat'
+                                })
+                                break;
+                            default:
+                                let t = ''
+                                swal({
+                                    type: 'success',
+                                    title: "Exito",
+                                    text: "Datos guardados exitosamente",
+                                    button: "Aceptar",
+                                    icon: "success",
+                                    button: "Aceptar",
+                                    timer: 7000,
+                                    animation: false,
+                                    customClass: 'animated heartBeat'
+                                })
+                                $('#tablePaciente').attr('hidden', true)
+                                $('#exampleModal').modal('hide')
+                                $('#form-container')[0].reset()
+                                $('#form-body').attr('hidden', true)
+                                break;
+                        }
+                    }
+                })
+            })
+
+            $('#buscarPaciente').on('click', function(e) {
+                e.preventDefault()
+                let identificacion = $('#documento').val()
+                let tabla = $('#tabla-resultado').val()
+                $('#guardar').attr('disabled', true)
+
+                $.ajax({
+                    type: 'post',
+                    url: 'buscarPaciente.php?buscar=' + identificacion,
+                    data: {tabla},
+                    success: function(res) {
+                        console.log(res);
+                        let resultado = JSON.parse(res)
+                        let plantilla = ''
+                        let id = ''
+                        let numero_telefono = 0
+                        switch (resultado) {
+
+                            case "empty":
+                                swal({
+                                    type: 'error',
+                                    title: "ERROR",
+                                    text: "Debe ingresar un numero de documento para realizar la busqueda",
+                                    button: "Aceptar",
+                                    icon: "error",
+                                    button: "Aceptar",
+                                    timer: 7000,
+                                    animation: false,
+                                    customClass: 'animated heartBeat'
+                                })
+                                $('#form').attr('hidden', true)
+                                $('#tablePaciente').attr('hidden', true)
+                                break;
+
+                            case 1:
+                                swal({
+                                    type: 'error',
+                                    title: "ERROR",
+                                    text: "El paciente ya tiene Resultados, Por favor Verifique",
+                                    button: "Aceptar",
+                                    icon: "error",
+                                    button: "Aceptar",
+                                    timer: 7000,
+                                    animation: false,
+                                    customClass: 'animated heartBeat'
+                                })
+                                $('#form').attr('hidden', true)
+                                $('#tablePaciente').attr('hidden', true)
+                                break;
+
+                            case 'null':
+                                swal({
+                                    type: 'error',
+                                    title: "ERROR",
+                                    text: "Este Paciente aun no cuenta con una realizacion de toma de muestra, favor verifique",
+                                    button: "Aceptar",
+                                    icon: "error",
+                                    button: "Aceptar",
+                                    timer: 10000,
+                                    animation: false,
+                                    customClass: 'animated heartBeat'
+                                })
+                                $('#form').attr('hidden', true)
+                                $('#tablePaciente').attr('hidden', true)
+                                break;
+
+                            case 'err':
+                                swal({
+                                    type: 'error',
+                                    title: "ERROR",
+                                    text: "Paciente no Encontrado... Verifique si Existe",
+                                    button: "Aceptar",
+                                    icon: "error",
+                                    button: "Aceptar",
+                                    timer: 7000,
+                                    animation: false,
+                                    customClass: 'animated heartBeat'
+                                })
+                                $('#form-body').attr('hidden', true)
+                                $('#tablePaciente').attr('hidden', true)
+                                break;
+
+                            default:
+                                resultado.forEach(element => {
+                                    id = element.id
+                                    numero_telefono = element.telefono
+                                    plantilla += `
+                                        <tr>
+                                            <td>${element.primer_nombre}</td>
+                                            <td>${element.numero_documento}</td>
+                                        </tr>
+                                    `
+                                })
+                                $('#paciente_id').attr('value', id)
+                                $('#form-body').attr('hidden', false)
+                                $('#tablePaciente').attr('hidden', false)
+                                $('#tbody').html(plantilla)
+                                break;
+                        }
+                    }
+                })
+            })
         })
-    })
 
 </script>
 </html>
