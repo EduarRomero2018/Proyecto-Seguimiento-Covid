@@ -534,11 +534,12 @@
         function table(proceso){
             let municipio = $('#municipio').val()
             let fecha_realizacion = $('#fecha_realizacion-asignacion').val()
+            let tipo_asignacion = $('#tipo_asignacion').val()
 
             $.ajax({
                 type: "GET",
                 url: "lista_pacientes_mutual.php",
-                data: {municipio, fecha_realizacion, proceso},
+                data: {municipio, fecha_realizacion, proceso, tipo_asignacion},
                 success: function (response) {
                     let res = JSON.parse(response)
                     console.log(res);
@@ -609,13 +610,14 @@
                 let asignacion = this.value
                 let fecha_realizacion = $('#fecha_realizacion-asignacion').val()
                 let municipio = $('#municipio').val()
+                let tipo_asignacion = $('#tipo_asignacion').val()
 
                 $('#cantidad_pacientes').val('')
 
                 $.ajax({
                     type: "post",
                     url: "asignacion_pacientes.php",
-                    data: {asignacion,fecha_realizacion,municipio},
+                    data: {asignacion,fecha_realizacion,municipio,tipo_asignacion},
                     success: function (response) {
                         console.log(response);
                         let result = JSON.parse(response)
@@ -678,12 +680,14 @@
             let proceso = $('#asignacion').val()
             let fecha_realizacion = $('#fecha_realizacion-asignacion').val()
             let municipio = $('#municipio').val()
+            let tipo_asignacion = $('#tipo_asignacion').val()
+
 
             if (id_usuario != '' && cantidad_pacientes != '' && municipio != '') {
                 $.ajax({
                     type: "post",
                     url: "asignacion_pacientes.php",
-                    data: {id_usuario,cantidad_pacientes,fecha_realizacion,proceso,municipio},
+                    data: {id_usuario,cantidad_pacientes,fecha_realizacion,proceso,municipio,tipo_asignacion},
                     success: function (response) {
                         console.log(this.data);
                         console.log(response)

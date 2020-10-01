@@ -7,6 +7,13 @@
                     <form>
                         <h4>Asignacion de pacientes a usuarios</h4>
                         <div class="form-group">
+                            <label>Seleccione la asignacion</label>
+                            <select id="tipo_asignacion" class="custom-select">
+                                <option value="1">Primera toma de muestra</option>
+                                <option value="2">Segunda toma de muestra</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <label>Seleccione la fecha de realizacion de la toma de muestra</label>
                             <input type="date" id="fecha_realizacion-asignacion" class="form-control">
                         </div>
