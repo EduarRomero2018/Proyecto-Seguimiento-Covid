@@ -190,6 +190,21 @@
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="col-form-label">Tipo de prueba aplicada al paciente</label>
+                            <input type="hidden" name="id" value="<?= $programacion->id ?>">
+                            <select name="tipo_prueba" class="custom-select">
+                                <option selected value="<?= $programacion->tipo_prueba ?>"><?= $programacion->tipo_prueba ?></option>
+                                <option value="PRC">PCR</option>
+                                <option value="IGG Y IGM">IGG y IGM</option>
+                                <option value="ANTIGENO">Antigeno</option>
+                            </select>
+                            
+                        </div>
+                    </div>
+                </div>
                 <div class="form-group col-md-4">
                     <input type="submit" name="actualizar-programacion" value="Actualizar datos" class="btn btn-success">
                 </div>

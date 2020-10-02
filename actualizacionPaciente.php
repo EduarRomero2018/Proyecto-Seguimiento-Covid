@@ -25,7 +25,11 @@ if (isset($_REQUEST['buscar']) && $_REQUEST['buscar'])
     
         $usuarios = $stm->fetchAll(PDO::FETCH_OBJ);
     
-        $stm = $conexion->prepare("SELECT DATE(fecha_programacion) AS fecha_programacion, DATE(fecha_realizacion) AS fecha_realizacion, id
+        $stm = $conexion->prepare("SELECT 
+        DATE(fecha_programacion) AS fecha_programacion, 
+        DATE(fecha_realizacion) AS fecha_realizacion,
+        tipo_prueba,
+        id
         FROM prog_toma_muestra WHERE pacientes_id = ?");
         $stm->execute(array($paciente->id_pacientes));
     
@@ -119,13 +123,42 @@ if(isset($_REQUEST['actualizar-programacion']))
     $id = $_REQUEST['id'];
     $fecha_programacion = $_REQUEST['fecha_programacion'];
     $fecha_realizacion = empty($_REQUEST['fecha_realizacion']) ? null : $_REQUEST['fecha_realizacion'];
+    $tipo_prueba = $_REQUEST['tipo_prueba'];
 
-    $stm = $conexion->prepare("UPDATE prog_toma_muestra SET fecha_programacion = ?, fecha_realizacion = ? WHERE id = ?");
-    $stm->execute(array(
-        $fecha_programacion,
-        $fecha_realizacion,
-        $id
-    ));
+    if($fecha_realizacion == null)
+    {
+        $stm = $conexion->prepare("UPDATE prog_toma_muestra 
+            SET fecha_programacion = ?, 
+            fecha_realizacion = ?,
+            visita_exitosa = null,
+            tipo_prueba = null,
+            observacion = null,
+            motivo = null,
+            fecha_entrega_lab = null,
+            fecha_procesamiento = null,
+            fecha_resultado = null,
+            resultado = 3,
+            estado_proceso = 'ACTIVO',
+            notificado = 'NO',
+            fecha_notificacion = null
+            WHERE id = ?
+        ");
+        $stm->execute(array(
+            $fecha_programacion,
+            $fecha_realizacion,
+            $id
+        ));
+    }
+    else
+    {
+        $stm = $conexion->prepare("UPDATE prog_toma_muestra SET fecha_programacion = ?, fecha_realizacion = ?, tipo_prueba = ? WHERE id = ?");
+        $stm->execute(array(
+            $fecha_programacion,
+            $fecha_realizacion,
+            $tipo_prueba,
+            $id
+        ));
+    }
 
     if($stm->errorInfo()[2] != null)
     {

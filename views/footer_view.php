@@ -178,7 +178,7 @@
                                 <label class="col-form-label">Tipo de prueba aplicada al paciente</label>
                                 <select id="tipo_prueba" class="custom-select">
                                     <option selected value=""> </option>
-                                    <option value="PRC">PCR</option>
+                                    <option value="PCR">PCR</option>
                                     <!-- <option value="IGG">IGG</option> -->
                                     <option value="IGG Y IGM">IGG y IGM</option>
                                     <option value="ANTIGENO">Antigeno</option>
