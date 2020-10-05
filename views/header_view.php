@@ -81,7 +81,9 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a href="listar_pacientes.php" class="dropdown-item" href="#">Listar pacientes Mutual</a>
+                        <a href="listar_pacientes_stm.php" class="dropdown-item" href="#">Listar pacientes Mutual (Segunada toma)</a>
                         <a href="lpnm.php" class="dropdown-item">Listar Pacientes no mutual</a>
+                        <a href="lpnm_stm.php" class="dropdown-item">Listar Pacientes no mutual (Segunada toma)</a>
                     </div>
                 </li>
 				 <?php if($_SESSION['role'] == 'Auxiliar de programacion' || $_SESSION['role'] == 'Digitador') :?>
