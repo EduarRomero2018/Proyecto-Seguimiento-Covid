@@ -35,6 +35,7 @@ try {
     $paciente_id = $_REQUEST['paciente_id'];
     $id_usuario = $_REQUEST['id_usuario'];
     $fecha_hora = date('Y-m-d :H:i:s');
+    $tipo_toma = $_REQUEST['tipo_toma'];
 
     if (!is_numeric($saturacion_oxigeno)){
         die(json_encode('different'));
@@ -67,9 +68,10 @@ try {
     }
 
 
-    $stm = $conexion->prepare("INSERT INTO seguimiento_paciente VALUES(NULL,?,NOW(),?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,'si',?,?,?,?)");
+    $stm = $conexion->prepare("INSERT INTO seguimiento_paciente VALUES(NULL,?,?,NOW(),?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,'si',?,?,?,?)");
     $stm->execute(array(
         $complemento_seg_id,
+        $tipo_toma,
         $asintomatico,
         $fecha_sintomas,
         $fiebre_cuantificada,

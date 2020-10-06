@@ -6,7 +6,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // variables de Atención personal
     $documento = $_POST['documento'];
-
     //variables globales que recogen al final el estado del condicional
     $errores = '';
     $exito = '';
@@ -61,14 +60,40 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $consulta = $conexion->prepare(
                     "SELECT * FROM complemento_seg WHERE id_pacientes = $id"
                 );
+
                 $consulta->execute();
                 $result = $consulta->fetch();
 
                 $stm = $conexion->prepare(
                     "SELECT * FROM seguimiento_paciente WHERE id_pacientes = $id AND actual = 1 AND paciente_recuperado = 1"
                 );
+
                 $stm->execute();
                 $result_actual = $stm->fetch();
+
+                $stm = $conexion->prepare("SELECT id FROM segunda_toma_muestra_control_2 WHERE pacientes_id = $id");
+                $stm->execute();
+
+                if($stm->rowCount() > 0)
+                {
+                    $tipo_toma = 2;
+
+                    $stm = $conexion->prepare("SELECT * FROM seguimiento_paciente WHERE id_pacientes = $id AND actual = 1 AND paciente_recuperado = 1 AND tipo_toma = $tipo_toma");
+                    $stm->execute();
+
+                    if($stm->rowCount() > 0)
+                    {
+                        $result_actual = $stm->fetch();
+                    }
+                    else
+                    {
+                        $result_actual = null;
+                    }
+                }
+                else
+                {
+                    $tipo_toma = 1;
+                }
             }
 
         } else {

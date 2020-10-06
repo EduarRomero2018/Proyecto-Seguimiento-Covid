@@ -98,6 +98,7 @@
         let novedad_paciente = $('#novedad_paciente').val()
         let paciente_recuperado = $('#paciente_recuperado').val()
         let id_usuario = $('#id_usuario').val()
+        let tipo_toma = $('#tipo_toma').val()
 
         if (fecha_sintomas == '') {
             fecha_sintomas = 'NULL'
@@ -120,6 +121,7 @@
         }
 
         let datos = {
+            tipo_toma,
             complemento_seg_id,
             paciente_id,
             id_usuario,
