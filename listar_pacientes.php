@@ -14,30 +14,27 @@ if (!isset($_REQUEST['consulta'])) {
     // print_r($_SESSION);
     switch ($_SESSION['role']) {
         case 'Coordinador covid':
-            $condicion = "WHERE pacientes.estado_paciente = 1 AND ptm.resultado != 2 AND SP.actual = 1 AND SP.paciente_recuperado = 2 AND aseguradora = 'MUTUAL SER'";
+            $condicion = "WHERE pacientes.estado_paciente = 1 AND ptm.resultado != 2 AND aseguradora = 'MUTUAL SER'";
             break;
 
         case 'Auxiliar de programacion':
             $id_session = $_SESSION['id'];
-            $condicion = "WHERE pacientes.estado_paciente = 1 AND ptm.resultado != 2 AND SP.actual = 1 AND SP.paciente_recuperado = 2 AND aseguradora = 'MUTUAL SER'";
+            $condicion = "WHERE pacientes.estado_paciente = 1 AND ptm.resultado != 2 AND aseguradora = 'MUTUAL SER'";
             break;
-
-        case 'Auxiliar de seguimiento':
+       case 'Auxiliar de seguimiento':
             $id_session = $_SESSION['id'];
-            $condicion = "WHERE pacientes.estado_paciente = 1
-            AND pacientes.id_usuario_seguimiento = $id_session
+            $condicion = "WHERE pacientes.id_usuario_seguimiento = $id_session
+            AND pacientes.estado_paciente = 1
             AND aseguradora = 'MUTUAL SER'
-            AND ptm.notificado = 'NO'
             AND ptm.fecha_programacion IS NOT null";
             break;
-            
         case 'Digitador':
             $id_session = $_SESSION['id'];
-            $condicion = "WHERE pacientes.estado_paciente = 1 AND ptm.resultado != 2 AND SP.actual = 1 AND SP.paciente_recuperado = 2 AND aseguradora = 'MUTUAL SER'";
+            $condicion = "WHERE pacientes.estado_paciente = 1 AND ptm.resultado != 2 AND aseguradora = 'MUTUAL SER'";
             break;
         case 'Medico':
-            $id_session = $_SESSION['id'];
-            $condicion = "WHERE pacientes.estado_paciente = 1 AND ptm.resultado != 2 AND SP.actual = 1 AND SP.paciente_recuperado = 2 AND aseguradora = 'MUTUAL SER'";
+             $id_session = $_SESSION['id'];
+            $condicion = "WHERE pacientes.estado_paciente = 1 AND ptm.resultado = 1 AND aseguradora = 'MUTUAL SER'";
             break;
     }
 
@@ -46,7 +43,7 @@ if (!isset($_REQUEST['consulta'])) {
     CONCAT(edad, ' ', unidad_medida) AS 'Edad', aseguradora,
     CONCAT(tipo_documento, ' - ', numero_documento) AS 'Identificacion', telefono, barrio, estado_paciente,
     DATE(fecha_programacion) AS fecha_programacion,
-    DATE(fecha_realizacion) AS fecha_realizacion, motivo, fecha_resultado, municipio, resultado, programacion_atencion,
+    DATE(fecha_realizacion) AS fecha_realizacion, motivo, fecha_resultado, municipio, resultado, ptm.notificado, programacion_atencion,
     UP.nombre_apellido AS usuario_programacion,
     US.nombre_apellido AS usuario_seguimiento,
     UR.nombre_apellido AS usuario_resultado,
@@ -58,7 +55,6 @@ if (!isset($_REQUEST['consulta'])) {
     LEFT JOIN usuarios UR ON pacientes.id_usuario_resultado = UR.id
     LEFT JOIN usuarios UM ON pacientes.id_usuario_notificacion = UM.id
     LEFT JOIN prog_toma_muestra ptm ON pacientes.id = ptm.pacientes_id
-    LEFT JOIN seguimiento_paciente SP ON SP.id_pacientes = pacientes.id
     $condicion";
 
     $query = $conexion->prepare($consulta);
