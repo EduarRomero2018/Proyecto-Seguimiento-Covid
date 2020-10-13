@@ -1,6 +1,15 @@
 <?php session_start(); //vamos a trabajar con sessiones
 include 'conexion.php';
 
+    if(isset($_REQUEST['tabla']))
+    {
+        $tabla = 'segunda_toma_muestra_control_2';
+    }
+    else
+    {
+        $tabla = 'prog_toma_muestra';
+    }
+
     $consulta = $conexion->prepare(
         "SELECT
         CONCAT(primer_nombre, ' ', primer_apellido, ' ', segundo_apellido) AS 'Nombre_Completo',
@@ -21,6 +30,7 @@ include 'conexion.php';
         WHERE resultado = 'Positivo'
         AND estado_paciente = 'VIVO'
         AND aseguradora = 'MUTUAL SER'
+        AND PTM.notificado = 'NO'
         AND SP.actual = 'si'
         AND SP.paciente_recuperado = 2");
 
