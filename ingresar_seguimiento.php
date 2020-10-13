@@ -101,8 +101,15 @@ try {
     if ($stm->rowCount() < 1) {
         die(json_encode('bad'));
     } else {
+        if($paciente_recuperado == 1)
+        {
+            $stm = $conexion->prepare("UPDATE pacientes SET id_usuario_seguimiento = NULL, id_usuario_notificacion = NULL WHERE id = $paciente_id");
+            $stm->execute();
+        }
+
         die(json_encode('ok'));
     }
+
 } catch (Exception $e) {
     die($e->getMessage('ERROR: ' + $e));
 }
