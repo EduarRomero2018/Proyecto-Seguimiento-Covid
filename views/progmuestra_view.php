@@ -19,7 +19,6 @@
                                     <a href="index.php">
                                         <button type="button" class="btn btn-outline-secondary btn-lg">Regresar</button>
                                     </a>
-
                                 </div>
                             </div>
                         </div>
@@ -138,6 +137,16 @@
     </div>
     <br>
 <?php require_once 'views/footer_view.php'; ?>
+
+<?php if(!empty($disabled)): ?>
+    <script>
+        swal.fire(
+            'Mensaje',
+            'Este paciente no esta disponible',
+            'warning'
+        )
+    </script>
+<?php endif ?>
 
 <script>
     $('#mostrar').on('click', function(e){
