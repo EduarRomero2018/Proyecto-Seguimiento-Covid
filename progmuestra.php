@@ -25,29 +25,35 @@ else{
   WHERE numero_documento = :numero_documento LIMIT 1");
   $consulta->execute(array(':numero_documento' => $documento));
   $resultado = $consulta->fetch();
-          if (empty($resultado)){
-          $errores= 'Paciente no Encontrado'; //enviamos el mensaje de error
-          }else{
-            $tipo_documento=$resultado['tipo_documento'];
-            $numero_documento=$resultado['numero_documento'];
-            $edad=$resultado['edad'];
-            $Nombre_Completo=$resultado['Nombre_Completo'];
-            $tipo_paciente=$resultado['tipo_paciente'];
-            $aseguradora=$resultado['aseguradora'];
-            $fecha_registro=$resultado['fecha_registro'];
-            $usuario_Creacion=$resultado['usuario_Creacion'];
-            $id=$resultado['id'];
-          }
+  if (empty($resultado)){
+  $errores= 'Paciente no Encontrado'; //enviamos el mensaje de error
+  }else{
+    $tipo_documento=$resultado['tipo_documento'];
+    $numero_documento=$resultado['numero_documento'];
+    $edad=$resultado['edad'];
+    $Nombre_Completo=$resultado['Nombre_Completo'];
+    $tipo_paciente=$resultado['tipo_paciente'];
+    $aseguradora=$resultado['aseguradora'];
+    $fecha_registro=$resultado['fecha_registro'];
+    $usuario_Creacion=$resultado['usuario_Creacion'];
+    $id=$resultado['id'];
+  }
 
-          $consulta = $conexion->prepare("SELECT id FROM prog_toma_muestra WHERE pacientes_id = ?");
-          $consulta->execute(array($id));
+  $consulta = $conexion->prepare("SELECT notificado FROM prog_toma_muestra WHERE pacientes_id = ? ORDER BY id DESC LIMIT 1");
+  $consulta->execute(array($id));
+  $notificado = $consulta->fetch();
 
-          if($consulta->rowCount() > 0){
-            $disabled = "disabled";
-          }else{
-            $disabled = "";
-          }
-          //mandamos un msg si no encontro nada
+  if($notificado['notificado'] == 'NO'){
+    $disabled = "disabled";
+  }else{
+    $disabled = "";
+  }
+
+  $consulta = $conexion->prepare("SELECT pacientes_id FROM prog_toma_muestra WHERE pacientes_id = $id");
+  $consulta->execute();
+
+  $n_programacion = $consulta->rowCount();
+  //mandamos un msg si no encontro nada
 }
 }
 
