@@ -260,7 +260,7 @@
                         swal({
                             type: 'error',
                             title: "ERROR",
-                            text: "El paciente ya está agendado para la toma de muestra.. Favor Verifique",
+                            text: "Ha ocurrido un error",
                             icon: "error",
                             button: "Aceptar",
                             timer: 7000,

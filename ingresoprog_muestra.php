@@ -27,16 +27,16 @@ session_start();
         $programacion_atencion,
         $nombre_programa
     ));
-      //print_r($stm);
+  
     if($stm->errorInfo()[2] != null){
       $err = $stm->errorInfo()[2];
       die(json_encode($err));
     }
 
-    if($stm->execute()){
-        die(json_encode('bad'));
+    if($stm->rowCount() == 1){
+      die(json_encode('ok'));
     }else{
-        die(json_encode('ok'));
+      die(json_encode('bad'));
     }
 
   }catch (Exception $e) {
