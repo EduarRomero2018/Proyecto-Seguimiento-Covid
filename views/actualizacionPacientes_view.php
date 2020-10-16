@@ -147,7 +147,8 @@
                             <option value="SIN AFILIACION">Sin Afilicion</option>
                         </select>
                     </div>
-                    <?php if($_SESSION['role'] == 'Coordinador covid'): ?>
+                    <!-- cambiar usuario de seguimiento por si acaso -->
+                    <!-- <?php if($_SESSION['role'] == 'Digitador'): ?>
                         <div class="form-group col-md-4">
                             <label for="">Medico de seguimiento</label>
                             <select name="id_usuario_seguimiento" class="custom-select">
@@ -158,7 +159,43 @@
                                 <option value="">Ninguno</option>
                             </select>
                         </div>
-                    <?php endif ?>
+                    <?php endif ?> -->
+                    <div class="form-group col-md-4">
+                        <label for="">Fecha de nacimiento</label>
+                        <input type="date" <?= isset($paciente->fecha_nacimiento) ? "value='$paciente->fecha_nacimiento'" : "value=''" ?> name="fecha_nacimiento" class="form-control">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <?php $laboratorios = array('Analizar', 'Analizar LCA', 'Bienestar', 'Bonnadona', 'Cerco', 'Citisalud', 'Colcan', 'E.N lab de referencia e investigacion', 'Idime', 'Lorena vejarano', 'LPS', 'LPS B', 'Synlab'); ?>
+                        <label for="">Laboratorio al que envia</label>
+                        <select name="laboratorio" class="custom-select" required>
+                            <option value="<?= $paciente->laboratorio ?>"><?= $paciente->laboratorio ?></option>
+                            <?php foreach ($laboratorios as $laboratorio): ?>
+                                <option value="<?= strtoupper($laboratorio) ?>"><?= $laboratorio ?></option>
+                            <?php endforeach ?>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="">Trabajador de la salud</label>
+                        <select name="trabajador_salud" class="custom-select" required>
+                            <option value="<?= $paciente->trabajador_salud ?>"><?= $paciente->trabajador_salud ?></option>
+                            <option value="SI">Si</option>
+                            <option value="NO">No</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="">Contacto con caso confirmado</label>
+                        <select name="contacto_caso_confirmado" class="custom-select" required>
+                            <option value="<?= $paciente->contacto_caso_confirmado ?>"><?= $paciente->contacto_caso_confirmado ?></option>
+                            <option value="SI">Si</option>
+                            <option value="NO">NO</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="">Observacion</label>
+                    <textarea name="observacion" cols="30" rows="10" class="form-control"><?= $paciente->observacion ?></textarea>
                 </div>
                 <div class="form-group col-md-4">
                     <input type="submit" name="actualizar-paciente" value="Actualizar datos" class="btn btn-success">
@@ -166,51 +203,52 @@
             </form>
         </div>
     </div>
-    <div class="card mt-4">
-        <div class="card-body">
-            <?= !empty($error) ? $error : '' ?>
-            <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
-                <h2 class="titulo mt-0">Actualizar datos de paciente (Programacion de toma de muestra)</h2>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="">Fecha de programacion</label>
-                            <input type="hidden" name="id" value="<?= $programacion->id ?>">
-                            <input type="date" value="<?= $programacion->fecha_programacion ?>" name="fecha_programacion" class="form-control">
+    <?php if($_SESSION['role'] == 'Digitador'): ?>
+        <div class="card mt-4">
+            <div class="card-body">
+                <?= !empty($error) ? $error : '' ?>
+                <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
+                    <h2 class="titulo mt-0">Actualizar datos de paciente (Programacion de toma de muestra)</h2>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">Fecha de programacion</label>
+                                <input type="hidden" name="id" value="<?= $programacion->id ?>">
+                                <input type="date" value="<?= $programacion->fecha_programacion ?>" name="fecha_programacion" class="form-control">
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="">Fecha de realizacion</label>
-                            <input type="date" value="<?= $programacion->fecha_realizacion ?>" id="fecha_realizacion" name="fecha_realizacion" class="form-control">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="fecha_realizacion_chck" name="!fecha_realizacion">
-                                <label class="custom-control-label" for="fecha_realizacion_chck">Quitar fecha de realizacion</label>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">Fecha de realizacion</label>
+                                <input type="date" value="<?= $programacion->fecha_realizacion ?>" id="fecha_realizacion" name="fecha_realizacion" class="form-control">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="fecha_realizacion_chck" name="!fecha_realizacion">
+                                    <label class="custom-control-label" for="fecha_realizacion_chck">Quitar fecha de realizacion</label>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="col-form-label">Tipo de prueba aplicada al paciente</label>
-                            <input type="hidden" name="id" value="<?= $programacion->id ?>">
-                            <select name="tipo_prueba" class="custom-select">
-                                <option selected value="<?= $programacion->tipo_prueba ?>"><?= $programacion->tipo_prueba ?></option>
-                                <option value="PRC">PCR</option>
-                                <option value="IGG Y IGM">IGG y IGM</option>
-                                <option value="ANTIGENO">Antigeno</option>
-                            </select>
-                            
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-form-label">Tipo de prueba aplicada al paciente</label>
+                                <input type="hidden" name="id" value="<?= $programacion->id ?>">
+                                <select name="tipo_prueba" class="custom-select">
+                                    <option selected value="<?= $programacion->tipo_prueba ?>"><?= $programacion->tipo_prueba ?></option>
+                                    <option value="PRC">PCR</option>
+                                    <option value="IGG Y IGM">IGG y IGM</option>
+                                    <option value="ANTIGENO">Antigeno</option>
+                                </select>                   
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="form-group col-md-4">
-                    <input type="submit" name="actualizar-programacion" value="Actualizar datos" class="btn btn-success">
-                </div>
-            </form>
+                    <div class="form-group col-md-4">
+                        <input type="submit" name="actualizar-programacion" value="Actualizar datos" class="btn btn-success">
+                    </div>
+                </form>
+            </div>
         </div>
-    </div>
+    <?php endif ?>
 </div>
 <?php endif ?>
 

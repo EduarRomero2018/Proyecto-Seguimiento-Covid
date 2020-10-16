@@ -21,7 +21,7 @@ else{
   $consulta = $conexion->prepare("SELECT CONCAT(primer_nombre,' ',primer_apellido) AS 'Nombre_Completo', P.id, P.tipo_documento,
   P.numero_documento, P.edad, P.tipo_paciente, P.aseguradora, P.fecha_registro, U.nombre_apellido AS 'usuario_Creacion'
   FROM pacientes P
-  LEFT JOIN usuarios U ON P.id_usuario = U.id
+  LEFT JOIN usuarios U ON P.id_usuario_programacion  = U.id
   WHERE numero_documento = :numero_documento LIMIT 1");
   $consulta->execute(array(':numero_documento' => $documento));
   $resultado = $consulta->fetch();

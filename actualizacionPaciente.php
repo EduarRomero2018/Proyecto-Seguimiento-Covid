@@ -8,7 +8,8 @@ if (isset($_REQUEST['buscar']) && $_REQUEST['buscar'])
 
     $stm = $conexion->prepare("SELECT pacientes.id AS id_pacientes,tipo_documento,numero_documento,primer_nombre,
     segundo_nombre,primer_apellido,segundo_apellido,tipo_paciente,edad,unidad_medida,sexo,barrio,municipio,
-    correo,telefono,telefono2,aseguradora,regimen,id_usuario_seguimiento,
+    correo,telefono,telefono2,aseguradora,regimen,id_usuario_seguimiento,laboratorio,observacion_paciente,
+    trabajador_salud,contacto_caso_confirmado,fecha_nacimiento,
     usuarios.id AS id_usuarios,usuarios.nombre_apellido,usuarios.sede 
     FROM pacientes 
     LEFT JOIN usuarios ON pacientes.id_usuario_seguimiento = usuarios.id 
@@ -61,7 +62,11 @@ if(isset($_REQUEST['actualizar-paciente']))
     $telefono2 = $_REQUEST['telefono2'];
     $aseguradora = $_REQUEST['aseguradora'];
     $regimen = $_REQUEST['regimen'];
-    $id_usuario_seguimiento = empty($_REQUEST['id_usuario_seguimiento']) ? null : $_REQUEST['id_usuario_seguimiento'];
+    $laboratorio = empty($_REQUEST['laboratorio']) ? null : $_REQUEST['laboratorio'];
+    $trabajador_salud = empty($_REQUEST['trabajador_salud']) ? null : $_REQUEST['trabajador_salud'];
+    $contacto_caso_confirmado = empty($_REQUEST['contacto_caso_confirmado']) ? null : $_REQUEST['contacto_caso_confirmado'];
+    $observacion = empty($_REQUEST['observacion']) ? null : $_REQUEST['observacion'];
+    $fecha_nacimiento = empty($_REQUEST['fecha_nacimiento']) ? null : $_REQUEST['fecha_nacimiento'];
 
 
     $stm = $conexion->prepare(
@@ -83,7 +88,11 @@ if(isset($_REQUEST['actualizar-paciente']))
         telefono2 = ?,
         aseguradora = ?,
         regimen = ?,
-        id_usuario_seguimiento = ?
+        laboratorio = ?,
+        trabajador_salud = ?,
+        contacto_caso_confirmado = ?,
+        observacion_paciente = ?,
+        fecha_nacimiento = ?
         WHERE id = ?");
     $stm->execute(array(
         $primer_nombre,
@@ -103,7 +112,11 @@ if(isset($_REQUEST['actualizar-paciente']))
         $telefono2,
         $aseguradora,
         $regimen,
-        $id_usuario_seguimiento,
+        $laboratorio,
+        $trabajador_salud,
+        $contacto_caso_confirmado,
+        $observacion,
+        $fecha_nacimiento,
         $id
     ));
 
