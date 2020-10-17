@@ -8,7 +8,7 @@ $primer_apellido = $_POST['primer_apellido'];$segundo_apellido = $_POST['segundo
 $numero_identificacion = $_POST['numero_identificacion'];$edad = $_POST['edad'];$unidad_medida = $_POST['unidad_medida'];$sexo = $_POST['sexo'];
 $barrio= $_POST['barrio'];$correo= $_POST['correo'];$telefono= $_POST['telefono'];$aseguradora= $_POST['aseguradora']; $novedad_paciente = $_POST['novedad_paciente'];
 $id_usuario= $_POST['id_usuario'];
-
+$fecha_nacimiento = $_REQUEST['fecha_nacimiento'];
 if(isset($_POST['fecha_recepcion_programacion'] ) != ''){
   $fecha_recepcion_programacion=  $_POST['fecha_recepcion_programacion_'].' '.date('h:i:s');
 }else{
@@ -39,9 +39,9 @@ if($consulta->rowCount() == 0){
     $consulta =
     $conexion->prepare(
     "INSERT INTO pacientes
-    (tipo_paciente, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, tipo_documento, numero_documento, edad, unidad_medida, sexo, barrio, municipio, correo, telefono, telefono2, aseguradora, novedad_paciente, regimen, fecha_prog_recep, id_usuario, id_usuario_programacion)
+    (tipo_paciente, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, tipo_documento, numero_documento, edad, unidad_medida, sexo, barrio, municipio, correo, telefono, telefono2, aseguradora, novedad_paciente, regimen, fecha_nacimiento, fecha_prog_recep, id_usuario_programacion)
     VALUES
-    (:tipo_paciente, :primer_nombre, :segundo_nombre, :primer_apellido, :segundo_apellido, :tipo_documento, :numero_documento, :edad, :unidad_medida, :sexo, :barrio, :municipio, :correo, :telefono, :telefono, :aseguradora, :novedad_paciente, :regimen, :fecha_prog_recep, :id_usuario, :id_usuario_programacion)");
+    (:tipo_paciente, :primer_nombre, :segundo_nombre, :primer_apellido, :segundo_apellido, :tipo_documento, :numero_documento, :edad, :unidad_medida, :sexo, :barrio, :municipio, :correo, :telefono, :telefono, :aseguradora, :novedad_paciente, :regimen, :fecha_nacimiento, :fecha_prog_recep, :id_usuario_programacion)");
 
     $consulta->execute(array(
      ':tipo_paciente'                       => ucwords($tipo_paciente),
@@ -62,11 +62,10 @@ if($consulta->rowCount() == 0){
      ':aseguradora'                         => ucwords($aseguradora),
      ':novedad_paciente'                    => ucwords($novedad_paciente),
      ':regimen'                             => $regimen,
+     ':fecha_nacimiento'                    => $fecha_nacimiento,
      ':fecha_prog_recep'                    => $fecha_recepcion_programacion,
-     ':id_usuario'                          => $id_usuario,
      ':id_usuario_programacion'             => $id_usuario
    ));
-
 
    $exito = 'Datos Guardados Exitosamente';
     //header('Location:index.php');//despues de guardar el usuario en al bd lo redirreccionamos al login para que inicie sessión

@@ -137,6 +137,11 @@
         <input type="text" name="novedad_paciente" class="form-control" placeholder=" EJEMPLO: No contesta el telefono">
       </div>
       <br>
+      <div class="form-group col-md-4">
+          <label for="">Fecha de nacimiento</label>
+          <input type="date" name="fecha_nacimiento" class="form-control">
+      </div>
+      <br>
       <div class="col-sm-4">
         <br>
         <div>

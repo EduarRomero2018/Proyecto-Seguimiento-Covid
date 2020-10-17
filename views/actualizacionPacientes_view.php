@@ -167,7 +167,7 @@
                 </div>
                 <div class="row">
                     <div class="form-group col-md-4">
-                        <?php $laboratorios = array('Analizar', 'Analizar LCA', 'Bienestar', 'Bonnadona', 'Cerco', 'Citisalud', 'Colcan', 'E.N lab de referencia e investigacion', 'Idime', 'Lorena vejarano', 'LPS', 'LPS B', 'Synlab'); ?>
+                        <?php $laboratorios = array('Analizar', 'Bienestar', 'Bonnadona', 'Citisalud', 'Colcan', 'E.N lab de referencia e investigacion', 'Idime', 'Lorena vejarano', 'Unimol', 'Synlab'); ?>
                         <label for="">Laboratorio al que envia</label>
                         <select name="laboratorio" class="custom-select" required>
                             <option value="<?= $paciente->laboratorio ?>"><?= $paciente->laboratorio ?></option>
@@ -195,7 +195,7 @@
                 </div>
                 <div class="form-group">
                     <label for="">Observacion</label>
-                    <textarea name="observacion" cols="30" rows="10" class="form-control"><?= $paciente->observacion ?></textarea>
+                    <textarea name="observacion" cols="5" rows="5" class="form-control"><?= $paciente->observacion_paciente ?></textarea>
                 </div>
                 <div class="form-group col-md-4">
                     <input type="submit" name="actualizar-paciente" value="Actualizar datos" class="btn btn-success">

@@ -1,4 +1,25 @@
-<?php require_once 'views/header_view.php' ?>
+<?php
+if(!isset($_REQUEST['Exportar']))
+{
+    require_once 'views/header_view.php'; 
+}
+?>
+<div class="container mt-4 col-md-6">
+    <div class="card">
+        <div class="card-body">
+            <?php if(!isset($_REQUEST['Exportar'])): ?>
+                <form action="" method="post">
+                    <div class="form-group">
+                        <label for="">Fecha realizacion</label>
+                        <input type="date" name="fecha_realizacion" value="<?= $date ?>" class="form-control" required>
+                        <input type="submit" value="Buscar" class="btn btn-success">
+                        <input type="submit" name="Exportar" value="Exportar" class="btn btn-primary">
+                    </div>
+                </form>
+            <?php endif ?>
+        </div>
+    </div>
+</div>
 <div class="container-fluid mt-5">
     <div class="table-wrapper-scroll-y my-custom-scrollbar table-hover">
         <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
@@ -121,4 +142,8 @@
         </table>
     </div>
 </div>
-<?php require_once 'views/footer_view.php'; ?>
+<?php if(!isset($_REQUEST['Exportar']))
+{
+    require_once 'views/footer_view.php'; 
+} 
+?>
