@@ -17,7 +17,7 @@ if(isset($_POST['fecha_recepcion_programacion'] ) != ''){
 $municipio = $_REQUEST['municipio'];
 $regimen = $_REQUEST['regimen'];
 $telefono2 = $_REQUEST['telefono2'];
-
+$entidad_toma_muestra = !empty($_REQUEST['entidad_toma_muestra']) ? strtoupper($_REQUEST['entidad_toma_muestra']) : 'CAMINOS IPS';
 // variables de errores y exito
 $errores= '';
 $exito= '';
@@ -39,9 +39,9 @@ if($consulta->rowCount() == 0){
     $consulta =
     $conexion->prepare(
     "INSERT INTO pacientes
-    (tipo_paciente, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, tipo_documento, numero_documento, edad, unidad_medida, sexo, barrio, municipio, correo, telefono, telefono2, aseguradora, novedad_paciente, regimen, fecha_nacimiento, fecha_prog_recep, id_usuario_programacion)
+    (tipo_paciente, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, tipo_documento, numero_documento, edad, unidad_medida, sexo, barrio, municipio, correo, telefono, telefono2, aseguradora, novedad_paciente, regimen, entidad_toma_muestra, fecha_nacimiento, fecha_prog_recep, id_usuario_programacion)
     VALUES
-    (:tipo_paciente, :primer_nombre, :segundo_nombre, :primer_apellido, :segundo_apellido, :tipo_documento, :numero_documento, :edad, :unidad_medida, :sexo, :barrio, :municipio, :correo, :telefono, :telefono, :aseguradora, :novedad_paciente, :regimen, :fecha_nacimiento, :fecha_prog_recep, :id_usuario_programacion)");
+    (:tipo_paciente, :primer_nombre, :segundo_nombre, :primer_apellido, :segundo_apellido, :tipo_documento, :numero_documento, :edad, :unidad_medida, :sexo, :barrio, :municipio, :correo, :telefono, :telefono, :aseguradora, :novedad_paciente, :regimen, :entidad_toma_muestra, :fecha_nacimiento, :fecha_prog_recep, :id_usuario_programacion)");
 
     $consulta->execute(array(
      ':tipo_paciente'                       => ucwords($tipo_paciente),
@@ -62,6 +62,7 @@ if($consulta->rowCount() == 0){
      ':aseguradora'                         => ucwords($aseguradora),
      ':novedad_paciente'                    => ucwords($novedad_paciente),
      ':regimen'                             => $regimen,
+     ':entidad_toma_muestra'                => $entidad_toma_muestra,
      ':fecha_nacimiento'                    => $fecha_nacimiento,
      ':fecha_prog_recep'                    => $fecha_recepcion_programacion,
      ':id_usuario_programacion'             => $id_usuario

@@ -142,6 +142,13 @@
           <input type="date" name="fecha_nacimiento" class="form-control">
       </div>
       <br>
+      <div class="form-group col-md-4">
+          <label for="">Entidad quien realiza la toma</label>
+          <input type="text" name="entidad_toma_muestra" class="form-control">
+      </div>
+      <div class="form-group col-md-4">
+      </div>
+      <br>
       <div class="col-sm-4">
         <br>
         <div>

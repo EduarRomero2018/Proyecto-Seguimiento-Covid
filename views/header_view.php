@@ -84,6 +84,9 @@
                         <a href="listar_pacientes_stm.php" class="dropdown-item" href="#">Listar pacientes Mutual (Segunada toma)</a>
                         <a href="lpnm.php" class="dropdown-item">Listar Pacientes no mutual</a>
                         <a href="lpnm_stm.php" class="dropdown-item">Listar Pacientes no mutual (Segunada toma)</a>
+                        <?php if (isset($_SESSION) && $_SESSION['role'] == 'Digitador') : ?>
+                            <a href="consolidados.php" class="dropdown-item">Consolidados</a>
+                        <?php endif ?>
                     </div>
                 </li>
 				 <?php if($_SESSION['role'] == 'Auxiliar de programacion' || $_SESSION['role'] == 'Digitador') :?>

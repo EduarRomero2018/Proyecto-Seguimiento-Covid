@@ -3,13 +3,18 @@ session_start();
 include 'conexion.php';  // Funciona.
 
 $date = isset($_REQUEST['fecha_realizacion']) ? $_REQUEST['fecha_realizacion'] : date('Y-m-d');
+$municipio = isset($_REQUEST['municipio']) ? $_REQUEST['municipio'] : 'CARTAGENA (13001)';
+
+
 $stm = $conexion->prepare(
     "SELECT * FROM pacientes 
     INNER JOIN prog_toma_muestra ON pacientes.id = prog_toma_muestra.pacientes_id
-    WHERE DATE(fecha_realizacion) = '$date'"
+    WHERE DATE(fecha_realizacion) = '$date' AND municipio LIKE '$municipio%'"
 );
+
 $stm->execute();
 $pacientes = $stm->fetchAll(PDO::FETCH_OBJ);
+
 if(isset($_REQUEST['Exportar']))
 {
     header('Content-type:application/xls');
