@@ -12,15 +12,6 @@ if(!isset($_REQUEST['Exportar']))
                     <div class="form-group">
                         <label for="">Fecha realizacion</label>
                         <input type="date" name="fecha_realizacion" value="<?= $date ?>" class="form-control" required>
-                        <label for="">Municipio</label>
-                        <select name="municipio" class="custom-select" required>
-                            <option value="<?= $municipio ?>"><?= $municipio ?></option>
-                            <?php
-                            $municipios = ['Cartagena (13001)', 'Turbana (13838)', 'Turbaco (13836)', 'Arjona (13052)', 'Carmen de bolivar (13244)', 'Barranquilla (080001)', 'Galapa (08296)','Malambo (08433)', 'Puerto Colombia (08573)','Soledad (08758)'];
-                            foreach ($municipios as $municipio) : ?>
-                                <option value="<?= strtoupper($municipio) ?>"><?= ucwords($municipio) ?></option>
-                            <?php endforeach; ?>
-                        </select>
                         <input type="submit" value="Buscar" class="btn btn-success">
                         <input type="submit" name="Exportar" value="Exportar" class="btn btn-primary">
                     </div>
