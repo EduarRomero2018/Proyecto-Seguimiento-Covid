@@ -65,8 +65,9 @@
                                 </div>
                             </div>
                             <br>
-                                <div class="col-md-12">
-                                    <input class="btn btn-success btn-block" type="submit" name="export_report" value="Exportar Reporte">
+                                <div class="col-md-5">
+                                <button type="submit"  name="export_report" class="btn btn-success"> <i class="far fa-file-excel fa-3x" aria-hidden="true"></i></button>
+                                    <!-- <input class="btn btn-success btn-block" type="submit" name="export_report" value="Exportar a Excel"> -->
                                 </div>
                             </div>
                             <br>
@@ -351,7 +352,7 @@
                 <?php if (isset($cppa) != '') : ?>
                     <div class="card shadow mt-5">
                         <div class="card-body">
-                            <h4>Cantida de pacientes pendientes por confirmacion de toma: <?php echo $count?></h4>
+                            <h4>Cantidad de pacientes pendientes por asignar: <?php echo $count?></h4>
                             <div class="table-wrapper-scroll-y my-custom-scrollbar table-hover">
                                 <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
                                     <thead>
@@ -364,7 +365,6 @@
                                             <th style="background: #CCD1D1" class="text-center th-sm">Edad</th>
                                             <th style="background: #CCD1D1" class="text-center th-sm">Fecha de Creación</th>
                                             <th style="background: #CCD1D1" class="text-center th-sm">Fecha de Programacion</th>
-                                            <th style="background: #CCD1D1" class="text-center th-sm">Fecha de Realizacion</th>
                                             </tr>
                                         </thead>
                                              <?php
@@ -377,7 +377,6 @@
                                             <td class="text-center"><?= $key->edad ?></td>
                                             <td class="text-center"><?= $key->fecha_creacion ?></td>
                                             <td class="text-center"><?= $key->fecha_programacion ?></td>
-                                            <td class="text-center"><?= $key->fecha_realizacion ?></td>
                                         <?php $i++;
                                                                         endforeach; ?>
                                         </tbody>
