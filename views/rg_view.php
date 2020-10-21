@@ -31,24 +31,30 @@
                             <hr>
                             <label>Seleccione el tipo de Reporte a generar</label>
                             <select name="tipo_reporte" class="custom-select">
-                                <option selected value=""> </option>
+                                <option selected value="<?php echo $tipo_de_reporte?>"> </option>
+                                <option value="NTPM">Numero total de paciente mutual</option>
+                                <option value="NTPNM">Numero total de paciente no mutual</option>
+                                <option value="NTP">Numero total de pacientes</option>
+                                <option value="NTMP">Numero total de muestras procesadas</option>
+                                <!-- <option value="CPP">Seguimientos por pacientes</option>
                                 <option value="CPP">Cantidad de Pacientes Positivos</option>
                                 <option value="CPN">Cantidad de Pacientes Negativos</option>
                                 <option value="CPS">Cantidad de Pacientes Sintomaticos</option>
                                 <option value="CPA">Cantidad de Pacientes Asintomaticos</option>
                                 <option value="CPF">Cantidad de Pacientes Fallecidos </option>
-                                <option value="CMP">Cantidad de Muestras Procesadas</option>
+                                <option value="CMP">Informes diario visita paciente positivo</option> -->
+                                <option value="CPPA">Cantidad de pacientes pendientes por asignar</option>
                             </select>
                         </div>
                         <h6 class="text-center">Seleccione el Rango de Fechas:</h6>
                         <div class="row">
                             <div class="col-md-6">
                                 <label>Desde:</label>
-                                <input type="date" name="fecha_inicio_reporte" min="2020-08-18" class="form-control">
+                                <input type="date" name="fecha_inicio_reporte" value="<?php $fecha_inicio_reporte?>" min="2020-08-19" class="form-control">
                             </div>
                             <div class="col-md-6">
                                 <label for="">Hasta:</label>
-                                <input type="date" name="fecha_final_reporte" class="form-control">
+                                <input type="date" name="fecha_final_reporte"  value="<?php $fecha_final_reporte?>" class="form-control">
                             </div>
                         </div>
                         <br>
@@ -58,8 +64,12 @@
                             </div>
                         </div>
                         <br>
+                            <div class="col-md-12">
+                                <input class="btn btn-success btn-block" type="submit" name="export_report" value="Exportar Reporte">
+                            </div>
+                        </div>
+                        <br>
                     </form>
-
                     <?php if (!empty($exito)) : ?>
                         <script>
                             swal({
@@ -75,7 +85,6 @@
                             })
                         </script>
                     <?php endif; ?>
-
                     <?php if (!empty($errores)) : ?>
                         <script>
                             swal({
@@ -96,11 +105,287 @@
             </div>
         </div>
     </div>
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
-        <?php $resulado = $res;
-        echo json_encode($resulado);
-        ?>
+            <div class="col">
+                <!-- *******************cantidad de pacientes positivos*************************+ -->
+                <?php if (isset($cpp) != '') : ?>
+                    <div class="card shadow mt-5">
+                        <div class="card-body">
+                            <h4>Pacientes Positivos: <?php echo $count?></h4>
+                            <div class="table-wrapper-scroll-y my-custom-scrollbar table-hover">
+                                <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+                                    <thead>
+                                        <tr class="text-right ">
+                                            <div class="row">
+                                            </div>
+                                            <th style="background: #CCD1D1" class="text-center th-sm "># Registro</th>
+                                            <th style="background: #CCD1D1" class="text-center th-sm">Nombre del paciente</th>
+                                            <th style="background: #CCD1D1" class="text-center th-sm">Tipo Documento</th>
+                                            <th style="background: #CCD1D1" class="text-center th-sm">Edad</th>
+                                            <th style="background: #CCD1D1" class="text-center th-sm">Identificacion</th>
+                                            <th style="background: #CCD1D1" class="text-center th-sm">Telefonos<i</th>
+                                            <th style="background: #CCD1D1" class="text-center th-sm">Direccion<i</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tbl-llamadas">
+                                                        <?php
+                                                        $i = 1;
+                                                        foreach ($cpp as $key) : ?>
+                                        <tr>
+                                            <td class="text-center"><?= $i ?></td>
+                                            <td class="text-center"><?= $key->Nombre_Completo ?></td>
+                                            <td class="text-center"><?= $key->tipo_documento ?></td>
+                                            <td class="text-center"><?= $key->edad ?></td>
+                                            <td class="text-center"><?= $key->numero_documento ?></td>
+                                            <td class="text-center"><?= $key->telefonos ?></td>
+                                            <td class="text-center"><?= $key->barrio ?></td>
+                                        <?php $i++;
+                                                        endforeach; ?>
+                                        </tbody>
+                            </div>
+                        </div>
+                    </div>
+                <?php endif; ?>
+                <!-- *******************cantidad de pacientes negativos*************************+ -->
+                <?php if (isset($cpn) != '') : ?>
+                    <div class="card shadow mt-5">
+                        <div class="card-body">
+                            <h4>Pacientes Negativos: <?php echo $count?></h4>
+                            <div class="table-wrapper-scroll-y my-custom-scrollbar table-hover">
+                                <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+                                    <thead>
+                                        <tr class="text-right ">
+                                            <div class="row">
+                                            </div>
+                                            <th style="background: #CCD1D1" class="text-center th-sm "># Registro</th>
+                                            <th style="background: #CCD1D1" class="text-center th-sm">Nombre del paciente</th>
+                                            <th style="background: #CCD1D1" class="text-center th-sm">Tipo Documento</th>
+                                            <th style="background: #CCD1D1" class="text-center th-sm">Edad</th>
+                                            <th style="background: #CCD1D1" class="text-center th-sm">Identificacion</th>
+                                            <th style="background: #CCD1D1" class="text-center th-sm">Telefonos</th>
+                                            <th style="background: #CCD1D1" class="text-center th-sm">Direccion</th>
+                                            <th style="background: #CCD1D1" class="text-center th-sm">Fecha de programacion</th>
+                                            <th style="background: #CCD1D1" class="text-center th-sm">Fecha de entrega al laboratorio</th>
+                                            <th style="background: #CCD1D1" class="text-center th-sm">Fecha del Resultado</th>
+                                            <th style="background: #CCD1D1" class="text-center th-sm">Resultado</th>
+                                        </tr>
+                                        </thead>
+                                            <tbody id="tbl-llamadas">
+                                                                        <?php
+                                                                        $i = 1;
+                                                                        foreach ($cpn as $key) : ?>
+                                        <tr>
+                                            <td class="text-center"><?= $i ?></td>
+                                            <td class="text-center"><?= $key->Nombre_Completo ?></td>
+                                            <td class="text-center"><?= $key->tipo_documento ?></td>
+                                            <td class="text-center"><?= $key->edad ?></td>
+                                            <td class="text-center"><?= $key->numero_documento ?></td>
+                                            <td class="text-center"><?= $key->telefonos ?></td>
+                                            <td class="text-center"><?= $key->barrio ?></td>
+                                            <td class="text-center"><?= $key->fecha_programacion ?></td>
+                                            <td class="text-center"><?= $key->fecha_entrega_lab ?></td>
+                                            <td class="text-center"><?= $key->fecha_resultado ?></td>
+                                            <td class="text-center"><?= $key->resultado ?></td>
+                                        <?php $i++;
+                                                                        endforeach; ?>
+                                        </tbody>
+                            </div>
+                        </div>
+                    </div>
+                <?php endif; ?>
+                <!-- *******************Numero total de pacientes*************************+ -->
+                <?php if (isset($ntp) != '') : ?>
+                    <div class="card shadow mt-5">
+                        <div class="card-body">
+                            <h4>Numero total paciente: <?php echo $count?></h4>
+                            <div class="table-wrapper-scroll-y my-custom-scrollbar table-hover">
+                                <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+                                    <thead>
+                                        <tr class="text-right ">
+                                            <div class="row">
+                                            </div>
+                                            <th style="background: #CCD1D1" class="text-center th-sm "># Registro</th>
+                                            <th style="background: #CCD1D1" class="text-center th-sm">Nombre del paciente</th>
+                                            <th style="background: #CCD1D1" class="text-center th-sm">Identificacion</th>
+                                            <th style="background: #CCD1D1" class="text-center th-sm">Edad</th>
+                                            <th style="background: #CCD1D1" class="text-center th-sm">Fecha de Creacion</th>
+                                        </tr>
+                                        </thead>
+                                            <tbody id="tbl-llamadas">
+                                                                        <?php
+                                                                        $i = 1;
+                                                                        foreach ($ntp as $key) : ?>
+                                        <tr>
+                                            <td class="text-center"><?= $i ?></td>
+                                            <td class="text-center"><?= $key->Nombre_Completo ?></td>
+                                            <td class="text-center"><?= $key->identificacion ?></td>
+                                            <td class="text-center"><?= $key->edad ?></td>
+                                            <td class="text-center"><?= $key->fecha_creacion ?></td>
+                                        <?php $i++;
+                                                                        endforeach; ?>
+                                        </tbody>
+                            </div>
+                        </div>
+                    </div>
+                <?php endif; ?>
+                   <!-- *******************cantidad de pacientes mutual*************************+ -->
+                   <?php if (isset($ntpm) != '') : ?>
+                    <div class="card shadow mt-5">
+                        <div class="card-body">
+                            <h4>Pacientes de Mutual: <?php echo $count?></h4>
+                            <div class="table-wrapper-scroll-y my-custom-scrollbar table-hover">
+                                <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+                                    <thead>
+                                        <tr class="text-right ">
+                                            <div class="row">
+                                            </div>
+                                            <th style="background: #CCD1D1" class="text-center th-sm"># Registro</th>
+                                            <th style="background: #CCD1D1" class="text-center th-sm">Nombre del paciente</th>
+                                            <th style="background: #CCD1D1" class="text-center th-sm">Identificacion</th>
+                                            <th style="background: #CCD1D1" class="text-center th-sm">Edad</th>
+                                            <th style="background: #CCD1D1" class="text-center th-sm">Telefono</th>
+                                            <th style="background: #CCD1D1" class="text-center th-sm">Dirreccion</th>
+                                            <th style="background: #CCD1D1" class="text-center th-sm">Fecha de Creación</th>
+                                            </tr>
+                                        </thead>
+                                             <?php
+                                             $i = 1;
+                                             foreach ($ntpm as $key) : ?>
+                                        <tr>
+                                            <td class="text-center"><?= $i ?></td>
+                                            <td class="text-center"><?= $key->Nombre_Completo ?></td>
+                                            <td class="text-center"><?= $key->identificacion ?></td>
+                                            <td class="text-center"><?= $key->edad ?></td>
+                                            <td class="text-center"><?= $key->telefono ?></td>
+                                            <td class="text-center"><?= $key->barrio ?></td>
+                                            <td class="text-center"><?= $key->fecha_registro ?></td>
+                                        <?php $i++;
+                                                                        endforeach; ?>
+                                        </tbody>
+                            </div>
+                        </div>
+                    </div>
+                <?php endif; ?>
+                 <!-- *******************cantidad de pacientes NO mutual*************************+ -->
+                 <?php if (isset($ntpnm) != '') : ?>
+                    <div class="card shadow mt-5">
+                        <div class="card-body">
+                            <h4>Pacientes que no pertenecen a mutual: <?php echo $count?> </h4>
+                            <div class="table-wrapper-scroll-y my-custom-scrollbar table-hover">
+                                <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+                                    <thead>
+                                        <tr class="text-right ">
+                                            <div class="row">
+                                            </div>
+                                            <th style="background: #CCD1D1" class="text-center th-sm"># Registro</th>
+                                            <th style="background: #CCD1D1" class="text-center th-sm">Nombre del paciente</th>
+                                            <th style="background: #CCD1D1" class="text-center th-sm">Identificacion</th>
+                                            <th style="background: #CCD1D1" class="text-center th-sm">Edad</th>
+                                            <th style="background: #CCD1D1" class="text-center th-sm">Telefono</th>
+                                            <th style="background: #CCD1D1" class="text-center th-sm">Dirreccion</th>
+                                            <th style="background: #CCD1D1" class="text-center th-sm">Fecha de Creación</th>
+                                            <th style="background: #CCD1D1" class="text-center th-sm">Eps</th>
+                                            </tr>
+                                        </thead>
+                                             <?php
+                                             $i = 1;
+                                             foreach ($ntpnm as $key) : ?>
+                                        <tr>
+                                            <td class="text-center"><?= $i ?></td>
+                                            <td class="text-center"><?= $key->Nombre_Completo ?></td>
+                                            <td class="text-center"><?= $key->identificacion ?></td>
+                                            <td class="text-center"><?= $key->edad ?></td>
+                                            <td class="text-center"><?= $key->telefono ?></td>
+                                            <td class="text-center"><?= $key->barrio ?></td>
+                                            <td class="text-center"><?= $key->fecha_registro ?></td>
+                                            <td class="text-center"><?= $key->aseguradora ?></td>
+                                        <?php $i++;
+                                                                        endforeach; ?>
+                                        </tbody>
+                            </div>
+                        </div>
+                    </div>
+                <?php endif; ?>
+                 <!-- *******************numero total de muestras procesadas*************************+ -->
+                <?php if (isset($ntmp) != '') : ?>
+                    <div class="card shadow mt-5">
+                        <div class="card-body">
+                            <h4>Numero total de muestras procesadas: <?php echo $count?></h4>
+                            <div class="table-wrapper-scroll-y my-custom-scrollbar table-hover">
+                                <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+                                    <thead>
+                                        <tr class="text-right ">
+                                            <div class="row">
+                                            </div>
+                                            <th style="background: #CCD1D1" class="text-center th-sm"># Registro</th>
+                                            <th style="background: #CCD1D1" class="text-center th-sm">Nombre del paciente</th>
+                                            <th style="background: #CCD1D1" class="text-center th-sm">Identificacion</th>
+                                            <th style="background: #CCD1D1" class="text-center th-sm">Edad</th>
+                                            <th style="background: #CCD1D1" class="text-center th-sm">Fecha de Creación</th>
+                                            <th style="background: #CCD1D1" class="text-center th-sm">Fecha de Confirmacion</th>
+                                            <th style="background: #CCD1D1" class="text-center th-sm">Lugar de la toma</th>
+                                            </tr>
+                                        </thead>
+                                             <?php
+                                             $i = 1;
+                                             foreach ($ntmp as $key) : ?>
+                                        <tr>
+                                            <td class="text-center"><?= $i ?></td>
+                                            <td class="text-center"><?= $key->Nombre_Completo ?></td>
+                                            <td class="text-center"><?= $key->identificacion ?></td>
+                                            <td class="text-center"><?= $key->edad ?></td>
+                                            <td class="text-center"><?= $key->fecha_creacion ?></td>
+                                            <td class="text-center"><?= $key->fecha_confirmacion ?></td>
+                                            <td class="text-center"><?= $key->lugar_de_la_toma ?></td>
+                                        <?php $i++;
+                                                                        endforeach; ?>
+                                        </tbody>
+                            </div>
+                        </div>
+                    </div>
+                <?php endif; ?>
+                 <!-- *******************cantidad de pacientes pendientes por asignar*************************+ -->
+                <?php if (isset($cppa) != '') : ?>
+                    <div class="card shadow mt-5">
+                        <div class="card-body">
+                            <h4>Cantida de pacientes pendientes por confirmacion de toma: <?php echo $count?></h4>
+                            <div class="table-wrapper-scroll-y my-custom-scrollbar table-hover">
+                                <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+                                    <thead>
+                                        <tr class="text-right ">
+                                            <div class="row">
+                                            </div>
+                                            <th style="background: #CCD1D1" class="text-center th-sm"># Registro</th>
+                                            <th style="background: #CCD1D1" class="text-center th-sm">Nombre del paciente</th>
+                                            <th style="background: #CCD1D1" class="text-center th-sm">Identificacion</th>
+                                            <th style="background: #CCD1D1" class="text-center th-sm">Edad</th>
+                                            <th style="background: #CCD1D1" class="text-center th-sm">Fecha de Creación</th>
+                                            <th style="background: #CCD1D1" class="text-center th-sm">Fecha de Programacion</th>
+                                            <th style="background: #CCD1D1" class="text-center th-sm">Fecha de Realizacion</th>
+                                            </tr>
+                                        </thead>
+                                             <?php
+                                             $i = 1;
+                                             foreach ($cppa as $key) : ?>
+                                        <tr>
+                                            <td class="text-center"><?= $i ?></td>
+                                            <td class="text-center"><?= $key->Nombre_Completo ?></td>
+                                            <td class="text-center"><?= $key->identificacion ?></td>
+                                            <td class="text-center"><?= $key->edad ?></td>
+                                            <td class="text-center"><?= $key->fecha_creacion ?></td>
+                                            <td class="text-center"><?= $key->fecha_programacion ?></td>
+                                            <td class="text-center"><?= $key->fecha_realizacion ?></td>
+                                        <?php $i++;
+                                                                        endforeach; ?>
+                                        </tbody>
+                            </div>
+                        </div>
+                    </div>
+                <?php endif; ?>
+
+
+            </div>
         </div>
     </div>
 </body>
