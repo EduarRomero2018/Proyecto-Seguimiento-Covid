@@ -60,6 +60,12 @@ if (empty($tipo_de_reporte) || empty($fecha_final_reporte) || empty($fecha_final
         $consulta->execute();
         $ntp = $consulta->fetchAll(PDO::FETCH_OBJ);
         $count = $consulta -> rowCount();
+
+        if(isset($_REQUEST['export_report'])){
+          header('Content-type:application/xls');
+          header('Content-Disposition: attachment; filename=nombre.xls');
+          require_once 'views/rg_view.php';
+        }
       break;
       // numero total muestras procesadas mutual
       case 'NTMP':
@@ -96,10 +102,10 @@ if (empty($tipo_de_reporte) || empty($fecha_final_reporte) || empty($fecha_final
         $cppa = $consulta->fetchAll(PDO::FETCH_OBJ);
         $count = $consulta -> rowCount();
         if(isset($_REQUEST['export_report'])){
-        header('Content-type:application/xls');
-        header('Content-Disposition: attachment; filename=nombre.xls');
-        require_once 'views/rg_view.php';
-      }
+          header('Content-type:application/xls');
+          header('Content-Disposition: attachment; filename=nombre.xls');
+          require_once 'views/rg_view.php';
+        }
       break;
 
       case 'CPP':

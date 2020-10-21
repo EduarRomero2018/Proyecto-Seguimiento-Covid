@@ -25,51 +25,53 @@
                 <div class="linea2"></div>
                 <div class="linea3"></div>
                 <div class="card-body">
-                    <form action="<?= htmlspecialchars($_SERVER['PHP_SELF']) ?>" enctype="multipart/form-data" method="post">
-                        <div class="form-group">
-                            <h4 class="text-center">SISTEMA GENERADOR DE INFORMES</h4>
-                            <hr>
-                            <label>Seleccione el tipo de Reporte a generar</label>
-                            <select name="tipo_reporte" class="custom-select">
-                                <option selected value="<?php echo $tipo_de_reporte?>"> </option>
-                                <option value="NTPM">Numero total de paciente mutual</option>
-                                <option value="NTPNM">Numero total de paciente no mutual</option>
-                                <option value="NTP">Numero total de pacientes</option>
-                                <option value="NTMP">Numero total de muestras procesadas</option>
-                                <!-- <option value="CPP">Seguimientos por pacientes</option>
-                                <option value="CPP">Cantidad de Pacientes Positivos</option>
-                                <option value="CPN">Cantidad de Pacientes Negativos</option>
-                                <option value="CPS">Cantidad de Pacientes Sintomaticos</option>
-                                <option value="CPA">Cantidad de Pacientes Asintomaticos</option>
-                                <option value="CPF">Cantidad de Pacientes Fallecidos </option>
-                                <option value="CMP">Informes diario visita paciente positivo</option> -->
-                                <option value="CPPA">Cantidad de pacientes pendientes por asignar</option>
-                            </select>
-                        </div>
-                        <h6 class="text-center">Seleccione el Rango de Fechas:</h6>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Desde:</label>
-                                <input type="date" name="fecha_inicio_reporte" value="<?php $fecha_inicio_reporte?>" min="2020-08-19" class="form-control">
+                    <?php if(!isset($_REQUEST['export_report'])): ?>
+                        <form action="<?= htmlspecialchars($_SERVER['PHP_SELF']) ?>" enctype="multipart/form-data" method="post">
+                            <div class="form-group">
+                                <h4 class="text-center">SISTEMA GENERADOR DE INFORMES</h4>
+                                <hr>
+                                <label>Seleccione el tipo de Reporte a generar</label>
+                                <select name="tipo_reporte" class="custom-select">
+                                    <option selected value="<?= $tipo_de_reporte?>"><?= $tipo_de_reporte?></option>
+                                    <option value="NTPM">Numero total de paciente mutual</option>
+                                    <option value="NTPNM">Numero total de paciente no mutual</option>
+                                    <option value="NTP">Numero total de pacientes</option>
+                                    <option value="NTMP">Numero total de muestras procesadas</option>
+                                    <!-- <option value="CPP">Seguimientos por pacientes</option>
+                                    <option value="CPP">Cantidad de Pacientes Positivos</option>
+                                    <option value="CPN">Cantidad de Pacientes Negativos</option>
+                                    <option value="CPS">Cantidad de Pacientes Sintomaticos</option>
+                                    <option value="CPA">Cantidad de Pacientes Asintomaticos</option>
+                                    <option value="CPF">Cantidad de Pacientes Fallecidos </option>
+                                    <option value="CMP">Informes diario visita paciente positivo</option> -->
+                                    <option value="CPPA">Cantidad de pacientes pendientes por asignar</option>
+                                </select>
                             </div>
-                            <div class="col-md-6">
-                                <label for="">Hasta:</label>
-                                <input type="date" name="fecha_final_reporte"  value="<?php $fecha_final_reporte?>" class="form-control">
+                            <h6 class="text-center">Seleccione el Rango de Fechas:</h6>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Desde:</label>
+                                    <input type="date" name="fecha_inicio_reporte" value="<?= $fecha_inicio_reporte?>" min="2020-08-19" class="form-control">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="">Hasta:</label>
+                                    <input type="date" name="fecha_final_reporte"  value="<?= $fecha_final_reporte?>" class="form-control">
+                                </div>
                             </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <input class="btn btn-success btn-block" type="submit" name="listar" value="Generar Reporte">
+                            <br>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <input class="btn btn-success btn-block" type="submit" name="listar" value="Generar Reporte">
+                                </div>
                             </div>
-                        </div>
-                        <br>
-                            <div class="col-md-12">
-                                <input class="btn btn-success btn-block" type="submit" name="export_report" value="Exportar Reporte">
+                            <br>
+                                <div class="col-md-12">
+                                    <input class="btn btn-success btn-block" type="submit" name="export_report" value="Exportar Reporte">
+                                </div>
                             </div>
-                        </div>
-                        <br>
-                    </form>
+                            <br>
+                        </form>
+                    <?php endif ?>
                     <?php if (!empty($exito)) : ?>
                         <script>
                             swal({
