@@ -3,6 +3,7 @@ if(!isset($_REQUEST['Exportar']))
 {
     require_once 'views/header_view.php'; 
 }
+$atlantico = array('BARRANQUILLA (080001)', 'GALAPA (08296)','MALAMBO (08433)', 'PUERTO COLOMBIA (08573)','SOLEDAD (08758)');
 ?>
 <div class="container mt-4 col-md-6">
     <div class="card">
@@ -11,10 +12,17 @@ if(!isset($_REQUEST['Exportar']))
                 <form action="" method="post">
                     <div class="form-group">
                         <label for="">Fecha realizacion</label>
-                        <input type="date" name="fecha_realizacion" value="<?= $date ?>" class="form-control" required>
-                        <input type="submit" value="Buscar" class="btn btn-success">
-                        <input type="submit" name="Exportar" value="Exportar" class="btn btn-primary">
+                        <input type="date" name="fecha_realizacion" value="<?= $date ?>" class="form-control" required>    
                     </div>
+                    <div class="form-group">
+                        <label for="">Departamento</label>
+                        <select name="departamento" class="custom-select">
+                            <option value="bolivar">Bolívar</option>
+                            <option <?= $departamento == 'atlantico' ? 'selected' : '' ?> value="atlantico">Atlántico</option>
+                        </select>
+                    </div>
+                    <input type="submit" value="Buscar" class="btn btn-success">
+                    <input type="submit" name="Exportar" value="Exportar" class="btn btn-primary">
                 </form>
             <?php endif ?>
         </div>
@@ -87,7 +95,7 @@ if(!isset($_REQUEST['Exportar']))
                         <td class="text-center">COLOMBIA</td>
                         <td class="text-center">COLOMBIA</td>
                         <td class="text-center">13</td>
-                        <td class="text-center">BOLIVAR</td>
+                        <td class="text-center"><?= strtoupper($_REQUEST['departamento']) ?></td>
                         <td class="text-center"><?php print_r(explode(' ',$paciente->municipio)[1]) ?></td>
                         <td class="text-center"><?php print_r(explode(' ',$paciente->municipio)[0])?></td>
                         <td class="text-center"><?= $paciente->barrio ?></td>

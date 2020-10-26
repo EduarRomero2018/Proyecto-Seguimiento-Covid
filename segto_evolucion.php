@@ -35,9 +35,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (!empty($res)) {
             $consulta = $conexion->prepare(
                 "SELECT pacientes.id, CONCAT(primer_nombre, ' ', primer_apellido) AS 'Nombre_Completo', tipo_documento,edad,
-                numero_documento,fecha_entrega_lab ,fecha_resultado,resultado,pacientes_id,DATE(fecha_programacion) AS fecha_programacion
+                numero_documento,prog_toma_muestra.fecha_entrega_lab ,prog_toma_muestra.fecha_resultado,prog_toma_muestra.resultado,prog_toma_muestra.pacientes_id,DATE(prog_toma_muestra.fecha_programacion) AS fecha_programacion,
+                segunda_toma_muestra_control_2.resultado AS resultado_2
                 FROM pacientes
                 RIGHT JOIN prog_toma_muestra ON pacientes.id = prog_toma_muestra.pacientes_id
+                LEFT JOIN segunda_toma_muestra_control_2 ON pacientes.id = segunda_toma_muestra_control_2.pacientes_id
                 WHERE numero_documento = ?"
             );
             $consulta->execute(array($documento));
@@ -54,6 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $fecha_entrega_laboratorio = $res['fecha_entrega_lab'];
                 $fecha_resultado = $res['fecha_resultado'];
                 $resultado = $res['resultado'];
+                $resultado_2 = $res['resultado_2'];
                 $fecha_programacion = $res['fecha_programacion'];
                 $id = $res['id'];
 

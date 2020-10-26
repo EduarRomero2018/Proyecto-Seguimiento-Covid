@@ -75,22 +75,41 @@
                                         <?php echo $fecha_entrega_laboratorio; ?></p>
                                     <p style="color:rgba(13, 70, 177, 0.972)" ;class="card-text">Fecha del resultado:
                                         <?php echo $fecha_resultado; ?></p>
-                                    <?php if ($resultado == 'negativo') : ?>
+                                    <?php if ($resultado == 'Negativo') : ?>
                                         <div class="text-center text-light bg-success py-1">
-                                            <h5>Resultado:
+                                            <h5>Resultado primera toma:
                                                 <?php echo $resultado; ?></h5>
                                         </div>
                                     <?php endif ?>
                                     <?php if ($resultado == 'Positivo') : ?>
                                         <div class="text-center text-light bg-danger py-1">
-                                            <h5>Resultado:
+                                            <h5>Resultado primera toma:
                                                 <?php echo $resultado; ?></h5>
                                         </div>
                                     <?php endif ?>
                                     <?php if ($resultado == 'Pendiente') : ?>
                                         <div class="text-center text-light bg-warning py-1">
-                                            <h5>Resultado:
+                                            <h5>Resultado primera toma:
                                                 <?php echo $resultado; ?></h5>
+                                        </div>
+                                    <?php endif ?>
+                                    <br>
+                                    <?php if (!empty($resultado_2) && $resultado_2 == 'Negativo' ) : ?>
+                                        <div class="text-center text-light bg-success py-1">
+                                            <h5>Resultado segunda toma:
+                                                <?php echo $resultado_2; ?></h5>
+                                        </div>
+                                    <?php endif ?>
+                                    <?php if (!empty($resultado_2) && $resultado_2 == 'Positivo' ) : ?>
+                                        <div class="text-center text-light bg-danger py-1">
+                                            <h5>Resultado segunda toma:
+                                                <?php echo $resultado_2; ?></h5>
+                                        </div>
+                                    <?php endif ?>
+                                    <?php if (!empty($resultado_2) && $resultado_2 == 'Pendiente' ) : ?>
+                                        <div class="text-center text-light bg-warning py-1">
+                                            <h5>Resultado segunda toma:
+                                                <?php echo $resultado_2; ?></h5>
                                         </div>
                                     <?php endif ?>
 
