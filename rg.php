@@ -8,6 +8,7 @@ $exito= '';
 $tipo_de_reporte = $_POST['tipo_reporte'];
 $fecha_inicio_reporte = $_POST['fecha_inicio_reporte'];
 $fecha_final_reporte = $_POST['fecha_final_reporte'];
+$export_report = $_POST['export_report'];
 // if(isset($_POST["export_data"])) {
 //   $filename = "nombre_archivo".date('Ymd') . ".xls";
 //   header("Content-Type: application/vnd.ms-excel");
@@ -32,6 +33,11 @@ if (empty($tipo_de_reporte) || empty($fecha_final_reporte) || empty($fecha_final
         $consulta->execute();
         $ntpm = $consulta->fetchAll(PDO::FETCH_OBJ);
         $count = $consulta -> rowCount();
+        if(isset($_REQUEST['export_report'])){
+          header('Content-type:application/xls');
+          header('Content-Disposition: attachment; filename=numero_total_pacientes_mutual.xls');
+          require_once 'views/rg_view.php';
+        }
       break;
        // Pacientes que no pertenecen a mutual:
        case 'NTPNM':
@@ -46,6 +52,11 @@ if (empty($tipo_de_reporte) || empty($fecha_final_reporte) || empty($fecha_final
         $consulta->execute();
         $ntpnm = $consulta->fetchAll(PDO::FETCH_OBJ);
         $count = $consulta -> rowCount();
+        if(isset($_REQUEST['export_report'])){
+          header('Content-type:application/xls');
+          header('Content-Disposition: attachment; filename=pacientes_no_mutual.xls');
+          require_once 'views/rg_view.php';
+        }
       break;
       // numero total pacientes general
       case 'NTP':
@@ -60,10 +71,9 @@ if (empty($tipo_de_reporte) || empty($fecha_final_reporte) || empty($fecha_final
         $consulta->execute();
         $ntp = $consulta->fetchAll(PDO::FETCH_OBJ);
         $count = $consulta -> rowCount();
-
         if(isset($_REQUEST['export_report'])){
           header('Content-type:application/xls');
-          header('Content-Disposition: attachment; filename=nombre.xls');
+          header('Content-Disposition: attachment; filename=numero_total_pacientes.xls');
           require_once 'views/rg_view.php';
         }
       break;
@@ -84,6 +94,11 @@ if (empty($tipo_de_reporte) || empty($fecha_final_reporte) || empty($fecha_final
         $consulta->execute();
         $ntmp = $consulta->fetchAll(PDO::FETCH_OBJ);
         $count = $consulta -> rowCount();
+        if(isset($_REQUEST['export_report'])){
+          header('Content-type:application/xls');
+          header('Content-Disposition: attachment; filename=numero_total_muestras_procesadas.xls');
+          require_once 'views/rg_view.php';
+        }
       break;
       // cantidad de pacientes pendientes por asignar
       case 'CPPA':
@@ -92,7 +107,7 @@ if (empty($tipo_de_reporte) || empty($fecha_final_reporte) || empty($fecha_final
         CONCAT(tipo_documento, ' - ', numero_documento) AS 'identificacion',
         CONCAT(edad, ' ', unidad_medida) AS 'edad',
         DATE(P.fecha_registro) AS fecha_creacion,
-        DATE(PTM.fecha_programacion) AS fecha_programacion, PTM.fecha_realizacion
+        DATE(PTM.fecha_programacion) AS fecha_programacion
         FROM pacientes P
         RIGHT JOIN prog_toma_muestra PTM ON P.id = PTM.pacientes_id
         WHERE P.aseguradora = 'MUTUAL SER'
@@ -103,7 +118,7 @@ if (empty($tipo_de_reporte) || empty($fecha_final_reporte) || empty($fecha_final
         $count = $consulta -> rowCount();
         if(isset($_REQUEST['export_report'])){
           header('Content-type:application/xls');
-          header('Content-Disposition: attachment; filename=nombre.xls');
+          header('Content-Disposition: attachment; filename=cant_p_p_asignar.xls');
           require_once 'views/rg_view.php';
         }
       break;
