@@ -86,16 +86,19 @@
                         <a href="lpnm_stm.php" class="dropdown-item">Listar Pacientes no mutual (Segunada toma)</a>
                         <?php if (isset($_SESSION) && $_SESSION['role'] == 'Digitador') : ?>
                             <a href="consolidados.php" class="dropdown-item">Consolidados</a>
-                        <?php endif ?>
+                            <?php endif ?>
+                            <?php if($_SESSION['role'] == 'Auxiliar de programacion' || $_SESSION['role'] == 'Digitador') :?>
+                            <a class="dropdown-item" href="actualizacionPaciente.php">Actualizar Paciente</a>
+                            <?php endif ?>
                     </div>
                 </li>
-				 <?php if($_SESSION['role'] == 'Auxiliar de programacion' || $_SESSION['role'] == 'Digitador') :?>
+				 <!-- <?php if($_SESSION['role'] == 'Auxiliar de programacion' || $_SESSION['role'] == 'Digitador') :?>
                 <li class="nav-item dropdown">
                     <a class="nav-link " href="actualizacionPaciente.php">
                         ACTUALIZAR DATOS DE PACIENTES
                     </a>
                 </li>
-                <?php endif ?>
+                <?php endif ?> -->
             </ul>
 			<!--<i class="fas fa-2x fa-users"><?//= ' ' . $cantidad_pacientes?></i>-->
             <?php if (isset($_SESSION) && $_SESSION['role'] == 'Coordinador covid' || $_SESSION['role'] == 'Digitador' ) : ?>
