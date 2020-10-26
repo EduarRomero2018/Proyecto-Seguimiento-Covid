@@ -37,6 +37,7 @@
                                     <option value="NTPNM">Numero total de paciente no mutual</option>
                                     <option value="NTP">Numero total de pacientes</option>
                                     <option value="NTMP">Numero total de muestras procesadas</option>
+                                    <option value="CPSA">Pacientes confirmado con toma de muestra sin asignacion a profesional</option>
                                     <!-- <option value="CPP">Seguimientos por pacientes</option>
                                     <option value="CPP">Cantidad de Pacientes Positivos</option>
                                     <option value="CPN">Cantidad de Pacientes Negativos</option>
@@ -66,7 +67,8 @@
                             </div>
                             <br>
                                 <div class="col-md-5">
-                                <button type="submit"  name="export_report" class="btn btn-success"> <i class="far fa-file-excel fa-3x" aria-hidden="true"></i></button>
+                                <button type="submit"  name="export_report"  value="exportar" class="btn btn-outline-default waves-effect"> <i class="far fa-file-excel px-1 fa-2x"> Excel</i></button>
+                                <!-- <button type="submit"  disabled="true" name="export_report"  value="exportar" class="btn btn-outline-default waves-effect"> <i class="far fa-file-pdf px-1 fa-2x" aria-hidden="true"> pdf</i></button> -->
                                     <!-- <input class="btn btn-success btn-block" type="submit" name="export_report" value="Exportar a Excel"> -->
                                 </div>
                             </div>
@@ -213,6 +215,7 @@
                                             <th style="background: #CCD1D1" class="text-center th-sm">Identificacion</th>
                                             <th style="background: #CCD1D1" class="text-center th-sm">Edad</th>
                                             <th style="background: #CCD1D1" class="text-center th-sm">Fecha de Creacion</th>
+                                            <th style="background: #CCD1D1" class="text-center th-sm">Eps</th>
                                         </tr>
                                         </thead>
                                             <tbody id="tbl-llamadas">
@@ -225,6 +228,7 @@
                                             <td class="text-center"><?= $key->identificacion ?></td>
                                             <td class="text-center"><?= $key->edad ?></td>
                                             <td class="text-center"><?= $key->fecha_creacion ?></td>
+                                            <td class="text-center"><?= $key->aseguradora ?></td>
                                         <?php $i++;
                                                                         endforeach; ?>
                                         </tbody>
@@ -289,6 +293,7 @@
                                             <th style="background: #CCD1D1" class="text-center th-sm">Dirreccion</th>
                                             <th style="background: #CCD1D1" class="text-center th-sm">Fecha de Creación</th>
                                             <th style="background: #CCD1D1" class="text-center th-sm">Eps</th>
+                                            <th style="background: #CCD1D1" class="text-center th-sm">Lugar toma de Muestra</th>
                                             </tr>
                                         </thead>
                                              <?php
@@ -303,6 +308,7 @@
                                             <td class="text-center"><?= $key->barrio ?></td>
                                             <td class="text-center"><?= $key->fecha_registro ?></td>
                                             <td class="text-center"><?= $key->aseguradora ?></td>
+                                            <td class="text-center"><?= $key->programacion_atencion ?></td>
                                         <?php $i++;
                                                                         endforeach; ?>
                                         </tbody>
@@ -325,6 +331,7 @@
                                             <th style="background: #CCD1D1" class="text-center th-sm">Nombre del paciente</th>
                                             <th style="background: #CCD1D1" class="text-center th-sm">Identificacion</th>
                                             <th style="background: #CCD1D1" class="text-center th-sm">Edad</th>
+                                            <th style="background: #CCD1D1" class="text-center th-sm">Municipio</th>
                                             <th style="background: #CCD1D1" class="text-center th-sm">Fecha de Creación</th>
                                             <th style="background: #CCD1D1" class="text-center th-sm">Fecha de Confirmacion</th>
                                             <th style="background: #CCD1D1" class="text-center th-sm">Lugar de la toma</th>
@@ -338,7 +345,50 @@
                                             <td class="text-center"><?= $key->Nombre_Completo ?></td>
                                             <td class="text-center"><?= $key->identificacion ?></td>
                                             <td class="text-center"><?= $key->edad ?></td>
+                                            <td class="text-center"><?= $key->municipio ?></td>
                                             <td class="text-center"><?= $key->fecha_creacion ?></td>
+                                            <td class="text-center"><?= $key->fecha_confirmacion ?></td>
+                                            <td class="text-center"><?= $key->lugar_de_la_toma ?></td>
+                                        <?php $i++;
+                                                                        endforeach; ?>
+                                        </tbody>
+                            </div>
+                        </div>
+                    </div>
+                <?php endif; ?>
+                <!-- **********Pacientes confirmado con toma de muestra sin asignacion a profesional***************+ -->
+                <?php if (isset($cpsa) != '') : ?>
+                    <div class="card shadow mt-5">
+                        <div class="card-body">
+                            <h4>Pacientes confirmados con toma de muestra sin asignacion: <?php echo $count?></h4>
+                            <div class="table-wrapper-scroll-y my-custom-scrollbar table-hover">
+                                <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+                                    <thead>
+                                        <tr class="text-right ">
+                                            <div class="row">
+                                            </div>
+                                            <th style="background: #CCD1D1" class="text-center th-sm"># Registro</th>
+                                            <th style="background: #CCD1D1" class="text-center th-sm">Nombre del paciente</th>
+                                            <th style="background: #CCD1D1" class="text-center th-sm">Identificacion</th>
+                                            <th style="background: #CCD1D1" class="text-center th-sm">Edad</th>
+                                            <th style="background: #CCD1D1" class="text-center th-sm">Municipio</th>
+                                            <th style="background: #CCD1D1" class="text-center th-sm">Fecha de Creación</th>
+                                            <th style="background: #CCD1D1" class="text-center th-sm">Fecha de Programacion</th>
+                                            <th style="background: #CCD1D1" class="text-center th-sm">Fecha de Confirmacion</th>
+                                            <th style="background: #CCD1D1" class="text-center th-sm">Lugar de la toma</th>
+                                            </tr>
+                                        </thead>
+                                             <?php
+                                             $i = 1;
+                                             foreach ($cpsa as $key) : ?>
+                                        <tr>
+                                            <td class="text-center"><?= $i ?></td>
+                                            <td class="text-center"><?= $key->Nombre_Completo ?></td>
+                                            <td class="text-center"><?= $key->identificacion ?></td>
+                                            <td class="text-center"><?= $key->edad ?></td>
+                                            <td class="text-center"><?= $key->municipio ?></td>
+                                            <td class="text-center"><?= $key->fecha_creacion ?></td>
+                                            <td class="text-center"><?= $key->fecha_programacion ?></td>
                                             <td class="text-center"><?= $key->fecha_confirmacion ?></td>
                                             <td class="text-center"><?= $key->lugar_de_la_toma ?></td>
                                         <?php $i++;
