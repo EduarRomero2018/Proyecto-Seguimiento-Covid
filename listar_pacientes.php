@@ -62,7 +62,6 @@ if (!isset($_REQUEST['consulta'])) {
     LEFT JOIN usuarios UM ON pacientes.id_usuario_notificacion = UM.id 
     LEFT JOIN prog_toma_muestra ptm ON pacientes.id = ptm.pacientes_id
     $condicion $filtro_municipio";
-    echo $consulta;
 
     $query = $conexion->prepare($consulta);
 
