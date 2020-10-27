@@ -37,7 +37,9 @@
                                     <option value="NTPNM">Numero total de paciente no mutual</option>
                                     <option value="NTP">Numero total de pacientes</option>
                                     <option value="NTMP">Numero total de muestras procesadas</option>
-                                    <option value="CPSA">Pacientes confirmado con toma de muestra sin asignacion a profesional</option>
+                                    <option value="CPSA">Pacientes confirmado con toma de muestra sin asignacion a Seguimiento</option>
+                                    <option value="CPSM">Pacientes positivos confirmados sin asignacion a profesional (Medicos)</option>
+                                    <option value="CPPA">Cantidad de pacientes pendientes por asignar</option>
                                     <!-- <option value="CPP">Seguimientos por pacientes</option>
                                     <option value="CPP">Cantidad de Pacientes Positivos</option>
                                     <option value="CPN">Cantidad de Pacientes Negativos</option>
@@ -45,7 +47,6 @@
                                     <option value="CPA">Cantidad de Pacientes Asintomaticos</option>
                                     <option value="CPF">Cantidad de Pacientes Fallecidos </option>
                                     <option value="CMP">Informes diario visita paciente positivo</option> -->
-                                    <option value="CPPA">Cantidad de pacientes pendientes por asignar</option>
                                 </select>
                             </div>
                             <h6 class="text-center">Seleccione el Rango de Fechas:</h6>
@@ -356,7 +357,7 @@
                         </div>
                     </div>
                 <?php endif; ?>
-                <!-- **********Pacientes confirmado con toma de muestra sin asignacion a profesional***************+ -->
+                <!-- **********Pacientes confirmado con toma de muestra sin asignacion a seguimiento***************+ -->
                 <?php if (isset($cpsa) != '') : ?>
                     <div class="card shadow mt-5">
                         <div class="card-body">
@@ -388,6 +389,44 @@
                                             <td class="text-center"><?= $key->edad ?></td>
                                             <td class="text-center"><?= $key->municipio ?></td>
                                             <td class="text-center"><?= $key->fecha_creacion ?></td>
+                                            <td class="text-center"><?= $key->fecha_programacion ?></td>
+                                            <td class="text-center"><?= $key->fecha_confirmacion ?></td>
+                                            <td class="text-center"><?= $key->lugar_de_la_toma ?></td>
+                                        <?php $i++;
+                                                                        endforeach; ?>
+                                        </tbody>
+                            </div>
+                        </div>
+                    </div>
+                <?php endif; ?>
+  <!-- **********Pacientes confirmado con toma de muestra sin asignacion a profesional (medico)***************+ -->
+                <?php if (isset($cpsm) != '') : ?>
+                    <div class="card shadow mt-5">
+                        <div class="card-body">
+                            <h4>Pacientes Positivos confirmados sin asignacion a profesional: <?php echo $count?></h4>
+                            <div class="table-wrapper-scroll-y my-custom-scrollbar table-hover">
+                                <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+                                    <thead>
+                                        <tr class="text-right ">
+                                            <div class="row">
+                                            </div>
+                                            <th style="background: #CCD1D1" class="text-center th-sm"># Registro</th>
+                                            <th style="background: #CCD1D1" class="text-center th-sm">Nombre del paciente</th>
+                                            <th style="background: #CCD1D1" class="text-center th-sm">Identificacion</th>
+                                            <th style="background: #CCD1D1" class="text-center th-sm">Municipio</th>
+                                            <th style="background: #CCD1D1" class="text-center th-sm">Fecha de Programacion</th>
+                                            <th style="background: #CCD1D1" class="text-center th-sm">Fecha de Confirmacion</th>
+                                            <th style="background: #CCD1D1" class="text-center th-sm">Lugar de la toma</th>
+                                            </tr>
+                                        </thead>
+                                             <?php
+                                             $i = 1;
+                                             foreach ($cpsm as $key) : ?>
+                                        <tr>
+                                            <td class="text-center"><?= $i ?></td>
+                                            <td class="text-center"><?= $key->Nombre_Completo ?></td>
+                                            <td class="text-center"><?= $key->identificacion ?></td>
+                                            <td class="text-center"><?= $key->municipio ?></td>
                                             <td class="text-center"><?= $key->fecha_programacion ?></td>
                                             <td class="text-center"><?= $key->fecha_confirmacion ?></td>
                                             <td class="text-center"><?= $key->lugar_de_la_toma ?></td>
