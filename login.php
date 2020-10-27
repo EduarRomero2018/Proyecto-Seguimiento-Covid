@@ -26,6 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	if ($resultado !== false) {
 		$_SESSION['usuario'] = $identificacion;
 		$_SESSION['nombre_apellido'] = $resultado['nombre_apellido'];
+		$_SESSION['sede'] = $resultado['sede'];
 		$_SESSION['role'] = $resultado['roles'];
 		$_SESSION['id'] = $resultado['id'];
 

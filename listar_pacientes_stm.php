@@ -12,6 +12,16 @@ if (!isset($_REQUEST['consulta'])) {
 
     $condicion = "";
     // print_r($_SESSION);
+    
+    if($_SESSION['sede'] == 'Cartagena')
+    {
+        $filtro_municipio = "AND municipio IN('CARTAGENA (13001)', 'TURBANA (13838)', 'TURBACO (13836)', 'ARJONA (13052)', 'CARMEN DE BOLIVAR (13244)','BAYUNCA (130007)')";
+    }
+    else
+    {
+        $filtro_municipio = "AND municipio IN('BARRANQUILLA (080001)', 'GALAPA (08296)','MALAMBO (08433)', 'PUERTO COLOMBIA (08573)','SOLEDAD (08758)')";
+    }
+
     switch ($_SESSION['role']) {
         case 'Coordinador covid':
             $condicion = "WHERE pacientes.estado_paciente = 1 AND stm.resultado != 2 AND SP.actual = 1 AND SP.paciente_recuperado = 2 AND aseguradora = 'MUTUAL SER'";
@@ -56,7 +66,7 @@ if (!isset($_REQUEST['consulta'])) {
     LEFT JOIN usuarios UM ON pacientes.id_usuario_notificacion_2 = UM.id
     LEFT JOIN segunda_toma_muestra_control_2 stm ON pacientes.id = stm.pacientes_id
     LEFT JOIN seguimiento_paciente SP ON SP.id_pacientes = pacientes.id
-    $condicion";
+    $condicion $filtro_municipio";
 
     $query = $conexion->prepare($consulta);
 
