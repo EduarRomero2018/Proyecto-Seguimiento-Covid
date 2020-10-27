@@ -9,13 +9,8 @@ $tipo_de_reporte = $_POST['tipo_reporte'];
 $fecha_inicio_reporte = $_POST['fecha_inicio_reporte'];
 $fecha_final_reporte = $_POST['fecha_final_reporte'];
 $export_report = $_POST['export_report'];
-// if(isset($_POST["export_data"])) {
-//   $filename = "nombre_archivo".date('Ymd') . ".xls";
-//   header("Content-Type: application/vnd.ms-excel");
-//   header("Content-Disposition: attachment; filename=".$filename);
-// }
 
-if (empty($tipo_de_reporte) || empty($fecha_final_reporte) || empty($fecha_final_reporte) ){
+if (empty($tipo_de_reporte) || empty($fecha_final_reporte) || empty($fecha_final_reporte)){
     $errores .= 'Verifique el reporte a generar y que las fechas esten diligenciadas correctamente';
   }
   else {
@@ -45,8 +40,9 @@ if (empty($tipo_de_reporte) || empty($fecha_final_reporte) || empty($fecha_final
         "SELECT P.id, CONCAT(primer_nombre, ' ', primer_apellido) AS 'Nombre_Completo',
         CONCAT(tipo_documento, ' - ', numero_documento) AS 'identificacion',
         CONCAT(edad, ' ', unidad_medida) AS 'edad' ,telefono, barrio,
-        DATE(fecha_registro) AS fecha_registro, aseguradora
+        DATE(PTM.fecha_registro) AS fecha_registro, aseguradora, PTM.programacion_atencion, municipio
         FROM pacientes p
+        LEFT JOIN prog_toma_muestra PTM ON P.id = PTM.pacientes_id
         WHERE P.aseguradora != 'MUTUAL SER'
         AND P.fecha_registro BETWEEN  '$fecha_inicio_reporte' AND '$fecha_final_reporte 23:00:00'");
         $consulta->execute();
@@ -64,7 +60,7 @@ if (empty($tipo_de_reporte) || empty($fecha_final_reporte) || empty($fecha_final
         "SELECT P.id, CONCAT(primer_nombre, ' ', primer_apellido) AS 'Nombre_Completo',
         CONCAT(tipo_documento, ' - ', numero_documento) AS 'identificacion',
         CONCAT(edad, ' ', unidad_medida) AS 'edad',
-        DATE(fecha_registro) AS fecha_creacion
+        DATE(fecha_registro) AS fecha_creacion, aseguradora
         FROM pacientes p
         WHERE P.fecha_registro BETWEEN '$fecha_inicio_reporte' AND '$fecha_final_reporte 23:00:00'
         AND P.estado_paciente = 1");
@@ -82,7 +78,7 @@ if (empty($tipo_de_reporte) || empty($fecha_final_reporte) || empty($fecha_final
         $consulta = $conexion->prepare(
           "SELECT CONCAT(primer_nombre, ' ', primer_apellido) AS 'Nombre_Completo',
         CONCAT(tipo_documento, ' - ', numero_documento) AS 'identificacion',
-        CONCAT(edad, ' ', unidad_medida) AS 'edad',
+        CONCAT(edad, ' ', unidad_medida) AS 'edad',municipio
         DATE(P.fecha_registro) AS fecha_creacion,
         DATE(PTM.fecha_realizacion) AS fecha_confirmacion,
         (PTM.programacion_atencion) AS lugar_de_la_toma
@@ -100,6 +96,57 @@ if (empty($tipo_de_reporte) || empty($fecha_final_reporte) || empty($fecha_final
           require_once 'views/rg_view.php';
         }
       break;
+
+       //Pacientes confirmado con toma de muestra sin asignacion a seguimiento
+       case 'CPSA':
+        $consulta = $conexion->prepare(
+        "SELECT CONCAT(primer_nombre, ' ', primer_apellido) AS 'Nombre_Completo',
+        CONCAT(tipo_documento, ' - ', numero_documento) AS 'identificacion',
+        CONCAT(edad, ' ', unidad_medida) AS 'edad',municipio,
+        DATE(P.fecha_registro) AS fecha_creacion,
+        DATE(PTM.fecha_programacion) AS fecha_programacion,
+        DATE(PTM.fecha_realizacion) AS fecha_confirmacion,
+        (PTM.programacion_atencion) AS lugar_de_la_toma, P.id_usuario_seguimiento
+        FROM pacientes P
+        RIGHT JOIN prog_toma_muestra PTM ON P.id = PTM.pacientes_id
+        WHERE P.aseguradora = 'MUTUAL SER'
+        AND PTM.fecha_realizacion BETWEEN '$fecha_inicio_reporte' AND '$fecha_final_reporte 23:00:00'
+        AND P.id_usuario_seguimiento IS NULL
+        AND PTM.fecha_realizacion IS NOT NULL");
+        $consulta->execute();
+        $cpsa = $consulta->fetchAll(PDO::FETCH_OBJ);
+        $count = $consulta -> rowCount();
+        if(isset($_REQUEST['export_report'])){
+          header('Content-type:application/xls');
+          header('Content-Disposition: attachment; filename=Pacientes_sin_Asignacion.xls');
+          require_once 'views/rg_view.php';
+        }
+      break;
+
+      //Pacientes positivo sin asignacion a profesional (Medicos)
+      case 'CPSM':
+        $consulta = $conexion->prepare(
+        "		SELECT CONCAT(primer_nombre, ' ', primer_apellido) AS 'Nombre_Completo',
+        CONCAT(tipo_documento, ' - ', numero_documento) AS 'identificacion',
+				municipio,
+        DATE(PTM.fecha_programacion) AS fecha_programacion,
+        DATE(PTM.fecha_realizacion) AS fecha_confirmacion,
+        (PTM.programacion_atencion) AS lugar_de_la_toma, PTM.resultado
+        FROM pacientes P
+        RIGHT JOIN prog_toma_muestra PTM ON P.id = PTM.pacientes_id
+        WHERE P.aseguradora = 'MUTUAL SER'
+        AND PTM.fecha_realizacion BETWEEN '$fecha_inicio_reporte' AND '$fecha_final_reporte 23:00:00'
+        AND PTM.resultado = 1
+        AND P.id_usuario_notificacion IS NULL");
+        $consulta->execute();
+        $cpsm = $consulta->fetchAll(PDO::FETCH_OBJ);
+        $count = $consulta -> rowCount();
+        if(isset($_REQUEST['export_report'])){
+          header('Content-type:application/xls');
+          header('Content-Disposition: attachment; filename=Pacientes_sin_Asignacion.xls');
+          require_once 'views/rg_view.php';
+        }
+      break;
       // cantidad de pacientes pendientes por asignar
       case 'CPPA':
         $consulta = $conexion->prepare(
@@ -112,6 +159,7 @@ if (empty($tipo_de_reporte) || empty($fecha_final_reporte) || empty($fecha_final
         RIGHT JOIN prog_toma_muestra PTM ON P.id = PTM.pacientes_id
         WHERE P.aseguradora = 'MUTUAL SER'
         AND P.fecha_registro  BETWEEN '$fecha_inicio_reporte' AND '$fecha_final_reporte 23:00:00'
+        AND PTM.fecha_programacion IS NO NULL
         AND PTM.fecha_realizacion IS NULL");
         $consulta->execute();
         $cppa = $consulta->fetchAll(PDO::FETCH_OBJ);

@@ -1,3 +1,4 @@
+<?php session_start() ?>
 <?php require_once 'views/header_view.php' ?>
     <div class="container">
         <?php if (isset($res) != '') : ?>
