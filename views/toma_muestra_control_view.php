@@ -120,7 +120,7 @@
                     </div>
                     <div class="col-sm-3">
                         <br>
-                        <button id="guardar-p" type="submit" class="btn btn-outline-secondary btn-lg">Guardar Datos</button>
+                        <button id="guardar-p" <?= $disabled ?> type="submit" class="btn btn-outline-secondary btn-lg">Guardar Datos</button>
                     </div>
                     <div class="col-sm-3">
                         <br>
@@ -150,6 +150,8 @@
         </script>
     <?php endif; ?>
 
+    
+
     <?php if (!empty($errores)) : ?>
         <script>
             swal({
@@ -167,3 +169,19 @@
     <?php endif; ?>
 
 <?php require_once 'views/footer_view.php' ?>
+
+<?php if (!empty($disabled)) : ?>
+        <script>
+            swal({
+                type: 'warning',
+                title: "Advertencia",
+                text: "Esta paciente no esta disponible para programar segunda toma",
+                button: "Aceptar",
+                icon: "error",
+                button: "Aceptar",
+                timer: 7000,
+                animation: false,
+                customClass: 'animated heartBeat'
+            })
+        </script>
+    <?php endif; ?>

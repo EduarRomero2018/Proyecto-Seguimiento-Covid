@@ -29,40 +29,43 @@ else{
   LEFT JOIN prog_toma_muestra PTM ON P.id = PTM.pacientes_id
   WHERE numero_documento = :numero_documento");
   $consulta->execute(array(':numero_documento' => $documento));
-          $resultado = $consulta->fetch();
-          //print_r($resultado);
-          $Nombre_Completo=$resultado['Nombre_Completo'];
-          $tipo_documento=$resultado['tipo_documento'];
-          $numero_documento=$resultado['numero_documento'];
-          $edad=$resultado['edad'];
-          $Direccion_Residencia=$resultado['Direccion_Residencia'];
-          $telefono=$resultado['telefono'];
-          $aseguradora=$resultado['aseguradora'];
-          $fecha_creacion_paciente=$resultado['fecha_creacion_paciente'];
-          $fecha_primera_toma_muestra=$resultado['fecha_primera_toma_muestra'];
-          $resultado_toma=$resultado['resultado_toma'];
-          $notificado=$resultado['notificado'];
-          $id=$resultado['id'];
-          //mandamos un msg si no encontro nada
-          if (empty($resultado)){
-           $errores= 'Paciente no Encontrado'; //enviamos el mensaje de error
-          }
+  $resultado = $consulta->fetch();
+  //print_r($resultado);
+  $Nombre_Completo=$resultado['Nombre_Completo'];
+  $tipo_documento=$resultado['tipo_documento'];
+  $numero_documento=$resultado['numero_documento'];
+  $edad=$resultado['edad'];
+  $Direccion_Residencia=$resultado['Direccion_Residencia'];
+  $telefono=$resultado['telefono'];
+  $aseguradora=$resultado['aseguradora'];
+  $fecha_creacion_paciente=$resultado['fecha_creacion_paciente'];
+  $fecha_primera_toma_muestra=$resultado['fecha_primera_toma_muestra'];
+  $resultado_toma=$resultado['resultado_toma'];
+  $notificado=$resultado['notificado'];
+  $id=$resultado['id'];
+  //mandamos un msg si no encontro nada
+  if (empty($resultado)){
+    $errores= 'Paciente no Encontrado'; //enviamos el mensaje de error
+  }
+
+  $consulta = $conexion->prepare("SELECT id, resultado FROM prog_toma_muestra WHERE pacientes_id = ?");
+  $consulta->execute(array($id));
+
+  $resultado = $consulta->fetch();
+  $resultado_tm = $resultado['resultado'];
+
+  if($resultado_tm == 'Pendiente')
+  {
+    $disabled = 'disabled';
+  }
+  else
+  {
+    $disabled = '';
+  }
+
 }
 }
 
 require 'views/toma_muestra_control_view.php';
 
 ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
