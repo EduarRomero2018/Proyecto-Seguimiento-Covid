@@ -96,7 +96,6 @@ if (empty($tipo_de_reporte) || empty($fecha_final_reporte) || empty($fecha_final
           require_once 'views/rg_view.php';
         }
       break;
-
        //Pacientes confirmado con toma de muestra sin asignacion a seguimiento
        case 'CPSA':
         $consulta = $conexion->prepare(
@@ -122,7 +121,6 @@ if (empty($tipo_de_reporte) || empty($fecha_final_reporte) || empty($fecha_final
           require_once 'views/rg_view.php';
         }
       break;
-
       //Pacientes positivo sin asignacion a profesional (Medicos)
       case 'CPSM':
         $consulta = $conexion->prepare(
@@ -159,7 +157,7 @@ if (empty($tipo_de_reporte) || empty($fecha_final_reporte) || empty($fecha_final
         RIGHT JOIN prog_toma_muestra PTM ON P.id = PTM.pacientes_id
         WHERE P.aseguradora = 'MUTUAL SER'
         AND P.fecha_registro  BETWEEN '$fecha_inicio_reporte' AND '$fecha_final_reporte 23:00:00'
-        AND PTM.fecha_programacion IS NO NULL
+        AND PTM.fecha_programacion IS NOT NULL
         AND PTM.fecha_realizacion IS NULL");
         $consulta->execute();
         $cppa = $consulta->fetchAll(PDO::FETCH_OBJ);
@@ -170,7 +168,27 @@ if (empty($tipo_de_reporte) || empty($fecha_final_reporte) || empty($fecha_final
           require_once 'views/rg_view.php';
         }
       break;
-
+      // cantidad de seguimientos por pacientes
+      case 'CSP':
+        $consulta = $conexion->prepare(
+        "SELECT  SP.id_pacientes, CONCAT(primer_nombre, ' ', primer_apellido) AS 'Nombre_Completo',
+        P.numero_documento,
+        COUNT(*) as 'Numero_de_Seguimientos'
+        FROM seguimiento_paciente SP
+        RIGHT JOIN pacientes P ON SP.id_pacientes = P.id
+        WHERE SP.fecha_hora BETWEEN '$fecha_inicio_reporte' AND '$fecha_final_reporte 23:00:00'
+        GROUP BY SP.id_pacientes
+        ORDER BY Numero_de_Seguimientos DESC");
+        $consulta->execute();
+        $csp = $consulta->fetchAll(PDO::FETCH_OBJ);
+        $count = $consulta -> rowCount();
+        if(isset($_REQUEST['export_report'])){
+          header('Content-type:application/xls');
+          header('Content-Disposition: attachment; filename=segui_x_paciente.xls');
+          require_once 'views/rg_view.php';
+        }
+      break;
+       // cantidad de pacientes pendientes positivos
       case 'CPP':
           $consulta = $conexion->prepare(
           "SELECT CONCAT(primer_nombre, ' ', primer_apellido) AS 'Nombre_Completo', tipo_documento, edad,
