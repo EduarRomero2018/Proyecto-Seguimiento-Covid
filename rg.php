@@ -188,6 +188,29 @@ if (empty($tipo_de_reporte) || empty($fecha_final_reporte) || empty($fecha_final
           require_once 'views/rg_view.php';
         }
       break;
+       // cantidad de pacientes asignados a Anais Zabaleta
+       case 'AZ':
+        $consulta = $conexion->prepare(
+        "SELECT  SP.id_pacientes,
+				CONCAT(primer_nombre, ' ', primer_apellido) AS 'Nombre_Completo',
+        P.numero_documento,
+        COUNT(*) as 'Numero_de_Seguimientos', P.id_usuario_seguimiento
+        FROM seguimiento_paciente SP
+        RIGHT JOIN pacientes P ON SP.id_pacientes = P.id
+				RIGHT JOIN usuarios U ON P.id_usuario_seguimiento = U.id
+        WHERE SP.id_usuario_seguimiento BETWEEN '$fecha_inicio_reporte' AND '$fecha_final_reporte 23:00:00'
+        AND P.aseguradora = 'MUTUAL SER'
+				AND P.id_usuario_seguimiento = 19
+        GROUP BY SP.id_pacientes");
+        $consulta->execute();
+        $az = $consulta->fetchAll(PDO::FETCH_OBJ);
+        $count = $consulta -> rowCount();
+        if(isset($_REQUEST['export_report'])){
+          header('Content-type:application/xls');
+          header('Content-Disposition: attachment; filename=Seguimiento_Anais Zabaleta.xls');
+          require_once 'views/rg_view.php';
+        }
+      break;
        // cantidad de pacientes pendientes positivos
       case 'CPP':
           $consulta = $conexion->prepare(

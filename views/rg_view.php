@@ -41,6 +41,8 @@
                                     <option value="CPSM">Pacientes positivos confirmados sin asignacion a profesional (Medicos)</option>
                                     <option value="CPPA">Cantidad de pacientes pendientes por asignar</option>
                                     <option value="CSP">Cantidad de seguimientos por pacientes</option>
+                                    <option value="AZ">Cantidad de pacientes asignados a Anaís Zabaleta</option>
+
                                     <!-- <option value="CPP">Seguimientos por pacientes</option>
                                     <option value="CPP">Cantidad de Pacientes Positivos</option>
                                     <option value="CPN">Cantidad de Pacientes Negativos</option>
@@ -495,6 +497,40 @@
                                              <?php
                                              $i = 1;
                                              foreach ($csp as $key) : ?>
+                                        <tr>
+                                            <td class="text-center"><?= $i ?></td>
+                                            <!-- <td class="text-center"><?= $key->id_pacientes ?></td> -->
+                                            <td class="text-center"><?= $key->Nombre_Completo ?></td>
+                                            <td class="text-center"><?= $key->numero_documento ?></td>
+                                            <td class="text-center"><?= $key->Numero_de_Seguimientos ?></td>
+                                        <?php $i++;
+                                                                        endforeach; ?>
+                                        </tbody>
+                            </div>
+                        </div>
+                    </div>
+                <?php endif; ?>
+                <!-- *******************cantidad de pacientes asignados a Anais Zabaleta*************************+ -->
+                <?php if (isset($az) != '') : ?>
+                    <div class="card shadow mt-5">
+                        <div class="card-body">
+                            <h4>Cantidad de pacientes asignados al usuario Anais Zabaleta: <?php echo $count?></h4>
+                            <div class="table-wrapper-scroll-y my-custom-scrollbar table-hover">
+                                <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+                                    <thead>
+                                        <tr class="text-right ">
+                                            <div class="row">
+                                            </div>
+                                            <th style="background: #CCD1D1" class="text-center th-sm"># Registro</th>
+                                            <!-- <th style="background: #CCD1D1" class="text-center th-sm">Id Paciente</th> -->
+                                            <th style="background: #CCD1D1" class="text-center th-sm">Nombre del paciente</th>
+                                            <th style="background: #CCD1D1" class="text-center th-sm">Identificacion</th>
+                                            <th style="background: #CCD1D1" class="text-center th-sm">Numero de Seguimientos</th>
+                                            </tr>
+                                        </thead>
+                                             <?php
+                                             $i = 1;
+                                             foreach ($az as $key) : ?>
                                         <tr>
                                             <td class="text-center"><?= $i ?></td>
                                             <!-- <td class="text-center"><?= $key->id_pacientes ?></td> -->
