@@ -69,7 +69,9 @@
                 <div class="col-md-6">
                     <div class="card">
                         <div class="card-body">
-                            <canvas id="otro" height="200"></canvas>
+                            <h3 id="porcentaje_programados" hidden><?= $porcentaje_programados ?></h3>
+                            <h3 id="porcentaje_nProgramados" hidden><?= $porcentaje_nProgramados ?></h3>
+                            <canvas id="programados-nProgramados" height="200"></canvas>
                         </div>
                     </div>
                 </div>
@@ -80,6 +82,7 @@
 <?php require_once 'views/footer_view.php'; ?>
 <script src="js/chart.min.js"></script>
 <script>
+
     var porcentaje_positivos = document.getElementById('porcentaje_positivos').textContent
     var porcentaje_negativo = document.getElementById('porcentaje_negativo').textContent
 
@@ -147,21 +150,24 @@
         }
     });
 
-    var ctx = document.getElementById('otro').getContext('2d');
+    var porcentaje_programados = document.getElementById('porcentaje_programados').textContent
+    var porcentaje_nProgramados = document.getElementById('porcentaje_nProgramados').textContent
+
+    var ctx = document.getElementById('programados-nProgramados').getContext('2d');
     var myChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ['positivo','negativos'],
+            labels: ['pacientes programados','pacientes no programados'],
             datasets: [{
                 label: 'porcentaje de pacientes',
-                data: [40,60],
+                data: [porcentaje_programados,porcentaje_nProgramados],
                 backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(107,214,68, 0.2)'
+                    'rgba(107,214,68, 0.2)',
+                    'rgba(255, 99, 132, 0.2)'
                 ],
                 borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(107,214,68, 1)'
+                    'rgba(107,214,68, 1)',
+                    'rgba(255, 99, 132, 1)'
                 ],
                 borderWidth: 1
             }]
