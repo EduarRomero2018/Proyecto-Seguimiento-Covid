@@ -30,6 +30,11 @@ try {
         die(json_encode($err));
     }
 
+    $stm = $conexion->prepare("UPDATE seguimiento_paciente SET actual = 'NO' WHERE id_pacientes = ? AND actual = 'SI' ");
+    $stm->execute(array(
+        $pacientes_id
+    ));
+
     if ($stm->rowCount() < 1) {
         die(json_encode('bad'));
     } else {
