@@ -54,6 +54,8 @@
                 <div class="card-body">
                     <h3 id="porcentaje_positivos" hidden><?= $porcentaje_positivos ?></h3>
                     <h3 id="porcentaje_negativo" hidden><?= $porcentaje_negativo ?></h3>
+                    <h3 id="j_aseguradoras" hidden><?= $j_aseguradoras ?></h3>
+                    <h3 id="n_pacientes" hidden><?= $n_pacientes ?></h3>
                     <canvas id="myChart" height="100"></canvas>
                 </div>
             </div>
@@ -63,6 +65,11 @@
                     <div class="card">
                         <div class="card-body">
                             <canvas id="positivo-negativo" height="200"></canvas>
+                            <div class="d-flex justify-content-between">
+                                <small>Total pacientes: <strong><?= number_format(50000) ?></strong></small>
+                                <small>casos positivos: <strong><?= number_format(10000) ?></strong></small>
+                                <small>Casos negativos: <strong><?= number_format(40000) ?></strong></small>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -72,6 +79,12 @@
                             <canvas id="otro" height="200"></canvas>
                         </div>
                     </div>
+                </div>
+            </div>
+
+            <div class="container-fluid card mt-3">
+                <div class="card-body">
+                    <canvas id="eps" height="100"></canvas>
                 </div>
             </div>
         </div>
@@ -113,7 +126,7 @@
             }
         }
     });
-
+    
     var ctx = document.getElementById('positivo-negativo').getContext('2d');
     var myChart = new Chart(ctx, {
         type: 'bar',
@@ -134,6 +147,11 @@
             }]
         },
         options: {
+            title: {
+                display: true,
+                text: 'Pacientes positivos y negativos'
+            },
+
             scales: {
                 yAxes: [{
                     ticks: {
@@ -173,6 +191,63 @@
                         max: 100,
                         min: 0,
                         stepSize: 10,
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+
+    var ctx = document.getElementById('eps').getContext('2d');
+    var min = 0
+    var max = 255
+    var r = 0
+    var g = 0
+    var b = 0
+
+    var aseguradoras = JSON.parse(document.getElementById('j_aseguradoras').textContent)
+    var labels_eps = []
+    var data_cantidad_pacientes = []
+    var backgroundColor = []
+    var borderColor = []
+    var total_pacientes = document.getElementById('n_pacientes').textContent
+    
+    aseguradoras.forEach(eps => {
+        labels_eps.push(eps.aseguradora)
+        data_cantidad_pacientes.push(eps.cantidad)
+
+        r = Math.floor(Math.random() * (+max - +min) + +min)
+        g = Math.floor(Math.random() * (+max - +min) + +min)
+        b = Math.floor(Math.random() * (+max - +min) + +min)
+
+        backgroundColor.push(`rgba(${r}, ${g}, ${b}, 0.2)`)
+        borderColor.push(`rgba(${r}, ${g}, ${b}, 1)`)
+    });
+    console.log(total_pacientes);
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels_eps,
+            datasets: [{
+                label: 'Cantidad de pacientes',
+                backgroundColor: backgroundColor,
+                borderColor: borderColor,
+                borderWidth: 1,
+                data: data_cantidad_pacientes
+            }]
+        },
+        options: {
+            title: {
+                display: true,
+                text: 'Cantidad de pacientes por EPS'
+            },
+
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        max: <?= $n_pacientes ?>,
+                        min: 0,
+                        stepSize: 1,
                         beginAtZero: true
                     }
                 }]
